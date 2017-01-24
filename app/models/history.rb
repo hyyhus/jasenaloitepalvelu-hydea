@@ -1,3 +1,4 @@
 class History < ActiveRecord::Base
-	belongs_to :user
+	has_one :user
+	belongs_to :idea
 end
