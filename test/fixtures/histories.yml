@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: 2017-01-24 13:34:00
+  basket_id: MyString
+  user_id: MyString
+
+two:
+  time: 2017-01-24 13:34:00
+  basket_id: MyString
+  user_id: MyString
