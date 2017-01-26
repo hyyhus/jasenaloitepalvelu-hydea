@@ -5,3 +5,90 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+baskets = ["New", "Approved", "Rejected", "Changing", "Changed", "Not changed"]
+baskets.each {|b| Basket.create!(name: b)}
+
+case Rails.env
+when "development", "test"
+
+	tags = ["Keskusta", "Viikki", "Kumpula", "Meilahti", "Unicafe", "Kulttuuri", "Edut", "Järjestöt"]
+	tags.each {|t| Tag.create!(text: t)}
+
+	admins=5
+	moderators=15
+	users=80
+	ideas=20
+	likes=50
+	comments=50
+
+	admins.times do |n|
+		name  = Faker::Name.name
+		email = "#{name}@helsinki.fi"
+		persistent_id = Faker::Number.unique.number(20)
+		title = Faker::Company.profession
+		User.create!(name:  name,
+			     email: email,
+			     admin: true,
+			     moderator: false,
+			     persistent_id: persistent_id,
+			     title: title
+			    )
+
+	end
+
+	moderators.times do |n|
+		name  = Faker::Name.name
+		email = "#{name}@helsinki.fi"
+		persistent_id = Faker::Number.unique.number(20)
+		title = Faker::Company.profession
+		User.create!(name:  name,
+			     email: email,
+			     admin: false,
+			     moderator: true,
+			     persistent_id: persistent_id,
+			     title: title
+			    )
+
+	end
+
+	users.times do |n|
+		name  = Faker::Name.name
+		email = "#{name}@helsinki.fi"
+		persistent_id = Faker::Number.unique.number(20)
+		title = Faker::Company.profession
+		User.create!(name:  name,
+			     email: email,
+			     admin: false,
+			     moderator: false,
+			     persistent_id: persistent_id,
+			     title: ""
+			    )
+	end
+
+	ideas.times do |n|
+		topic = Faker::Lorem.sentence
+		text = Faker::Lorem.paragraph(5, false, 15)
+		basket_id = (Random.rand(baskets.count)+1)
+		Idea.create!(topic: topic, text: text, basket_id: basket_id)
+		History.create!(time: Faker::Date.backward(265), basket_id: 1, user_id: (Random.rand(admins+moderators+users)+1), idea_id: (n+1) )
+
+	end
+
+	likes.times do |n|
+		like_type = ["like","dislike"].sample
+		user_id = (Random.rand(admins+moderators+users)+1)
+		idea_id = (Random.rand(admins+moderators+users)+1)
+		Like.create!(like_type: like_type, user_id: user_id, idea_id: idea_id)
+	end
+
+	comments.times do |n|
+		user_id = (Random.rand(admins+moderators+users)+1)
+		idea_id = (Random.rand(ideas)+1)
+		text = Faker::Lorem.paragraph(5, false, 15)
+		time = Faker::Date.backward(365)
+		Comment.create!(user_id: user_id, idea_id: idea_id, text: text, time: time)
+	end
+
+when "production"
+end
