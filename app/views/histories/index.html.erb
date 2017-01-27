@@ -5,7 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>Idea</th>
       <th>Time</th>
       <th>Basket</th>
       <th>User</th>
@@ -16,10 +15,9 @@
   <tbody>
     <% @histories.each do |history| %>
       <tr>
-        <td><%= history.idea.topic %></td>
         <td><%= history.time %></td>
-        <td><%= history.basket.name %></td>
-        <td><%= history.user.name %></td>
+        <td><%= history.basket_id %></td>
+        <td><%= history.user_id %></td>
         <td><%= link_to 'Show', history %></td>
         <td><%= link_to 'Edit', edit_history_path(history) %></td>
         <td><%= link_to 'Destroy', history, method: :delete, data: { confirm: 'Are you sure?' } %></td>

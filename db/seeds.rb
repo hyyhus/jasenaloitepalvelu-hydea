@@ -75,7 +75,6 @@ when "development", "test"
 
 	end
 
-	#Probably causes likes and dislikes from same user on one idea too
 	likes.times do |n|
 		like_type = ["like","dislike"].sample
 		user_id = (Random.rand(admins+moderators+users)+1)
@@ -89,11 +88,6 @@ when "development", "test"
 		text = Faker::Lorem.paragraph(5, false, 15)
 		time = Faker::Date.backward(365)
 		Comment.create!(user_id: user_id, idea_id: idea_id, text: text, time: time)
-	end
-
-	#Blindly do some tagging
-	tags.size.times do |n|
-		Idea.all.sample.tags << Tag.all.sample
 	end
 
 when "production"
