@@ -7,7 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<% if not session[:user_id].nil? %>
+	  <p><%= User.find(session[:user_id]).name %> signed in</p>
+	  <% end %>
 <%= yield %>
 
 </body>
