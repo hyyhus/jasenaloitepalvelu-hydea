@@ -25,15 +25,9 @@ class IdeasController < ApplicationController
   # POST /ideas.json
   def create
     @idea = Idea.new(idea_params)
-    @idea.basket_id=1
-    @history = History.new
-    @history.time=Time.now
-    @history.user=current_user
-    @history.basket=Basket.all.select{|b | b.name=="New"}.first
-    @history.idea=@idea
 
     respond_to do |format|
-	    if @idea.save and @history.save
+      if @idea.save
         format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
         format.json { render :show, status: :created, location: @idea }
       else
