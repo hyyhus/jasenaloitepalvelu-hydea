@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -39,8 +40,9 @@ ActiveRecord::Schema.define(version: 20170124120945) do
     t.integer  "idea_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["idea_id"], name: "index_histories_on_idea_id"
   end
+
+  add_index "histories", ["idea_id"], name: "index_histories_on_idea_id"
 
   create_table "ideas", force: :cascade do |t|
     t.string   "topic"
