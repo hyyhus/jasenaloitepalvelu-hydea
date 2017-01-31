@@ -10,6 +10,9 @@
 <% if not session[:user_id].nil? %>
 	  <p><%= User.find(session[:user_id]).name %> signed in</p>
 	  <% end %>
+	  <br>
+	  <%= link_to 'New ideas', ideas_path(basket: "New" )%>
+	  <%= link_to 'Approved ideas', ideas_path(basket: "Approved" )%>
 <%= yield %>
 
 </body>

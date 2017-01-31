@@ -4,7 +4,12 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
+	  if params[:basket]
+	  basket = Basket.find_by(name: params[:basket].to_s).id
+	  @ideas = Idea.all.where(basket: basket)
+	  else
     @ideas = Idea.all
+	  end
   end
 
   # GET /ideas/1
