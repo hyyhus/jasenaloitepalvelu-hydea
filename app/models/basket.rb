@@ -1,3 +1,3 @@
-class Basket < ActiveRecord::Base
+class Basket < ApplicationRecord
 	has_many :ideas
 end
