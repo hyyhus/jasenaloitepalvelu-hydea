@@ -1,5 +1,13 @@
 class HistoriesController < ApplicationController
   before_action :set_history, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_is_moderator, only: [:create, :edit, :update, :destroy]
+
+  def ensure_that_is_moderator
+	  if current_user == nil
+		  redirect_to redirect_to histories_path notice:'you must be signed in' and return
+	  end
+	  redirect_to histories_path, notice:'you should be moderator to do that' unless current_user.moderator?
+  end
 
   # GET /histories
   # GET /histories.json
@@ -25,6 +33,8 @@ class HistoriesController < ApplicationController
   # POST /histories.json
   def create
     @history = History.new(history_params)
+    @history.user=current_user
+    @history.time=Time.now
 
     respond_to do |format|
       if @history.save
@@ -69,6 +79,6 @@ class HistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def history_params
-      params.require(:history).permit(:time, :basket_id, :user_id)
+      params.require(:history).permit(:time, :basket_id, :user_id, :idea_id)
     end
 end
