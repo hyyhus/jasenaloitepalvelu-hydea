@@ -22,9 +22,15 @@ when "development", "test"
 	likes=50
 	comments=50
 
+	Faker::Config.locale = 'fin'
+
+
 	admins.times do |n|
-		name  = Faker::Name.name
-		email = "#{name}@helsinki.fi"
+		firstName  = Faker::Name.first_name
+		lastName = Faker::Name.last_name
+		name = "#{firstName} #{lastName}"
+		ename = I18n.transliterate("#{firstName}.#{lastName}")
+		email = "#{ename}@helsinki.fi".downcase
 		persistent_id = Faker::Number.unique.number(20)
 		title = Faker::Company.profession
 		User.create!(name:  name,
@@ -38,8 +44,11 @@ when "development", "test"
 	end
 
 	moderators.times do |n|
-		name  = Faker::Name.name
-		email = "#{name}@helsinki.fi"
+		firstName  = Faker::Name.first_name
+		lastName = Faker::Name.last_name
+		name = "#{firstName} #{lastName}"
+		ename = I18n.transliterate("#{firstName}.#{lastName}")
+		email = "#{ename}@helsinki.fi".downcase
 		persistent_id = Faker::Number.unique.number(20)
 		title = Faker::Company.profession
 		User.create!(name:  name,
@@ -53,8 +62,11 @@ when "development", "test"
 	end
 
 	users.times do |n|
-		name  = Faker::Name.name
-		email = "#{name}@helsinki.fi"
+		firstName  = Faker::Name.first_name
+		lastName = Faker::Name.last_name
+		name = "#{firstName} #{lastName}"
+		ename = I18n.transliterate("#{firstName}.#{lastName}")
+		email = "#{ename}@helsinki.fi".downcase
 		persistent_id = Faker::Number.unique.number(20)
 		title = Faker::Company.profession
 		User.create!(name:  name,
