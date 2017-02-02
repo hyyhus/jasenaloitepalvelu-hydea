@@ -16,7 +16,10 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     
-    @comment = Comment.new
+    @comment = Comment.new  
+    @comment.idea_id = params[:id]
+    
+
   end
 
   # GET /comments/1/edit
@@ -26,19 +29,11 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-
-
-    
     comment = Comment.create params.require(:comment).permit(:user_id, :time, :text, :idea_id)
-    current_user.comments << comment 
+    current_user.comments << comment
     
-    #redirect_to ideas_path(:idea_id => params[:idea_id])
-
-    #redirect_to ideas_path(comment.idea_id)
     redirect_to :controller => 'ideas', :action => 'show', :id => comment.idea_id
-    #redirect_to ideas_path(:idea_id => @comment)
-
-    #redirect_to ideas_path
+    
   end
 
   # PATCH/PUT /comments/1
