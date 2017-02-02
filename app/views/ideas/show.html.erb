@@ -15,5 +15,17 @@
   <%= @idea.basket_id %>
 </p>
 
+
+
+<p>
+	<% @idea.comments.each do |comment| %>
+	<%= comment.text %>
+	<% end %>
+</p>
+
+
 <%= link_to 'Edit', edit_idea_path(@idea) %> |
-<%= link_to 'Back', ideas_path %>
+<%= link_to 'Back', ideas_path %> |
+<%= link_to 'New Comment', new_comment_path %>
+
+
