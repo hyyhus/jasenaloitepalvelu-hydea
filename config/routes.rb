@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   # Hydea specific
   resource :session, only: [:new, :create, :destroy]
+  resources :ideas do
+	  post 'publish', on: :member
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -19,9 +19,11 @@
         <td><%= idea.text %></td>
         <td><%= idea.basket.name %></td>
 	<th><% if idea.basket.name=='New' %>
-	
-        <td><%= link_to 'Publish', edit_idea_path(idea) %></td>
+		<td>
+			<%= link_to "publish", publish_idea_path(idea), method: :post, class: "btn btn-primary" %>
+		</td>
 	<% end %>	
+	</th>
 
 	<!-- <td><%= link_to 'Show', idea %></td>
         <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
