@@ -2,15 +2,17 @@
 <html>
 <head>
   <title>Hydea</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= render 'layouts/header' %>
 <% if not session[:user_id].nil? %>
 	  <p><%= User.find(session[:user_id]).name %> signed in</p>
 	  <% end %>
 <%= yield %>
-
+<%= render 'layouts/footer' %>
 </body>
 </html>

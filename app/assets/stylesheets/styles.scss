@@ -1,0 +1,12 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.container > .panel-group{
+	background: #dddddd;
+	box-shadow: 5px 5px 5px grey;
+	margin-bottom: 15px;
+}
+
+.up_down{
+	float: right;
+}

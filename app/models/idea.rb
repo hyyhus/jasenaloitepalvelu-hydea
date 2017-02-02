@@ -4,4 +4,9 @@ class Idea < ApplicationRecord
 	has_many :comments
 	has_many :likes
 	has_many :histories
+	validates :topic,	presence: true,
+						length: { maximum: 55 }
+	validates :text, 	presence: true,
+						length: { maximum: 255 }
+
 end
