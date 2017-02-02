@@ -13,6 +13,11 @@
 	  <br>
 	  <%= link_to 'New ideas', ideas_path(basket: "New" )%>
 	  <%= link_to 'Approved ideas', ideas_path(basket: "Approved" )%>
+	  <%= link_to 'Changing ideas', ideas_path(basket: "Changing" )%>
+	  <%= link_to 'Approved ideas', ideas_path(basket: "Changed" )%>
+	  <%= link_to 'Approved ideas', ideas_path(basket: "Not changed" )%>
+	  <%= link_to 'Rejected ideas', ideas_path(basket: "Rejected" )%>
+
 <%= yield %>
 
 </body>
