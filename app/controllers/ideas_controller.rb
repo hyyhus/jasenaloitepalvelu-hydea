@@ -1,5 +1,6 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  before_action :set_idea, only: [:publish]
 
   # GET /ideas
   # GET /ideas.json
@@ -70,6 +71,18 @@ class IdeasController < ApplicationController
       format.html { redirect_to ideas_url, notice: 'Idea was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  def publish
+
+	  history = History.new
+	  history.time=Time.now
+	  history.basket=Basket.find_by(name: "Approved").id
+	  history.user=current_user
+	  history.idea=@idea
+	  history.save
+	  @idea.basket=history.basket
+
   end
 
   private
