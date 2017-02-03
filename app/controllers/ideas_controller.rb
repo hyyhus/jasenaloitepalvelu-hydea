@@ -1,15 +1,22 @@
 class IdeasController < ApplicationController
-  before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish]
+#  before_action :set_idea, only: [:publish]
 
   # GET /ideas
   # GET /ideas.json
   def index
+	  if params[:basket]
+	  basket = Basket.find_by(name: params[:basket].to_s).id
+	  @ideas = Idea.all.where(basket: basket)
+	  else
     @ideas = Idea.all
+	  end
   end
 
   # GET /ideas/1
   # GET /ideas/1.json
   def show
+    
   end
 
   # GET /ideas/new
@@ -65,6 +72,22 @@ class IdeasController < ApplicationController
       format.html { redirect_to ideas_url, notice: 'Idea was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  def publish
+
+	  if current_user.moderator?
+	  history = History.new
+	  history.time=Time.now
+	  history.basket=Basket.find_by(name: "Approved")
+	  history.user=current_user
+	  history.idea=@idea
+	  history.save
+	  @idea.basket=history.basket
+	  @idea.save
+	  end
+	  redirect_to ideas_path
+
   end
 
   private
