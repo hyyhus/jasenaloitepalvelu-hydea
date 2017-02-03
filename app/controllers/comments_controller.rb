@@ -14,14 +14,8 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-<<<<<<< HEAD
-    @comment = Comment.new
-=======
-    
     @comment = Comment.new  
     @comment.idea_id = params[:id]
-    
->>>>>>> HA-1-Comment-Tests
   end
 
   # GET /comments/1/edit
