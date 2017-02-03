@@ -15,3 +15,11 @@ two:
   name: MyString
   email: MyString
   title: MyString
+
+three:
+  admin: true
+  moderator: true
+  persistent_id: MyString
+  name: MyString
+  email: MyString
+  title: MyString

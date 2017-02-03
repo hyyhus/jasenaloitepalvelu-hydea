@@ -19,7 +19,6 @@ class CommentsController < ApplicationController
     @comment = Comment.new  
     @comment.idea_id = params[:id]
     
-
   end
 
   # GET /comments/1/edit
