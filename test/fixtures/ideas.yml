@@ -1,11 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+ideaOne:
   topic: MyString
   text: MyString
-  basket_id: MyString
+  basket: basketOne
 
-two:
+ideaTwo:
   topic: MyString
   text: MyString
-  basket_id: MyString
+  basket: basketTwo
+
+ideaThree:
+  topic: MyString
+  text: MyString
+  basket: basketThree
+ideaFour:
+  topic: MyString
+  text: MyString
+  basket: basketFour
