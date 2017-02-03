@@ -2,7 +2,7 @@ require 'test_helper'
 
 class HistoriesControllerTest < ActionController::TestCase
   setup do
-    @history = histories(:one)
+    @history = histories(:historyOne)
   end
 
 #  test "should get index" do

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TagsControllerTest < ActionController::TestCase
   setup do
-    @tag = tags(:one)
+    @tag = tags(:tagOne)
   end
 
   test "should get index" do

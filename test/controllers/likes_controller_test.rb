@@ -2,7 +2,7 @@ require 'test_helper'
 
 class LikesControllerTest < ActionController::TestCase
   setup do
-    @like = likes(:one)
+    @like = likes(:likeOne)
   end
 
   test "should get index" do
