@@ -16,3 +16,4 @@ deploy:
   app: blooming-everglades-37675
   on:
     repo: hydea/hydea
+    branch: master, integration
