@@ -1,13 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-basketOne:
+one:
   name: MyString
 
-basketTwo:
-  name: MyString
-
-basketThree:
-  name: MyString
-
-basketFour:
+two:
   name: MyString

@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-tagOne:
+one:
   text: MyString
 
-tagTwo:
+two:
   text: MyString

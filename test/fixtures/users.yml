@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-userOne:
+one:
   admin: false
   moderator: false
   persistent_id: MyString
@@ -8,23 +8,15 @@ userOne:
   email: MyString
   title: MyString
 
-userTwo:
-  admin: true
+two:
+  admin: false
   moderator: false
   persistent_id: MyString
   name: MyString
   email: MyString
   title: MyString
 
-userThree:
-  admin: false
-  moderator: true
-  persistent_id: MyString
-  name: MyString
-  email: MyString
-  title: MyString
-
-userFour:
+three:
   admin: true
   moderator: true
   persistent_id: MyString

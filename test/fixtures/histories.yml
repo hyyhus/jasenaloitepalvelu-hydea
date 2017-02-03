@@ -1,21 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-historyOne:
+one:
   time: 2017-01-24 13:34:00
-  basket: basketOne
-  user: userOne
+  basket_id: MyString
+  user_id: MyString
 
-historyTwo:
+two:
   time: 2017-01-24 13:34:00
-  basket: basketTwo
-  user: userTwo
-
-historyThree:
-  time: 2017-01-24 13:34:00
-  basket: basketThree
-  user: userThree
-
-historyFour:
-  time: 2017-01-24 13:34:00
-  basket: basketFour
-  user: userFour
+  basket_id: MyString
+  user_id: MyString

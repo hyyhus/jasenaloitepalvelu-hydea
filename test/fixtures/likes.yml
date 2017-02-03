@@ -1,21 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-likeOne:
+one:
   like_type: MyString
-  user: userOne
-  idea: ideaOne
+  user_id: MyString
+  idea_id: MyString
 
-likeTwo:
+two:
   like_type: MyString
-  user: userTwo
-  idea: ideaTwo
-
-likeThree:
-  like_type: MyString
-  user: userThree
-  idea: ideaThree
-
-likeFour:
-  like_type: MyString
-  user: userFour
-  idea: ideaFour
+  user_id: MyString
+  idea_id: MyString
