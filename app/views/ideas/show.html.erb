@@ -35,14 +35,14 @@
 
 <p>
   <tbody>
-	<% @idea.comments.each do |comment| %>
-	  <tr>
-	  	<td><%= comment.user.name %></td>
-        <td><%= comment.time %></td>
-        <td><%= comment.text %></td>
-        <td><%= link_to 'Show', comment %></td>
-	  <tr>
-	<% end %>
+  <% @idea.comments.each do |comment| %>
+    <tr>
+      <td><%= comment.user.name %></td>
+      <td><%= comment.time %></td>
+      <td><%= comment.text %></td>    
+      <td><%= link_to 'Show', comment %></td>
+    <tr>
+  <% end %>
   </tbody>
 </table>
 </p>

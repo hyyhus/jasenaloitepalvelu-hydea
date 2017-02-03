@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BasketsControllerTest < ActionController::TestCase
   setup do
-    @basket = baskets(:one)
+    @basket = baskets(:basketOne)
   end
 
   test "should get index" do

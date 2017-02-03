@@ -2,10 +2,10 @@ require 'test_helper'
 
 class CommentsControllerTest < ActionController::TestCase
   setup do
-    @comment = comments(:one)
-    current_user = users(:three)
+    @comment = comments(:commentFour)
+    current_user = users(:userFour)
     session[:user_id] = current_user.id
-    @idea = ideas(:one)
+    @idea = ideas(:ideaFour)
 
   end
 
