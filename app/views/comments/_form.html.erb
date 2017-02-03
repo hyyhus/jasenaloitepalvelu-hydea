@@ -12,6 +12,10 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
     <%= f.label :time %><br>
     <%= f.datetime_select :time %>
   </div>
@@ -19,7 +23,7 @@
     <%= f.label :text %><br>
     <%= f.text_field :text %>
   </div>
-  <div hidden class="field">
+  <div class="field">
     <%= f.label :idea_id %><br>
     <%= f.text_field :idea_id %>
   </div>
