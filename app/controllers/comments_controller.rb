@@ -10,12 +10,15 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
+
   end
 
   # GET /comments/new
   def new
+
     @comment = Comment.new  
     @comment.idea_id = params[:id]
+
   end
 
   # GET /comments/1/edit
@@ -25,17 +28,11 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
-
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
-    end
+    comment = Comment.create params.require(:comment).permit(:user_id, :time, :text, :idea_id)
+    current_user.comments << comment
+    
+    redirect_to :controller => 'ideas', :action => 'show', :id => comment.idea_id
+    
   end
 
   # PATCH/PUT /comments/1
