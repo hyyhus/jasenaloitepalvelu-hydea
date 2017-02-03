@@ -9,11 +9,9 @@
       <button type="button" class="btn btn-primary"><%= link_to 'Post Idea', new_idea_path %></button>
     </div>
   </div>
-  <!-- Example of baskets -->
 
   <ul class="nav nav-tabs nav-justified">
-    <% baskets = Basket.all %>
-    <% baskets.each do |basket| %>
+    <% Basket.all.each do |basket| %>
       <%if basket.name == "New" or basket.name == "Rejected"
           %><%
         else %>
@@ -24,31 +22,11 @@
           </li>
         <%end
       %>
-      <!--<li role="presentation">
-        <a href="">
-          <%= basket.name %>
-        </a>
-      </li>-->
     <% end %>
   </ul>
-  <!-- End of example -->
-  
-  <!-- Example of mods baskets -->
-  <!--
-  <ul class="nav nav-tabs nav-justified">
-    <li role="presentation" class="active"><a href="">New</a></li>
-    <li role="presentation"><a href="">Approved</a></li>
-    <li role="presentation"><a href="">Rejected</a></li>
-    <li role="presentation"><a href="">Changing</a></li>
-    <li role="presentation"><a href="">Has changed</a></li>
-    <li role="presentation"><a href="">Not changed</a></li>
-  </ul>
-  -->
-  <!-- End of example -->
 
   <div class="center tags">
-    <% tags = Tag.all %>
-    <% tags.each do |menutag| %>
+    <% Tag.all.each do |menutag| %>
       <label class="checkbox-inline"><input type="checkbox" value="">
       <%= menutag.text %>
       </label>
@@ -56,7 +34,7 @@
   </div>
 </div>
 
-  <% @ideas.each do |idea| %>
+<% @ideas.each do |idea| %>
   <div class="container">
     <div class="panel-group">
       <div class="panel panel-default">
@@ -67,16 +45,18 @@
                 <a data-toggle="collapse" href="#collapse<%= idea.id * 2 %>"><%= idea.topic %></a>
               </h4>
               <p><%= User.find(idea.histories.first.user_id).name %> - <%= idea.created_at.strftime('%d.%m.%Y %H:%M ') %></p>
-              <p>Tagit: 
-              <% idea.tags.each do |tag| %>
-                <%= if tag == nil
-                    
-                  else
-                    tag.text
-                  end
-                %>
-              <% end %>
-              </p>
+              <%if idea.tags.empty?
+                else%>
+                  <p>Tags: 
+                  <% idea.tags.each do |tag| %>
+                    <%= tag.text %>
+                    <% if tag == idea.tags.last%>
+                    <% else%>
+                    , 
+                    <%end%>
+                  <%end%>
+                </p>
+              <%end%>
             </div>
             <div class="<up_down. col-sm-3 center">
               <% likes = 0 %>
@@ -119,13 +99,15 @@
                       </div>
                     </div>
                   <% end %>
-                  <div class="panel-body">
-                    <div class="form-group">
-                      <label for="comment">Comment:</label>
-                      <textarea class="form-control" rows="5" id="comment"></textarea>
-                      <button type="button" class="btn btn-primary">Lähetä</button>
+                  <% if not session[:user_id].nil? %>
+                    <div class="panel-body">
+                      <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                        <button type="button" class="btn btn-primary">Send</button>
+                      </div>
                     </div>
-                  </div>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -139,10 +121,4 @@
       </div>
     </div>
   </div>
-  <% end %>
-
-
-<br>
-
-<%= link_to 'New Idea', new_idea_path %>
-
+<% end %>
