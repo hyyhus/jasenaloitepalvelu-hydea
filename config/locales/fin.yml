@@ -28,3 +28,5 @@ fin:
     name:
       first_name: ["Heikki", "Matti", "Mikko", "Miika", "Jari", "Kimmo", "Laura", "Jerry"]
       last_name: ["Virtanen", "Ahonen", "Testinen", "Jokinen", "Mattila", "Kauria", "Säynevirta", "Silvo", "Luoto", "Karvonen", "Mesimäki"]
+    company:
+      profession: ["opiskelija", "hallituksen jäsen", "työntekijä", "puheenjohtaja"]

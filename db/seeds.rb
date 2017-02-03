@@ -79,7 +79,7 @@ when "development", "test"
 	end
 
 	ideas.times do |n|
-		topic = Faker::Lorem.sentence
+		topic = Faker::ChuckNorris.fact
 		text = Faker::Lorem.paragraph(5, false, 15)
 		basket_id = (Random.rand(baskets.count)+1)
 		Idea.create!(topic: topic, text: text, basket_id: basket_id)
