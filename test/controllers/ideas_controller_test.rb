@@ -5,11 +5,11 @@ class IdeasControllerTest < ActionController::TestCase
     @idea = ideas(:one)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:ideas)
-  end
+#  test "should get index" do
+#    get :index
+#    assert_response :success
+#    assert_not_nil assigns(:ideas)
+#  end
 
   test "should get new" do
     get :new
