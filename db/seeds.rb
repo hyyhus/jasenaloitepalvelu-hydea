@@ -10,7 +10,7 @@ baskets = ["New", "Approved", "Rejected", "Changing", "Changed", "Not changed"]
 baskets.each {|b| Basket.create!(name: b)}
 
 case Rails.env
-when "development", "test", "production"
+when "development", "test"
 
 	tags = ["Keskusta", "Viikki", "Kumpula", "Meilahti", "Unicafe", "Kulttuuri", "Edut", "Järjestöt"]
 	tags.each {|t| Tag.create!(text: t)}
