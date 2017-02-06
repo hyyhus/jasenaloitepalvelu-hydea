@@ -28,7 +28,7 @@ baskets.each {|b| Basket.create!(name: b)}
 
 
 case Rails.env
-when "development", "test"
+when "development", "test", "production"
 
 	tags = ["Keskusta", "Viikki", "Kumpula", "Meilahti", "Unicafe", "Kulttuuri", "Edut", "Järjestöt"]
 	tags.each {|t| Tag.create!(text: t)}
