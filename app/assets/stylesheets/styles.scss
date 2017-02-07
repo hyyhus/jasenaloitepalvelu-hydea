@@ -22,10 +22,6 @@ a:hover{
 	margin: 5px 0 5px;
 }
 
-.btn a {
-	color: #fff;
-}
-
 .btn a:hover {
 	text-decoration: none;
 }
@@ -43,6 +39,18 @@ a:hover{
 }
 
 a .flag{
+	color: #c8c8c8;
 	float: right;
+}
+
+.flag:hover{
 	color: #ff0000;
+}
+
+.user_name{
+	float: right;
+}
+
+.btn a, .btn:visited{
+	color: #ffffff;
 }

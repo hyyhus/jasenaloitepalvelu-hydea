@@ -6,24 +6,22 @@
       <h1>Listing Ideas</h1>
     </div>
     <div class="col-sm-2">
-      <button type="button" class="btn btn-primary"><%= link_to 'Post Idea', new_idea_path %></button>
+        <%= link_to 'Post Idea', new_idea_path, :class => 'btn btn-primary'%>
     </div>
   </div>
 
   <ul class="nav nav-tabs nav-justified">
     <% Basket.all.each do |basket| %>
-      <%if basket.name == "New" or basket.name == "Rejected"
-          %><%
-        else %>
+      <!-- Tarkista onko kirjautuneella moderaattori true -->
+      <% if basket.name == "New" or basket.name == "Rejected" %>
+      <% else %>
           <% if basket.name == 'Approved'%>
             <li role="presentation" class="active">
               <%= link_to basket.name, ideas_path(basket: basket.name )%>
             </li>
           <% else %>
             <li role="presentation">
-              <a href="">
-                <%= link_to basket.name, ideas_path(basket: basket.name )%>
-              </a>
+              <%= link_to basket.name, ideas_path(basket: basket.name )%>
             </li>
           <% end %>
       <%end%>
@@ -35,11 +33,12 @@
       <label class="checkbox-inline"><input type="checkbox" value="">
       <%= menutag.text %>
       </label>
+      <% if menutag == Tag.find(4)%>
+        <br>
+      <% end %>
     <% end %>
   </div>
 </div>
-
-<!--<% approved = Basket.second.ideas %>-->
 
 <% @ideas.each do |idea| %>
   <div class="container">
@@ -51,7 +50,7 @@
               <h4 class="panel-title">
                 <a data-toggle="collapse" href="#collapse<%= idea.id * 2 %>"><%= idea.topic %></a>
               </h4>
-              <p><%= User.find(idea.histories.first.user_id).name %> - <%= idea.created_at.strftime('%d.%m.%Y %H:%M ') %></p>
+              <p><%= User.find(idea.histories.first.user_id).name %> - <%= idea.histories.first.created_at.strftime('%d.%m.%Y %H:%M ') %></p>
               <%if idea.tags.empty?
                 else%>
                   <p>Tags: 
@@ -65,7 +64,7 @@
                 </p>
               <%end%>
             </div>
-            <div class="<up_down. col-sm-3 center">
+            <div class="<col-sm-3 center">
               <% likes = 0 %>
               <% dislikes = 0 %>
               <% idea.likes.each do |like| %>
@@ -87,7 +86,17 @@
         </div>
         <div id="collapse<%= idea.id * 2 %>" class="panel-collapse collapse">
           <div class="panel-body">
-            <p><%= idea.text %></p>
+            <div class="row">
+              <div class="col-sm-9">
+                <p><%= idea.text %></p>
+              </div>
+              <div class="col-sm-3 histories">
+                <% idea.histories.each do |history|%>
+                  <p><strong>Created:</strong><br>
+                  <%= history.created_at.strftime('%d.%m.%Y %H:%M ') %></p>
+                <% end %>
+              </div>
+            </div>
           </div>
           <div class="panel-footer">
             <div class="panel-group">
@@ -100,9 +109,11 @@
                 <div id="collapse<%= idea.id * 2 + 1 %>" class="panel-collapse collapse">
                   <% idea.comments.each do |comment| %>
                     <div class="panel-body">
-                      <a href="">
-                        <i class="glyphicon glyphicon-flag flag"></i>
-                      </a>
+                      <% if not session[:user_id].nil? %>
+                        <a href="javascript:FlagComment();">
+                          <i class="glyphicon glyphicon-flag flag"></i>
+                        </a>
+                      <% end %>
                       <p><%= comment.user.name %> - <%= comment.time.strftime('%d.%m.%Y %H:%M ') %></p>
                       <div class="panel-footer">
                         <p><%= comment.text %></p>
@@ -110,17 +121,19 @@
                     </div>
                   <% end %>
                   <% if not session[:user_id].nil? %>
-			  <%= form_for("comment", :url => main_app.comments_path, :html => { :class => "form-horizontal" } ) do |f| %>
-				  <%= f.hidden_field :idea_id, :value => idea.id %>
-				  <%= f.hidden_field :time, :value => Time.now %>
-				  <div class="panel-body">
-					  <div class="form-group" method="post" action="comment/new">
-						  <label for="comment">Comment:</label>
-						  <%= f.text_field :text,class: "form-control", rows: "5", id: "comment"%>
-						  <button type="submit" class="btn btn-primary">Send </button>
-					  <% end %>
+			            <%= form_for("comment", :url => main_app.comments_path, :html => { :class => "form-horizontal" } ) do |f| %>
+				          <%= f.hidden_field :idea_id, :value => idea.id %>
+				          <%= f.hidden_field :time, :value => Time.now %>
+				          <div class="panel-body">
+                    <div class="panel-footer">
+    					        <div class="form-group" method="post" action="comment/new">
+    						      <label for="comment">Comment:</label>
+  						        <%= f.text_area :text,class: "form-control", rows: "5", id: "comment"%>
+  						        <button type="submit" class="btn btn-primary">Send </button>
+  					          <% end %>
                       </div>
                     </div>
+                  </div>
                   <% end %>
                 </div>
               </div>
@@ -136,3 +149,11 @@
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  function FlagComment() {
+  var flag_comment = confirm ("Do you want to flag this comment?")
+  if (flag_comment)
+    alert("Comment flagged.");
+  }
+</script>

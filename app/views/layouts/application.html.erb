@@ -9,10 +9,9 @@
 </head>
 <body>
 <%= render 'layouts/header' %>
-<% if not session[:user_id].nil? %>
+<!--<% if not session[:user_id].nil? %>
 	  <p><%= User.find(session[:user_id]).name %> signed in</p>
-	  <% end %>
-	  <br>
+	  <% end %>-->
 	  <!--<%= link_to 'New ideas', ideas_path(basket: "New" )%>
 	  <%= link_to 'Approved ideas', ideas_path(basket: "Approved" )%>
 	  <%= link_to 'Changing ideas', ideas_path(basket: "Changing" )%>
@@ -21,6 +20,7 @@
 	  <%= link_to 'Rejected ideas', ideas_path(basket: "Rejected" )%>-->
 
 <%= yield %>
+
 <%= render 'layouts/footer' %>
 </body>
 </html>
