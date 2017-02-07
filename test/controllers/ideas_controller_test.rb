@@ -2,7 +2,8 @@ require 'test_helper'
 
 class IdeasControllerTest < ActionController::TestCase
   setup do
-    @idea = ideas(:ideaFour)
+    @idea = ideas(:ideaOne)
+    @history = histories(:historyOne)    
    current_user = users(:userFour)
    session[:user_id] = current_user.id
   end
@@ -27,6 +28,7 @@ class IdeasControllerTest < ActionController::TestCase
   end
 
   test "should show idea" do
+
     get :show, id: @idea
     assert_response :success
   end
