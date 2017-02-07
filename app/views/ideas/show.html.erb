@@ -5,8 +5,9 @@
   <%= @idea.topic %>
 </p>
 
-<p>  
-  <%= current_user.name %>
+<p>    
+  
+  <%= @idea.histories.first.user.name %>
   <br>
   <%= @idea.created_at %>
 </p>
