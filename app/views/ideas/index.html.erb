@@ -1,3 +1,4 @@
+<!-- Container for top bar -->
 <div class="container">
   <p id="notice"><%= notice %></p>
 
@@ -10,9 +11,10 @@
     </div>
   </div>
 
+  <!-- Show baskets -->
   <ul class="nav nav-tabs nav-justified">
     <% Basket.all.each do |basket| %>
-      <!-- Tarkista onko kirjautuneella moderaattori true -->
+      <!-- Check if user is moderator and show New and Rejected -->
       <% if basket.name == "New" or basket.name == "Rejected" %>
       <% else %>
           <% if basket.name == 'Approved'%>
@@ -27,7 +29,9 @@
       <%end%>
     <% end %>
   </ul>
+  <!-- End baskets -->
 
+  <!-- Show tags -->
   <div class="center tags">
     <% Tag.all.each do |menutag| %>
       <label class="checkbox-inline"><input type="checkbox" value="">
@@ -38,14 +42,18 @@
       <% end %>
     <% end %>
   </div>
+  <!-- End tags -->
 </div>
+<!-- End top bar -->
 
+<!-- Show every idea -->
 <% @ideas.each do |idea| %>
   <div class="container">
     <div class="panel-group">
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="row">
+            <!-- Draw topic -->
             <div class="col-sm-9">
               <h4 class="panel-title">
                 <a data-toggle="collapse" href="#collapse<%= idea.id * 2 %>"><%= idea.topic %></a>
@@ -64,6 +72,8 @@
                 </p>
               <%end%>
             </div>
+            <!-- End topic -->
+            <!-- Draw likes -->
             <div class="<col-sm-3 center">
               <% likes = 0 %>
               <% dislikes = 0 %>
@@ -82,9 +92,11 @@
               <button type="button" class="btn btn-success btn-md"><span class="glyphicon glyphicon-thumbs-up"></span> <%= likes %></button>
               <button type="button" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-thumbs-down"></span> <%= dislikes %></button>
             </div>
+            <!-- End likes -->
           </div>
         </div>
         <div id="collapse<%= idea.id * 2 %>" class="panel-collapse collapse">
+          <!-- Show idea text -->
           <div class="panel-body">
             <div class="row">
               <div class="col-sm-9">
@@ -98,16 +110,20 @@
               </div>
             </div>
           </div>
+          <!-- End idea text -->
           <div class="panel-footer">
             <div class="panel-group">
               <div class="panel panel-default">
+                <!-- Draw how many comments -->
                 <div class="panel-heading">
                   <h4 class="panel-title">
                     <a data-toggle="collapse" href="#collapse<%= idea.id * 2 +1 %>">Comments (<%= idea.comments.count %>)</a>
                   </h4>
                 </div>
+                <!-- End how many comments -->
                 <div id="collapse<%= idea.id * 2 + 1 %>" class="panel-collapse collapse">
                   <% idea.comments.each do |comment| %>
+                    <!-- Draw comments -->
                     <div class="panel-body">
                       <% if not session[:user_id].nil? %>
                         <a href="javascript:FlagComment();">
@@ -119,7 +135,9 @@
                         <p><%= comment.text %></p>
                       </div>
                     </div>
+                    <!-- End draw comments -->
                   <% end %>
+                  <!-- If user is logged in show comment box -->
                   <% if not session[:user_id].nil? %>
 			            <%= form_for("comment", :url => main_app.comments_path, :html => { :class => "form-horizontal" } ) do |f| %>
 				          <%= f.hidden_field :idea_id, :value => idea.id %>
@@ -135,6 +153,7 @@
                     </div>
                   </div>
                   <% end %>
+                  <!-- End comment box -->
                 </div>
               </div>
             </div>
@@ -149,7 +168,9 @@
     </div>
   </div>
 <% end %>
+<!-- End show every idea -->
 
+<!-- Dummy script for flagging comments -->
 <script type="text/javascript">
   function FlagComment() {
   var flag_comment = confirm ("Do you want to flag this comment?")
@@ -157,3 +178,4 @@
     alert("Comment flagged.");
   }
 </script>
+<!-- End flagging comments -->
