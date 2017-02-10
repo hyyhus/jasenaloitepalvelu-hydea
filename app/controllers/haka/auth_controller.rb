@@ -24,19 +24,17 @@ module Haka
         return
       end
 
-      person = Person.new response.attributes[Hydea::Haka::HAKA_STUDENT_NUMBER_FIELD]
+      user = User.new
+      user.moderator = false
+      user.admin = false
+      user.name = Faker::Name.name
+      user.email = ''
+      user.title = ''
+      user.persistent_id= response.attributes[Hydea::Haka::HAKA_STUDENT_NUMBER_FIELD]
+      user.save
+      session[:user_id] = user.id
 
-      unless person.valid?
-        Rails.logger.info "No voting right for person '#{person.inspect}'"
-        Rollbar.info "No voting right present", person: person
-
-        redirect_to frontend_error_path("no_voting_right")
-        return
-      end
-
-      redirect_to frontend_signin_path(
-        SessionToken.new(person.voter).ephemeral_jwt
-      )
+      redirect_to ideas_path
     end
 
     private
