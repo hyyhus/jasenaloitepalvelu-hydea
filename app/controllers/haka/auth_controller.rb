@@ -2,6 +2,7 @@ module Haka
 
   # Haka Authentication for a SAML Service Provider
   class AuthController < ApplicationController
+  	skip_before_action :verify_authenticity_token
 
     # Initiates a new SAML sign in request
     def new
@@ -60,11 +61,11 @@ module Haka
         settings.idp_sso_target_url             = Hydea::Haka::SAML_IDP_SSO_TARGET_URL
         settings.assertion_consumer_service_url = Hydea::Haka::SAML_ASSERTION_CONSUMER_SERVICE_URL
         settings.issuer                         = Hydea::Haka::SAML_MY_ENTITY_ID
-        settings.idp_cert                       = Hydea::Haka::SAML_IDP_CERT
+        #settings.idp_cert                       = Hydea::Haka::SAML_IDP_CERT
         #settings.name_identifier_format         = Hydea::Haka::SAML_NAME_IDENTIFIER_FORMAT
 
-        settings.certificate                    = Hydea::Haka::SAML_MY_CERT
-        settings.private_key                    = Hydea::Haka::SAML_MY_PRIVATE_KEY
+        #settings.certificate                    = Hydea::Haka::SAML_MY_CERT
+        #settings.private_key                    = Hydea::Haka::SAML_MY_PRIVATE_KEY
 
         # Fingerprint can be used in local testing instead of a cert.
         # When SAML assertions are encrypted, an actual cert is required and
