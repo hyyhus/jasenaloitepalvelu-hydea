@@ -61,7 +61,7 @@ module Haka
         settings.assertion_consumer_service_url = Hydea::Haka::SAML_ASSERTION_CONSUMER_SERVICE_URL
         settings.issuer                         = Hydea::Haka::SAML_MY_ENTITY_ID
         settings.idp_cert                       = Hydea::Haka::SAML_IDP_CERT
-        settings.name_identifier_format         = Hydea::Haka::SAML_NAME_IDENTIFIER_FORMAT
+        #settings.name_identifier_format         = Hydea::Haka::SAML_NAME_IDENTIFIER_FORMAT
 
         settings.certificate                    = Hydea::Haka::SAML_MY_CERT
         settings.private_key                    = Hydea::Haka::SAML_MY_PRIVATE_KEY
