@@ -13,6 +13,13 @@ Rails.application.routes.draw do
 	  post 'publish', on: :member
   end
 
+  #SAML Authentication
+  namespace :haka do
+    get 'auth/new'
+    get 'auth/consume'
+    post 'auth/consume'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
