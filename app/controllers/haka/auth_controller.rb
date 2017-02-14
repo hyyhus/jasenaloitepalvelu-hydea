@@ -14,8 +14,11 @@ module Haka
     def consume
       response = OneLogin::RubySaml::Response.new(params[:SAMLResponse],
                                                   settings: saml_settings,
-                                                  allowed_clock_drift: 5.seconds)
+                                                  allowed_clock_drift: 300.seconds)
 
+      
+
+      
       unless response.is_valid?
         Rails.logger.error "Invalid SAML response: #{response.errors}"
         Rollbar.error "Invalid SAML response", errors: response.errors
@@ -24,6 +27,7 @@ module Haka
         return
       end
 
+
       #Kirjataan käyttäjä sisään, jos löytyy jo olemassa
       if (user = User.find_by persistent_id: response.attributes[Hydea::Haka::HAKA_PERSONALUNIQUECODE])
       session[:user_id] = user.id if not user.nil?
@@ -31,6 +35,7 @@ module Haka
       end
 
       #Tai luodaan uusi käyttäjä joka kirjataan sisään
+
       user = User.new
       user.moderator = false
       user.admin = false
@@ -66,11 +71,15 @@ module Haka
         settings.idp_sso_target_url             = Hydea::Haka::SAML_IDP_SSO_TARGET_URL
         settings.assertion_consumer_service_url = Hydea::Haka::SAML_ASSERTION_CONSUMER_SERVICE_URL
         settings.issuer                         = Hydea::Haka::SAML_MY_ENTITY_ID
-        #settings.idp_cert                       = Hydea::Haka::SAML_IDP_CERT
-        #settings.name_identifier_format         = Hydea::Haka::SAML_NAME_IDENTIFIER_FORMAT
+        settings.idp_cert                       = Hydea::Haka::SAML_IDP_CERT
+        settings.name_identifier_format         = Hydea::Haka::SAML_NAME_IDENTIFIER_FORMAT
 
-        #settings.certificate                    = Hydea::Haka::SAML_MY_CERT
-        #settings.private_key                    = Hydea::Haka::SAML_MY_PRIVATE_KEY
+        settings.certificate                    = Hydea::Haka::SAML_MY_CERT
+        settings.private_key                    = Hydea::Haka::SAML_MY_PRIVATE_KEY    
+
+        
+
+           
 
         # Fingerprint can be used in local testing instead of a cert.
         # When SAML assertions are encrypted, an actual cert is required and

@@ -13,6 +13,12 @@ module Hydea
      SAML_MY_CERT                        = ENV.fetch("SAML_MY_CERT")
      SAML_MY_PRIVATE_KEY                 = ENV.fetch("SAML_MY_PRIVATE_KEY")
 
+
+     HAKA_PERSONALUNIQUECODE             = ENV.fetch("HAKA_PERSONALUNIQUECODE")
+     HAKA_MAIL                           = ENV.fetch("HAKA_MAIL")
+     HAKA_DISPLAYNAME                    = ENV.fetch("HAKA_DISPLAYNAME")
+     HAKA_HOMEORGANIZATION               = ENV.fetch("HAKA_HOMEORGANIZATION")
+
      #HAKA_STUDENT_NUMBER_FIELD           = ENV.fetch("HAKA_STUDENT_NUMBER_FIELD")
   end  
 
