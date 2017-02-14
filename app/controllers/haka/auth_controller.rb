@@ -39,8 +39,8 @@ module Haka
       user = User.new
       user.moderator = false
       user.admin = false
-      user.name = response.attributes[Hydea::haka::HAKA_DISPLAYNAME]
-      user.email = response.attributes[Hydea::haka::HAKA_MAIL]
+      user.name = response.attributes[Hydea::Haka::HAKA_DISPLAYNAME]
+      user.email = response.attributes[Hydea::Haka::HAKA_MAIL]
       user.title = ''
       user.persistent_id = response.attributes[Hydea::Haka::HAKA_PERSONALUNIQUECODE]
       user.save
