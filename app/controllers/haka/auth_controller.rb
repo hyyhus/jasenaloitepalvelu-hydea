@@ -24,13 +24,20 @@ module Haka
         return
       end
 
+      #Kirjataan käyttäjä sisään, jos löytyy jo olemassa
+      if (user = User.find_by persistent_id: response.attributes[Hydea::Haka::HAKA_PERSONALUNIQUECODE])
+      session[:user_id] = user.id if not user.nil?
+      return
+      end
+
+      #Tai luodaan uusi käyttäjä joka kirjataan sisään
       user = User.new
       user.moderator = false
       user.admin = false
-      user.name = Faker::Name.name
-      user.email = ''
+      user.name = response.attributes[Hydea::haka::HAKA_DISPLAYNAME]
+      user.email = response.attributes[Hydea::haka::HAKA_MAIL]
       user.title = ''
-      user.persistent_id= response.attributes[Hydea::Haka::HAKA_STUDENT_NUMBER_FIELD]
+      user.persistent_id = response.attributes[Hydea::Haka::HAKA_PERSONALUNIQUECODE]
       user.save
       session[:user_id] = user.id
 
