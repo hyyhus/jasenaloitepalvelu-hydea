@@ -14,10 +14,11 @@ module Haka
     def consume
       response = OneLogin::RubySaml::Response.new(params[:SAMLResponse],
                                                   settings: saml_settings,
-                                                  allowed_clock_drift: 5.seconds)
+                                                  allowed_clock_drift: 300.seconds)
 
       
 
+      
       unless response.is_valid?
         Rails.logger.error "Invalid SAML response: #{response.errors}"
         Rollbar.error "Invalid SAML response", errors: response.errors
@@ -74,8 +75,9 @@ module Haka
         settings.certificate                    = Hydea::Haka::SAML_MY_CERT
         settings.private_key                    = Hydea::Haka::SAML_MY_PRIVATE_KEY    
 
+        
 
-        byebug    
+           
 
         # Fingerprint can be used in local testing instead of a cert.
         # When SAML assertions are encrypted, an actual cert is required and
