@@ -16,6 +16,8 @@ module Haka
                                                   settings: saml_settings,
                                                   allowed_clock_drift: 5.seconds)
 
+      
+
       unless response.is_valid?
         Rails.logger.error "Invalid SAML response: #{response.errors}"
         Rollbar.error "Invalid SAML response", errors: response.errors
@@ -23,6 +25,13 @@ module Haka
         redirect_to frontend_error_path("invalid_saml_response")
         return
       end
+
+
+      #Nämä pitäisi saada responsen kautta
+        # personal_unique_code            = Hydea::Haka::HAKA_PERSONALUNIQUECODE
+        # mail                            = Hydea::Haka::HAKA_MAIL
+        # displayname                     = Hydea::Haka::HAKA_DISPLAYNAME
+        # homeorganization                = Hydea::Haka::HAKA_HOMEORGANIZATION
 
       user = User.new
       user.moderator = false
@@ -59,11 +68,14 @@ module Haka
         settings.idp_sso_target_url             = Hydea::Haka::SAML_IDP_SSO_TARGET_URL
         settings.assertion_consumer_service_url = Hydea::Haka::SAML_ASSERTION_CONSUMER_SERVICE_URL
         settings.issuer                         = Hydea::Haka::SAML_MY_ENTITY_ID
-        #settings.idp_cert                       = Hydea::Haka::SAML_IDP_CERT
-        #settings.name_identifier_format         = Hydea::Haka::SAML_NAME_IDENTIFIER_FORMAT
+        settings.idp_cert                       = Hydea::Haka::SAML_IDP_CERT
+        settings.name_identifier_format         = Hydea::Haka::SAML_NAME_IDENTIFIER_FORMAT
 
-        #settings.certificate                    = Hydea::Haka::SAML_MY_CERT
-        #settings.private_key                    = Hydea::Haka::SAML_MY_PRIVATE_KEY
+        settings.certificate                    = Hydea::Haka::SAML_MY_CERT
+        settings.private_key                    = Hydea::Haka::SAML_MY_PRIVATE_KEY    
+
+
+        byebug    
 
         # Fingerprint can be used in local testing instead of a cert.
         # When SAML assertions are encrypted, an actual cert is required and
