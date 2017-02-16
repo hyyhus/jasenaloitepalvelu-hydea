@@ -7,7 +7,6 @@ gem 'rails', '5.0.0'
 group :development, :test do
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
-gem 'dotenv-rails'
 end
 
 group :production do
@@ -62,3 +61,5 @@ end
   # Use Faker to add test data to dev
   gem 'faker'
 
+  #Use dotenv to set up some variables
+  gem 'dotenv-rails'
