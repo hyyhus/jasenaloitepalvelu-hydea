@@ -19,4 +19,3 @@ deploy:
        master: kuuma-munakas-1337
   on:
     repo: hydea/hydea
-    branch: integration
