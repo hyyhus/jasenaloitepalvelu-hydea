@@ -31,6 +31,7 @@ module Haka
       #Kirjataan käyttäjä sisään, jos löytyy jo olemassa
       if (user = User.find_by persistent_id: response.attributes[Hydea::Haka::HAKA_PERSONALUNIQUECODE])
       session[:user_id] = user.id if not user.nil?
+      redirect_to ideas_path
       return
       end
 

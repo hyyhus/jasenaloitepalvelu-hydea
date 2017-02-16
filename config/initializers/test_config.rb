@@ -19,7 +19,7 @@ module Hydea
      HAKA_DISPLAYNAME                    = ENV.fetch("HAKA_DISPLAYNAME")
      HAKA_HOMEORGANIZATION               = ENV.fetch("HAKA_HOMEORGANIZATION")
 
-     #HAKA_STUDENT_NUMBER_FIELD           = ENV.fetch("HAKA_STUDENT_NUMBER_FIELD")
+     
   end  
 
 end
