@@ -1,4 +1,5 @@
 module Haka
+	require 'open-uri'
 
   # Haka Authentication for a SAML Service Provider
   class AuthController < ApplicationController
@@ -27,9 +28,15 @@ module Haka
         return
       end
 
+	#Asetetaan metadatan pohjalta attribuuttien nimet
+	metadata=Nokogiri::HTML(open("https://rr.funet.fi/rr/metadata.php?view&type=sp&id=843&fed=1"))
+	uniquecode=metadata.xpath("//entitydescriptor[@entityid='https://hydea.localhost.fifi.fi']//requestedattribute[@friendlyname='schacPersonalUniqueCode']").first.attributes["name"].value
+	mail=metadata.xpath("//entitydescriptor[@entityid='https://hydea.localhost.fifi.fi']//requestedattribute[@friendlyname='mail']").first.attributes["name"].value
+	displayname=metadata.xpath("//entitydescriptor[@entityid='https://hydea.localhost.fifi.fi']//requestedattribute[@friendlyname='displayName']").first.attributes["name"].value
+	homeorganization=metadata.xpath("//entitydescriptor[@entityid='https://hydea.localhost.fifi.fi']//requestedattribute[@friendlyname='schacHomeOrganization']").first.attributes["name"].value
 
       #Kirjataan käyttäjä sisään, jos löytyy jo olemassa
-      if (user = User.find_by persistent_id: response.attributes[Hydea::Haka::HAKA_PERSONALUNIQUECODE])
+      if (user = User.find_by persistent_id: response.attributes[uniquecode])
       session[:user_id] = user.id if not user.nil?
       redirect_to ideas_path
       return
@@ -40,10 +47,10 @@ module Haka
       user = User.new
       user.moderator = false
       user.admin = false
-      user.name = response.attributes[Hydea::Haka::HAKA_DISPLAYNAME]
-      user.email = response.attributes[Hydea::Haka::HAKA_MAIL]
+      user.name = response.attributes[displayname]
+      user.email = response.attributes[mail]
       user.title = ''
-      user.persistent_id = response.attributes[Hydea::Haka::HAKA_PERSONALUNIQUECODE]
+      user.persistent_id = response.attributes[uniquecode]
       user.save
       session[:user_id] = user.id
 
