@@ -28,12 +28,14 @@ module Haka
         return
       end
 
-	#Asetetaan metadatan pohjalta attribuuttien nimet
-	metadata=Nokogiri::HTML(open("https://rr.funet.fi/rr/metadata.php?view&type=sp&id=843&fed=1"))
-	uniquecode=metadata.xpath("//entitydescriptor[@entityid='https://hydea.localhost.fifi.fi']//requestedattribute[@friendlyname='schacPersonalUniqueCode']").first.attributes["name"].value
-	mail=metadata.xpath("//entitydescriptor[@entityid='https://hydea.localhost.fifi.fi']//requestedattribute[@friendlyname='mail']").first.attributes["name"].value
-	displayname=metadata.xpath("//entitydescriptor[@entityid='https://hydea.localhost.fifi.fi']//requestedattribute[@friendlyname='displayName']").first.attributes["name"].value
-	homeorganization=metadata.xpath("//entitydescriptor[@entityid='https://hydea.localhost.fifi.fi']//requestedattribute[@friendlyname='schacHomeOrganization']").first.attributes["name"].value
+      #Asetetaan metadatan pohjalta attribuuttien nimet
+      metadata=Nokogiri::HTML(open(Hydea::Haka::HAKA_METADATA_URL))
+      front="//entitydescriptor[@entityid='https://hydea.localhost.fifi.fi']//requestedattribute[@friendlyname='"
+
+      uniquecode=metadata.xpath("#{front}schacPersonalUniqueCode']")[0].attr("name")
+      mail=metadata.xpath("#{front}mail']")[0].attr("name")
+      displayname=metadata.xpath("#{front}displayName']")[0].attr("name")
+      homeorganization=metadata.xpath("#{front}schacHomeOrganization']")[0].attr("name")
 
       #Kirjataan käyttäjä sisään, jos löytyy jo olemassa
       if (user = User.find_by persistent_id: response.attributes[uniquecode])
