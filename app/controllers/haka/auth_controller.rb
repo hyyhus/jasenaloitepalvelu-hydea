@@ -15,6 +15,7 @@ module Haka
       response = OneLogin::RubySaml::Response.new(params[:SAMLResponse],
                                                   settings: saml_settings,
                                                   allowed_clock_drift: 300.seconds)
+      
 
       unless response.is_valid?
         Rails.logger.error "Invalid SAML response: #{response.errors}"

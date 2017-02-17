@@ -8,6 +8,11 @@ FactoryGirl.define do
 		persistent_id "9876543"
 	end
 
+	# factory :haka_user, class: User do
+	# 	name	
+	# end
+
+
 end
 
 
