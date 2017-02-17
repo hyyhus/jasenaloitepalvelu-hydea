@@ -16,10 +16,8 @@ module Haka
       response = OneLogin::RubySaml::Response.new(params[:SAMLResponse],
                                                   settings: saml_settings,
                                                   allowed_clock_drift: 300.seconds)
-
       
 
-      
       unless response.is_valid?
         Rails.logger.error "Invalid SAML response: #{response.errors}"
         Rollbar.error "Invalid SAML response", errors: response.errors
@@ -38,25 +36,17 @@ module Haka
       homeorganization=metadata.xpath("#{front}schacHomeOrganization']")[0].attr("name")
 
       #Kirjataan käyttäjä sisään, jos löytyy jo olemassa
-      if (user = User.find_by persistent_id: response.attributes[uniquecode])
-      session[:user_id] = user.id if not user.nil?
-      redirect_to ideas_path
+      if (user = User.find_by persistent_id: response.attributes[Hydea::Haka::HAKA_PERSONALUNIQUECODE])
+      Hydea::Haka.update_user(user, response)
+      session[:user_id] = user.id if not user.nil?        
+      redirect_to ideas_path      
       return
       end
 
-      #Tai luodaan uusi käyttäjä joka kirjataan sisään
-
-      user = User.new
-      user.moderator = false
-      user.admin = false
-      user.name = response.attributes[displayname]
-      user.email = response.attributes[mail]
-      user.title = ''
-      user.persistent_id = response.attributes[uniquecode]
-      user.save
-      session[:user_id] = user.id
-
+      #Tai luodaan uusi käyttäjä joka kirjataan sisään      
+      session[:user_id] = Hydea::Haka.create_user(user, response)
       redirect_to ideas_path
+      
     end
 
     private
