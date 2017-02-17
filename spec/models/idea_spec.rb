@@ -1,10 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Idea, type: :model do
-  it "has new basket created correctly" do
-  	basket = Basket.new id:500, name:"Test"
-  	idea = Idea.new topic:"Testing", basket_id:500
-  	idea.basket = basket  	
-  	expect(idea.basket.id).to eq(500)
+  it "has factory make idea with all" do
+    idea = FactoryGirl.create(:idea)
+    expect(idea.basket).not_to be_nil
+    expect(idea.basket.ideas).not_to be_empty
+    expect(idea.likes).not_to be_empty  
+    expect(idea.histories).not_to be_empty      
+    expect(idea.tags).not_to be_empty
   end
 end
