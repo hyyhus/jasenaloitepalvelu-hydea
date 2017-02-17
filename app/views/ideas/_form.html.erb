@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= f.label :topic %><br>
-    <%= f.text_field :topic %>
+    <%= f.text_field :topic, :class => "form-control"  %>
   </div>
   <div class="field">
     <%= f.label :text %><br>
-    <%= f.text_field :text %>
+    <%= f.text_area :text, :class => "form-control", :rows => "5" %>
   </div>
-  <div class="field">
+  <!--<div class="field">
     <%= f.label :basket_id %><br>
     <%= f.text_field :basket_id %>
-  </div>
+  </div>-->
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-primary" %>
   </div>
 <% end %>

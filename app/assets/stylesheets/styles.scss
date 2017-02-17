@@ -1,0 +1,56 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.container > .panel-groups{
+	background: #dddddd;
+	box-shadow: 5px 5px 5px grey;
+	margin-bottom: 15px;
+}
+
+/*body {
+	background: #1e5799;
+	background: -moz-linear-gradient(-45deg, #1e5799 0%, #2989d8 0%, #1a33a3 0%, #4b81cc 100%);
+	background: -webkit-linear-gradient(-45deg, #1e5799 0%,#2989d8 0%,#1a33a3 0%,#4b81cc 100%);
+	background: linear-gradient(135deg, #1e5799 0%,#2989d8 0%,#1a33a3 0%,#4b81cc 100%);
+}*/
+
+a:hover{
+	background: none;
+}
+
+.btn{
+	margin: 5px 0 5px;
+}
+
+.btn a:hover {
+	text-decoration: none;
+}
+
+.center{
+	text-align: center;
+}
+
+.tags{
+	margin: 15px 0 15px;
+}
+
+.total-likes{
+	font-size: 20px;
+}
+
+a .flag{
+	color: #c8c8c8;
+	float: right;
+}
+
+.flag:hover{
+	color: #ff0000;
+}
+
+.user_name{
+	float: right;
+}
+
+.btn a, .btn:visited{
+	color: #ffffff;
+}

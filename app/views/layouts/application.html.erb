@@ -2,26 +2,25 @@
 <html>
 <head>
   <title>Hydea</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if not session[:user_id].nil? %>
+<%= render 'layouts/header' %>
+<!--<% if not session[:user_id].nil? %>
 	  <p><%= User.find(session[:user_id]).name %> signed in</p>
-	  <% end %>
-	  <% if session[:user_id].nil? %>
-	    <p><%=  link_to 'Login', haka_auth_new_path %></p>
-        <% end %>
-	  <br>
-	  <%= link_to 'New ideas', ideas_path(basket: "New" )%>
+	  <% end %>-->
+	  <!--<%= link_to 'New ideas', ideas_path(basket: "New" )%>
 	  <%= link_to 'Approved ideas', ideas_path(basket: "Approved" )%>
 	  <%= link_to 'Changing ideas', ideas_path(basket: "Changing" )%>
 	  <%= link_to 'Approved ideas', ideas_path(basket: "Changed" )%>
 	  <%= link_to 'Approved ideas', ideas_path(basket: "Not changed" )%>
-	  <%= link_to 'Rejected ideas', ideas_path(basket: "Rejected" )%>
+	  <%= link_to 'Rejected ideas', ideas_path(basket: "Rejected" )%>-->
 
 <%= yield %>
 
+<%= render 'layouts/footer' %>
 </body>
 </html>
