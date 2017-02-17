@@ -34,6 +34,8 @@
 	    </ul>
 	    <% if not session[:user_id].nil? %>
 		  	<p class="navbar-text navbar-right"><%= User.find(session[:user_id]).name %> signed in</p>
+		<% else %>
+			<p class="navbar-text navbar-right"><%=  link_to 'Login', haka_auth_new_path %></p>
 		<% end %>
 	</div>
   </div>
