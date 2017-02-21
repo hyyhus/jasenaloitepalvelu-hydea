@@ -62,8 +62,6 @@ end
   gem 'faker'
 
   #Use dotenv to set up some variables
-<<<<<<< HEAD
+
   gem 'dotenv-rails'
-=======
-  gem 'dotenv-rails'
->>>>>>> JS-Authcontroller-refactor
+
