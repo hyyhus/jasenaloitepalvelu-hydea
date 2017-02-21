@@ -1,4 +1,5 @@
 module Haka
+        require 'open-uri'
 
   # Haka Authentication for a SAML Service Provider
   class AuthController < ApplicationController
@@ -24,17 +25,26 @@ module Haka
         return
       end
 
+      #Asetetaan metadatan pohjalta attribuuttien nimet
+      metadata=Nokogiri::HTML(open(Hydea::Haka::HAKA_METADATA_URL))
+      front="//entitydescriptor[@entityid='https://hydea.localhost.fifi.fi']//requestedattribute[@friendlyname='"
+
+      uniquecode=metadata.xpath("#{front}schacPersonalUniqueCode']")[0].attr("name")
+      mail=metadata.xpath("#{front}mail']")[0].attr("name")
+      displayname=metadata.xpath("#{front}displayName']")[0].attr("name")
+      homeorganization=metadata.xpath("#{front}schacHomeOrganization']")[0].attr("name")
+
 
       #Kirjataan käyttäjä sisään, jos löytyy jo olemassa
-      if (user = User.find_by persistent_id: response.attributes[Hydea::Haka::HAKA_PERSONALUNIQUECODE])
-      Hydea::Haka.update_user(user, response)
+      if (user = User.find_by persistent_id: response.attributes[uniquecode])
+      Hydea::Haka.update_user(user, response, displayname, mail)
       session[:user_id] = user.id if not user.nil?        
       redirect_to ideas_path      
       return
       end
 
       #Tai luodaan uusi käyttäjä joka kirjataan sisään      
-      session[:user_id] = Hydea::Haka.create_user(user, response)
+      session[:user_id] = Hydea::Haka.create_user(user, response, displayname, mail, uniquecode)
       redirect_to ideas_path
       
     end

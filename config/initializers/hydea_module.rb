@@ -14,20 +14,23 @@ module Hydea
      SAML_MY_PRIVATE_KEY                 = ENV.fetch("SAML_MY_PRIVATE_KEY")
 
 
-     HAKA_PERSONALUNIQUECODE             = ENV.fetch("HAKA_PERSONALUNIQUECODE")
-     HAKA_MAIL                           = ENV.fetch("HAKA_MAIL")
-     HAKA_DISPLAYNAME                    = ENV.fetch("HAKA_DISPLAYNAME")
-     HAKA_HOMEORGANIZATION               = ENV.fetch("HAKA_HOMEORGANIZATION")
+     # HAKA_PERSONALUNIQUECODE             = ENV.fetch("HAKA_PERSONALUNIQUECODE")
+     # HAKA_MAIL                           = ENV.fetch("HAKA_MAIL")
+     # HAKA_DISPLAYNAME                    = ENV.fetch("HAKA_DISPLAYNAME")
+     # HAKA_HOMEORGANIZATION               = ENV.fetch("HAKA_HOMEORGANIZATION")
+
+     HAKA_METADATA_URL                    = ENV.fetch("HAKA_METADATA_URL")
+     #HAKA_STUDENT_NUMBER_FIELD           = ENV.fetch("HAKA_STUDENT_NUMBER_FIELD")
 
 
-     def create_user(user, response)
+     def create_user(user, response, displayname, mail, uniquecode)
       user = User.new
       user.moderator = false
       user.admin = false
-      user.name = response.attributes[Hydea::Haka::HAKA_DISPLAYNAME]
-      user.email = response.attributes[Hydea::Haka::HAKA_MAIL]
+      user.name = response.attributes[displayname]
+      user.email = response.attributes[mail]
       user.title = ''
-      user.persistent_id = response.attributes[Hydea::Haka::HAKA_PERSONALUNIQUECODE]
+      user.persistent_id = response.attributes[uniquecode]
       user.save
 
       
@@ -36,13 +39,13 @@ module Hydea
      end
      module_function :create_user
      
-     def update_user(user, response)
+     def update_user(user, response, displayname, mail)
         #Päivitetään tarvittaessa lokaalit tiedot Hakasta saaduilla tiedoilla
-      if (user.email != response.attributes[Hydea::Haka::HAKA_MAIL] || 
-          user.name != response.attributes[Hydea::Haka::HAKA_DISPLAYNAME])
+      if (user.email != response.attributes[mail] || 
+          user.name != response.attributes[displayname])
 
-        user.email = response.attributes[Hydea::Haka::HAKA_MAIL]
-        user.name = response.attributes[Hydea::Haka::HAKA_DISPLAYNAME]
+        user.email = response.attributes[mail]
+        user.name = response.attributes[displayname]
         user.save        
 
       end
