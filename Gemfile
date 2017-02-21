@@ -48,6 +48,15 @@ group :development, :test do
   gem 'byebug'
   # Rails update just in case we use assigns and assert templates
   gem 'rails-controller-testing'
+
+  gem 'rspec-rails', '~> 3.5'
+end
+
+
+group :test do
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'launchy'
 end
 
 group :development do

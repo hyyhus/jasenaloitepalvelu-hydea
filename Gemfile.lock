@@ -38,26 +38,11 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-<<<<<<< HEAD
-=======
-    addressable (2.5.0)
-      public_suffix (~> 2.0, >= 2.0.2)
->>>>>>> JS-Authcontroller-refactor
     arel (7.1.4)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (9.0.6)
-<<<<<<< HEAD
-=======
-    capybara (2.12.1)
-      addressable
-      mime-types (>= 1.16)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      xpath (~> 2.0)
->>>>>>> JS-Authcontroller-refactor
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -67,27 +52,12 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.4)
     debug_inspector (0.0.2)
-<<<<<<< HEAD
-    dotenv (2.1.1)
-    dotenv-rails (2.1.1)
-      dotenv (= 2.1.1)
-      railties (>= 4.0, < 5.1)
-    erubis (2.7.0)
-    execjs (2.7.0)
-=======
-    diff-lcs (1.3)
     dotenv (2.2.0)
     dotenv-rails (2.2.0)
       dotenv (= 2.2.0)
       railties (>= 3.2, < 5.1)
     erubis (2.7.0)
     execjs (2.7.0)
-    factory_girl (4.8.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.8.0)
-      factory_girl (~> 4.8.0)
-      railties (>= 3.0.0)
->>>>>>> JS-Authcontroller-refactor
     faker (1.7.3)
       i18n (~> 0.5)
     globalid (0.3.7)
@@ -116,7 +86,6 @@ GEM
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     pg (0.19.0)
-    public_suffix (2.0.5)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -219,4 +188,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.14.3
+   1.14.4
