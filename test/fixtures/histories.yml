@@ -10,13 +10,16 @@ historyTwo:
   time: 2017-01-24 13:34:00
   basket: basketTwo
   user: userTwo
+  idea: ideaTwo
 
 historyThree:
   time: 2017-01-24 13:34:00
   basket: basketThree
   user: userThree
+  idea: ideaThree
 
 historyFour:
   time: 2017-01-24 13:34:00
   basket: basketFour
   user: userFour
+  idea: ideaFour
