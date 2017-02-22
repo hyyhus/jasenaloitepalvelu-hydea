@@ -12,11 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170124120945) do
 
-  create_table "Ideas_Tags", id: false, force: :cascade do |t|
-    t.integer "idea_id", null: false
-    t.integer "tag_id",  null: false
-  end
-
   create_table "baskets", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -48,6 +43,11 @@ ActiveRecord::Schema.define(version: 20170124120945) do
     t.string   "basket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ideas_tags", id: false, force: :cascade do |t|
+    t.integer "idea_id", null: false
+    t.integer "tag_id",  null: false
   end
 
   create_table "likes", force: :cascade do |t|

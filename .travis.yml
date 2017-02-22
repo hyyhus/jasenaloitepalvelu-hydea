@@ -2,6 +2,7 @@ language: ruby
 rvm:
 - 2.3.1
 notifications:
+  email: false
   slack:
     secure: gXeWbGGhKBielZsaDPfu1YWagffUTxE6ZSa1ypEhGhSEIBPZt+IFwyjMF37B7C2gVfkZv+BkorffxoqbYJRQ3JkXKj21Ns+aJYNvS9FDG3OGQeWm9thHNZDXOKJRTkMWGF62DlGjaxp4Rm3aGAFF63uQWKSKn0vTQEXcJ1CBVrk2BPzUtPQKuL04EkuBscvTmRoT/9Lv69f/bV7VsWkYN3LzFqOwuVYe7BtvByIQQz77js9f3vnUWB3tgYzWu5/lj6aJs8/aZMet3CgBro/271sL/vKGdAUmjRwYIeLY1qd6w+JR7Cj9EsmPDvRCtw6Yyww/NT+mUtnu3GYK54CGylpx3fQ3lNmBgDXDepFH809nrj08CX4XRjhEKRm7AoOifXkoIU2HZP0SQH/BkPza3Plevw+XNCMtCuehqdCYzejCs7dkoJ7qfDc2y46Qm4lBe8Z5NRJJ4LJHZNXMbQCrvCEYCC1HzemsiJ81O6hnsUvfMksL9GOCT+CZGzyuW5T8wI8u0Hufx3mkR0jYAI/pXVi1aJSFCFL5I/mC8SPbfExQiQ5sEENR4KltDODQOOS5wd37zq26Q2KEaIkc7IBJEc39f4OqVCVRDmkvqYjbHDBBRz7C2FPoFb2Ym/NOPd3ai+ruvo+7csR44iMKNlrH2wva/7M58Q7yeIIdMTmCgp4=
 branches:
@@ -13,6 +14,8 @@ deploy:
   provider: heroku
   api_key:
     secure: lAk613j18tJE5ndP5dy+83ueTk8gh3CEeiGsQJ+8G5c+MtqL5E1+3CseIUjN0TGO73AeaHpcIu5qgyUDMVLlbGQM5vx76seKyh4urn00kwUH9hrsm5kscknAYdn4paQAk7maWNDCHf8EVLXznwuvjYEcrXm1cAA6jKVTisCtU4H5ndK7apz/zYsgFUhs2+JuDyocIrvpe3e85x8eZyo3Ex8huqwDmeKIul8IBmpS8a28FgCmsMywyxZjT40hWubKdtw0GM5jdVThBVhtULbJnV489TiQZnACOGZiR/hxuCk9tb6IG3ZYEzU8d1vTlMieMaqCiG0X9QHVF4Rw4TR0pkGX2ubBaVuVp/Uf+ard3wl0hi15eU/606rYFisSS4A1l0eRD479fuhu6ttosGxoXtEahhb/S2/3XVYgEPZ1eNAvzmttj18Gr8m3pXCRZdtg1TjI8xwbFksbSdWeA4rb8+nH026tiKIlDKhxZGzjDz4jewctpIj1ESicuMcHs9trIKycnc4rO8p+itRTkSDYe/oAtVN1uzLAyUMW7aquQhgHxtp8n43fRpW9CRw04PLZzjLtvJqfQ5Mx5kr0Q6ZmvksikJLn7nUkiUIFtEll470Rc0uhBNGQDmkYHYhYSBsNpkr0j793CpqJIIbqpIhXSUHKCEGSBcDyYvTq8ffmmv0=
-  app: blooming-everglades-37675
+  app: 
+       integration: hydea-qa
+       master: kuuma-munakas-1337
   on:
     repo: hydea/hydea
