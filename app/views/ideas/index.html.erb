@@ -75,22 +75,19 @@
             <!-- End topic -->
             <!-- Draw likes -->
             <div class="<col-sm-3 center">
-              <% likes = 0 %>
-              <% dislikes = 0 %>
-              <% idea.likes.each do |like| %>
-                <% a = Like.find(idea.id).like_type() 
-                    if a == 'like'
-                      likes = likes + 1
-                    else
-                      dislikes = dislikes + 1
-                    end
-                %>
+              <% if idea.basket.name=='New'%>
+                <%= link_to "Publish", publish_idea_path(idea), method: :post, class: "btn btn-primary" %>
+              <% else %>
+                <% likes = 0 %>
+                <% idea.likes.each do |like| %>
+                  <% a = Like.find(idea.id).like_type() 
+                      if a == 'like'
+                        likes = likes + 1
+                      end
+                  %>
+                <% end %>
+                <button type="button" class="btn btn-success btn-md"><span class="glyphicon glyphicon-thumbs-up"></span> <%= likes %></button>
               <% end %>
-              <span class="total-likes">
-                <%= likes - dislikes %>
-              </span><br>
-              <button type="button" class="btn btn-success btn-md"><span class="glyphicon glyphicon-thumbs-up"></span> <%= likes %></button>
-              <button type="button" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-thumbs-down"></span> <%= dislikes %></button>
             </div>
             <!-- End likes -->
           </div>
