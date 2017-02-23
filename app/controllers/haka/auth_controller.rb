@@ -1,5 +1,7 @@
 module Haka
+
 	require 'open-uri'
+
 
   # Haka Authentication for a SAML Service Provider
   class AuthController < ApplicationController
@@ -39,24 +41,16 @@ module Haka
 
       #Kirjataan käyttäjä sisään, jos löytyy jo olemassa
       if (user = User.find_by persistent_id: response.attributes[uniquecode])
-      session[:user_id] = user.id if not user.nil?
-      redirect_to ideas_path
+      Hydea::Haka.update_user(user, response, displayname, mail)
+      session[:user_id] = user.id if not user.nil?        
+      redirect_to ideas_path      
       return
       end
 
-      #Tai luodaan uusi käyttäjä joka kirjataan sisään
-
-      user = User.new
-      user.moderator = false
-      user.admin = false
-      user.name = response.attributes[displayname]
-      user.email = response.attributes[mail]
-      user.title = ''
-      user.persistent_id = response.attributes[uniquecode]
-      user.save
-      session[:user_id] = user.id
-
+      #Tai luodaan uusi käyttäjä joka kirjataan sisään      
+      session[:user_id] = Hydea::Haka.create_user(user, response, displayname, mail, uniquecode)
       redirect_to ideas_path
+      
     end
 
     private
