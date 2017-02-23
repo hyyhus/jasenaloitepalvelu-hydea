@@ -61,12 +61,12 @@
               <p><%= User.find(idea.histories.first.user_id).name %> - <%= idea.histories.first.created_at.strftime('%d.%m.%Y %H:%M ') %></p>
               <%if idea.tags.empty?
                 else%>
-                  <p>Tags: 
+                  <p>Tags:
                   <% idea.tags.each do |tag| %>
                     <%= tag.text %>
                     <% if tag == idea.tags.last%>
                     <% else%>
-                    , 
+                    ,
                     <%end%>
                   <%end%>
                 </p>
@@ -80,7 +80,7 @@
               <% else %>
                 <% likes = 0 %>
                 <% idea.likes.each do |like| %>
-                  <% a = Like.find(idea.id).like_type() 
+                  <% a = Like.find(idea.id).like_type()
                       if a == 'like'
                         likes = likes + 1
                       end
@@ -127,7 +127,11 @@
                           <i class="glyphicon glyphicon-flag flag"></i>
                         </a>
                       <% end %>
-                      <p><%= comment.user.name %> - <%= comment.time.strftime('%d.%m.%Y %H:%M ') %></p>
+                      <p><%= comment.user.name %>
+                      <% if not comment.user.title.empty? and comment.user.moderator %>
+                        (<%= comment.user.title %>)
+                      <% end %>
+                      - <%= comment.time.strftime('%d.%m.%Y %H:%M ') %></p>
                       <div class="panel-footer">
                         <p><%= comment.text %></p>
                       </div>
