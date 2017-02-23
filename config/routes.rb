@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get 'auth/new'
     get 'auth/consume'
     post 'auth/consume'
+    get 'serviceprovider'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
