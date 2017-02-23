@@ -122,10 +122,8 @@
                   <% idea.comments.each do |comment| %>
                     <!-- Draw comments -->
                     <div class="panel-body">
-                      <% if not session[:user_id].nil? %>
-                        <a href="javascript:FlagComment();">
-                          <i class="glyphicon glyphicon-flag flag"></i>
-                        </a>
+                      <% if not session[:user_id].nil? and current_user.moderator %>
+                        <%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-danger delete_comment" %>
                       <% end %>
                       <p><%= comment.user.name %>
                       <% if not comment.user.title.empty? and comment.user.moderator %>
@@ -170,13 +168,3 @@
   </div>
 <% end %>
 <!-- End show every idea -->
-
-<!-- Dummy script for flagging comments -->
-<script type="text/javascript">
-  function FlagComment() {
-  var flag_comment = confirm ("Do you want to flag this comment?")
-  if (flag_comment)
-    alert("Comment flagged.");
-  }
-</script>
-<!-- End flagging comments -->
