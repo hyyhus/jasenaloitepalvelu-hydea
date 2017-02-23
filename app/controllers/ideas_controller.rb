@@ -37,6 +37,7 @@ class IdeasController < ApplicationController
     @history.basket_id=1
     @history.user=current_user
     @history.idea=@idea
+    @history.time=Time.now
 
 
     respond_to do |format|
