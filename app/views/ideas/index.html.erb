@@ -17,15 +17,9 @@
       <!-- Check if user is moderator and show New and Rejected -->
       <% if basket.name == "New" or basket.name == "Rejected" %>
       <% else %>
-          <% if basket.name == 'Approved'%>
-            <li role="presentation" class="active">
-              <%= link_to basket.name, ideas_path(basket: basket.name )%>
-            </li>
-          <% else %>
-            <li role="presentation">
-              <%= link_to basket.name, ideas_path(basket: basket.name )%>
-            </li>
-          <% end %>
+          <li <% if current_page?(ideas_path(basket: basket.name )) -%>class="active"<% end -%>>
+            <%=  link_to basket.name, ideas_path(basket: basket.name )%>
+          </li>
       <%end%>
     <% end %>
   </ul>
