@@ -12,7 +12,7 @@
 # u2 = User.create name:"Anni Admin", email:"anni.admin@helsinki.fi", title:"admin", persistent_id:"83030478869631327588", admin:true, moderator:false
 # u3 = User.create name:"Mauri Moderaattori", email:"mauri.moderaattori@helsinki.fi", title:"moderaattori", persistent_id:"83030478869631327688", admin:false, moderator:true
 
-# i1 = Idea.create topic:"Virtuaalilasit laitokselle", text:"Software Factoryssa tarvitaan VR-laseja", basket_id:1
+# i1 = Idea.create topic:"Virtuaalilasit laitokselle", text:"Software Factoryssa tarvitaan VR-laseja"
 # h1= History.create time: "2017-02-06 13:39:46", basket_id:1, user_id:1, idea_id:1
 
 # c1 = Comment.create user_id:1, time: "2017-02-06 15:10:00", text:"Eka", idea_id:1
@@ -22,8 +22,8 @@
 # #/Demo test data
 
 
-baskets = ["New", "Approved", "Rejected", "Changing", "Changed", "Not changed"]
-baskets.each {|b| Basket.create!(name: b)}
+#baskets = ["New", "Approved", "Rejected", "Changing", "Changed", "Not changed"]
+#baskets.each {|b| Basket.create!(name: b)}
 
 
 
@@ -98,9 +98,9 @@ when "development", "test", "production"
 
 	ideas.times do |n|
 		topic = Faker::ChuckNorris.fact
-		text = Faker::Lorem.paragraph(5, false, 15)
+		text = Faker::Lorem.paragraph(5, false, 15)		
 		Idea.create!(topic: topic, text: text)
-		History.create!(time: Faker::Date.backward(265), basket_id: 1, user_id: (Random.rand(admins+moderators+users)+1), idea_id: (n+1) )
+		History.create!(time: Faker::Date.backward(265), basket: "New", user_id: (Random.rand(admins+moderators+users)+1), idea_id: (n+1) )
 
 	end
 
