@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :histories
   resources :users
 
+  root 'ideas#index'
+
   # Hydea specific
   resource :session, only: [:new, :create, :destroy]
   resources :ideas do

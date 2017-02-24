@@ -39,7 +39,7 @@ class IdeasController < ApplicationController
   def create
     @idea = Idea.new(idea_params)
     @history = History.new
-    @history.basket_id=1
+    @history.basket="New"
     @history.user=current_user
     @history.idea=@idea
 
@@ -84,12 +84,12 @@ class IdeasController < ApplicationController
 	  if current_user.moderator?
 	  history = History.new
 	  history.time=Time.now
-	  history.basket=Basket.find_by(name: "Approved")
+	  history.basket="Approved"
 	  history.user=current_user
 	  history.idea=@idea
 	  history.save
-	  #@idea.basket=history.basket
-	  @idea.save
+	  #@idea.basket=history.basket    
+	  #@idea.save
 	  end
 	  redirect_to ideas_path
 

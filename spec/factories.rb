@@ -11,27 +11,22 @@ FactoryGirl.define do
 		likes {[FactoryGirl.create(:like)]}
 	end
 
-	factory :basket do
-		name "basket name"
-	end
-
 	factory :comment do
   		time Time.now
   		text "comment text"
   	end
 
-	factory :history do
-  		association :basket, :factory => :basket
+	factory :history do  		
 		association :user, :factory => :user
 		time Time.now
+		basket "New"
   	end
 
 #ideas and tags belongs_and_has_many to be done
 
 	factory :idea do
 		topic "idea topic"
-		text "idea text"
-		association :basket, :factory => :basket
+		text "idea text"		
 		histories {[FactoryGirl.create(:history)]}
 		likes {[FactoryGirl.create(:like)]}
 		tags {[FactoryGirl.create(:tag)]}
