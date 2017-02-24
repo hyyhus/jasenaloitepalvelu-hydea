@@ -3,19 +3,15 @@
 ideaOne:
   topic: MyString
   text: MyString
-  basket: basketOne
 
 ideaTwo:
   topic: MyString
   text: MyString
-  basket: basketTwo
 
 ideaThree:
   topic: MyString
   text: MyString
-  basket: basketThree
   
 ideaFour:
   topic: MyString
   text: MyString
-  basket: basketFour

@@ -99,8 +99,7 @@ when "development", "test", "production"
 	ideas.times do |n|
 		topic = Faker::ChuckNorris.fact
 		text = Faker::Lorem.paragraph(5, false, 15)
-		basket_id = (Random.rand(baskets.count)+1)
-		Idea.create!(topic: topic, text: text, basket_id: basket_id)
+		Idea.create!(topic: topic, text: text)
 		History.create!(time: Faker::Date.backward(265), basket_id: 1, user_id: (Random.rand(admins+moderators+users)+1), idea_id: (n+1) )
 
 	end
