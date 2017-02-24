@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :likes
   resources :tags
   resources :comments
-  resources :baskets
   resources :ideas
   resources :histories
   resources :users
