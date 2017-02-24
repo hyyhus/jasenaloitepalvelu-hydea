@@ -1,3 +1,3 @@
 class Basket < ApplicationRecord
-	has_many :ideas
+	has_many :histories
 end
