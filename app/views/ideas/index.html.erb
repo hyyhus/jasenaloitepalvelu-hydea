@@ -14,8 +14,7 @@
   <!-- Show baskets -->
   <ul class="nav nav-tabs nav-justified">
     <% Basket.all.each do |basket| %>
-      <!-- Check if user is moderator and show New and Rejected -->
-      <% if basket.name == "New" or basket.name == "Rejected" %>
+      <% if (basket.name == "New" or basket.name == "Rejected") and (session[:user_id].nil? or current_user.moderator == false)%>
       <% else %>
           <li <% if current_page?(ideas_path(basket: basket.name )) -%>class="active"<% end -%>>
             <%=  link_to basket.name, ideas_path(basket: basket.name )%>
