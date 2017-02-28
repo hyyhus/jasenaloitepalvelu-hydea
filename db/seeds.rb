@@ -31,6 +31,7 @@ case Rails.env
 when "development", "test", "production"
 
 	tags = ["Keskusta", "Viikki", "Kumpula", "Meilahti", "Unicafe", "Kulttuuri", "Edut", "Järjestöt"]
+	baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 	tags.each {|t| Tag.create!(text: t)}
 
 	admins=5
@@ -100,7 +101,8 @@ when "development", "test", "production"
 		topic = Faker::ChuckNorris.fact
 		text = Faker::Lorem.paragraph(5, false, 15)		
 		Idea.create!(topic: topic, text: text)
-		History.create!(time: Faker::Date.backward(265), basket: "New", user_id: (Random.rand(admins+moderators+users)+1), idea_id: (n+1) )
+		
+		History.create!(time: Faker::Date.backward(265), basket: baskets.sample, user_id: (Random.rand(admins+moderators+users)+1), idea_id: (n+1) )
 
 	end
 
