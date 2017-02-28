@@ -11,7 +11,6 @@ class IdeasController < ApplicationController
     #@ideas = Idea.all
     @allideas = Idea.all    
     baskets = @allideas.each { |allideas| allideas.histories.last.basket }
-    byebug
     @ideas = baskets.where(basket: basket)
 
 	  else

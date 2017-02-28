@@ -2,24 +2,24 @@
 
 historyOne:
   time: 2017-01-24 13:34:00
-  basket: basketOne
+  basket: "New"
   user: userOne
   idea: ideaOne
 
 historyTwo:
   time: 2017-01-24 13:34:00
-  basket: basketTwo
+  basket: "Approved"
   user: userTwo
   idea: ideaTwo
 
 historyThree:
   time: 2017-01-24 13:34:00
-  basket: basketThree
+  basket: "Rejected"
   user: userThree
   idea: ideaThree
 
 historyFour:
   time: 2017-01-24 13:34:00
-  basket: basketFour
+  basket: "New"
   user: userFour
   idea: ideaFour
