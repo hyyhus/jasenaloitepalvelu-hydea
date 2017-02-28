@@ -106,9 +106,9 @@ when "development", "test", "production"
 
 	#Probably causes likes and dislikes from same user on one idea too
 	likes.times do |n|
-		like_type = ["like","dislike"].sample
+		like_type = ["like"].sample
 		user_id = (Random.rand(admins+moderators+users)+1)
-		idea_id = (Random.rand(admins+moderators+users)+1)
+		idea_id = (Random.rand(ideas)+1)
 		Like.create!(like_type: like_type, user_id: user_id, idea_id: idea_id)
 	end
 
