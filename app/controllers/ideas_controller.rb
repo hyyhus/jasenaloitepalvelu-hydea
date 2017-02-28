@@ -36,6 +36,7 @@ class IdeasController < ApplicationController
   # POST /ideas
   # POST /ideas.json
   def create
+    if not current_user.nil?
     @idea = Idea.new(idea_params)
     @history = History.new
     @history.basket="New"
@@ -43,38 +44,49 @@ class IdeasController < ApplicationController
     @history.idea=@idea
 
 
-    respond_to do |format|
-	    if @idea.save && @history.save
-        format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
-        format.json { render :show, status: :created, location: @idea }
-      else
-        format.html { render :new }
-        format.json { render json: @idea.errors, status: :unprocessable_entity }
+      respond_to do |format|
+	     if @idea.save && @history.save
+          format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
+          format.json { render :show, status: :created, location: @idea }
+        else
+          format.html { render :new }
+          format.json { render json: @idea.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to ideas_path
     end
   end
 
   # PATCH/PUT /ideas/1
   # PATCH/PUT /ideas/1.json
   def update
+    if not current_user.nil?
     respond_to do |format|
-      if @idea.update(idea_params)
+        if @idea.update(idea_params)
         format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
         format.json { render :show, status: :ok, location: @idea }
-      else
+        else
         format.html { render :edit }
         format.json { render json: @idea.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to ideas_path
     end
   end
 
   # DELETE /ideas/1
   # DELETE /ideas/1.json
   def destroy
+    if not current_user.nil?
     @idea.destroy
     respond_to do |format|
       format.html { redirect_to ideas_url, notice: 'Idea was successfully destroyed.' }
       format.json { head :no_content }
+    end
+    else
+      redirect_to ideas_path
     end
   end
   
@@ -87,8 +99,6 @@ class IdeasController < ApplicationController
 	  history.user=current_user
 	  history.idea=@idea
 	  history.save
-	  #@idea.basket=history.basket    
-	  #@idea.save
 	  end
 	  redirect_to ideas_path
 

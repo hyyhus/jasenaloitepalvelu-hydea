@@ -4,8 +4,8 @@ class IdeasControllerTest < ActionController::TestCase
   setup do
     @idea = ideas(:ideaOne)
     @history = histories(:historyOne)    
-   current_user = users(:userFour)
-   session[:user_id] = current_user.id
+    current_user = users(:userFour)
+    session[:user_id] = current_user.id
   end
 
 #  test "should get index" do
