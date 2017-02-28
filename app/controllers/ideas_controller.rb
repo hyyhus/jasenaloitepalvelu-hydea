@@ -1,5 +1,5 @@
 class IdeasController < ApplicationController
-  before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish]
+  before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish, :reject, :changing, :changed, :not_changed]
 #  before_action :set_idea, only: [:publish]
 
   # GET /ideas
@@ -9,7 +9,7 @@ class IdeasController < ApplicationController
 	  #basket = Basket.find_by(name: params[:basket].to_s).id
 	  #@ideas = Idea.all.where(basket: basket)
     #@ideas = Idea.all
-    @allideas = Idea.all    
+    @allideas = Idea.all
     baskets = @allideas.each { |allideas| allideas.histories.last.basket }
     byebug
     @ideas = baskets.where(basket: basket)
@@ -22,7 +22,7 @@ class IdeasController < ApplicationController
   # GET /ideas/1
   # GET /ideas/1.json
   def show
-    
+
   end
 
   # GET /ideas/new
@@ -78,7 +78,7 @@ class IdeasController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def publish
 
 	  if current_user.moderator?
@@ -88,8 +88,64 @@ class IdeasController < ApplicationController
 	  history.user=current_user
 	  history.idea=@idea
 	  history.save
-	  #@idea.basket=history.basket    
+	  #@idea.basket=history.basket
 	  #@idea.save
+	  end
+	  redirect_to ideas_path
+
+  end
+
+  def reject
+
+	  if current_user.moderator?
+	  history = History.new
+	  history.time=Time.now
+	  history.basket="Rejected"
+	  history.user=current_user
+	  history.idea=@idea
+	  history.save
+	  end
+	  redirect_to ideas_path
+
+  end
+
+  def changing
+
+	  if current_user.moderator?
+	  history = History.new
+	  history.time=Time.now
+	  history.basket="Changing"
+	  history.user=current_user
+	  history.idea=@idea
+	  history.save
+	  end
+	  redirect_to ideas_path
+
+  end
+
+  def changed
+
+	  if current_user.moderator?
+	  history = History.new
+	  history.time=Time.now
+	  history.basket="Changed"
+	  history.user=current_user
+	  history.idea=@idea
+	  history.save
+	  end
+	  redirect_to ideas_path
+
+  end
+
+  def not_changed
+
+	  if current_user.moderator?
+	  history = History.new
+	  history.time=Time.now
+	  history.basket="Not Changed"
+	  history.user=current_user
+	  history.idea=@idea
+	  history.save
 	  end
 	  redirect_to ideas_path
 

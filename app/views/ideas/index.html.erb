@@ -57,17 +57,49 @@
               <%end%>
             </div>
             <!-- End topic -->
-            <!-- Draw likes -->
+            <!-- Draw likes and basket controls-->
             <div class="<col-sm-3 center">
-              <% if idea.histories.last.basket == "New"%>
-                <%= link_to "Publish", publish_idea_path(idea), method: :post, class: "btn btn-primary" %>
-              <% else %>
+              <% if not session[:user_id].nil? and current_user.moderator %>
+                <% if idea.histories.last.basket == "New"%>
+                  <div class="btn-group">
+                    <%= link_to "Publish", publish_idea_path(idea), method: :post, class: "btn btn-primary" %>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li>
+                        <%= link_to "Reject", reject_idea_path(idea), method: :post%>
+                      </li>
+                    </ul>
+                  </div>
+                <% elsif idea.histories.last.basket == "Approved" or idea.histories.last.basket == "Changing" %>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                      Move to <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <% if idea.histories.last.basket == "Approved" %>
+                      <li>
+                        <%= link_to "Changing", changing_idea_path(idea), method: :post%>
+                      </li>
+                      <% end %>
+                      <li>
+                        <%= link_to "Changed", changed_idea_path(idea), method: :post%>
+                      </li>
+                      <li>
+                        <%= link_to "Not Changed", not_changed_idea_path(idea), method: :post%>
+                      </li>
+                    </ul>
+                  </div>
+                <% end %>
+              <% end %>
+              <% if not (idea.histories.last.basket == "New" or idea.histories.last.basket == "Rejected")%>
                 <button type="button" class="btn btn-success btn-md"><span class="glyphicon glyphicon-thumbs-up"></span>
                   <%= idea.likes.length %>
                 </button>
               <% end %>
             </div>
-            <!-- End likes -->
+            <!-- End likes and basket controls-->
           </div>
         </div>
         <div id="collapse<%= idea.id * 2 %>" class="panel-collapse collapse">
