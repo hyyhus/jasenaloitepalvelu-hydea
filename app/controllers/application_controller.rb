@@ -9,5 +9,11 @@ class ApplicationController < ActionController::Base
 		return nil if session[:user_id].nil?
 		User.find(session[:user_id])
 	end
+
+	def check_credentials
+		if !current_user.admin
+			redirect_to ideas_path
+		end
+	end
 end
 
