@@ -102,21 +102,21 @@ when "development", "test", "production"
 		text = Faker::Lorem.paragraph(5, false, 15)		
 		Idea.create!(topic: topic, text: text)
 		
-		History.create!(time: Faker::Date.backward(265), basket: baskets.sample, user_id: (Random.rand(admins+moderators+users)+1), idea_id: (n+1) )
+		History.create!(time: Faker::Date.backward(265), basket: baskets.sample, user_id: (Random.rand(1 .. (admins+moderators+users))), idea_id: (n+1) )
 
 	end
 
 	#Probably causes likes and dislikes from same user on one idea too
 	likes.times do |n|
 		like_type = ["like"].sample
-		user_id = (Random.rand(admins+moderators+users)+1)
-		idea_id = (Random.rand(ideas)+1)
+		user_id = (Random.rand(1 .. (admins+moderators+users)))
+		idea_id = (Random.rand(1 .. ideas))
 		Like.create!(like_type: like_type, user_id: user_id, idea_id: idea_id)
 	end
 
 	comments.times do |n|
-		user_id = (Random.rand(admins+moderators+users)+1)
-		idea_id = (Random.rand(ideas)+1)
+		user_id = (Random.rand(1 .. (admins+moderators+users)))
+		idea_id = (Random.rand(1 .. ideas))
 		text = Faker::Lorem.paragraph(5, false, 15)
 		time = Faker::Date.backward(365)
 		Comment.create!(user_id: user_id, idea_id: idea_id, text: text, time: time)
