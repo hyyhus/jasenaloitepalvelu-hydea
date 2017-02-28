@@ -3,4 +3,8 @@ class Idea < ApplicationRecord
 	has_many :comments
 	has_many :likes
 	has_many :histories
+
+	#validations
+	validates :topic, presence: true
+	validates :text, presence: true
 end
