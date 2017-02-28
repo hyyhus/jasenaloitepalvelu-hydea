@@ -9,19 +9,34 @@ FactoryGirl.define do
 		persistent_id "9876543"
 	end
 
+	factory :user_with_history, class: User do
+		name "Testi Testaaja"
+		email "testaaja@blaa.fi"
+		admin "false"
+		moderator "false"
+		title "opiskelija"
+		persistent_id "9876543111"
+		
+	end
+
 	factory :comment do
   		time Time.now
   		text "comment text"
-		idea_id {FactoryGirl.create(:idea)}
-	   	user_id {FactoryGirl.create(:user)}
+  		idea_id 1
+  		user_id 1
+
+		#idea_id {FactoryGirl.create(:idea)}
+	   	#user_id {FactoryGirl.create(:user)}
 
   	end
 
-	factory :history do  		
-		association :user, :factory => :user
+	factory :history do
 		time Time.now
 		basket "New"
+		idea_id 1
+  		user_id 1
   	end
+
 
 #ideas and tags belongs_and_has_many to be done
 
@@ -44,8 +59,11 @@ FactoryGirl.define do
 
 	factory :like do
 		like_type "like"
-		user {FactoryGirl.create(:user)}
+		user_id 1
 		idea {FactoryGirl.create(:idea)}
+
+		#user {FactoryGirl.create(:user)}
+		#idea {FactoryGirl.create(:idea)}
 	end
 
 end

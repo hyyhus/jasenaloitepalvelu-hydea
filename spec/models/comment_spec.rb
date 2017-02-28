@@ -3,9 +3,11 @@ require 'rails_helper'
 RSpec.describe Comment, type: :model do
 
 describe "user and idea exist" do
+
     before :each do
     @user = FactoryGirl.create(:user)
     @idea = FactoryGirl.create(:idea)
+    
     end
 
     it "has factory make comment with all" do
