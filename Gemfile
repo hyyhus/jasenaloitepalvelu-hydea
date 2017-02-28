@@ -10,6 +10,7 @@ group :development, :test do
 	gem 'byebug'
 	# Rails update just in case we use assigns and assert templates
 	gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 3.5'
 end
 
 group :development do
@@ -23,9 +24,21 @@ end
 group :production do
 	# Heroku does not support sqlite, use postgresql instead
 	gem 'pg'
-	gem 'rails_12factor'
+	gem 'rails_12factor'  
 end
 
+group :test do
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'launchy'
+end
+
+# Use Faker to add test data to dev
+gem 'faker'
+# Use dotenv to set up some variables
+gem 'dotenv-rails'
+# Haka authentication
+gem 'ruby-saml'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -42,9 +55,3 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-# Haka authentication
-gem 'ruby-saml' 
-# Use Faker to add test data
-gem 'faker'
-#Use dotenv to set up some variables
-gem 'dotenv-rails'

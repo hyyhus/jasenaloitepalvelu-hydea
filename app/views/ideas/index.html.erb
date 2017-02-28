@@ -12,16 +12,7 @@
   </div>
 
   <!-- Show baskets -->
-  <ul class="nav nav-tabs nav-justified">
-    <% Basket.all.each do |basket| %>
-      <% if (basket.name == "New" or basket.name == "Rejected") and (session[:user_id].nil? or current_user.moderator == false)%>
-      <% else %>
-          <li <% if current_page?(ideas_path(basket: basket.name )) -%>class="active"<% end -%>>
-            <%=  link_to basket.name, ideas_path(basket: basket.name )%>
-          </li>
-      <%end%>
-    <% end %>
-  </ul>
+
   <!-- End baskets -->
 
   <!-- Show tags -->
@@ -68,18 +59,12 @@
             <!-- End topic -->
             <!-- Draw likes -->
             <div class="<col-sm-3 center">
-              <% if idea.basket.name=='New'%>
+              <% if idea.histories.last.basket == "New"%>
                 <%= link_to "Publish", publish_idea_path(idea), method: :post, class: "btn btn-primary" %>
               <% else %>
-                <% likes = 0 %>
-                <% idea.likes.each do |like| %>
-                  <% a = Like.find(idea.id).like_type()
-                      if a == 'like'
-                        likes = likes + 1
-                      end
-                  %>
-                <% end %>
-                <button type="button" class="btn btn-success btn-md"><span class="glyphicon glyphicon-thumbs-up"></span> <%= likes %></button>
+                <button type="button" class="btn btn-success btn-md"><span class="glyphicon glyphicon-thumbs-up"></span>
+                  <%= idea.likes.length %>
+                </button>
               <% end %>
             </div>
             <!-- End likes -->
@@ -94,7 +79,7 @@
               </div>
               <div class="col-sm-3 histories">
                 <% idea.histories.each do |history|%>
-                  <p><strong><%=history.basket.name%>:</strong><br>
+                  <p><strong><%=history.basket%>:</strong><br>
                   <%= history.created_at.strftime('%d.%m.%Y %H:%M ') %></p>
                 <% end %>
               </div>

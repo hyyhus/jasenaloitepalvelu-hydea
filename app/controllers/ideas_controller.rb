@@ -6,8 +6,14 @@ class IdeasController < ApplicationController
   # GET /ideas.json
   def index
 	  if params[:basket]
-	  basket = Basket.find_by(name: params[:basket].to_s).id
-	  @ideas = Idea.all.where(basket: basket)
+	  #basket = Basket.find_by(name: params[:basket].to_s).id
+	  #@ideas = Idea.all.where(basket: basket)
+    #@ideas = Idea.all
+    @allideas = Idea.all    
+    baskets = @allideas.each { |allideas| allideas.histories.last.basket }
+    byebug
+    @ideas = baskets.where(basket: basket)
+
 	  else
     @ideas = Idea.all
 	  end
@@ -32,9 +38,8 @@ class IdeasController < ApplicationController
   # POST /ideas.json
   def create
     @idea = Idea.new(idea_params)
-    @idea.basket_id=1
     @history = History.new
-    @history.basket_id=1
+    @history.basket="New"
     @history.user=current_user
     @history.idea=@idea
 
@@ -79,12 +84,12 @@ class IdeasController < ApplicationController
 	  if current_user.moderator?
 	  history = History.new
 	  history.time=Time.now
-	  history.basket=Basket.find_by(name: "Approved")
+	  history.basket="Approved"
 	  history.user=current_user
 	  history.idea=@idea
 	  history.save
-	  @idea.basket=history.basket
-	  @idea.save
+	  #@idea.basket=history.basket    
+	  #@idea.save
 	  end
 	  redirect_to ideas_path
 
@@ -98,6 +103,6 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:topic, :text, :basket_id)
+      params.require(:idea).permit(:topic, :text, :basket)
     end
 end
