@@ -16,7 +16,6 @@ RSpec.describe Like, type: :model do
 	end
 	it "is not valid with duplicate likes" do
 		expect(like).to be_valid
-		byebug
 		liketwo= FactoryGirl.build(:like, user: user, idea: idea)
 		expect(liketwo).not_to be_valid
 	end
