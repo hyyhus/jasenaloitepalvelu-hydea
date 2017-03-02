@@ -1,26 +1,31 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Admin:</strong>
-  <%= @user.admin %>
-</p>
+  <!--<p>
+    <strong>Admin:</strong>
+    <%= @user.admin %>
+  </p>
 
-<p>
-  <strong>Moderator:</strong>
-  <%= @user.moderator %>
-</p>
+  <p>
+    <strong>Moderator:</strong>
+    <%= @user.moderator %>
+  </p>
 
-<p>
-  <strong>Persistent:</strong>
-  <%= @user.persistent_id %>
-</p>
+  <p>
+    <strong>Persistent:</strong>
+    <%= @user.persistent_id %>
+  </p>-->
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+  <p>
+    <h2>
+      Ideas by <%= @user.name %>
+    </h2>
+  </p>
+</div>
 
-<p>
+<%= render 'layouts/list_ideas'%>
+
+<!--<p>
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
@@ -31,4 +36,4 @@
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', users_path %>-->

@@ -4,7 +4,7 @@
     	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>                        
+	        <span class="icon-bar"></span>
       	</button>
       	<a class="navbar-brand" href="#">Hydea</a>
     </div>
@@ -31,7 +31,7 @@
 	      </li>
 	    </ul>
 	    <% if not session[:user_id].nil? %>
-		  	<p class="navbar-text navbar-right"><%= User.find(session[:user_id]).name %> signed in</p>
+		  	<p class="navbar-text navbar-right"><%= link_to User.find(session[:user_id]).name, User.find(session[:user_id]) %> signed in</p>
 		<% else %>
 			<p class="navbar-text navbar-right"><%=  link_to 'Login', haka_auth_new_path %></p>
 		<% end %>
