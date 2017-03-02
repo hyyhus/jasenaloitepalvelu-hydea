@@ -7,13 +7,14 @@ FactoryGirl.define do
 		moderator "false"
 		title "opiskelija"
 		persistent_id "9876543"
-		comments {[FactoryGirl.create(:comment)]}
-		likes {[FactoryGirl.create(:like)]}
 	end
 
 	factory :comment do
   		time Time.now
   		text "comment text"
+		idea_id {FactoryGirl.create(:idea)}
+	   	user_id {FactoryGirl.create(:user)}
+
   	end
 
 	factory :history do  		
@@ -28,7 +29,6 @@ FactoryGirl.define do
 		topic "idea topic"
 		text "idea text"		
 		histories {[FactoryGirl.create(:history)]}
-		likes {[FactoryGirl.create(:like)]}
 		tags {[FactoryGirl.create(:tag)]}
 	end
 
@@ -43,7 +43,9 @@ FactoryGirl.define do
 	end
 
 	factory :like do
-		like_type "tykkää"
+		like_type "like"
+		user {FactoryGirl.create(:user)}
+		idea {FactoryGirl.create(:idea)}
 	end
 
 end
