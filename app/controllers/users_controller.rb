@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :check_credentials, except: [:index] #"except index" poistetaan tuotantoversiosta
+  before_action :ensure_that_is_admin, except: [:index] #"except index" poistetaan tuotantoversiosta
 
   # GET /users
   # GET /users.json
