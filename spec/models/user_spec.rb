@@ -44,13 +44,15 @@ RSpec.describe User, type: :model do
 
   describe "without a" do    
     it "name is not created" do
-        user = User.new
+        user = FactoryGirl.create(:user)
+        user.name = nil
         expect(user).not_to be_valid
     end
 
-    it "persistent_id is not created" do
-        u1 = User.create name:"Test"
-        expect(u1).not_to be_valid
+    it "persistent_id is not created" do        
+        user = FactoryGirl.create(:user)
+        user.persistent_id = nil
+        expect(user).not_to be_valid
     end
   end
 end
