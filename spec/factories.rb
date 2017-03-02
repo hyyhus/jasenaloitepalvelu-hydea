@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryGirl.define do	
 	
 	factory :user do
 		name "Testi Tauno"
@@ -35,11 +35,6 @@ FactoryGirl.define do
 	factory :tag do
 		text "tag text"
 
-		#factory :tag_has_many_ideas do
-		#	after(:create) do |tag|
-		#		ideas {[FactoryGirl.create(:idea)]}
-		#	end
-		#end
 	end
 
 	factory :like do
@@ -50,12 +45,5 @@ FactoryGirl.define do
 
 end
 
-# USECASE
-# user = user(:user_with_all)
-# 
-# OR
-#
-# article = create(:article)
-# create(:comment, article: article)
 
 
