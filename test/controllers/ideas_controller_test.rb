@@ -4,8 +4,8 @@ class IdeasControllerTest < ActionController::TestCase
   setup do
     @idea = ideas(:ideaOne)
     @history = histories(:historyOne)    
-   current_user = users(:userFour)
-   session[:user_id] = current_user.id
+    current_user = users(:userOne)
+    session[:user_id] = current_user.id
   end
 
 #  test "should get index" do
@@ -19,16 +19,15 @@ class IdeasControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create idea" do
-    assert_difference('Idea.count') do
-      post :create, idea: { text: @idea.text, topic: @idea.topic }
-    end
-
-    assert_redirected_to idea_path(assigns(:idea))
-  end
+#  test "should create idea" do
+#   assert_difference('Idea.count') do
+#     post :create, idea: {text: @idea.text, topic: @idea.topic}
+#   end
+#
+#   assert_redirected_to idea_path(assigns(:idea))
+#  end
 
   test "should show idea" do
-
     get :show, id: @idea
     assert_response :success
   end
