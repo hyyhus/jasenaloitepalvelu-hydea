@@ -25,6 +25,7 @@ class LikesController < ApplicationController
   # POST /likes.json
   def create
     @like = Like.new(like_params)
+    @like.user = current_user
 
     respond_to do |format|
       if @like.save
@@ -54,11 +55,18 @@ class LikesController < ApplicationController
   # DELETE /likes/1
   # DELETE /likes/1.json
   def destroy
-    @like.destroy
-    respond_to do |format|
-      format.html { redirect_to likes_url, notice: 'Like was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+	  if @like.user==current_user
+		  @like.destroy
+		  respond_to do |format|
+			  format.html { redirect_to likes_url, notice: 'Like was successfully destroyed.' }
+			  format.json { head :no_content }
+		  end
+	  else
+		  respond_to do |format|
+			  format.html { redirect_to ideas_url, notice: 'You can only destroy own likes' }
+			  format.json { head :no_content }
+		  end
+	  end
   end
 
   private
@@ -69,6 +77,6 @@ class LikesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def like_params
-      params.require(:like).permit(:like_type, :user_id, :idea_id)
+      params.require(:like).permit(:like_type, :idea_id)
     end
 end
