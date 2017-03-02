@@ -3,9 +3,10 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
     let(:user){ FactoryGirl.create(:user) }
     let(:user_with_history){ FactoryGirl.create(:user_with_history) }
+    let(:user_admin){ FactoryGirl.create(:user_admin) }
+    let(:user_moderator){ FactoryGirl.create(:user_moderator) }
 
-  it "has factory make user with all" do
-    
+  it "has factory make user with all" do    
     user.comments << FactoryGirl.create(:comment, user_id: user.id)
     #user.likes << FactoryGirl.create(:like, user_id: user.id)
     expect(user.name).to eq("Testi Tauno")
@@ -21,7 +22,7 @@ RSpec.describe User, type: :model do
   it "not created if duplicate persistent_id" do
     user20 = User.create name:"Test", persistent_id:"9876543"
     user30 = User.create name:"Test2", persistent_id:"9876543"    
-    expect(User.count).to eq(1)
+    expect(User.count).to eq(5)
   end
 
   it "has history with basket New" do
@@ -31,13 +32,25 @@ RSpec.describe User, type: :model do
 
   end
 
+  it "admin is created correctly" do
+    expect(user_admin.admin).to be true
+  end
+
+  it "moderator is created correctly" do
+    expect(user_moderator.moderator).to be true
+  end
 
 
 
-  describe "without a name" do
-    it "is not created" do
+  describe "without a" do    
+    it "name is not created" do
         user = User.new
         expect(user).not_to be_valid
+    end
+
+    it "persistent_id is not created" do
+        u1 = User.create name:"Test"
+        expect(u1).not_to be_valid
     end
   end
 end

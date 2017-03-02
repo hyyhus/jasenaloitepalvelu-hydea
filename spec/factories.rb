@@ -15,18 +15,32 @@ FactoryGirl.define do
 		admin "false"
 		moderator "false"
 		title "opiskelija"
-		persistent_id "9876543111"
-		
+		persistent_id "9876543111"		
+	end
+
+	factory :user_admin, class: User do
+		name "Testi Admin"
+		email "testaaja@blaa.fi"
+		admin "true"
+		moderator "false"
+		title "admin"
+		persistent_id "98765431112"
+	end
+
+	factory :user_moderator, class: User do
+		name "Testi Mode"
+		email "testaaja@blaa.fi"
+		admin "false"
+		moderator "true"
+		title "opiskelija"
+		persistent_id "98765431113"
 	end
 
 	factory :comment do
   		time Time.now
   		text "comment text"
-  		idea_id 1
-  		user_id 1
-
-		#idea_id {FactoryGirl.create(:idea)}
-	   	#user_id {FactoryGirl.create(:user)}
+		idea {FactoryGirl.create(:idea)}
+	   	user {FactoryGirl.create(:user)}
 
   	end
 
@@ -49,31 +63,12 @@ FactoryGirl.define do
 
 	factory :tag do
 		text "tag text"
-
-		#factory :tag_has_many_ideas do
-		#	after(:create) do |tag|
-		#		ideas {[FactoryGirl.create(:idea)]}
-		#	end
-		#end
 	end
 
 	factory :like do
 		like_type "like"
-		user_id 1
+		user {FactoryGirl.create(:user)}
 		idea {FactoryGirl.create(:idea)}
-
-		#user {FactoryGirl.create(:user)}
-		#idea {FactoryGirl.create(:idea)}
 	end
 
 end
-
-# USECASE
-# user = user(:user_with_all)
-# 
-# OR
-#
-# article = create(:article)
-# create(:comment, article: article)
-
-
