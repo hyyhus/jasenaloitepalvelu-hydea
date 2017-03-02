@@ -15,7 +15,8 @@ FactoryGirl.define do
 		admin "false"
 		moderator "false"
 		title "opiskelija"
-		persistent_id "9876543111"		
+		persistent_id "9876543111"
+		histories {[FactoryGirl.create(:history)]}
 	end
 
 	factory :user_admin, class: User do
