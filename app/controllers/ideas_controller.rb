@@ -1,5 +1,6 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish]
+  before_action :check_user_logged_in, except: [:index]
 #  before_action :set_idea, only: [:publish]
 
   # GET /ideas
@@ -36,7 +37,6 @@ class IdeasController < ApplicationController
   # POST /ideas
   # POST /ideas.json
   def create
-    if not current_user.nil?
     @idea = Idea.new(idea_params)
     @history = History.new
     @history.basket="New"
@@ -53,15 +53,11 @@ class IdeasController < ApplicationController
           format.json { render json: @idea.errors, status: :unprocessable_entity }
         end
       end
-    else
-      redirect_to ideas_path
-    end
   end
 
   # PATCH/PUT /ideas/1
   # PATCH/PUT /ideas/1.json
   def update
-    if not current_user.nil?
     respond_to do |format|
         if @idea.update(idea_params)
         format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
@@ -71,22 +67,15 @@ class IdeasController < ApplicationController
         format.json { render json: @idea.errors, status: :unprocessable_entity }
         end
       end
-    else
-      redirect_to ideas_path
-    end
   end
 
   # DELETE /ideas/1
   # DELETE /ideas/1.json
   def destroy
-    if not current_user.nil?
     @idea.destroy
     respond_to do |format|
       format.html { redirect_to ideas_url, notice: 'Idea was successfully destroyed.' }
       format.json { head :no_content }
-    end
-    else
-      redirect_to ideas_path
     end
   end
   
