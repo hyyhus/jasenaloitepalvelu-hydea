@@ -26,7 +26,11 @@ class IdeasController < ApplicationController
 
   # GET /ideas/new
   def new
+    if not current_user.nil?
     @idea = Idea.new
+    else
+      redirect_to ideas_path
+    end
   end
 
   # GET /ideas/1/edit
