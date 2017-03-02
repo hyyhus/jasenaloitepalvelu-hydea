@@ -1,6 +1,6 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish]
-  before_action :check_user_logged_in, except: [:index]
+  before_action :check_user_logged_in, except: [:index, :show]
 #  before_action :set_idea, only: [:publish]
 
   # GET /ideas
@@ -41,6 +41,8 @@ class IdeasController < ApplicationController
     @history = History.new
     @history.basket="New"
     @history.user=current_user
+    @idea = Idea.new(idea_params)
+    @idea.histories = [@history]
     @history.idea=@idea
 
 
@@ -86,7 +88,7 @@ class IdeasController < ApplicationController
 	  history.time=Time.now
 	  history.basket="Approved"
 	  history.user=current_user
-	  history.idea=@idea
+	  history.idea=@idea  
 	  history.save
 	  end
 	  redirect_to ideas_path
@@ -101,6 +103,6 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:topic, :text, :basket)
+      params.require(:idea).permit(:topic, :text, :basket, :histories)
     end
 end
