@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 		User.find(session[:user_id])
 	end
 
-	def check_credentials
+	def ensure_that_is_admin
 		if !current_user.admin
 			redirect_to ideas_path
 		end
