@@ -6,7 +6,7 @@ RSpec.describe History, type: :model do
 
   it "is valid, has basket New and has time" do  	
   	expect(history_new).to be_valid
-  	expect(history_new.time).to eq("2016-07-04 00:00:00")
+  	expect(history_new.time).to eq("2016-07-04 00:00:00.000000000 +0300")
   end
 
   it "has user" do
