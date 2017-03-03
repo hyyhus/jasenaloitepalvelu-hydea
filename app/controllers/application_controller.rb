@@ -10,10 +10,8 @@ class ApplicationController < ActionController::Base
 		User.find(session[:user_id])
 	end
 
-	def check_user_logged_in
-		if session[:user_id].nil?
-			redirect_to ideas_path
-		end
+	def ensure_that_signed_in
+                redirect_to ideas_path, notice:'you should be signed in' if current_user.nil?
 	end
 end
 
