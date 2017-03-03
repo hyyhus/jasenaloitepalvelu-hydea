@@ -6,7 +6,7 @@ FactoryGirl.define do
 		admin "false"
 		moderator "false"
 		title "opiskelija"
-		persistent_id "9876543"
+		persistent_id Faker::Number.unique.number(20)
 	end
 
 	factory :user_with_history, class: User do
@@ -15,7 +15,7 @@ FactoryGirl.define do
 		admin "false"
 		moderator "false"
 		title "opiskelija"
-		persistent_id "9876543111"
+		persistent_id Faker::Number.unique.number(20)
 		histories {[FactoryGirl.create(:history)]}
 	end
 
@@ -25,7 +25,7 @@ FactoryGirl.define do
 		admin "true"
 		moderator "false"
 		title "admin"
-		persistent_id "98765431112"
+		persistent_id Faker::Number.unique.number(20)
 	end
 
 	factory :user_moderator, class: User do
@@ -34,7 +34,7 @@ FactoryGirl.define do
 		admin "false"
 		moderator "true"
 		title "opiskelija"
-		persistent_id "98765431113"
+		persistent_id Faker::Number.unique.number(20)
 	end
 
 	factory :comment do
