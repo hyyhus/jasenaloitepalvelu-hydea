@@ -37,12 +37,12 @@ class IdeasController < ApplicationController
   # POST /ideas
   # POST /ideas.json
   def create
-    @idea = Idea.new(idea_params)
     @history = History.new
     @history.basket="New"
+    @history.time = Time.now
     @history.user=current_user
     @idea = Idea.new(idea_params)
-    @idea.histories = [@history]
+    @idea.histories << @history
     @history.idea=@idea
 
 
