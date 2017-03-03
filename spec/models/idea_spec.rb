@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Idea, type: :model do
+    let(:user){ FactoryGirl.create(:user) }
+    let(:user_admin){ FactoryGirl.create(:user_admin) }
+    let(:user_moderator){ FactoryGirl.create(:user_moderator) }
+
   it "has factory make idea" do
     idea = FactoryGirl.create(:idea)
     expect(idea.topic).to eq("idea topic")
@@ -47,5 +51,15 @@ RSpec.describe Idea, type: :model do
     it "has factory make idea with no topic" do
     idea = FactoryGirl.build(:idea, topic: nil)
     expect(idea).not_to be_valid
+  end
+
+#TODO
+  it "can be published by moderator" do
+    idea = FactoryGirl.create(:idea)
+  end
+
+#TODO
+  it "cannot be published by non-moderator" do
+    idea = FactoryGirl.create(:idea)
   end
 end
