@@ -10,11 +10,12 @@ class ApplicationController < ActionController::Base
 		User.find(session[:user_id])
 	end
 
-	def check_credentials
+	def ensure_that_is_admin
 		if !current_user.admin
 			redirect_to ideas_path
 		end
 	end
+
 
 	def ensure_that_is_moderator
 	  if current_user == nil
@@ -22,6 +23,7 @@ class ApplicationController < ActionController::Base
 	  end
 	  redirect_to histories_path, notice:'you should be moderator to do that' unless current_user.moderator?
   end
+
   
 end
 

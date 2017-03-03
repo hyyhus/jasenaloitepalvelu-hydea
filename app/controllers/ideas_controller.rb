@@ -26,7 +26,11 @@ class IdeasController < ApplicationController
 
   # GET /ideas/new
   def new
+    if not current_user.nil?
     @idea = Idea.new
+    else
+      redirect_to ideas_path
+    end
   end
 
   # GET /ideas/1/edit
@@ -37,15 +41,16 @@ class IdeasController < ApplicationController
   # POST /ideas.json
   def create
     if not current_user.nil?
-    @idea = Idea.new(idea_params)
     @history = History.new
     @history.basket="New"
     @history.user=current_user
+    @idea = Idea.new(idea_params)
+    @idea.histories = [@history]
     @history.idea=@idea
 
 
       respond_to do |format|
-	     if @idea.save && @history.save
+	     if @history.save && @idea.save
           format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
           format.json { render :show, status: :created, location: @idea }
         else
@@ -112,6 +117,6 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:topic, :text, :basket)
+      params.require(:idea).permit(:topic, :text, :basket, :histories)
     end
 end
