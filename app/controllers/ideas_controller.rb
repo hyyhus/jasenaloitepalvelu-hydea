@@ -88,7 +88,7 @@ class IdeasController < ApplicationController
 	  history.time=Time.now
 	  history.basket="Approved"
 	  history.user=current_user
-	  history.idea=@idea  
+	  history.idea=@idea
 	  history.save
 	  end
 	  redirect_to ideas_path
