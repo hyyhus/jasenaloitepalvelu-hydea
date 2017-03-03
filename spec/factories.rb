@@ -47,9 +47,22 @@ FactoryGirl.define do
 
 	factory :history do
 		time Time.now
-		basket "New"
+		basket "New"		
 		idea_id 1
   		user_id 1
+  	end
+
+  	factory :history_new, class: History do
+  		time "2016-07-04 00:00:00"
+  		basket "New"
+  		user {FactoryGirl.create(:user)}
+		idea {FactoryGirl.create(:idea)}
+  	end
+
+  	factory :history_without_basket, class: History do
+  		time "2016-07-04 00:00:00"  		
+  		user {FactoryGirl.create(:user)}
+		idea {FactoryGirl.create(:idea)}
   	end
 
 
