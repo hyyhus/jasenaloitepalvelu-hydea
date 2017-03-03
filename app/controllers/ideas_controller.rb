@@ -27,7 +27,11 @@ class IdeasController < ApplicationController
 
   # GET /ideas/new
   def new
+    if not current_user.nil?
     @idea = Idea.new
+    else
+      redirect_to ideas_path
+    end
   end
 
   # GET /ideas/1/edit
@@ -47,7 +51,7 @@ class IdeasController < ApplicationController
 
 
       respond_to do |format|
-	     if @idea.save && @history.save
+	     if @history.save && @idea.save
           format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
           format.json { render :show, status: :created, location: @idea }
         else

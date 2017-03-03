@@ -9,19 +9,62 @@ FactoryGirl.define do
 		persistent_id "9876543"
 	end
 
+	factory :user_with_history, class: User do
+		name "Testi Testaaja"
+		email "testaaja@blaa.fi"
+		admin "false"
+		moderator "false"
+		title "opiskelija"
+		persistent_id "9876543111"
+		histories {[FactoryGirl.create(:history)]}
+	end
+
+	factory :user_admin, class: User do
+		name "Testi Admin"
+		email "testaaja@blaa.fi"
+		admin "true"
+		moderator "false"
+		title "admin"
+		persistent_id "98765431112"
+	end
+
+	factory :user_moderator, class: User do
+		name "Testi Mode"
+		email "testaaja@blaa.fi"
+		admin "false"
+		moderator "true"
+		title "opiskelija"
+		persistent_id "98765431113"
+	end
+
 	factory :comment do
   		time Time.now
   		text "comment text"
-		idea_id {FactoryGirl.create(:idea)}
-	   	user_id {FactoryGirl.create(:user)}
+		idea {FactoryGirl.create(:idea)}
+	   	user {FactoryGirl.create(:user)}
 
   	end
 
-	factory :history do  		
-		association :user, :factory => :user
+	factory :history do
 		time Time.now
-		basket "New"
+		basket "New"		
+		idea_id 1
+  		user_id 1
   	end
+
+  	factory :history_new, class: History do
+  		time "2016-07-04 00:00:00"
+  		basket "New"
+  		user {FactoryGirl.create(:user)}
+		idea {FactoryGirl.create(:idea)}
+  	end
+
+  	factory :history_without_basket, class: History do
+  		time "2016-07-04 00:00:00"  		
+  		user {FactoryGirl.create(:user)}
+		idea {FactoryGirl.create(:idea)}
+  	end
+
 
 #ideas and tags belongs_and_has_many to be done
 
@@ -34,7 +77,6 @@ FactoryGirl.define do
 
 	factory :tag do
 		text "tag text"
-
 	end
 
 	factory :like do
@@ -44,6 +86,3 @@ FactoryGirl.define do
 	end
 
 end
-
-
-
