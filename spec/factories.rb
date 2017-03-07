@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryGirl.define do	
 	
 	factory :user do
 		name "Testi Tauno"
@@ -6,59 +6,83 @@ FactoryGirl.define do
 		admin "false"
 		moderator "false"
 		title "opiskelija"
-		persistent_id "9876543"
-		comments {[FactoryGirl.create(:comment)]}
-		likes {[FactoryGirl.create(:like)]}
+		persistent_id Faker::Number.unique.number(20)
 	end
 
-	factory :basket do
-		name "basket name"
+	factory :user_with_history, class: User do
+		name "Testi Testaaja"
+		email "testaaja@blaa.fi"
+		admin "false"
+		moderator "false"
+		title "opiskelija"
+		persistent_id Faker::Number.unique.number(20)
+		histories {[FactoryGirl.create(:history)]}
+	end
+
+	factory :user_admin, class: User do
+		name "Testi Admin"
+		email "testaaja@blaa.fi"
+		admin "true"
+		moderator "false"
+		title "admin"
+		persistent_id Faker::Number.unique.number(20)
+	end
+
+	factory :user_moderator, class: User do
+		name "Testi Mode"
+		email "testaaja@blaa.fi"
+		admin "false"
+		moderator "true"
+		title "opiskelija"
+		persistent_id Faker::Number.unique.number(20)
 	end
 
 	factory :comment do
   		time Time.now
   		text "comment text"
+		idea {FactoryGirl.create(:idea)}
+	   	user {FactoryGirl.create(:user)}
+
   	end
 
 	factory :history do
-  		association :basket, :factory => :basket
-		association :user, :factory => :user
 		time Time.now
+		basket "New"		
+		idea_id 1
+  		user_id 1
   	end
+
+  	factory :history_new, class: History do
+  		time "2016-07-04 00:00:00"
+  		basket "New"
+  		user {FactoryGirl.create(:user)}
+		idea {FactoryGirl.create(:idea)}
+  	end
+
+  	factory :history_without_basket, class: History do
+  		time "2016-07-04 00:00:00"  		
+  		user {FactoryGirl.create(:user)}
+		idea {FactoryGirl.create(:idea)}
+  	end
+
 
 #ideas and tags belongs_and_has_many to be done
 
 	factory :idea do
 		topic "idea topic"
-		text "idea text"
-		association :basket, :factory => :basket
+		text "idea text"		
 		histories {[FactoryGirl.create(:history)]}
-		likes {[FactoryGirl.create(:like)]}
 		tags {[FactoryGirl.create(:tag)]}
 	end
 
 	factory :tag do
 		text "tag text"
-
-		#factory :tag_has_many_ideas do
-		#	after(:create) do |tag|
-		#		ideas {[FactoryGirl.create(:idea)]}
-		#	end
-		#end
 	end
 
 	factory :like do
-		like_type "tykkää"
+		like_type "like"
+		user {FactoryGirl.create(:user)}
+		idea {FactoryGirl.create(:idea)}
 	end
 
 end
-
-# USECASE
-# user = user(:user_with_all)
-# 
-# OR
-#
-# article = create(:article)
-# create(:comment, article: article)
-
-

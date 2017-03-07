@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   resources :likes
   resources :tags
   resources :comments
-  resources :baskets
   resources :ideas
   resources :histories
   resources :users
+
+  root 'ideas#index'
 
   # Hydea specific
   resource :session, only: [:new, :create, :destroy]

@@ -12,7 +12,7 @@
 # u2 = User.create name:"Anni Admin", email:"anni.admin@helsinki.fi", title:"admin", persistent_id:"83030478869631327588", admin:true, moderator:false
 # u3 = User.create name:"Mauri Moderaattori", email:"mauri.moderaattori@helsinki.fi", title:"moderaattori", persistent_id:"83030478869631327688", admin:false, moderator:true
 
-# i1 = Idea.create topic:"Virtuaalilasit laitokselle", text:"Software Factoryssa tarvitaan VR-laseja", basket_id:1
+# i1 = Idea.create topic:"Virtuaalilasit laitokselle", text:"Software Factoryssa tarvitaan VR-laseja"
 # h1= History.create time: "2017-02-06 13:39:46", basket_id:1, user_id:1, idea_id:1
 
 # c1 = Comment.create user_id:1, time: "2017-02-06 15:10:00", text:"Eka", idea_id:1
@@ -22,8 +22,8 @@
 # #/Demo test data
 
 
-baskets = ["New", "Approved", "Rejected", "Changing", "Changed", "Not changed"]
-baskets.each {|b| Basket.create!(name: b)}
+#baskets = ["New", "Approved", "Rejected", "Changing", "Changed", "Not changed"]
+#baskets.each {|b| Basket.create!(name: b)}
 
 
 
@@ -31,6 +31,7 @@ case Rails.env
 when "development", "test", "production"
 
 	tags = ["Keskusta", "Viikki", "Kumpula", "Meilahti", "Unicafe", "Kulttuuri", "Edut", "Järjestöt"]
+	baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 	tags.each {|t| Tag.create!(text: t)}
 
 	admins=5
@@ -98,24 +99,24 @@ when "development", "test", "production"
 
 	ideas.times do |n|
 		topic = Faker::ChuckNorris.fact
-		text = Faker::Lorem.paragraph(5, false, 15)
-		basket_id = (Random.rand(baskets.count)+1)
-		Idea.create!(topic: topic, text: text, basket_id: basket_id)
-		History.create!(time: Faker::Date.backward(265), basket_id: 1, user_id: (Random.rand(admins+moderators+users)+1), idea_id: (n+1) )
+		text = Faker::Lorem.paragraph(5, false, 15)		
+		Idea.create!(topic: topic, text: text)
+		
+		History.create!(time: Faker::Date.backward(265), basket: baskets.sample, user_id: (Random.rand(1 .. (admins+moderators+users))), idea_id: (n+1) )
 
 	end
 
 	#Probably causes likes and dislikes from same user on one idea too
 	likes.times do |n|
-		like_type = ["like","dislike"].sample
-		user_id = (Random.rand(admins+moderators+users)+1)
-		idea_id = (Random.rand(admins+moderators+users)+1)
+		like_type = ["like"].sample
+		user_id = (Random.rand(1 .. (admins+moderators+users)))
+		idea_id = (Random.rand(1 .. ideas))
 		Like.create!(like_type: like_type, user_id: user_id, idea_id: idea_id)
 	end
 
 	comments.times do |n|
-		user_id = (Random.rand(admins+moderators+users)+1)
-		idea_id = (Random.rand(ideas)+1)
+		user_id = (Random.rand(1 .. (admins+moderators+users)))
+		idea_id = (Random.rand(1 .. ideas))
 		text = Faker::Lorem.paragraph(5, false, 15)
 		time = Faker::Date.backward(365)
 		Comment.create!(user_id: user_id, idea_id: idea_id, text: text, time: time)

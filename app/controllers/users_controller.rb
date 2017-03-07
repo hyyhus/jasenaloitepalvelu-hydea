@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_is_admin, except: [:index] #"except index" poistetaan tuotantoversiosta
 
   # GET /users
   # GET /users.json
@@ -53,11 +54,15 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
+  def destroy    
+    if current_user.admin
+      @user.destroy
+      respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
+    end
+    else
+      redirect_to users_path
     end
   end
 

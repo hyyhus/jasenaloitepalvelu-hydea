@@ -6,8 +6,13 @@ class IdeasController < ApplicationController
   # GET /ideas.json
   def index
 	  if params[:basket]
-	  basket = Basket.find_by(name: params[:basket].to_s).id
-	  @ideas = Idea.all.where(basket: basket)
+	  #basket = Basket.find_by(name: params[:basket].to_s).id
+	  #@ideas = Idea.all.where(basket: basket)
+    #@ideas = Idea.all
+    @allideas = Idea.all    
+    baskets = @allideas.each { |allideas| allideas.histories.last.basket }
+    @ideas = baskets.where(basket: basket)
+
 	  else
     @ideas = Idea.all
 	  end
@@ -21,7 +26,11 @@ class IdeasController < ApplicationController
 
   # GET /ideas/new
   def new
+    if not current_user.nil?
     @idea = Idea.new
+    else
+      redirect_to ideas_path
+    end
   end
 
   # GET /ideas/1/edit
@@ -31,47 +40,59 @@ class IdeasController < ApplicationController
   # POST /ideas
   # POST /ideas.json
   def create
-    @idea = Idea.new(idea_params)
-    @idea.basket_id=1
+    if not current_user.nil?
     @history = History.new
-    @history.basket_id=1
+    @history.basket="New"
     @history.user=current_user
+    @idea = Idea.new(idea_params)
+    @idea.histories = [@history]
     @history.idea=@idea
     @history.time=Time.now
 
 
-    respond_to do |format|
-	    if @idea.save && @history.save
-        format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
-        format.json { render :show, status: :created, location: @idea }
-      else
-        format.html { render :new }
-        format.json { render json: @idea.errors, status: :unprocessable_entity }
+      respond_to do |format|
+	     if @history.save && @idea.save
+          format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
+          format.json { render :show, status: :created, location: @idea }
+        else
+          format.html { render :new }
+          format.json { render json: @idea.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to ideas_path
     end
   end
 
   # PATCH/PUT /ideas/1
   # PATCH/PUT /ideas/1.json
   def update
+    if not current_user.nil?
     respond_to do |format|
-      if @idea.update(idea_params)
+        if @idea.update(idea_params)
         format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
         format.json { render :show, status: :ok, location: @idea }
-      else
+        else
         format.html { render :edit }
         format.json { render json: @idea.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to ideas_path
     end
   end
 
   # DELETE /ideas/1
   # DELETE /ideas/1.json
   def destroy
+    if not current_user.nil?
     @idea.destroy
     respond_to do |format|
       format.html { redirect_to ideas_url, notice: 'Idea was successfully destroyed.' }
       format.json { head :no_content }
+    end
+    else
+      redirect_to ideas_path
     end
   end
   
@@ -80,12 +101,10 @@ class IdeasController < ApplicationController
 	  if current_user.moderator?
 	  history = History.new
 	  history.time=Time.now
-	  history.basket=Basket.find_by(name: "Approved")
+	  history.basket="Approved"
 	  history.user=current_user
 	  history.idea=@idea
 	  history.save
-	  @idea.basket=history.basket
-	  @idea.save
 	  end
 	  redirect_to ideas_path
 
@@ -99,6 +118,6 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:topic, :text, :basket_id)
+      params.require(:idea).permit(:topic, :text, :basket, :histories)
     end
 end
