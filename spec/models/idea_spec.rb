@@ -53,13 +53,5 @@ RSpec.describe Idea, type: :model do
     expect(idea).not_to be_valid
   end
 
-#TODO
-  it "can be published by moderator" do
-    idea = FactoryGirl.create(:idea)
-  end
 
-#TODO
-  it "cannot be published by non-moderator" do
-    idea = FactoryGirl.create(:idea)
-  end
 end
