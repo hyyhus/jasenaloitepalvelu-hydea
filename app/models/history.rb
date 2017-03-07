@@ -4,5 +4,4 @@ class History < ApplicationRecord
 
 	#Validations
 	validates :time, :basket, :user_id, presence: true
-	# validate idea id with nil as well???
 end

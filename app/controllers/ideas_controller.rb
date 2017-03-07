@@ -44,7 +44,7 @@ class IdeasController < ApplicationController
     @idea = Idea.new(idea_params)
     @idea.histories << @history
     @history.idea=@idea
-byebug
+
       respond_to do |format|
 	     if @idea.save && @history.save
           format.html { redirect_to @idea, notice: 'Idea was successfully created.' }

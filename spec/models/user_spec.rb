@@ -26,8 +26,8 @@ RSpec.describe User, type: :model do
   end
 
   it "has history with basket New" do    
-    expect(user_with_hist.histories.first.basket).to eq("New")
-    expect(user_with_hist.histories.count).to eq(1)
+    expect(user_with_history.histories.first.basket).to eq("New")
+    expect(user_with_history.histories.count).to eq(1)
 
   end
 
