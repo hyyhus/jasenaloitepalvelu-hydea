@@ -6,30 +6,12 @@
     <div class="col-sm-10">
       <h1>Listing Ideas</h1>
     </div>
+    <% if current_user %>
     <div class="col-sm-2">
         <%= link_to 'Post Idea', new_idea_path, :class => 'btn btn-primary'%>
     </div>
-  </div>
-
-  <!-- Show baskets -->
-  <ul class="nav nav-tabs nav-justified">
-    <% Basket.all.each do |basket| %>
-      <!-- Check if user is moderator and show New and Rejected -->
-      <% if basket.name == "New" or basket.name == "Rejected" %>
-      <% else %>
-          <% if basket.name == 'Approved'%>
-            <li role="presentation" class="active">
-              <%= link_to basket.name, ideas_path(basket: basket.name )%>
-            </li>
-          <% else %>
-            <li role="presentation">
-              <%= link_to basket.name, ideas_path(basket: basket.name )%>
-            </li>
-          <% end %>
-      <%end%>
     <% end %>
-  </ul>
-  <!-- End baskets -->
+  </div>
 
   <!-- Show tags -->
   <div class="center tags">
@@ -75,9 +57,6 @@
             <!-- End topic -->
             <!-- Draw likes -->
             <div class="<col-sm-3 center">
-              <% if idea.basket.name=='New'%>
-                <%= link_to "Publish", publish_idea_path(idea), method: :post, class: "btn btn-primary" %>
-              <% else %>
                 <% likes = 0 %>
                 <% idea.likes.each do |like| %>
                   <% a = Like.find(idea.id).like_type() 
@@ -85,7 +64,7 @@
                         likes = likes + 1
                       end
                   %>
-                <% end %>
+                
                 <button type="button" class="btn btn-success btn-md"><span class="glyphicon glyphicon-thumbs-up"></span> <%= likes %></button>
               <% end %>
             </div>
