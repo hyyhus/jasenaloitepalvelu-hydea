@@ -40,6 +40,7 @@ when "development", "production"
 	ideas=20
 	likes=50
 	comments=50
+	all_user_ids = (1 .. (admins+moderators+users)).to_a.shuffle
 
 	Faker::Config.locale = 'fin'
 
@@ -98,18 +99,16 @@ when "development", "production"
 	end
 
 	ideas.times do |n|
-		topic = Faker::ChuckNorris.fact
+		topic = Faker::Lorem.sentence
 		text = Faker::Lorem.paragraph(5, false, 15)		
-		Idea.create!(topic: topic, text: text)
-		
-		History.create!(time: Faker::Date.backward(265), basket: baskets.sample, user_id: (Random.rand(1 .. (admins+moderators+users))), idea_id: (n+1) )
-
+		history = History.create!(time: Faker::Date.backward(365), basket: baskets.sample, user_id: (Random.rand(1 .. (admins+moderators+users))), idea_id: (n+1) )
+		Idea.create!(topic: topic, text: text, histories: [history])
 	end
 
 	#Probably causes likes and dislikes from same user on one idea too
 	likes.times do |n|
 		like_type = ["like"].sample
-		user_id = (Random.rand(1 .. (admins+moderators+users)))
+		user_id = all_user_ids.pop
 		idea_id = (Random.rand(1 .. ideas))
 		Like.create!(like_type: like_type, user_id: user_id, idea_id: idea_id)
 	end
