@@ -51,7 +51,6 @@ class IdeasController < ApplicationController
     @history.idea = @idea
 
 
-
       respond_to do |format|
 	     if @history.save && @idea.save
           format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
