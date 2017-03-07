@@ -12,13 +12,17 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :ideas do
 	  post 'publish', on: :member
+    post 'reject', on: :member
+    post 'changing', on: :member
+    post 'changed', on: :member
+    post 'not_changed', on: :member
   end
 
   #SAML Authentication
   namespace :haka do
     get 'auth/new'
     get 'auth/consume'
-    post 'auth/consume'
+    post 'auth/consume'    
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

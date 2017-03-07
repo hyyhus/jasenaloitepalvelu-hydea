@@ -32,7 +32,7 @@ module Haka
 
       #Asetetaan metadatan pohjalta attribuuttien nimet
       metadata=Nokogiri::HTML(open(Hydea::Haka::HAKA_METADATA_URL))
-      front="//entitydescriptor[@entityid='https://hydea.localhost.fifi.fi']//requestedattribute[@friendlyname='"
+      front="//entitydescriptor[@entityid='https://hydea-qa.herokuapp.com/haka/serviceprovider']//requestedattribute[@friendlyname='"
 
       uniquecode=metadata.xpath("#{front}schacPersonalUniqueCode']")[0].attr("name")
       mail=metadata.xpath("#{front}mail']")[0].attr("name")

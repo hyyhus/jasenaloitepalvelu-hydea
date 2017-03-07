@@ -10,7 +10,7 @@ group :development, :test do
 	gem 'byebug'
 	# Rails update just in case we use assigns and assert templates
 	gem 'rails-controller-testing'
-  gem 'rspec-rails', '~> 3.5'
+        gem 'rspec-rails', '~> 3.5'
 end
 
 group :development do
@@ -24,7 +24,7 @@ end
 group :production do
 	# Heroku does not support sqlite, use postgresql instead
 	gem 'pg'
-	gem 'rails_12factor'  
+	gem 'rails_12factor'
 end
 
 group :test do
