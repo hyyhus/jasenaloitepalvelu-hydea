@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 	end
   
 	def ensure_that_is_admin
-		if !current_user.admin
+		if  current_user.nil?  || !current_user.admin
 			redirect_to ideas_path
 		end
 	end
