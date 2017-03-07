@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
   it "not created if duplicate persistent_id" do
     user20 = User.create name:"Test", persistent_id:"9876543"
     user30 = User.create name:"Test2", persistent_id:"9876543"    
-    expect(User.count).to eq(5)
+    expect(User.count).to eq(1)
   end
 
   it "has history with basket New" do    
