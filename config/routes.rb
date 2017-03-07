@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :likes
+  resources :likes, only: [:create, :destroy]
   resources :tags
   resources :comments
   resources :ideas
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   namespace :haka do
     get 'auth/new'
     get 'auth/consume'
-    post 'auth/consume'
+    post 'auth/consume'    
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

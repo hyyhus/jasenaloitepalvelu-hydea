@@ -3,5 +3,9 @@ class Idea < ApplicationRecord
 	has_many :comments
 	has_many :likes
 	has_many :histories
-	has_many :baskets, through: :histories
+
+	#validations
+	validates :topic, presence: true, length: {minimum: 2, maximum: 100}, allow_blank: false
+	validates :text, presence: true
+	validates :histories, presence: true
 end
