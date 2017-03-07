@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :ideas do
 	  post 'publish', on: :member
+    post 'reject', on: :member
+    post 'changing', on: :member
+    post 'changed', on: :member
+    post 'not_changed', on: :member
   end
 
   #SAML Authentication

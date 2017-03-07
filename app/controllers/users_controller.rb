@@ -11,6 +11,9 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @id = @user.id
+    @userHistories = User.find(@id).histories.where(basket: "New")
+    @ideas = @userHistories.map{|usr| usr.idea}
   end
 
   # GET /users/new
