@@ -12,12 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170124120945) do
 
-  create_table "baskets", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "comments", force: :cascade do |t|
     t.string   "user_id"
     t.datetime "time"
@@ -29,7 +23,7 @@ ActiveRecord::Schema.define(version: 20170124120945) do
 
   create_table "histories", force: :cascade do |t|
     t.datetime "time"
-    t.string   "basket_id"
+    t.string   "basket"
     t.string   "user_id"
     t.integer  "idea_id"
     t.datetime "created_at", null: false
@@ -38,9 +32,8 @@ ActiveRecord::Schema.define(version: 20170124120945) do
   end
 
   create_table "ideas", force: :cascade do |t|
-    t.string   "topic"
-    t.string   "text"
-    t.string   "basket_id"
+    t.string   "topic", null: false
+    t.string   "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
