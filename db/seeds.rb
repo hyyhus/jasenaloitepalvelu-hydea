@@ -28,7 +28,7 @@
 
 
 case Rails.env
-when "development", "test", "production"
+when "development", "production"
 
 	tags = ["Keskusta", "Viikki", "Kumpula", "Meilahti", "Unicafe", "Kulttuuri", "Edut", "Järjestöt"]
 	baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
