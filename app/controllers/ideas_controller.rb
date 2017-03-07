@@ -49,7 +49,6 @@ class IdeasController < ApplicationController
     @idea = Idea.new(idea_params)
     @idea.histories << @history
     @history.idea = @idea
-    @history.time = Time.now
 
 
       respond_to do |format|
