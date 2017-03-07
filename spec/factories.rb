@@ -9,6 +9,15 @@ FactoryGirl.define do
 		persistent_id Faker::Number.unique.number(20)
 	end
 
+	factory :user_student, class: User do
+		name "Testi opiskelija"
+		email "testi_opiskelija@blaa.fi"
+		admin "false"
+		moderator "false"
+		title "opiskelija"
+		persistent_id Faker::Number.unique.number(20)
+	end
+
 	factory :user_with_history, class: User do
 		name "Testi Testaaja"
 		email "testaaja@blaa.fi"
