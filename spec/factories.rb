@@ -81,7 +81,6 @@ FactoryGirl.define do
 		topic "idea topic"
 		text "idea text"		
 		histories {[FactoryGirl.create(:history)]}
-		tags {[FactoryGirl.create(:tag)]}
 	end
 
 	factory :tag do
