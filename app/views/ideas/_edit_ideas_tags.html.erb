@@ -15,6 +15,9 @@
     <%= f.label :tags %><br>
       <% Tag.all.each do |menutag| %>
       <%= menutag.text %>
+        <% if @idea.tags.count == 0 %>
+          <%= check_box_tag 'idea[tags][]', menutag.text %>
+        <% end %>
         <% @idea.tags.each_with_index do |t, index| %>        
           <% if t.text == menutag.text %>
             <%= check_box_tag 'idea[tags][]', menutag.text, true%>
