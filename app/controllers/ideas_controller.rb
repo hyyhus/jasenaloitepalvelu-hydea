@@ -50,6 +50,15 @@ class IdeasController < ApplicationController
     @idea.histories << @history
     @history.idea = @idea
 
+    if params[:idea][:tags]
+      params[:idea][:tags].each do |tag|
+        Tag.all.each do |t|
+          if t.text == tag
+            @idea.tags << t
+          end
+        end
+      end
+    end
 
       respond_to do |format|
 	     if @history.save && @idea.save
@@ -165,6 +174,6 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:topic, :text, :basket, :histories)
+      params.require(:idea).permit(:topic, :text, :basket, :histories, :tags)
     end
 end
