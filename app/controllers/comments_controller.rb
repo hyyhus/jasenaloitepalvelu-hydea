@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_is_moderator, only: [:destroy]
 
   # GET /comments
   # GET /comments.json
