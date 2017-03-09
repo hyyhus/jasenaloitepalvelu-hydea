@@ -89,13 +89,7 @@ class IdeasController < ApplicationController
   def publish
 
 	  if current_user.moderator?
-	  history = History.new
-	  history.time=Time.now
-	  history.basket="Approved"
-	  history.user=current_user
-	  history.idea=@idea
-	  history.save
-
+		  @idea.histories << History.create(time: Time.now, basket: "Approved", user: current_user, idea: @idea)
 	  end
 	  redirect_to ideas_path
 
@@ -104,12 +98,7 @@ class IdeasController < ApplicationController
   def reject
 
 	  if current_user.moderator?
-	  history = History.new
-	  history.time=Time.now
-	  history.basket="Rejected"
-	  history.user=current_user
-	  history.idea=@idea
-	  history.save
+		  @idea.histories << History.create(time: Time.now, basket: "Rejected", user: current_user, idea: @idea)
 	  end
 	  redirect_to ideas_path
 
@@ -118,12 +107,7 @@ class IdeasController < ApplicationController
   def changing
 
 	  if current_user.moderator?
-	  history = History.new
-	  history.time=Time.now
-	  history.basket="Changing"
-	  history.user=current_user
-	  history.idea=@idea
-	  history.save
+		  @idea.histories << History.create(time: Time.now, basket: "Changing", user: current_user, idea: @idea)
 	  end
 	  redirect_to ideas_path
 
@@ -132,12 +116,7 @@ class IdeasController < ApplicationController
   def changed
 
 	  if current_user.moderator?
-	  history = History.new
-	  history.time=Time.now
-	  history.basket="Changed"
-	  history.user=current_user
-	  history.idea=@idea
-	  history.save
+		  @idea.histories << History.create(time: Time.now, basket: "Changed", user: current_user, idea: @idea)
 	  end
 	  redirect_to ideas_path
 
@@ -146,12 +125,7 @@ class IdeasController < ApplicationController
   def not_changed
 
 	  if current_user.moderator?
-	  history = History.new
-	  history.time=Time.now
-	  history.basket="Not Changed"
-	  history.user=current_user
-	  history.idea=@idea
-	  history.save
+		  @idea.histories << History.create(time: Time.now, basket: "Not Changed", user: current_user, idea: @idea)
 	  end
 	  redirect_to ideas_path
 
