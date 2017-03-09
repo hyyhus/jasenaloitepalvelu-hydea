@@ -5,9 +5,10 @@ RSpec.describe IdeasController, :type => :controller do
     let(:user_admin){ FactoryGirl.create(:user_admin) }
     let(:user_moderator){ FactoryGirl.create(:user_moderator) }
 
-  it "can be published by moderator" do
-    session[:user_id] = :user_moderator
-    idea = FactoryGirl.create(:idea)
+    it "can be published by moderator" do
+	    session[:user_id] = user_moderator.id
+	    idea = FactoryGirl.create(:idea)
+	    expect{post :publish, id: idea.id}.to change(History,:count).by(1)
     # Correct way to use publish is missing
     # expect(idea.histories.last.basket).to eq("Approved")
   end
