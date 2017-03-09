@@ -13,18 +13,19 @@
 
   <div class="field">
     <%= f.label :tags %><br>
-      <% if Tag.all.each do |menutag| %>
-        <% @idea.tags.each do |t| %>
+      <% Tag.all.each do |menutag| %>
+      <%= menutag.text %>
+        <% @idea.tags.each_with_index do |t, index| %>        
           <% if t.text == menutag.text %>
             <%= check_box_tag 'idea[tags][]', menutag.text, true%>
-          <% else %>
-            <%= check_box_tag 'idea[tags][]', menutag.text%>
-          <%end%>
-          <%= menutag.text %>
-        <%end%>
-      <%end%>
-    <% end %>
+            <% break %>
+          <% elsif index == @idea.tags.count - 1 %>
+            <%= check_box_tag 'idea[tags][]', menutag.text %>
+          <% end %>
+        <% end %>      
+     <% end %>
   </div>
+
   <div class="actions">
     <%= f.submit :class => "btn btn-primary" %>
   </div>
