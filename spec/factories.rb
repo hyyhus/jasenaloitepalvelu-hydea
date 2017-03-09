@@ -50,7 +50,7 @@ FactoryGirl.define do
   		time Time.now
   		text "comment text"
 		idea {FactoryGirl.create(:idea)}
-	   	user {FactoryGirl.create(:user)}
+	   	user {FactoryGirl.create(:user, persistent_id: Faker::Number.unique.number(20))}
 
   	end
 
@@ -81,7 +81,6 @@ FactoryGirl.define do
 		topic "idea topic"
 		text "idea text"		
 		histories {[FactoryGirl.create(:history)]}
-		tags {[FactoryGirl.create(:tag)]}
 	end
 
 	factory :tag do

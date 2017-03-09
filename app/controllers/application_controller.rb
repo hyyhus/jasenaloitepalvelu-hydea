@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 	# For APIs, you may want to use :null_session instead.
 	protect_from_forgery with: :exception
 
-	helper_method :current_user
+	helper_method :current_user, :ensure_that_signed_in, :ensure_that_is_admin, :ensure_that_is_moderator
 
 	def current_user
 		return nil if session[:user_id].nil?
@@ -21,10 +21,9 @@ class ApplicationController < ActionController::Base
 	end
 
 	def ensure_that_is_moderator
-	  if current_user == nil
-		  redirect_to ideas_path, notice:'you must be signed in' and return
-	  end
-	  redirect_to ideas_path, notice:'you should be moderator to do that' unless current_user.moderator?
+		if  current_user.nil?  || !current_user.moderator
+			redirect_to ideas_path
+		end
   end
 
 end
