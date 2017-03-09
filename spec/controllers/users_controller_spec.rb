@@ -48,7 +48,7 @@ RSpec.describe UsersController, :type => :controller do
 		end
 
 		describe "PUT update" do
-			it "update name" do
+			it "doesn't update name, if not admin" do
 				@user = FactoryGirl.create(:user)		        
 		        put :update, id: @user, user: FactoryGirl.attributes_for(:user, name: "vaihdettu")	        
 		        @user.reload	        
@@ -72,13 +72,6 @@ RSpec.describe UsersController, :type => :controller do
 		end
 
 		describe "GET #show" do
-			it "assigns the requested user to @user" do
-		    user = FactoryGirl.create(:user)		    
-			get :show, id: user		
-			assigns(:user).should eq(user)
-			response.should render_template :show		
-			end
-
 			it "assigns the requested user to @user" do
 		    user = FactoryGirl.create(:user)		    
 			get :show, id: user		
