@@ -22,9 +22,9 @@ class ApplicationController < ActionController::Base
 
 	def ensure_that_is_moderator
 	  if current_user == nil
-		  redirect_to histories_path, notice:'you must be signed in' and return
+		  redirect_to ideas_path, notice:'you must be signed in' and return
 	  end
-	  redirect_to histories_path, notice:'you should be moderator to do that' unless current_user.moderator?
+	  redirect_to ideas_path, notice:'you should be moderator to do that' unless current_user.moderator?
   end
 
 end

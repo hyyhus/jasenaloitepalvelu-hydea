@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_is_moderator
 
   # GET /tags
   # GET /tags.json
