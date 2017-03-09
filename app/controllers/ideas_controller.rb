@@ -9,11 +9,7 @@ class IdeasController < ApplicationController
   def index
 	  if params[:basket]
 	  #basket = Basket.find_by(name: params[:basket].to_s).id
-	  #@ideas = Idea.all.where(basket: basket)
-    #@ideas = Idea.all
-    @allideas = Idea.all
-    baskets = @allideas.each { |allideas| allideas.histories.last.basket }
-    @ideas = baskets.where(basket: basket)
+		  @ideas = Idea.all.select{|i| i.basket == params[:basket].to_s}
 
 	  else
     @ideas = Idea.all
