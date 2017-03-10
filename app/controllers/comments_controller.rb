@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :ensure_that_signed_in, except: [:show]
+  before_action :ensure_that_is_moderator, only: [:destroy]
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   # GET /comments
@@ -30,7 +32,7 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    comment = Comment.create params.require(:comment).permit(:user_id, :time, :text, :idea_id)
+    comment = Comment.create params.require(:comment).permit(:time, :text, :idea_id)
     current_user.comments << comment
     
     redirect_to :controller => 'ideas', :action => 'show', :id => comment.idea_id
