@@ -1,0 +1,35 @@
+<%= form_for(@idea) do |f| %>
+  <% if @idea.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
+
+      <ul>
+      <% @idea.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :tags %><br>
+      <% Tag.all.each do |menutag| %>
+      <%= menutag.text %>
+        <% if @idea.tags.count == 0 %>
+          <%= check_box_tag 'idea[tags][]', menutag.text %>
+        <% end %>
+        <% @idea.tags.each_with_index do |t, index| %>        
+          <% if t.text == menutag.text %>
+            <%= check_box_tag 'idea[tags][]', menutag.text, true%>
+            <% break %>
+          <% elsif index == @idea.tags.count - 1 %>
+            <%= check_box_tag 'idea[tags][]', menutag.text %>
+          <% end %>
+        <% end %>      
+     <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit :class => "btn btn-primary" %>
+  </div>
+<% end %>
