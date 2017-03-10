@@ -64,8 +64,8 @@ class IdeasController < ApplicationController
   def update
 
     if params[:idea].nil?
-      @idea.tags.delete_all
-    elsif params[:idea][:tags]
+      @idea.tags.delete_all      
+    elsif params[:idea][:tags]      
       @idea.tags.delete_all
       params[:idea][:tags].each do |tag|
         newTag = Tag.find_by text: tag
@@ -73,12 +73,15 @@ class IdeasController < ApplicationController
       end
     end
 
-      respond_to do |format|
+    respond_to do |format|
+      if @idea.update(idea_params)
         format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
         format.json { render :show, status: :ok, location: @idea }
-
+      else
+        format.html { render :edit }
+        format.json { render json: @idea.errors, status: :unprocessable_entity }
       end
-    end
+    end    
   end
 
   # DELETE /ideas/1
@@ -129,10 +132,14 @@ class IdeasController < ApplicationController
 
   private
 
+   def set_idea
+      @idea = Idea.find(params[:id])
+   end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
       params.require(:idea).permit(:topic, :text, :basket, :histories, :tags)
     end
-
 end
+
