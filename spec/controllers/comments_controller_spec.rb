@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
+
 	context "With user logged in" do
 		before :each do
 		end
