@@ -7,22 +7,45 @@ RSpec.describe IdeasController, type: :controller do
 
   it 'can be published by moderator' do
     session[:user_id] = user_moderator.id
-    idea = FactoryGirl.create(:idea)
-    expect { post :publish, id: idea.id }.to change(idea.histories, :count).by(1)
+    @idea = FactoryGirl.create(:idea)
+    expect { post :publish, id: @idea.id }.to change(@idea.histories, :count).by(1)
     expect(response).to redirect_to ideas_path
     expect(flash[:notice]).to eq('Idea was successfully published.')
   end
 
-  # TODO
   it 'cannot be published by non-moderator' do
     session[:user_id] = user.id
-    idea = FactoryGirl.create(:idea)
-    expect { post :publish, id: idea.id }.not_to change(idea.histories, :count)
+    @idea = FactoryGirl.create(:idea)
+    expect { post :publish, id: @idea.id }.not_to change(@idea.histories, :count)
     expect(response).to redirect_to ideas_path
     expect(flash[:notice]).not_to eq('Idea was successfully published.')
   end
 
-  it 'cannot be updated if not signed it or whatnot wrong test' do
-    idea = FactoryGirl.create(:idea)
+  it 'topic is updated by moderator' do
+    session[:user_id] = user_moderator.id
+    @idea = FactoryGirl.create(:idea, topic: 'test topic')
+    put :update, id: @idea.id, idea: FactoryGirl.attributes_for(:idea, topic: 'updated topic')
+    @idea.reload
+    expect(@idea.topic).to eq('updated topic')
+    expect redirect_to @idea
+  end
+
+  it 'cannot be updated if not moderator' do
+    session[:user_id] = user.id
+    @idea = FactoryGirl.create(:idea, topic: 'test topic')
+    put :update, id: @idea.id, idea: FactoryGirl.attributes_for(:idea, topic: 'updated topic')
+    @idea.reload
+    expect(@idea.topic).to eq('test topic')
+    expect redirect_to ideas_path
+  end
+
+  it 'cannot be updated if not signed in' do
+    session[:user_id] = user.id
+    @idea = FactoryGirl.create(:idea, topic: 'test topic')
+    session[:user_id] = nil
+    put :update, id: @idea.id, idea: FactoryGirl.attributes_for(:idea, topic: 'updated topic')
+    @idea.reload
+    expect(@idea.topic).to eq('test topic')
+    expect redirect_to ideas_path
   end
 end
