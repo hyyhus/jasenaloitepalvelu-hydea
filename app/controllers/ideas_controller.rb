@@ -74,7 +74,6 @@ class IdeasController < ApplicationController
   # PATCH/PUT /ideas/1
   # PATCH/PUT /ideas/1.json
   def update
-    #byebug
     if params[:idea].nil?
       @idea.tags.delete_all
     elsif params[:idea][:tags]
