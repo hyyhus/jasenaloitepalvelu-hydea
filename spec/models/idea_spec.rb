@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Idea, type: :model do
+    let(:user){ FactoryGirl.create(:user) }
+    let(:user_admin){ FactoryGirl.create(:user_admin) }
+    let(:user_moderator){ FactoryGirl.create(:user_moderator) }
+
   it "has factory make idea" do
     idea = FactoryGirl.create(:idea)
     expect(idea.topic).to eq("idea topic")
@@ -48,4 +52,6 @@ RSpec.describe Idea, type: :model do
     idea = FactoryGirl.build(:idea, topic: nil)
     expect(idea).not_to be_valid
   end
+
+
 end
