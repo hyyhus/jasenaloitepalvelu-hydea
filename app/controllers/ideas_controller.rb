@@ -73,15 +73,21 @@ class IdeasController < ApplicationController
 
   # PATCH/PUT /ideas/1
   # PATCH/PUT /ideas/1.json
-  def update    
-    respond_to do |format|
-        if @idea.update(idea_params)
+  def update
+    #byebug
+    if params[:idea].nil?
+      @idea.tags.delete_all
+    elsif params[:idea][:tags]
+      @idea.tags.delete_all
+      params[:idea][:tags].each do |tag|
+        newTag = Tag.find_by text: tag
+        @idea.tags << newTag
+      end
+    end
+
+      respond_to do |format|
         format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
         format.json { render :show, status: :ok, location: @idea }
-        else
-        format.html { render :edit }
-        format.json { render json: @idea.errors, status: :unprocessable_entity }
-        end
       end
   end
 
