@@ -1,12 +1,9 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish, :reject, :changing, :changed, :not_changed]
   before_action :ensure_that_signed_in, except: [:index, :show]
-<<<<<<< HEAD
-  before_action :ensure_that_is_moderator, only: [:create, :edit, :update, :destroy, :publish]
-=======
   before_action :ensure_that_is_moderator, except: [:index, :show, :new]
 #  before_action :set_idea, only: [:publish]
->>>>>>> JS-3-EditTags_html
+
 
   # GET /ideas
   # GET /ideas.json
@@ -41,17 +38,6 @@ class IdeasController < ApplicationController
     @idea.histories << @history
     @history.idea = @idea
 
-<<<<<<< HEAD
-    respond_to do |format|
-      if @idea.save && @history.save
-        format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
-        format.json { render :show, status: :created, location: @idea }
-      else
-        format.html { render :new }
-        format.json { render json: @idea.errors, status: :unprocessable_entity }
-     end
-    end
-=======
     if params[:idea][:tags]
       params[:idea][:tags].each do |tag|
         Tag.all.each do |t|
@@ -71,21 +57,12 @@ class IdeasController < ApplicationController
           format.json { render json: @idea.errors, status: :unprocessable_entity }
         end
       end
->>>>>>> JS-3-EditTags_html
   end
 
   # PATCH/PUT /ideas/1
   # PATCH/PUT /ideas/1.json
   def update
-<<<<<<< HEAD
-    respond_to do |format|
-      if @idea.update(idea_params)
-        format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
-        format.json { render :show, status: :ok, location: @idea }
-      else
-        format.html { render :edit }
-        format.json { render json: @idea.errors, status: :unprocessable_entity }
-=======
+
     if params[:idea].nil?
       @idea.tags.delete_all
     elsif params[:idea][:tags]
@@ -99,7 +76,7 @@ class IdeasController < ApplicationController
       respond_to do |format|
         format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
         format.json { render :show, status: :ok, location: @idea }
->>>>>>> JS-3-EditTags_html
+
       end
     end
   end
