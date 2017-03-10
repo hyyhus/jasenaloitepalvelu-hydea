@@ -1,13 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Idea, type: :model do
+    let(:user){ FactoryGirl.create(:user) }
+    let(:user_admin){ FactoryGirl.create(:user_admin) }
+    let(:user_moderator){ FactoryGirl.create(:user_moderator) }
+
   it "has factory make idea" do
     idea = FactoryGirl.create(:idea)
     expect(idea.topic).to eq("idea topic")
     expect(idea.text).to eq("idea text")
     expect(idea.histories).not_to be_empty      
-    idea.tags << [FactoryGirl.create(:tag)]
-    expect(idea.tags).not_to be_empty
   end
 
   it "has factory make idea with all" do
@@ -17,8 +19,6 @@ RSpec.describe Idea, type: :model do
     expect(idea.text).to eq("idea text")
     expect(idea.likes).not_to be_empty  
     expect(idea.histories).not_to be_empty      
-    idea.tags << [FactoryGirl.create(:tag)]
-    expect(idea.tags).not_to be_empty
   end
 
   it "has factory make idea with no histories" do
@@ -50,4 +50,6 @@ RSpec.describe Idea, type: :model do
     idea = FactoryGirl.build(:idea, topic: nil)
     expect(idea).not_to be_valid
   end
+
+
 end

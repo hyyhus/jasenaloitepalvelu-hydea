@@ -22,11 +22,4 @@ RSpec.describe History, type: :model do
   	expect(history_new).not_to be_valid
   end
 
-  # it "without idea is not created" do  	
-  # 	history_new.idea = nil
-  # 	expect(history_new).not_to be_valid
-  # end
-
-
-
 end
