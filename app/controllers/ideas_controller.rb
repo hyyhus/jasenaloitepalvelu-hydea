@@ -108,23 +108,6 @@ end
     redirect_to ideas_path
   end
 
-  def publish
-    @history = History.new
-    @history.time = Time.now
-    @history.basket = 'Approved'
-    @history.user = current_user
-    @history.idea = @idea
-    @idea.histories << @history
-
-    respond_to do |format|
-      if @idea.save && @history.save
-        format.html { redirect_to ideas_path, notice: 'Idea was successfully published.' }
-        format.json { render :show, status: :ok, location: @idea }
-      else
-        redirect_to ideas_path
-     end
-    end
-  end
 
   private
 

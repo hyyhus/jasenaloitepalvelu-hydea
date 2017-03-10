@@ -10,7 +10,6 @@ RSpec.describe IdeasController, type: :controller do
     @idea = FactoryGirl.create(:idea)
     expect { post :publish, id: @idea.id }.to change(@idea.histories, :count).by(1)
     expect(response).to redirect_to ideas_path
-    expect(flash[:notice]).to eq('Idea was successfully published.')
   end
 
   it 'cannot be published by non-moderator' do
@@ -18,7 +17,6 @@ RSpec.describe IdeasController, type: :controller do
     @idea = FactoryGirl.create(:idea)
     expect { post :publish, id: @idea.id }.not_to change(@idea.histories, :count)
     expect(response).to redirect_to ideas_path
-    expect(flash[:notice]).not_to eq('Idea was successfully published.')
   end
 
   it 'topic is updated by moderator' do
