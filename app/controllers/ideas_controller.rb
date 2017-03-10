@@ -1,7 +1,7 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish, :reject, :changing, :changed, :not_changed]
   before_action :ensure_that_signed_in, except: [:index, :show]
-
+  before_action :ensure_that_is_moderator, except: [:index, :show, :new]
 #  before_action :set_idea, only: [:publish]
 
   # GET /ideas
