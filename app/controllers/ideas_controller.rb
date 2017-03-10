@@ -6,13 +6,13 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
-      if params[:basket]
-               # basket = Basket.find_by(name: params[:basket].to_s).id
-           @ideas = Idea.all.select { |i| i.basket == params[:basket].to_s }
-         else
-           @ideas = Idea.all
-      end
-end
+	  if params[:basket]	  
+		  @ideas = Idea.all.select{|i| i.basket == params[:basket].to_s}
+	  else
+    redirect_to '/ideas?basket=Approved'
+	  end
+  end
+
 
   # GET /ideas/1
   # GET /ideas/1.json
