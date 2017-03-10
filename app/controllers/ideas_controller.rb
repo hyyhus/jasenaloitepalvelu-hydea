@@ -1,34 +1,22 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish, :reject, :changing, :changed, :not_changed]
   before_action :ensure_that_signed_in, except: [:index, :show]
-
-#  before_action :set_idea, only: [:publish]
   before_action :ensure_that_is_moderator, only: [:create, :edit, :update, :destroy, :publish]
 
   # GET /ideas
   # GET /ideas.json
   def index
-	  if params[:basket]
-	  #basket = Basket.find_by(name: params[:basket].to_s).id
-		  @ideas = Idea.all.select{|i| i.basket == params[:basket].to_s}
-    if params[:basket]
-      # basket = Basket.find_by(name: params[:basket].to_s).id
-      # @ideas = Idea.all.where(basket: basket)
-      # @ideas = Idea.all
-      @allideas = Idea.all
-      baskets = @allideas.each { |allideas| allideas.histories.last.basket }
-      @ideas = baskets.where(basket: basket)
+    @ideas = if params[:basket]
+               # basket = Basket.find_by(name: params[:basket].to_s).id
+               Idea.all.select { |i| i.basket == params[:basket].to_s }
 
-    else
-      @ideas = Idea.all
-    end
-  end
+             else
+               Idea.all
+             end
+end
 
   # GET /ideas/1
   # GET /ideas/1.json
-  def show
-
-  end
   def show; end
 
   # GET /ideas/new
@@ -86,47 +74,39 @@ class IdeasController < ApplicationController
   end
 
   def publish
-
-	  if current_user.moderator?
-		  @idea.histories << History.create(time: Time.now, basket: "Approved", user: current_user, idea: @idea)
-	  end
-	  redirect_to ideas_path
-
+    if current_user.moderator?
+      @idea.histories << History.create(time: Time.now, basket: 'Approved', user: current_user, idea: @idea)
+    end
+    redirect_to ideas_path
   end
 
   def reject
-
-	  if current_user.moderator?
-		  @idea.histories << History.create(time: Time.now, basket: "Rejected", user: current_user, idea: @idea)
-	  end
-	  redirect_to ideas_path
-
+    if current_user.moderator?
+      @idea.histories << History.create(time: Time.now, basket: 'Rejected', user: current_user, idea: @idea)
+    end
+    redirect_to ideas_path
   end
 
   def changing
-
-	  if current_user.moderator?
-		  @idea.histories << History.create(time: Time.now, basket: "Changing", user: current_user, idea: @idea)
-	  end
-	  redirect_to ideas_path
-
+    if current_user.moderator?
+      @idea.histories << History.create(time: Time.now, basket: 'Changing', user: current_user, idea: @idea)
+    end
+    redirect_to ideas_path
   end
 
   def changed
-
-	  if current_user.moderator?
-		  @idea.histories << History.create(time: Time.now, basket: "Changed", user: current_user, idea: @idea)
-	  end
-	  redirect_to ideas_path
-
+    if current_user.moderator?
+      @idea.histories << History.create(time: Time.now, basket: 'Changed', user: current_user, idea: @idea)
+    end
+    redirect_to ideas_path
   end
 
   def not_changed
-
-	  if current_user.moderator?
-		  @idea.histories << History.create(time: Time.now, basket: "Not Changed", user: current_user, idea: @idea)
-	  end
-	  redirect_to ideas_path
+    if current_user.moderator?
+      @idea.histories << History.create(time: Time.now, basket: 'Not Changed', user: current_user, idea: @idea)
+    end
+    redirect_to ideas_path
+  end
 
   def publish
     @history = History.new

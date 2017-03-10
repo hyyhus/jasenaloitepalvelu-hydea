@@ -23,7 +23,7 @@ RSpec.describe IdeasController, type: :controller do
 
   it 'topic is updated by moderator' do
     session[:user_id] = user_moderator.id
-    @idea = FactoryGirl.create(:idea, topic: 'test topic')
+    @idea = FactoryGirl.create(:idea, topic: 'test topic to be updated')
     put :update, id: @idea.id, idea: FactoryGirl.attributes_for(:idea, topic: 'updated topic')
     @idea.reload
     expect(@idea.topic).to eq('updated topic')
@@ -32,10 +32,10 @@ RSpec.describe IdeasController, type: :controller do
 
   it 'cannot be updated if not moderator' do
     session[:user_id] = user.id
-    @idea = FactoryGirl.create(:idea, topic: 'test topic')
+    @idea = FactoryGirl.create(:idea, topic: 'test topic shall not update')
     put :update, id: @idea.id, idea: FactoryGirl.attributes_for(:idea, topic: 'updated topic')
     @idea.reload
-    expect(@idea.topic).to eq('test topic')
+    expect(@idea.topic).to eq('test topic shall not update')
     expect redirect_to ideas_path
   end
 

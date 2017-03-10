@@ -10,7 +10,6 @@ RSpec.describe Idea, type: :model do
     expect(idea.topic).to eq("idea topic")
     expect(idea.text).to eq("idea text")
     expect(idea.histories).not_to be_empty      
-    expect(idea.tags).not_to be_empty
   end
 
   it "has factory make idea with all" do
@@ -20,7 +19,6 @@ RSpec.describe Idea, type: :model do
     expect(idea.text).to eq("idea text")
     expect(idea.likes).not_to be_empty  
     expect(idea.histories).not_to be_empty      
-    expect(idea.tags).not_to be_empty
   end
 
   it "has factory make idea with no histories" do
