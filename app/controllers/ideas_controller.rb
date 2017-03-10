@@ -1,21 +1,16 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish, :reject, :changing, :changed, :not_changed]
   before_action :ensure_that_signed_in, except: [:index, :show]
-<<<<<<< HEAD
 
 #  before_action :set_idea, only: [:publish]
-=======
   before_action :ensure_that_is_moderator, only: [:create, :edit, :update, :destroy, :publish]
->>>>>>> HA-3-35-3-Idea-Validation
 
   # GET /ideas
   # GET /ideas.json
   def index
-<<<<<<< HEAD
 	  if params[:basket]
 	  #basket = Basket.find_by(name: params[:basket].to_s).id
 		  @ideas = Idea.all.select{|i| i.basket == params[:basket].to_s}
-=======
     if params[:basket]
       # basket = Basket.find_by(name: params[:basket].to_s).id
       # @ideas = Idea.all.where(basket: basket)
@@ -23,7 +18,6 @@ class IdeasController < ApplicationController
       @allideas = Idea.all
       baskets = @allideas.each { |allideas| allideas.histories.last.basket }
       @ideas = baskets.where(basket: basket)
->>>>>>> HA-3-35-3-Idea-Validation
 
     else
       @ideas = Idea.all
@@ -32,13 +26,10 @@ class IdeasController < ApplicationController
 
   # GET /ideas/1
   # GET /ideas/1.json
-<<<<<<< HEAD
   def show
 
   end
-=======
   def show; end
->>>>>>> HA-3-35-3-Idea-Validation
 
   # GET /ideas/new
   def new
