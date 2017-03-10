@@ -8,7 +8,7 @@ RSpec.describe UsersController, :type => :controller do
 			it "creates an array of correct users" do
 		    user = FactoryGirl.create(:user)
 			get :index
-			assigns(:users).should eq([user])
+			expect(assigns(:users)).to eq([user])
 			#Testi muutetaan tuotantoversioon
 			end
 		end
@@ -22,7 +22,7 @@ RSpec.describe UsersController, :type => :controller do
 		describe "GET #new" do
 			it "doesn't get new, if not admin" do
 				get :new
-				response.should redirect_to ideas_path
+				expect(response).to redirect_to ideas_path
 			end
 		end
 
@@ -30,7 +30,7 @@ RSpec.describe UsersController, :type => :controller do
 			it "doesn't edit, if not admin" do
 				user = FactoryGirl.create(:user)
 				get :edit, id: user
-				response.should redirect_to ideas_path
+				expect(response).to redirect_to ideas_path
 			end
 		end
 
@@ -39,12 +39,12 @@ RSpec.describe UsersController, :type => :controller do
 				expect{
 				post :create, user: FactoryGirl.attributes_for(:user)
 				}.to_not change(User, :count)
-				response.should redirect_to ideas_path
+				expect(response).to redirect_to ideas_path
 			end
 		end
 
 		describe "PUT update" do
-			it "update name" do
+			it "doesn't update name, if not admin" do
 				@user = FactoryGirl.create(:user)		        
 		        put :update, id: @user, user: FactoryGirl.attributes_for(:user, name: "vaihdettu")	        
 		        @user.reload	        
@@ -71,16 +71,10 @@ RSpec.describe UsersController, :type => :controller do
 			it "assigns the requested user to @user" do
 		    user = FactoryGirl.create(:user)		    
 			get :show, id: user		
-			assigns(:user).should eq(user)
-			response.should render_template :show		
+			expect(assigns(:user)).to eq(user)
+			expect(response).to render_template :show		
 			end
 
-			it "assigns the requested user to @user" do
-		    user = FactoryGirl.create(:user)		    
-			get :show, id: user		
-			assigns(:user).should eq(user)
-			response.should render_template :show		
-			end
 		end
 
 		describe "PUT update" do
@@ -88,7 +82,7 @@ RSpec.describe UsersController, :type => :controller do
 				@user = FactoryGirl.create(:user)		        
 		        put :update, id: @user, user: FactoryGirl.attributes_for(:user, name: "vaihdettu")	        
 		        @user.reload	        
-		        @user.name.should eq("vaihdettu")
+		        expect(@user.name).to eq("vaihdettu")
 			end
 		end
 
