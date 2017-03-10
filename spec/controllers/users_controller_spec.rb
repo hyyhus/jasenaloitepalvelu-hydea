@@ -15,11 +15,7 @@ RSpec.describe UsersController, :type => :controller do
 
 
 		describe "GET #show" do
-			it "redirect to ideas path, if not admin" do
-		    user = FactoryGirl.create(:user)	    
-			get :show, id: user
-			expect(response).to redirect_to ideas_path
-			end			
+			it "It returns user page"
 		end
 
 
@@ -124,12 +120,8 @@ RSpec.describe UsersController, :type => :controller do
 
 
 		describe "GET #show" do
-			it "redirect to ideas path, if not admin" do
-		    user = FactoryGirl.create(:user)	    
-			get :show, id: user
-			response.should redirect_to ideas_path
+			it "It returns user page"
 			end			
-		end
 
 
 		describe "GET #new" do
