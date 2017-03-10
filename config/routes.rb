@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     post 'changing', on: :member
     post 'changed', on: :member
     post 'not_changed', on: :member
+    post 'like', on: :member
+    post 'unlike', on: :member
   end
 
   #SAML Authentication
