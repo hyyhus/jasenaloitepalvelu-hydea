@@ -74,38 +74,49 @@ end
   end
 
   def publish
-    if current_user.moderator?
-      @idea.histories << History.create(time: Time.now, basket: 'Approved', user: current_user, idea: @idea)
-    end
-    redirect_to ideas_path
+
+
+	  if current_user.moderator?
+		  @idea.histories << History.create(time: Time.now, basket: "Approved", user: current_user, idea: @idea)
+	  end
+	  redirect_to ideas_path
+
   end
 
   def reject
-    if current_user.moderator?
-      @idea.histories << History.create(time: Time.now, basket: 'Rejected', user: current_user, idea: @idea)
-    end
-    redirect_to ideas_path
+
+	  if current_user.moderator?
+		  @idea.histories << History.create(time: Time.now, basket: "Rejected", user: current_user, idea: @idea)
+	  end
+	  redirect_to ideas_path
+
   end
 
   def changing
-    if current_user.moderator?
-      @idea.histories << History.create(time: Time.now, basket: 'Changing', user: current_user, idea: @idea)
-    end
-    redirect_to ideas_path
+
+	  if current_user.moderator?
+		  @idea.histories << History.create(time: Time.now, basket: "Changing", user: current_user, idea: @idea)
+	  end
+	  redirect_to ideas_path
+
   end
 
   def changed
-    if current_user.moderator?
-      @idea.histories << History.create(time: Time.now, basket: 'Changed', user: current_user, idea: @idea)
-    end
-    redirect_to ideas_path
+
+	  if current_user.moderator?
+		  @idea.histories << History.create(time: Time.now, basket: "Changed", user: current_user, idea: @idea)
+	  end
+	  redirect_to ideas_path
+
   end
 
   def not_changed
-    if current_user.moderator?
-      @idea.histories << History.create(time: Time.now, basket: 'Not Changed', user: current_user, idea: @idea)
-    end
-    redirect_to ideas_path
+
+	  if current_user.moderator?
+		  @idea.histories << History.create(time: Time.now, basket: "Not Changed", user: current_user, idea: @idea)
+	  end
+	  redirect_to ideas_path
+
   end
 
 
