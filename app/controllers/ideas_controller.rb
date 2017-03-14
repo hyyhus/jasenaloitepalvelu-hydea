@@ -8,11 +8,11 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
-	  if params[:basket]	  
-		  @ideas = Idea.all.select{|i| i.basket == params[:basket].to_s}
-	  else
+    if params[:basket]    
+      @ideas = Idea.all.select{|i| i.basket == params[:basket].to_s}
+    else
     redirect_to '/ideas?basket=Approved'
-	  end
+    end
   end
 
   # GET /ideas/1
@@ -49,7 +49,7 @@ class IdeasController < ApplicationController
     end
 
       respond_to do |format|
-	     if @history.save && @idea.save
+       if @history.save && @idea.save
           format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
           format.json { render :show, status: :created, location: @idea }
         else
@@ -142,4 +142,3 @@ class IdeasController < ApplicationController
       params.require(:idea).permit(:topic, :text, :basket, :histories, :tags)
     end
 end
-

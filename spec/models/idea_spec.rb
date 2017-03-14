@@ -10,6 +10,7 @@ RSpec.describe Idea, type: :model do
     expect(idea.topic).to eq("idea topic")
     expect(idea.text).to eq("idea text")
     expect(idea.histories).not_to be_empty      
+
     idea.tags << [FactoryGirl.create(:tag)]
     expect(idea.tags).not_to be_empty
   end
@@ -21,6 +22,7 @@ RSpec.describe Idea, type: :model do
     expect(idea.text).to eq("idea text")
     expect(idea.likes).not_to be_empty  
     expect(idea.histories).not_to be_empty      
+
     idea.tags << [FactoryGirl.create(:tag)]
     expect(idea.tags).not_to be_empty
   end
