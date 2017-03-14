@@ -118,7 +118,7 @@ RSpec.describe UsersController, :type => :controller do
 
         #Otetaan tuotanto versiossa käyttöön
 		# describe "GET #index" do
-		# 	it "creates an array of correct users" do
+		# 	it "Doesn't let them access user list" do
 		#     user = FactoryGirl.create(:user)
 		# 	get :index
 		# 	response.should redirect_to ideas_path
