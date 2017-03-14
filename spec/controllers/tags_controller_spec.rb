@@ -16,7 +16,7 @@ RSpec.describe TagsController, :type => :controller do
 		describe "GET #show" do
 			it "redirect to ideas path, if not moderator" do
 				tag = FactoryGirl.create(:tag)
-				get :show, id: tag
+				get :show, params: { id: tag }
 				expect(assigns(:tags)).to eq(nil)
 				expect(response).to redirect_to ideas_path
 			end
@@ -32,7 +32,7 @@ RSpec.describe TagsController, :type => :controller do
 		describe "GET #edit" do
 			it "doesn't edit, if not moderator" do
 				tag = FactoryGirl.create(:tag)
-				get :edit, id: tag
+				get :edit, params: { id: tag }
 				expect(response).to redirect_to ideas_path
 			end
 		end
@@ -40,7 +40,7 @@ RSpec.describe TagsController, :type => :controller do
 		describe "POST #create" do
 			it "doesn't create new, if not moderator" do
 				expect{
-				post :create, tag: FactoryGirl.attributes_for(:tag)
+				post :create, params: { tag: FactoryGirl.attributes_for(:tag) }
 				}.to_not change(Tag, :count)
 				expect(response).to redirect_to ideas_path
 			end
@@ -49,7 +49,7 @@ RSpec.describe TagsController, :type => :controller do
 		describe "PUT update" do
 			it "doesn't update name, if not moderator" do
 				@tag = FactoryGirl.create(:tag)		        
-		        put :update, id: @tag, tag: FactoryGirl.attributes_for(:tag, text: "vaihdettu")	        
+		        put :update, params: { id: @tag, tag: FactoryGirl.attributes_for(:tag, text: "vaihdettu") }	        
 		        @tag.reload	        
 			expect(@tag.text).to eq("tag text")
 			end
@@ -58,7 +58,7 @@ RSpec.describe TagsController, :type => :controller do
 		describe "DELETE destroy" do
 			it "don't destroy, if not admin" do
 				tag = FactoryGirl.create(:tag)
-		        expect{delete :destroy, id: tag}.to_not change(Tag, :count)
+		        expect{delete :destroy, params: { id: tag }}.to_not change(Tag, :count)
 			end
 		end
 	end
@@ -82,7 +82,7 @@ RSpec.describe TagsController, :type => :controller do
 		describe "GET #show" do
 			it "assigns the requested tag to @tag" do
 		    tag = FactoryGirl.create(:tag)		    
-			get :show, id: tag		
+			get :show, params: { id: tag }		
 			expect(assigns(:tag)).to eq(tag)
 			expect(response).to render_template :show		
 			end
@@ -91,7 +91,7 @@ RSpec.describe TagsController, :type => :controller do
 		describe "PUT update" do
 			it "update name" do
 				@tag = FactoryGirl.create(:tag)		        
-		        put :update, id: @tag, tag: FactoryGirl.attributes_for(:tag, text: "vaihdettu")	        
+		        put :update, params: { id: @tag, tag: FactoryGirl.attributes_for(:tag, text: "vaihdettu") }	        
 		        @tag.reload	        
 			expect(@tag.text).to eq("vaihdettu")
 			end
@@ -100,7 +100,7 @@ RSpec.describe TagsController, :type => :controller do
 		describe "POST #create" do
 			it "create new tag, if moderator" do
 				expect{
-				post :create, tag: FactoryGirl.attributes_for(:tag)
+				post :create, params: { tag: FactoryGirl.attributes_for(:tag) }
 				}.to change(Tag, :count).by(1)				
 			end			
 		end
@@ -108,7 +108,7 @@ RSpec.describe TagsController, :type => :controller do
 		describe "DELETE destroy" do
 			it "destroy tag" do
 				tag = FactoryGirl.create(:tag)
-		        expect{delete :destroy, id: tag}.to change(Tag, :count).by(-1)
+		        expect{delete :destroy, params: { id: tag }}.to change(Tag, :count).by(-1)
 			end
 		end
 	end
@@ -131,7 +131,7 @@ RSpec.describe TagsController, :type => :controller do
 		describe "GET #show" do
 			it "redirect to ideas path, if not moderator" do
 				tag = FactoryGirl.create(:tag)
-				get :show, id: tag
+				get :show, params: { id: tag }
 				expect(assigns(:tags)).to eq(nil)
 				expect(response).to redirect_to ideas_path
 			end
@@ -147,7 +147,7 @@ RSpec.describe TagsController, :type => :controller do
 		describe "GET #edit" do
 			it "doesn't edit, if not moderator" do
 				tag = FactoryGirl.create(:tag)
-				get :edit, id: tag
+				get :edit, params: { id: tag }
 				expect(response).to redirect_to ideas_path
 			end
 		end
@@ -155,7 +155,7 @@ RSpec.describe TagsController, :type => :controller do
 		describe "POST #create" do
 			it "doesn't create new, if not moderator" do
 				expect{
-				post :create, tag: FactoryGirl.attributes_for(:tag)
+				post :create, params: { tag: FactoryGirl.attributes_for(:tag) }
 				}.to_not change(Tag, :count)
 				expect(response).to redirect_to ideas_path
 			end
@@ -164,7 +164,7 @@ RSpec.describe TagsController, :type => :controller do
 		describe "PUT update" do
 			it "doesn't update name, if not moderator" do
 				@tag = FactoryGirl.create(:tag)		        
-		        put :update, id: @tag, tag: FactoryGirl.attributes_for(:tag, text: "vaihdettu")	        
+		        put :update, params: { id: @tag, tag: FactoryGirl.attributes_for(:tag, text: "vaihdettu") }	        
 		        @tag.reload	        
 			expect(@tag.text).to eq("tag text")
 			end
@@ -173,7 +173,7 @@ RSpec.describe TagsController, :type => :controller do
 		describe "DELETE destroy" do
 			it "don't destroy, if not admin" do
 				tag = FactoryGirl.create(:tag)
-		        expect{delete :destroy, id: tag}.to_not change(Tag, :count)
+		        expect{delete :destroy, params: { id: tag }}.to_not change(Tag, :count)
 			end
 		end
 	end

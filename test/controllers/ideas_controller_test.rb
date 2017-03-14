@@ -28,23 +28,23 @@ class IdeasControllerTest < ActionController::TestCase
 #  end
 
   test "should show idea" do
-    get :show, id: @idea
+    get :show, params: { id: @idea }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @idea
+    get :edit, params: { id: @idea }
     assert_response :success
   end
 
   test "should update idea" do
-    patch :update, id: @idea, idea: { text: @idea.text, topic: @idea.topic }
+    patch :update, params: { id: @idea, idea: { text: @idea.text, topic: @idea.topic } }
     assert_redirected_to idea_path(assigns(:idea))
   end
 
   test "should destroy idea" do
     assert_difference('Idea.count', -1) do
-      delete :destroy, id: @idea
+      delete :destroy, params: { id: @idea }
     end
 
     assert_redirected_to ideas_path

@@ -25,7 +25,7 @@ class HistoriesControllerTest < ActionController::TestCase
 #  end
 
   test "should show history" do
-    get :show, id: @history
+    get :show, params: { id: @history }
     assert_response :success
   end
 
