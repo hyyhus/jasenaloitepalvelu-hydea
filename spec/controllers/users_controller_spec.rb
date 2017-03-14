@@ -84,6 +84,13 @@ RSpec.describe UsersController, :type => :controller do
 		        @user.reload	        
 		        expect(@user.name).to eq("vaihdettu")
 			end
+			it "updates title" do
+				@user = FactoryGirl.create(:user)		        
+				expect(@user.title).not_to eq("Puheenjohtaja")
+				put :update, id: @user, user: FactoryGirl.attributes_for(:user, title: "Puheenjohtaja")	        
+				@user.reload
+				expect(@user.title).to eq("Puheenjohtaja")
+			end
 		end
 
 		describe "POST #create" do
@@ -149,11 +156,18 @@ RSpec.describe UsersController, :type => :controller do
 		end
 
 		describe "PUT #update" do
-			it "update name" do
+			it "doesn't update name" do
 				@user = FactoryGirl.create(:user)		        
 		        put :update, id: @user, user: FactoryGirl.attributes_for(:user, name: "vaihdettu")	        
 		        @user.reload	        
 		        @user.name.should eq("Testi Tauno")
+			end
+			it "doesn't update title" do
+				@user = FactoryGirl.create(:user)		        
+				expect(@user.title).not_to eq("Puheenjohtaja")
+				put :update, id: @user, user: FactoryGirl.attributes_for(:user, title: "Puheenjohtaja")	        
+				@user.reload
+				expect(@user.title).not_to eq("Puheenjohtaja")
 			end
 		end
 
