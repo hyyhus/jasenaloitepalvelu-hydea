@@ -43,7 +43,7 @@ RSpec.describe UsersController, :type => :controller do
 			end
 		end
 
-		describe "PUT update" do
+		describe "PUT #update" do
 			it "doesn't update name, if not admin" do
 				@user = FactoryGirl.create(:user)		        
 		        put :update, params: { id: @user, user: FactoryGirl.attributes_for(:user, name: "vaihdettu") }	        
@@ -52,7 +52,7 @@ RSpec.describe UsersController, :type => :controller do
 			end
 		end
 
-		describe "DELETE destroy" do
+		describe "DELETE #destroy" do
 			it "don't destroy, if not admin" do
 				user = FactoryGirl.create(:user)
 		        expect{delete :destroy, params: { id: user }}.to_not change(User, :count)
@@ -77,12 +77,19 @@ RSpec.describe UsersController, :type => :controller do
 
 		end
 
-		describe "PUT update" do
+		describe "PUT #update" do
 			it "update name" do
 				@user = FactoryGirl.create(:user)		        
 		        put :update, params: { id: @user, user: FactoryGirl.attributes_for(:user, name: "vaihdettu") }	        
 		        @user.reload	        
 		        expect(@user.name).to eq("vaihdettu")
+			end
+			it "updates title" do
+				@user = FactoryGirl.create(:user)		        
+				expect(@user.title).not_to eq("Puheenjohtaja")
+				put :update, id: @user, user: FactoryGirl.attributes_for(:user, title: "Puheenjohtaja")	        
+				@user.reload
+				expect(@user.title).to eq("Puheenjohtaja")
 			end
 		end
 
@@ -94,7 +101,7 @@ RSpec.describe UsersController, :type => :controller do
 			end
 		end
 
-		describe "DELETE destroy" do
+		describe "DELETE #destroy" do
 			it "destroy user" do
 				user = FactoryGirl.create(:user)
 		        expect{delete :destroy, params: { id: user }}.to change(User, :count).by(-1)
@@ -111,7 +118,7 @@ RSpec.describe UsersController, :type => :controller do
 
         #Otetaan tuotanto versiossa käyttöön
 		# describe "GET #index" do
-		# 	it "creates an array of correct users" do
+		# 	it "Doesn't let them access user list" do
 		#     user = FactoryGirl.create(:user)
 		# 	get :index
 		# 	response.should redirect_to ideas_path
@@ -148,16 +155,23 @@ RSpec.describe UsersController, :type => :controller do
 			end
 		end
 
-		describe "PUT update" do
-			it "update name" do
+		describe "PUT #update" do
+			it "doesn't update name" do
 				@user = FactoryGirl.create(:user)		        
 		        put :update, params: {id: @user, user: FactoryGirl.attributes_for(:user, name: "vaihdettu")}
 		        @user.reload	        
 			expect(@user.name).to eq("Testi Tauno")
 			end
+			it "doesn't update title" do
+				@user = FactoryGirl.create(:user)		        
+				expect(@user.title).not_to eq("Puheenjohtaja")
+				put :update, id: @user, user: FactoryGirl.attributes_for(:user, title: "Puheenjohtaja")	        
+				@user.reload
+				expect(@user.title).not_to eq("Puheenjohtaja")
+			end
 		end
 
-		describe "DELETE destroy" do
+		describe "DELETE #destroy" do
 			it "don't destroy, if not admin" do
 				user = FactoryGirl.create(:user)
 		        expect{delete :destroy, params: {id: user}}.to_not change(User, :count)
