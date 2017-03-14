@@ -43,7 +43,7 @@ RSpec.describe UsersController, :type => :controller do
 			end
 		end
 
-		describe "PUT update" do
+		describe "PUT #update" do
 			it "doesn't update name, if not admin" do
 				@user = FactoryGirl.create(:user)		        
 		        put :update, id: @user, user: FactoryGirl.attributes_for(:user, name: "vaihdettu")	        
@@ -52,7 +52,7 @@ RSpec.describe UsersController, :type => :controller do
 			end
 		end
 
-		describe "DELETE destroy" do
+		describe "DELETE #destroy" do
 			it "don't destroy, if not admin" do
 				user = FactoryGirl.create(:user)
 		        expect{delete :destroy, id: user}.to_not change(User, :count)
@@ -77,7 +77,7 @@ RSpec.describe UsersController, :type => :controller do
 
 		end
 
-		describe "PUT update" do
+		describe "PUT #update" do
 			it "update name" do
 				@user = FactoryGirl.create(:user)		        
 		        put :update, id: @user, user: FactoryGirl.attributes_for(:user, name: "vaihdettu")	        
@@ -94,7 +94,7 @@ RSpec.describe UsersController, :type => :controller do
 			end
 		end
 
-		describe "DELETE destroy" do
+		describe "DELETE #destroy" do
 			it "destroy user" do
 				user = FactoryGirl.create(:user)
 		        expect{delete :destroy, id: user}.to change(User, :count).by(-1)
@@ -148,7 +148,7 @@ RSpec.describe UsersController, :type => :controller do
 			end
 		end
 
-		describe "PUT update" do
+		describe "PUT #update" do
 			it "update name" do
 				@user = FactoryGirl.create(:user)		        
 		        put :update, id: @user, user: FactoryGirl.attributes_for(:user, name: "vaihdettu")	        
@@ -157,7 +157,7 @@ RSpec.describe UsersController, :type => :controller do
 			end
 		end
 
-		describe "DELETE destroy" do
+		describe "DELETE #destroy" do
 			it "don't destroy, if not admin" do
 				user = FactoryGirl.create(:user)
 		        expect{delete :destroy, id: user}.to_not change(User, :count)
