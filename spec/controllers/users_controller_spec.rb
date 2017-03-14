@@ -48,7 +48,7 @@ RSpec.describe UsersController, :type => :controller do
 				@user = FactoryGirl.create(:user)		        
 		        put :update, id: @user, user: FactoryGirl.attributes_for(:user, name: "vaihdettu")	        
 		        @user.reload	        
-		        @user.name.should eq("Testi Tauno")
+			expect(@user.name).to eq("Testi Tauno")
 			end
 		end
 
@@ -127,7 +127,7 @@ RSpec.describe UsersController, :type => :controller do
 		describe "GET #new" do
 			it "doesn't get new, if not admin" do
 				get :new
-				response.should redirect_to ideas_path
+				expect(response).to redirect_to ideas_path
 			end
 		end
 
@@ -135,7 +135,7 @@ RSpec.describe UsersController, :type => :controller do
 			it "doesn't edit, if not admin" do
 				user = FactoryGirl.create(:user)
 				get :edit, id: user
-				response.should redirect_to ideas_path
+				expect(response).to redirect_to ideas_path
 			end
 		end
 
@@ -144,7 +144,7 @@ RSpec.describe UsersController, :type => :controller do
 				expect{
 				post :create, user: FactoryGirl.attributes_for(:user)
 				}.to_not change(User, :count)
-				response.should redirect_to ideas_path
+				expect(response).to redirect_to ideas_path
 			end
 		end
 
@@ -153,7 +153,7 @@ RSpec.describe UsersController, :type => :controller do
 				@user = FactoryGirl.create(:user)		        
 		        put :update, id: @user, user: FactoryGirl.attributes_for(:user, name: "vaihdettu")	        
 		        @user.reload	        
-		        @user.name.should eq("Testi Tauno")
+			expect(@user.name).to eq("Testi Tauno")
 			end
 		end
 
