@@ -16,8 +16,8 @@ describe "Edit idea page" do
   	idea.tags << FactoryGirl.create(:tag, text:"Kumpula")
   	page.set_rack_session(:user_id => user_moderator.id)
   	page.visit edit_idea_path(idea)
-    expect(find('input[value="tag text"]')).not_to be_checked
-    expect(find('input[value="Kumpula"]')).to be_checked
+        expect(find('input[value="tag text"]')).not_to be_checked
+        expect(find('input[value="Kumpula"]')).to be_checked
   end
 
   it "uncheck tag works correctly" do
