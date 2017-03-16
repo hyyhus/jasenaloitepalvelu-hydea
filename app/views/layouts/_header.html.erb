@@ -19,7 +19,12 @@
 	      </li>
 	    </ul>
 	    <% if not session[:user_id].nil? %>
-		  	<p class="navbar-text navbar-right"><%= link_to User.find(session[:user_id]).name, User.find(session[:user_id]) %> signed in</p>
+		    <p class="navbar-text navbar-right">
+		    <ul class='nav navbar-nav navbar-right'>
+			    <li><%= link_to User.find(session[:user_id]).name, User.find(session[:user_id])%></li>
+		    <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+		    </ul>
+			</p>
 		<% else %>
 			<p class="navbar-text navbar-right"><%=  link_to 'Login', haka_auth_new_path %></p>
 		<% end %>
