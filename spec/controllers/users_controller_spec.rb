@@ -87,7 +87,7 @@ RSpec.describe UsersController, :type => :controller do
 			it "updates title" do
 				@user = FactoryGirl.create(:user)		        
 				expect(@user.title).not_to eq("Puheenjohtaja")
-				put :update, id: @user, user: FactoryGirl.attributes_for(:user, title: "Puheenjohtaja")	        
+				put :update, params: {id: @user, user: FactoryGirl.attributes_for(:user, title: "Puheenjohtaja")}
 				@user.reload
 				expect(@user.title).to eq("Puheenjohtaja")
 			end
@@ -165,7 +165,7 @@ RSpec.describe UsersController, :type => :controller do
 			it "doesn't update title" do
 				@user = FactoryGirl.create(:user)		        
 				expect(@user.title).not_to eq("Puheenjohtaja")
-				put :update, id: @user, user: FactoryGirl.attributes_for(:user, title: "Puheenjohtaja")	        
+				put :update, params: {id: @user, user: FactoryGirl.attributes_for(:user, title: "Puheenjohtaja")}
 				@user.reload
 				expect(@user.title).not_to eq("Puheenjohtaja")
 			end
