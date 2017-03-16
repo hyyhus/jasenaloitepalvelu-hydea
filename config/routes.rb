@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   # Hydea specific
   resource :session, only: [:new, :create, :destroy]
+  delete 'logout', to: 'sessions#destroy'
   resources :ideas do
 	  post 'publish', on: :member
     post 'reject', on: :member
