@@ -68,6 +68,7 @@ RSpec.describe UsersController, :type => :controller do
 		end
 
 		describe "GET #show" do
+			raise
 			it "assigns the requested user to @user" do
 		    user = FactoryGirl.create(:user)		    
 			get :show, params: { id: user }		
