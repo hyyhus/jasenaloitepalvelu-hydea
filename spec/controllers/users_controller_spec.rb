@@ -131,8 +131,13 @@ RSpec.describe UsersController, :type => :controller do
 
 
 		describe "GET #show" do
-			it "It returns user page"
-			end			
+			it "It returns user page" do
+				user = FactoryGirl.create(:user)		    
+				get :show, params: { id: user }		
+				expect(assigns(:user)).to eq(user)
+				expect(response).to render_template :show
+			end
+		end			
 
 
 		describe "GET #new" do
