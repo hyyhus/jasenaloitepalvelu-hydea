@@ -6,31 +6,35 @@ RSpec.describe 'IdeaFeature', type: :feature do
   let!(:idea){ FactoryGirl.create(:idea) }
   let!(:user){ FactoryGirl.create(:user) }
 
-  it 'goes to page' do
-    visit '/'
-    expect(page).to have_current_path('/ideas?basket=Approved')
+  describe 'visiting pages' do 
+      it 'approved page is accessible' do
+      visit '/'
+      expect(page).to have_current_path('/ideas?basket=Approved')
   end
 
-  it 'goes to new ideas' do
-    page.set_rack_session(:user_id => user_moderator.id)
-    visit '/ideas?basket=New'
-    expect(page).to have_content('idea topic')
+      it 'new ideas page is accessible when moderator' do
+      page.set_rack_session(:user_id => user_moderator.id)
+      visit '/ideas?basket=New'
+      expect(page).to have_content('idea topic')
+    end
+
   end
 
-  describe 'idea is published' do
+  describe 'idea basket actions for moderators' do
     before :each do
       page.set_rack_session(:user_id => user_moderator.id)
       visit '/ideas?basket=New'
       click_link('Publish')
     end
 
-    it 'publishes idea and check transferor' do
+  context 'when an ideas status is published' do
+    it 'shows as published and shows who moved it' do
       expect(page).to have_current_path('/ideas?basket=Approved')
       expect(page).to have_content('idea topic')
       expect(page).to have_content(idea.histories.all.last.basket + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
     end
 
-    it 'move idea to Changing and check transferor' do
+    it 'moves to changing when clicked and shows who moved it' do
       click_link('Changing')
       visit '/ideas?basket=Changing'
       expect(page).to have_current_path('/ideas?basket=Changing')
@@ -38,7 +42,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
       expect(page).to have_content(idea.histories.all.last.basket + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
     end
 
-    it 'move idea to Changed and check transferor' do
+    it 'moves to changed when clicked and shows who moved it' do
       click_link('Changed')
       visit '/ideas?basket=Changed'
       expect(page).to have_current_path('/ideas?basket=Changed')
@@ -46,21 +50,22 @@ RSpec.describe 'IdeaFeature', type: :feature do
       expect(page).to have_content(idea.histories.all.last.basket + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
     end
 
-    it 'move idea to Not Changed and check transferor' do
+    it 'moves to not changed when clicked and shows who moved it' do
       click_link('Not Changed')
       visit '/ideas?basket=Not+Changed'
       expect(page).to have_current_path('/ideas?basket=Not+Changed')
       expect(page).to have_content('idea topic')
       expect(page).to have_content(idea.histories.all.last.basket + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
     end
+  end
 
-    context 'idea is changing' do
+    context 'when an ideas status is changing' do
       before :each do
         click_link('Changing')
         visit '/ideas?basket=Changing'
       end
 
-      it 'move idea to Changed and check transferor' do
+      it 'moves to changed when clicked and shows who moved it' do
         click_link('Changed')
         visit '/ideas?basket=Changed'
         expect(page).to have_current_path('/ideas?basket=Changed')
@@ -68,7 +73,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
         expect(page).to have_content(idea.histories.all.last.basket + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
       end
 
-      it 'move idea to Not Changed and check transferor' do
+      it 'moves to not changed and shows who moved it' do
         click_link('Not Changed')
         visit '/ideas?basket=Not+Changed'
         expect(page).to have_current_path('/ideas?basket=Not+Changed')
@@ -78,16 +83,18 @@ RSpec.describe 'IdeaFeature', type: :feature do
     end
   end
 
-  it 'rejects idea and check transferor' do
-    page.set_rack_session(:user_id => user_moderator.id)
-    visit '/ideas?basket=New'
-    click_link('Reject')
-    expect(page).to have_current_path('/ideas?basket=Approved')
-    expect(page).to_not have_content('idea topic')
-    visit '/ideas?basket=Rejected'
-    expect(page).to have_content('idea topic')
-    expect(page).to have_content(idea.histories.all.last.basket + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
-  end
+    context 'when it has new status' do
+      it 'moves to rejected when clicked and shows who moved it' do
+        page.set_rack_session(:user_id => user_moderator.id)
+        visit '/ideas?basket=New'
+        click_link('Reject')
+        expect(page).to have_current_path('/ideas?basket=Approved')
+        expect(page).to_not have_content('idea topic')
+        visit '/ideas?basket=Rejected'
+        expect(page).to have_content('idea topic')
+        expect(page).to have_content(idea.histories.all.last.basket + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
+    end
+      end
 
   # Test for all baskets
   it 'when user not logged in' #do
