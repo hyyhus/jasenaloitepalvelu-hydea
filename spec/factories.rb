@@ -42,7 +42,7 @@ FactoryGirl.define do
 		email "testaaja@blaa.fi"
 		admin "false"
 		moderator "true"
-		title "opiskelija"
+		title "työntekijä"
 		persistent_id Faker::Number.unique.number(20)
 	end
 
