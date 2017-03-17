@@ -7,6 +7,11 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'support/factory_girl'
+require 'rack_session_access/capybara'
+
+Rails.application.config do
+  config.middleware.use RackSessionAccess::Middleware
+end
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
