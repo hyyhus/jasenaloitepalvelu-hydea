@@ -8,6 +8,7 @@ RSpec.describe Like, type: :model do
 		like = FactoryGirl.create(:like)
 	end
 	it "is valid with single like" do
+		byebug
 		expect(like).to be_valid
 	end
 	it "is valid with multiple likes" do

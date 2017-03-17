@@ -4,18 +4,22 @@ RSpec.describe UsersController, :type => :controller do
 
 	context "User not logged in" do
 
-		describe "GET #index" do
-			it "creates an array of correct users" do
-		    user = FactoryGirl.create(:user)
-			get :index
-			expect(assigns(:users)).to eq([user])
-			#Testi muutetaan tuotantoversioon
-			end
-		end
+#testi käyttöön tuotantoversioon
+		# describe "GET #index" do
+		# 	it "creates an array of correct users" do
+		#     user = FactoryGirl.create(:user)
+		# 	get :index
+		# 	expect(assigns(:users)).to eq(nil)			
+		# 	end
+		# end
 
 
 		describe "GET #show" do
-			it "It returns user page"
+			it "It doesn't return user page" do				
+			  user = FactoryGirl.create(:user)			  
+			  get :show, params: { id: user }			  
+			  expect(response).to redirect_to ideas_path
+			end
 		end
 
 
@@ -48,7 +52,7 @@ RSpec.describe UsersController, :type => :controller do
 				@user = FactoryGirl.create(:user)		        
 		        put :update, params: { id: @user, user: FactoryGirl.attributes_for(:user, name: "vaihdettu") }	        
 		        @user.reload	        
-			expect(@user.name).to eq("Testi Tauno")
+			    expect(@user.name).to eq("Testi Tauno")
 			end
 		end
 
