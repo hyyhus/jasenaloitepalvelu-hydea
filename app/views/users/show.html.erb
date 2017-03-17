@@ -1,39 +1,8 @@
 <div class="container">
   <p id="notice"><%= notice %></p>
-
-  <!--<p>
-    <strong>Admin:</strong>
-    <%= @user.admin %>
-  </p>
-
-  <p>
-    <strong>Moderator:</strong>
-    <%= @user.moderator %>
-  </p>
-
-  <p>
-    <strong>Persistent:</strong>
-    <%= @user.persistent_id %>
-  </p>-->
-
-  <p>
-    <h2>
-      Ideas by <%= @user.name %>
-    </h2>
-  </p>
+  <h2>
+    Ideas by <%= @user.name %>
+  </h2>
 </div>
 
 <%= render 'layouts/list_ideas'%>
-
-<!--<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @user.title %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>-->
