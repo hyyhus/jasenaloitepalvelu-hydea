@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :ensure_that_is_admin, except: [:index, :show] #"except index" poistetaan tuotantoversiosta
+  before_action :ensure_that_signed_in, only: [:show]
 
   # GET /users
   # GET /users.json
@@ -13,7 +14,16 @@ class UsersController < ApplicationController
   def show
     @id = @user.id
     @userHistories = User.find(@id).histories.where(basket: "New")
-    @ideas = @userHistories.map{|usr| usr.idea}
+    if @id == current_user.id or current_user.moderator?
+      @ideas = @userHistories.map{|usr| usr.idea}
+    else
+      @ideas = Array.new
+      @userHistories.each do |usr|
+        if !(usr.idea.histories.all.last.basket == 'New' or usr.idea.histories.all.last.basket == 'Rejected')
+          @ideas.push(usr.idea)
+        end
+      end
+    end
   end
 
   # GET /users/new
