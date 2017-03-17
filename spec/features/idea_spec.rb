@@ -89,10 +89,15 @@ RSpec.describe 'IdeaFeature', type: :feature do
     expect(page).to have_content(idea.histories.all.last.basket + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
   end
 
-  # Test for all baskets
-  it 'when user not logged in' #do
-  #  page.set_rack_session(:user_id => user.id)
-  #  visit '/ideas?basket=New'
-  #  expect(page).to have_current_path('/ideas?basket=Approved')
-  #end
+  it 'redirects basket New when not moderator' do
+    page.set_rack_session(:user_id => user.id)
+    visit '/ideas?basket=New'
+    expect(page).to have_current_path('/ideas?basket=Approved')
+  end
+
+  it 'redirects basket Rejected when not moderator' do
+    page.set_rack_session(:user_id => user.id)
+    visit '/ideas?basket=Rejected'
+    expect(page).to have_current_path('/ideas?basket=Approved')
+  end
 end
