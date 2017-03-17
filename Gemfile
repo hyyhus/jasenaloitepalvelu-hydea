@@ -33,6 +33,8 @@ group :test do
   gem 'launchy'
 end
 
+# Use for Capybara session
+gem 'rack_session_access'
 # Use Faker to add test data to dev
 gem 'faker'
 # Use dotenv to set up some variables

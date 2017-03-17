@@ -62,19 +62,20 @@ class IdeasController < ApplicationController
       end
   end
 
+
   # PATCH/PUT /ideas/1
   # PATCH/PUT /ideas/1.json
   def update
-
-    if params[:idea].nil?
+    if params[:idea].nil?      
       @idea.tags.delete_all
-    elsif params[:idea][:tags]
+      redirect_to @idea, notice: 'Idea was successfully updated.' and return
+    elsif params[:idea][:tags]      
       @idea.tags.delete_all
       params[:idea][:tags].each do |tag|
         newTag = Tag.find_by text: tag
         @idea.tags << newTag
       end
-    end
+    end   
 
     respond_to do |format|
       if @idea.update(idea_params)
