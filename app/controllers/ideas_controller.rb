@@ -8,10 +8,13 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
-    if params[:basket]    
+    if params[:basket]
+      if (params[:basket] == 'New' or params[:basket] == 'Rejected') and not current_user.moderator?
+        redirect_to '/ideas?basket=Approved'
+      end
       @ideas = Idea.all.select{|i| i.basket == params[:basket].to_s}
     else
-    redirect_to '/ideas?basket=Approved'
+      redirect_to '/ideas?basket=Approved'
     end
   end
 
@@ -82,7 +85,7 @@ class IdeasController < ApplicationController
         format.html { render :edit }
         format.json { render json: @idea.errors, status: :unprocessable_entity }
       end
-    end    
+    end
   end
 
   # DELETE /ideas/1

@@ -8,7 +8,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'support/factory_girl'
 require 'rack_session_access/capybara'
-
+ 
 Rails.application.config do
   config.middleware.use RackSessionAccess::Middleware
 end
