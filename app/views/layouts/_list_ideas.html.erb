@@ -69,6 +69,11 @@
                   <%= idea.likes.length %>
                 </button>
               <% end %>
+              <% if not (idea.histories.last.basket == "New" or idea.histories.last.basket == "Rejected")%>
+                <%= link_to idea, :class => 'btn btn-primary' do %>
+                  <span class="glyphicon glyphicon-share"></span>
+                <% end %>
+              <% end %>
             </div>
             <!-- End likes and basket controls-->
           </div>
