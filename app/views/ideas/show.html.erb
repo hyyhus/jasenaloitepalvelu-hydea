@@ -75,6 +75,9 @@
   <% end %>
 
   <p>
+  <% if not session[:user_id].nil? and current_user.moderator %>
+    <%= link_to 'Edit', edit_idea_path(@idea) %> |
+  <% end %>
   <%= link_to 'Back to ideas', ideas_path %>
   </p>
 </div>
