@@ -135,12 +135,12 @@ class IdeasController < ApplicationController
 
   def like
 	  @idea.likes << Like.create(user: current_user, idea: @idea, like_type: "like")
-	  redirect_to :back
+	  redirect_back(fallback_location: '/')
   end
 
   def unlike
 	  @idea.likes.find_by(user_id: current_user).destroy
-	  redirect_to :back
+	  redirect_back(fallback_location: '/')
   end
 
   private
