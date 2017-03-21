@@ -27,6 +27,14 @@
           <% end %>
         <% end %>      
      <% end %>
+     <br>
+
+    <% if @idea.moderate == false %>
+      <%= link_to "Enable Moderate", moderate_idea_path(@idea), method: :post, class: "btn btn-primary" %>
+    <% elsif @idea.moderate == true %>
+      <%= link_to "Disable Moderate", un_moderate_idea_path(@idea), method: :post, class: "btn btn-primary" %>
+    <% end %>
+
   </div>
 
   <div class="actions">
