@@ -6,7 +6,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
   let!(:idea){ FactoryGirl.create(:idea) }
   let!(:user){ FactoryGirl.create(:user) }
 
-  describe 'visiting pages' do 
+  describe 'visiting pages' do
       it 'approved page is accessible' do
       visit '/'
       expect(page).to have_current_path('/ideas?basket=Approved')
@@ -106,5 +106,57 @@ RSpec.describe 'IdeaFeature', type: :feature do
     page.set_rack_session(:user_id => user.id)
     visit '/ideas?basket=Rejected'
     expect(page).to have_current_path('/ideas?basket=Approved')
+  end
+
+  describe 'link to idea' do
+    before :each do
+      page.set_rack_session(:user_id => user_moderator.id)
+      visit '/ideas?basket=New'
+    end
+
+    context 'is not shown' do
+      it 'while basket is New' do
+        expect(page).to have_current_path('/ideas?basket=New')
+        expect(page).to have_no_selector(:css, 'a[title="Show idea"]')
+      end
+      it 'while basket is Rejected' do
+        click_link('Reject')
+        visit '/ideas?basket=Reject'
+        expect(page).to have_no_selector(:css, 'a[title="Show idea"]')
+      end
+    end
+
+    context 'is shown' do
+      before :each do
+        click_link('Publish')
+        expect(page).to have_current_path('/ideas?basket=Approved')
+      end
+
+      it 'while basket is Approved' do
+        find(:css, 'a[title="Show idea"]').click
+        expect(page).to have_current_path('/ideas/1')
+      end
+
+      it 'while basket is Changing' do
+        click_link('Changing')
+        visit '/ideas?basket=Changing'
+        find(:css, 'a[title="Show idea"]').click
+        expect(page).to have_current_path('/ideas/1')
+      end
+
+      it 'while basket is Changed' do
+        click_link('Changed')
+        visit '/ideas?basket=Changed'
+        find(:css, 'a[title="Show idea"]').click
+        expect(page).to have_current_path('/ideas/1')
+      end
+
+      it 'while basket is Not Changed' do
+        click_link('Not Changed')
+        visit '/ideas?basket=Not+Changed'
+        find(:css, 'a[title="Show idea"]').click
+        expect(page).to have_current_path('/ideas/1')
+      end
+    end
   end
 end
