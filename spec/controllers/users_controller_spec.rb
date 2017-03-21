@@ -71,7 +71,7 @@ RSpec.describe UsersController, :type => :controller do
 		    session[:user_id] = current_user.id
 		end
 
-		describe "GET #show" do
+		describe "GET #show" do			
 			it "assigns the requested user to @user" do
 		    user = FactoryGirl.create(:user)		    
 			get :show, params: { id: user }		
