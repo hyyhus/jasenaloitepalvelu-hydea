@@ -1,7 +1,7 @@
 class IdeasController < ApplicationController
-  before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish, :reject, :changing, :changed, :not_changed]
+  before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish, :reject, :changing, :changed, :not_changed, :like, :unlike]
   before_action :ensure_that_signed_in, except: [:index, :show]
-  before_action :ensure_that_is_moderator, except: [:index, :show, :new, :create]
+  before_action :ensure_that_is_moderator, except: [:index, :show, :new, :create, :like, :unlike]
 #  before_action :set_idea, only: [:publish]
 
 
@@ -133,6 +133,15 @@ class IdeasController < ApplicationController
     redirect_to ideas_path
   end
 
+  def like
+	  @idea.likes << Like.create(user: current_user, idea: @idea, like_type: "like")
+	  redirect_to :back
+  end
+
+  def unlike
+	  @idea.likes.find_by(user_id: current_user).destroy
+	  redirect_to :back
+  end
 
   private
 
