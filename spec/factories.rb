@@ -64,16 +64,22 @@ FactoryGirl.define do
   	factory :history_new, class: History do
   		time "2016-07-04 00:00:00"
   		basket "New"
-  		user {FactoryGirl.create(:user)}
+	   	user {FactoryGirl.create(:user, persistent_id: Faker::Number.unique.number(20))}
 		idea {FactoryGirl.create(:idea)}
   	end
 
   	factory :history_without_basket, class: History do
   		time "2016-07-04 00:00:00"  		
-  		user {FactoryGirl.create(:user)}
+	   	user {FactoryGirl.create(:user, persistent_id: Faker::Number.unique.number(20))}
 		idea {FactoryGirl.create(:idea)}
   	end
 
+	factory :history_approved, class: History do
+  		time "2016-07-04 00:00:01"
+  		basket "Approved"
+	   	user {FactoryGirl.create(:user_moderator, persistent_id: Faker::Number.unique.number(20))}
+		idea {FactoryGirl.create(:idea)}
+	end
 
 #ideas and tags belongs_and_has_many to be done
 
@@ -81,6 +87,12 @@ FactoryGirl.define do
 		topic "idea topic"
 		text "idea text"		
 		histories {[FactoryGirl.create(:history)]}
+	end
+
+	factory :idea_approved, class: Idea do
+		topic "idea topic"
+		text "idea text"		
+		histories {[FactoryGirl.create(:history_approved)]}
 	end
 
 	factory :tag do
