@@ -70,11 +70,18 @@
 			      <%= link_to like_idea_path(idea), :class => 'btn btn-default', method: :post do %>
 				      <span class="glyphicon glyphicon-thumbs-up"></span>
 				      <%= idea.likes.length %>
+				      <%= link_to idea, :class => 'btn btn-primary', :title => 'Show idea' do %>
+					      <span class="glyphicon glyphicon-share"></span>
+				      <% end %>
+
 			      <% end %>	
 		      <% else %>
 			      <%= link_to unlike_idea_path(idea), :class => 'btn btn-success', method: :post do %>
 				      <span class="glyphicon glyphicon-thumbs-up"></span>
 				      <%= idea.likes.length %>
+				      <%= link_to idea, :class => 'btn btn-primary', :title => 'Show idea' do %>
+					      <span class="glyphicon glyphicon-share"></span>
+				      <% end %>
 			      <% end %>
 
 		      <% end %>
