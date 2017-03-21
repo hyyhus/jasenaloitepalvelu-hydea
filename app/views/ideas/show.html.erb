@@ -1,56 +1,83 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <div class="row">
+    <div class="col-sm-9">
+      <h2><%= @idea.topic %></h2>
+      <p>
+        <%= @idea.histories.first.user.name %> - <%= @idea.histories.first.time.strftime('%d.%m.%Y %H:%M ') %>
+      </p>
+      <%if not @idea.tags.empty?%>
+        <p>Tags:
+          <% @idea.tags.each do |tag| %>
+            <%= tag.text %>
+            <% if not tag == @idea.tags.last%>
+              ,
+            <%end%>
+          <%end%>
+        </p>
+      <%end%>
+    </div>
+    <div class="col-sm-3 center">
+      <button type="button" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-thumbs-up"></span>
+        <%= @idea.likes.length %>
+      </button>
+    </div>
+  </div>
 
-<p>
-  <strong>Topic:</strong>
-  <%= @idea.topic %>
-</p>
+  <div class="row">
+    <div class="col-sm-9">
+      <p>
+        <%= @idea.text %>
+      </p>
+    </div>
+    <div class="col-sm-3">
+      <% @idea.histories.each do |history|%>
+        <p>
+          <strong><%=history.basket%></strong>:<br>
+          <%= history.time.strftime('%d.%m.%Y %H:%M ') %><br>
+          <% if not history.basket == 'New' %>
+            <%= history.user.name %>
+            <% if not history.user.title.empty? and history.user.moderator %>
+              (<%= history.user.title %>)
+            <% end %>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+  </div>
 
-<p>    
-  
-  <%= @idea.histories.first.user.name %>
-  <br>
-  <%= @idea.created_at %>
-</p>
+  <h3>
+    Comments:
+  </h3>
 
-<p>
-  <strong>Text:</strong>
-  <%= @idea.text %>
-</p>
-
-<p>
-  <strong>Basket:</strong>
-  <%= @idea.histories.last.basket %>
-</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Time</th>
-      <th>Text</th>      
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-
-
-<p>
-  <tbody>
   <% @idea.comments.each do |comment| %>
-    <tr>
-      <td><%= comment.user.name %></td>
-      <td><%= comment.time %></td>
-      <td><%= comment.text %></td>    
-      <td><%= link_to 'Show', comment %></td>
-    <tr>
+    <p>
+      <%= comment.user.name %> - <%= comment.time.strftime('%d.%m.%Y %H:%M ') %>
+    </p>
+    <p>
+      <%= comment.text %>
+    </p>
   <% end %>
-  </tbody>
-</table>
-</p>
 
-<p>
-<%= link_to 'Edit', edit_idea_path(@idea) %> |
-<%= link_to 'Back', ideas_path %> |
-<%= link_to 'New Comment', {:controller => 'comments', :action => 'new', :id => @idea} %>
-</p>
+  <% if not session[:user_id].nil? %>
 
+      <%= form_for("comment", :url => main_app.comments_path, :html => { :class => "form-horizontal" } ) do |f| %>
+      <%= f.hidden_field :idea_id, :value => @idea.id %>
+      <%= f.hidden_field :time, :value => Time.now %>
+      <div method="post" action="comment/new">
+        <p>
+          Comment:
+        </p>
+        <%= f.text_area :text,class: "form-control", rows: "5", id: "comment"%>
+          <button type="submit" class="btn btn-primary">Send </button>
+        <% end %>
+      </div>
+  <% end %>
+
+  <p>
+  <% if not session[:user_id].nil? and current_user.moderator %>
+    <%= link_to 'Edit', edit_idea_path(@idea) %> |
+  <% end %>
+  <%= link_to 'Back to ideas', ideas_path %>
+  </p>
+</div>
