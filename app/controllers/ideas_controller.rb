@@ -1,5 +1,5 @@
 class IdeasController < ApplicationController
-  before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish, :reject, :changing, :changed, :not_changed, :like, :unlike]
+  before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish, :publish_moderate, :un_moderate, :moderate, :reject, :changing, :changed, :not_changed, :like, :unlike]
   before_action :ensure_that_signed_in, except: [:index, :show]
   before_action :ensure_that_is_moderator, except: [:index, :show, :new, :create, :like, :unlike]
 #  before_action :set_idea, only: [:publish]
@@ -99,10 +99,25 @@ class IdeasController < ApplicationController
   end
 
   def publish
-    if current_user.moderator?
-      @idea.histories << History.create(time: Time.now, basket: 'Approved', user: current_user, idea: @idea)
-    end
+    @idea.histories << History.create(time: Time.now, basket: 'Approved', user: current_user, idea: @idea)
     redirect_to ideas_path
+  end
+
+  def publish_moderate
+      @idea.histories << History.create(time: Time.now, basket: 'Approved', user: current_user, idea: @idea)
+      moderate
+  end
+
+  def moderate
+    @idea.moderate = true
+    @idea.save
+    redirect_to @idea, notice: 'Comments moderation enabled'
+  end
+
+  def un_moderate
+    @idea.moderate = false
+    @idea.save
+    redirect_to @idea, notice: 'Comments moderation disabled'
   end
 
   def reject
@@ -152,6 +167,6 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:topic, :text, :basket, :histories, :tags)
+      params.require(:idea).permit(:topic, :text, :basket, :histories, :tags, :moderate)
     end
 end
