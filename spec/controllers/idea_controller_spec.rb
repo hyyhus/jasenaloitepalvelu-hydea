@@ -46,4 +46,18 @@ RSpec.describe IdeasController, type: :controller do
     expect(@idea.topic).to eq('test topic')
     expect redirect_to ideas_path
   end
+
+
+
+  describe "POST #create" do
+    it "creates new if logged in" do
+      session[:user_id] = user.id
+      expect{
+        post :create, params: { idea: FactoryGirl.attributes_for(:idea) }
+        }.to change(Idea, :count).by(1)
+      expect(Idea.first.moderate).to be false
+    end
+  end
+
+
 end

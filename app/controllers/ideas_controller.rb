@@ -39,6 +39,7 @@ class IdeasController < ApplicationController
     @history.user = current_user
     @idea = Idea.new(idea_params)
     @idea.histories << @history
+    @idea.moderate = false
     @history.idea = @idea
 
     if params[:idea][:tags]

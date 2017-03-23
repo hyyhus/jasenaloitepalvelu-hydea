@@ -7,6 +7,7 @@ class Idea < ApplicationRecord
 	#validations
 	validates :topic, presence: true, length: {minimum: 2, maximum: 100}, allow_blank: false
 	validates :text, :histories, presence: true
+	validates :moderate, exclusion: { in: [nil] }
 	validates_associated :histories, presence: true
 
 	def basket
