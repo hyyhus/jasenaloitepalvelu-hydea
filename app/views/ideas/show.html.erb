@@ -68,15 +68,33 @@
   <h3>
     Comments:
   </h3>
-
-  <% @idea.comments.each do |comment| %>
-    <p>
-      <%= comment.user.name %> - <%= comment.time.strftime('%d.%m.%Y %H:%M ') %>
-    </p>
-    <p>
-      <%= comment.text %>
-    </p>
-  <% end %>
+ <% @idea.comments.each do |comment| %>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <% if not session[:user_id].nil? and current_user.moderator %>
+                            <% if comment.visible != true %>
+                              <%= link_to 'Publish', publish_comment_path(comment), method: :publish, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-success publish_comment" %>
+                            <% else %>
+                              <%= link_to 'Unpublish', unpublish_comment_path(comment), method: :unpublish, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-success publish_comment" %>
+                             <% end %>
+                            <%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-danger delete_comment" %>
+                          <% end %>
+                          <p>
+                          <%= link_to comment.user.name, comment.user_id %>
+                          <% if not comment.user.title.empty? and comment.user.moderator %>
+                            (<%= comment.user.title %>)
+                          <% end %>
+                          - <%= comment.time.strftime('%d.%m.%Y %H:%M ') %>
+                          </p>
+                        </div>
+                        <div class="panel-body">
+                          <p><%= comment.text %></p>
+                        </div>
+                      </div>
+                    </li>
+                  <% end %>
 
   <% if not session[:user_id].nil? %>
 

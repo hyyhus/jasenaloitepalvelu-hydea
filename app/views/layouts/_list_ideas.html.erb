@@ -128,6 +128,11 @@
                       <div class="panel panel-default">
                         <div class="panel-heading">
                           <% if not session[:user_id].nil? and current_user.moderator %>
+                            <% if comment.visible != true %>
+                            <%= link_to 'Publish', publish_comment_path(comment), method: :publish, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-success publish_comment" %>
+                            <% else %>
+                            <%= link_to 'Unpublish', unpublish_comment_path(comment), method: :unpublish, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-success publish_comment" %>
+                            <% end %>
                             <%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-danger delete_comment" %>
                           <% end %>
                           <p>
