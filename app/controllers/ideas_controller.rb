@@ -117,7 +117,7 @@ class IdeasController < ApplicationController
       @idea.moderate = true
       @idea.save
     end
-    redirect_to @idea, notice: 'Comments needs to be moderated'
+    redirect_to @idea, notice: 'Comments moderation enabled'
   end
 
   def un_moderate
