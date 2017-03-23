@@ -42,7 +42,7 @@ FactoryGirl.define do
 		email "testaaja@blaa.fi"
 		admin "false"
 		moderator "true"
-		title "työntekijä"
+		title "opiskelija"
 		persistent_id Faker::Number.unique.number(20)
 	end
 
@@ -58,7 +58,7 @@ FactoryGirl.define do
 		time Time.now
 		basket "New"		
 		idea_id 1
-	   	user {FactoryGirl.create(:user, persistent_id: Faker::Number.unique.number(20))}
+  		user_id 1
   	end
 
   	factory :history_new, class: History do
@@ -101,7 +101,7 @@ FactoryGirl.define do
 
 	factory :like do
 		like_type "like"
-	   	user {FactoryGirl.create(:user, persistent_id: Faker::Number.unique.number(20))}
+		user {FactoryGirl.create(:user)}
 		idea {FactoryGirl.create(:idea)}
 	end
 
