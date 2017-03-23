@@ -99,6 +99,7 @@ FactoryGirl.define do
 		topic "idea topic"
 		text "idea text"		
 		histories {[FactoryGirl.create(:history_new)]}
+		moderate false
 	end
 
 
