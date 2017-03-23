@@ -95,6 +95,13 @@ FactoryGirl.define do
 		histories {[FactoryGirl.create(:history_approved)]}
 	end
 
+	factory :idea_new, class: Idea do
+		topic "idea topic"
+		text "idea text"		
+		histories {[FactoryGirl.create(:history_new)]}
+	end
+
+
 	factory :tag do
 		text "tag text"
 	end
