@@ -97,6 +97,13 @@ FactoryGirl.define do
 		moderate false
 	end
 
+	factory :idea_moderate_enabled, class: Idea do
+		topic "idea topic"
+		text "idea text"		
+		histories {[FactoryGirl.create(:history_approved)]}
+		moderate true
+	end
+
 	factory :tag do
 		text "tag text"
 	end
