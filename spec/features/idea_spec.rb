@@ -18,6 +18,15 @@ RSpec.describe 'IdeaFeature', type: :feature do
       expect(page).to have_content('idea topic')
     end
 
+    it 'Approved page shows published ideas' do
+      page.set_rack_session(:user_id => user_moderator.id)
+      visit '/ideas?basket=New'
+      click_link('Publish')
+      page.set_rack_session(:user_id => user.id)
+      visit '/'
+      expect(page).to have_current_path('/ideas?basket=Approved')
+      expect(page).to have_content('idea topic')
+    end
   end
 
   describe 'idea basket actions for moderators' do
