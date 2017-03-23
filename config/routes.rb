@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   resources :ideas do
 	  post 'publish', on: :member
+    post 'publish_moderate', on: :member
+    post 'moderate', on: :member
+    post 'un_moderate', on: :member
     post 'reject', on: :member
     post 'changing', on: :member
     post 'changed', on: :member
