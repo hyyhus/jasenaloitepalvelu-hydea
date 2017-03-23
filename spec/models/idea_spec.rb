@@ -15,6 +15,16 @@ RSpec.describe Idea, type: :model do
     expect(idea.tags).not_to be_empty
   end
 
+  it "is created with correct default moderate value" do
+    idea = FactoryGirl.create(:idea)
+    expect(idea.moderate).to be false
+  end
+
+  it "is created with correct moderate value" do
+    idea = FactoryGirl.create(:idea_moderate_enabled)
+    expect(idea.moderate).to be true
+  end
+
   it "has factory make idea with all" do
     idea = FactoryGirl.create(:idea)    
     idea.likes << FactoryGirl.create(:like, idea_id: idea.id)
