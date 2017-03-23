@@ -37,6 +37,22 @@ RSpec.describe CommentsController, type: :controller do
 				expect(Comment.last.user).to eq(comment.user)
 
 			end
+
+			it "has visibility false when idea is under moderation" do
+				idea = FactoryGirl.create(:idea, moderate: true)
+				comment= FactoryGirl.build(:comment, idea: idea)
+				session[:user_id] = comment.user.id
+				post :create, params: { comment: comment.attributes }
+				expect(Comment.last.visible).to be_falsey
+
+			end
+			it "has visibility true when idea is not under moderation" do
+				idea = FactoryGirl.create(:idea, moderate: false)
+				comment= FactoryGirl.build(:comment, idea: idea)
+				session[:user_id] = comment.user.id
+				post :create, params: { comment: comment.attributes }
+				expect(Comment.last.visible).to be_truthy
+			end
 		end
 		describe "DELETE #destroy" do
 			it "destroys comments when moderators requests" do
