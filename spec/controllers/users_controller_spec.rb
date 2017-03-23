@@ -4,14 +4,14 @@ RSpec.describe UsersController, :type => :controller do
 
 	context "User not logged in" do
 
-		describe "GET #index" do
-			it "creates an array of correct users" do
-		    user = FactoryGirl.create(:user)
-			get :index
-			expect(assigns(:users)).to eq([user])
-			#Testi muutetaan tuotantoversioon
-			end
-		end
+#testi käyttöön tuotantoversioon
+		# describe "GET #index" do
+		# 	it "creates an array of correct users" do
+		#     user = FactoryGirl.create(:user)
+		# 	get :index
+		# 	expect(assigns(:users)).to eq(nil)			
+		# 	end
+		# end
 
 
 		describe "GET #show" do
@@ -137,7 +137,6 @@ RSpec.describe UsersController, :type => :controller do
 				expect(response).to render_template :show
 			end
 			end
-
 
 		describe "GET #new" do
 			it "doesn't get new, if not admin" do
