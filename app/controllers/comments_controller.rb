@@ -33,6 +33,7 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     comment = Comment.create params.require(:comment).permit(:time, :text, :idea_id)
+    comment.visible=!(comment.idea.moderate?)
     current_user.comments << comment
     
     redirect_to :controller => 'ideas', :action => 'show', :id => comment.idea_id

@@ -63,6 +63,22 @@ RSpec.describe CommentsController, type: :controller do
 				expect{put :update, params: { comment: comment.attributes }}.to raise_error(ActionController::UrlGenerationError)
 			end
 		end
+		describe "POST #publish" do
+			it "does not change" do
+				comment= FactoryGirl.create(:comment)
+				session[:user_id] = comment.user.id
+				expect{post :publish, params: {id: comment.id}}.not_to change(comment, :visible)
+
+			end
+		end
+		describe "POST #unpublish" do
+			it "does not change" do
+				comment= FactoryGirl.create(:comment)
+				session[:user_id] = comment.user.id
+				expect{post :unpublish, params: {id: comment.id}}.not_to change(comment, :visible)
+
+			end
+		end
 	end
 	context "With no user logged in" do
 		before :each do
@@ -98,6 +114,43 @@ RSpec.describe CommentsController, type: :controller do
 				comment= FactoryGirl.create(:comment)
 				session[:user_id] = nil
 				expect{put :update, params: { comment: comment.attributes }}.to raise_error(ActionController::UrlGenerationError)
+			end
+		end
+		describe "POST #publish" do
+			it "does not change" do
+				comment= FactoryGirl.create(:comment)
+				session[:user_id] = nil
+				expect{post :publish, params: {id: comment.id}}.not_to change(comment, :visible)
+
+			end
+		end
+		describe "POST #unpublish" do
+			it "does not change" do
+				comment= FactoryGirl.create(:comment)
+				session[:user_id] = nil
+				expect{post :unpublish, params: {id: comment.id}}.not_to change(comment, :visible)
+
+			end
+		end
+	end
+	context "With moderator logged in" do
+		before :each do
+		end
+		describe "POST #publish" do
+			it "changes to published" do
+				session[:user_id] = FactoryGirl.create(:user_moderator).id
+				comment= FactoryGirl.create(:comment)
+				comment.visible=false
+				comment.save
+				expect{post :publish, params: {id: comment.id}}.to change{Comment.first.visible}
+
+			end
+		end
+		describe "POST #unpublish" do
+			it "changes to unpublished" do
+				session[:user_id] = FactoryGirl.create(:user_moderator).id
+				comment= FactoryGirl.create(:comment)
+				expect{post :unpublish, params: {id: comment.id}}.to change{Comment.first.visible}
 			end
 		end
 	end
