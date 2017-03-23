@@ -5,10 +5,10 @@ RSpec.feature "Show idea", type: :feature do
 
 	describe "With no user logged in" do
 		describe "With a new idea" do
-			let(:idea){ FactoryGirl.create(:idea) }
+			let(:idea_new){ FactoryGirl.create(:idea_new) }
 
 			it "does not have draw like button" do
-				page.visit idea_path(idea)
+				page.visit idea_path(idea_new)
 				expect(page).not_to have_selector(:link_or_button, '0')
 			end
 		end
