@@ -87,12 +87,14 @@ FactoryGirl.define do
 		topic "idea topic"
 		text "idea text"		
 		histories {[FactoryGirl.create(:history)]}
+		moderate false
 	end
 
 	factory :idea_approved, class: Idea do
 		topic "idea topic"
 		text "idea text"		
 		histories {[FactoryGirl.create(:history_approved)]}
+		moderate false
 	end
 
 	factory :tag do
