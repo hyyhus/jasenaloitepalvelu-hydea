@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   root 'ideas#index'
 
   # Hydea specific
-  resource :session, only: [:destroy, :new]
+  #resource :session, only: [:destroy, :new]
+  resource :session, only: [:destroy, :new, :create]
   delete 'logout', to: 'sessions#destroy'
   resources :ideas do
 	  post 'publish', on: :member

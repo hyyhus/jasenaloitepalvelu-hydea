@@ -116,6 +116,26 @@ FactoryGirl.define do
 		text "tag text"
 	end
 
+	factory :tag1, class: Tag do
+		text "tag text1"
+	end
+
+	factory :tag2, class: Tag do
+		text "tag text2"
+	end
+
+	factory :tag3, class: Tag do
+		text "tag text3"
+	end
+
+	factory :tag4, class: Tag do
+		text "tag text4"
+	end
+
+	factory :tag5, class: Tag do
+		text "tag text5"
+	end
+
 	factory :like do
 		like_type "like"
 	   	user {FactoryGirl.create(:user, persistent_id: Faker::Number.unique.number(20))}
