@@ -108,8 +108,8 @@ FactoryGirl.define do
 	factory :idea_new, class: Idea do
 		topic "idea topic"
 		text "idea text"		
-		moderate false
 		histories {[FactoryGirl.create(:history_new)]}
+		moderate false
 	end
 
 
