@@ -99,32 +99,24 @@ class IdeasController < ApplicationController
   end
 
   def publish
-    if current_user.moderator?
-      @idea.histories << History.create(time: Time.now, basket: 'Approved', user: current_user, idea: @idea)
-    end
+    @idea.histories << History.create(time: Time.now, basket: 'Approved', user: current_user, idea: @idea)
     redirect_to ideas_path
   end
 
   def publish_moderate
-    if current_user.moderator?
       @idea.histories << History.create(time: Time.now, basket: 'Approved', user: current_user, idea: @idea)
       moderate
-    end
   end
 
   def moderate
-    if current_user.moderator?
-      @idea.moderate = true
-      @idea.save
-    end
+    @idea.moderate = true
+    @idea.save
     redirect_to @idea, notice: 'Comments moderation enabled'
   end
 
   def un_moderate
-    if current_user.moderator?
-      @idea.moderate = false
-      @idea.save
-    end
+    @idea.moderate = false
+    @idea.save
     redirect_to @idea, notice: 'Comments moderation disabled'
   end
 
