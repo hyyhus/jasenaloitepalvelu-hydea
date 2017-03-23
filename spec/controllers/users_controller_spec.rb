@@ -208,29 +208,45 @@ RSpec.describe UsersController, :type => :controller do
 		describe 'by the user' do
 			it 'and all ideas are shown' do
 				expect(response).to render_template :show
-				#expect(response.body).to have_content('topic1')
-				#byebug
+				expect(response.body).to have_content('topic1')
+				expect(response.body).to have_content('topic2')
+				expect(response.body).to have_content('topic3')
 			end
 		end
 
 		describe 'by other user' do
-			it 'and all ideas are shown' do
-
+			it 'and New and Rejected ideas are not shown' do
+				newUser = FactoryGirl.create(:user, persistent_id: 123456789, name: "esa")
+				session[:user_id] = newUser.id
+				get :show, params: { id: 1 }
+				expect(response).to render_template :show
+				expect(response.body).to have_content('topic2')
+				expect(response.body).not_to have_content('topic1')
+				expect(response.body).not_to have_content('topic3')
 			end
 		end
 
 		describe 'by moderator' do
 			it 'and all ideas are shown' do
-				moderator = FactoryGirl.create(:user_moderator, persistent_id: 666)
+				moderator = FactoryGirl.create(:user_moderator, persistent_id: 123456789)
 				session[:user_id] = moderator.id
+				get :show, params: { id: 1 }
 				expect(response).to render_template :show
-				#expect(response.body).to have_content('topic1')
+				expect(response.body).to have_content('topic1')
+				expect(response.body).to have_content('topic2')
+				expect(response.body).to have_content('topic3')
 			end
 		end
 
 		describe 'by admin' do
-			it 'and all ideas are shown' do
-
+			it 'and New and Rejected ideas are not shown' do
+				admin = FactoryGirl.create(:user_admin, persistent_id: 123456789)
+				session[:user_id] = admin.id
+				get :show, params: { id: 1 }
+				expect(response).to render_template :show
+				expect(response.body).to have_content('topic2')
+				expect(response.body).not_to have_content('topic1')
+				expect(response.body).not_to have_content('topic3')
 			end
 		end
 	end
