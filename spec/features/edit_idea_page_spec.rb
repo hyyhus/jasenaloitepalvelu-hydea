@@ -48,7 +48,6 @@ describe "Edit idea page" do
     click_button('Update Idea')
     click_link('Edit')
     expect(find('input[value="tag text"]')).to be_checked
-    save_and_open_page
   end
 
 
