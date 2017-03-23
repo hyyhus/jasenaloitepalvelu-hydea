@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :ensure_that_signed_in, except: [:show]
-  before_action :ensure_that_is_moderator, only: [:destroy]
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_is_moderator, only: [:destroy, :publish, :unpublish]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy, :publish, :unpublish]
 
   # GET /comments
   # GET /comments.json
@@ -58,9 +58,25 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to :controller => 'ideas', :action => 'show', :id => @comment.idea_id, notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def publish
+    if @comment.visible != true
+      @comment.visible = true
+      @comment.save
+    end
+     redirect_to :controller => 'ideas', :action => 'show', :id => @comment.idea_id
+  end
+
+  def unpublish
+    if @comment.visible != false
+      @comment.visible = false
+      @comment.save
+    end
+     redirect_to :controller => 'ideas', :action => 'show', :id => @comment.idea_id
   end
 
   private
