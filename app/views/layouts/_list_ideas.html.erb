@@ -119,18 +119,23 @@
               <!-- Draw how many comments -->
               <div class="panel-heading">
                 <h4 class="panel-title">
+                          <% if not current_user.nil? and current_user.moderator %>
                   <a data-toggle="collapse" href="#collapse<%= idea.id * 2 +1 %>">Comments (<%= idea.comments.count %>)</a>
+			  <% else %>
+                  <a data-toggle="collapse" href="#collapse<%= idea.id * 2 +1 %>">Comments (<%= idea.comments.where(visible: true).count %>)</a>
+			  <% end %>
                 </h4>
               </div>
               <!-- End how many comments -->
               <div id="collapse<%= idea.id * 2 + 1 %>" class="panel-collapse collapse">
                 <!-- Draw comments -->
                 <% idea.comments.each do |comment| %>
+			<% if (comment.visible? or (not current_user.nil? and current_user.moderator?)) %>
                   <ul class="list-group">
                     <li class="list-group-item">
                       <div class="panel panel-default">
                         <div class="panel-heading">
-                          <% if not session[:user_id].nil? and current_user.moderator %>
+                          <% if not current_user.nil? and current_user.moderator %>
                             <% if comment.visible != true %>
                             <%= link_to 'Publish', publish_comment_path(comment), method: :publish, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-success publish_comment" %>
                             <% else %>
@@ -151,6 +156,7 @@
                         </div>
                       </div>
                     </li>
+	    <% end %>
                   <% end %>
                   <!-- End draw comments -->
                   <!-- If user is logged in show comment box -->

@@ -159,4 +159,40 @@ RSpec.describe 'IdeaFeature', type: :feature do
       end
     end
   end
+
+  describe 'show active basket' do
+    before :each do
+      page.set_rack_session(:user_id => user_moderator.id)
+    end
+
+    it 'while basket is New' do
+      visit '/ideas?basket=New'
+      expect(find(:css, 'li[class="active"] a').text).to eq("New ideas")
+    end
+
+    it 'while basket is Approved' do
+      visit '/ideas?basket=Approved'
+      expect(find(:css, 'li[class="active"] a').text).to eq("Approved ideas")
+    end
+
+    it 'while basket is Changing' do
+      visit '/ideas?basket=Changing'
+      expect(find(:css, 'li[class="active"] a').text).to eq("Changing ideas")
+    end
+
+    it 'while basket is Changed' do
+      visit '/ideas?basket=Changed'
+      expect(find(:css, 'li[class="active"] a').text).to eq("Changed ideas")
+    end
+
+    it 'while basket is Not Changed' do
+      visit '/ideas?basket=Not+Changed'
+      expect(find(:css, 'li[class="active"] a').text).to eq("Not Changed ideas")
+    end
+
+    it 'while basket is Rejected' do
+      visit '/ideas?basket=Rejected'
+      expect(find(:css, 'li[class="active"] a').text).to eq("Rejected ideas")
+    end
+  end
 end
