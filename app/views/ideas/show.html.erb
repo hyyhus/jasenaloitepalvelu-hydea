@@ -18,9 +18,10 @@
       <%end%>
     </div>
     <div class="col-sm-3 center">
-      <button type="button" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-thumbs-up"></span>
+      <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span>
         <%= @idea.likes.length %>
       </button>
+      <div class="fb-share-button" data-href="<%= request.url%>" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Jaa</a></div>
     </div>
   </div>
 
@@ -49,15 +50,33 @@
   <h3>
     Comments:
   </h3>
-
-  <% @idea.comments.each do |comment| %>
-    <p>
-      <%= comment.user.name %> - <%= comment.time.strftime('%d.%m.%Y %H:%M ') %>
-    </p>
-    <p>
-      <%= comment.text %>
-    </p>
-  <% end %>
+ <% @idea.comments.each do |comment| %>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <% if not session[:user_id].nil? and current_user.moderator %>
+                            <% if comment.visible != true %>
+                              <%= link_to 'Publish', publish_comment_path(comment), method: :publish, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-success publish_comment" %>
+                            <% else %>
+                              <%= link_to 'Unpublish', unpublish_comment_path(comment), method: :unpublish, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-success publish_comment" %>
+                             <% end %>
+                            <%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-danger delete_comment" %>
+                          <% end %>
+                          <p>
+                          <%= link_to comment.user.name, comment.user_id %>
+                          <% if not comment.user.title.empty? and comment.user.moderator %>
+                            (<%= comment.user.title %>)
+                          <% end %>
+                          - <%= comment.time.strftime('%d.%m.%Y %H:%M ') %>
+                          </p>
+                        </div>
+                        <div class="panel-body">
+                          <p><%= comment.text %></p>
+                        </div>
+                      </div>
+                    </li>
+                  <% end %>
 
   <% if not session[:user_id].nil? %>
 

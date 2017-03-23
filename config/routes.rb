@@ -24,6 +24,11 @@ Rails.application.routes.draw do
     post 'unlike', on: :member
   end
 
+  resources :comments do
+	  post 'publish', on: :member
+    post 'unpublish', on: :member
+  end
+
   #SAML Authentication
   namespace :haka do
     get 'auth/new'
