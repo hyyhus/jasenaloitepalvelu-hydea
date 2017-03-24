@@ -102,7 +102,7 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 		topic = Faker::Lorem.sentence
 		text = Faker::Lorem.paragraph(5, false, 15)		
 		history = History.create!(time: Faker::Date.backward(365), basket: baskets.sample, user_id: (Random.rand(1 .. (admins+moderators+users))), idea_id: (n+1) )
-		Idea.create!(topic: topic, text: text, histories: [history])
+		Idea.create!(topic: topic, text: text, moderate:false, histories: [history])
 	end
 
 	#Probably causes likes and dislikes from same user on one idea too
@@ -118,7 +118,7 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 		idea_id = (Random.rand(1 .. ideas))
 		text = Faker::Lorem.paragraph(5, false, 15)
 		time = Faker::Date.backward(365)
-		Comment.create!(user_id: user_id, idea_id: idea_id, text: text, time: time)
+		Comment.create!(visible: true, user_id: user_id, idea_id: idea_id, text: text, time: time)
 	end
 
 	#Blindly do some tagging
