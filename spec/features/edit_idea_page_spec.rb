@@ -4,6 +4,11 @@ describe "Edit idea page" do
 	let(:user_moderator){ FactoryGirl.create(:user_moderator) }
 	let(:idea){ FactoryGirl.create(:idea) }
 	let!(:tag){ FactoryGirl.create(:tag) }
+  
+  let!(:tag1){ FactoryGirl.create(:tag1) }
+  let!(:tag2){ FactoryGirl.create(:tag2) }
+  let!(:tag3){ FactoryGirl.create(:tag3) }
+  let!(:tag4){ FactoryGirl.create(:tag4) }
 
   it "should contain label Tags and a default tag"	do  	
   	page.set_rack_session(:user_id => user_moderator.id)

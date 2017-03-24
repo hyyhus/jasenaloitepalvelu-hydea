@@ -50,7 +50,7 @@ RSpec.describe IdeasController, type: :controller do
 
 
   describe "POST #create" do
-    it "creates new if logged in" do
+    it "creates new if logged in and check that moderate value is correct" do
       session[:user_id] = user.id
       expect{
         post :create, params: { idea: FactoryGirl.attributes_for(:idea) }
