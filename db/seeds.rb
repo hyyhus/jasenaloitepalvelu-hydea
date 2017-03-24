@@ -26,13 +26,13 @@
 #baskets.each {|b| Basket.create!(name: b)}
 
 
+tags = ["Keskusta", "Viikki", "Kumpula", "Meilahti", "Unicafe", "Kulttuuri", "Edut", "Järjestöt"]
+tags.each {|t| Tag.create!(text: t)}
 
 case Rails.env
-when "development", "production"
+when "development"
 
-	tags = ["Keskusta", "Viikki", "Kumpula", "Meilahti", "Unicafe", "Kulttuuri", "Edut", "Järjestöt"]
-	baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
-	tags.each {|t| Tag.create!(text: t)}
+baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 
 	admins=5
 	moderators=15
