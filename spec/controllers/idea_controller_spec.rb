@@ -47,9 +47,40 @@ RSpec.describe IdeasController, type: :controller do
     expect redirect_to ideas_path
   end
 
+  describe "publish and moderate" do
+    it "publishes idea with correct moerate valuee" do
+      session[:user_id] = user_moderator.id
+      @idea = FactoryGirl.create(:idea)
+      expect { post :publish_moderate, params: { id: @idea.id } }.to change(@idea.histories, :count).by(1)
+      @idea.reload
+      expect(response).to redirect_to @idea
+      expect(@idea.moderate).to be true
+    end
+  end
 
+ describe "edit idea and enable moderate" do
+    it "enables idea moderation" do
+      session[:user_id] = user_moderator.id
+      @idea = FactoryGirl.create(:idea)
+      post :moderate, params: { id: @idea.id }
+      @idea.reload
+      expect(response).to redirect_to @idea
+      expect(@idea.moderate).to be true
+    end
+  end
 
-  describe "POST #create" do
+ describe "edit idea and disable moderate" do
+    it "disables idea moderation" do
+      session[:user_id] = user_moderator.id
+      @idea = FactoryGirl.create(:idea)
+      post :un_moderate, params: { id: @idea.id }
+      @idea.reload
+      expect(response).to redirect_to @idea
+      expect(@idea.moderate).to be false
+    end
+  end
+
+ describe "POST #create" do
     it "creates new if logged in and check that moderate value is correct" do
       session[:user_id] = user.id
       expect{
