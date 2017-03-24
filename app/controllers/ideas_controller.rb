@@ -20,7 +20,17 @@ class IdeasController < ApplicationController
 
   # GET /ideas/1
   # GET /ideas/1.json
-  def show; end
+  def show
+    if current_user.nil? && @idea.basket != "New"
+      #Näytetään idea normaalisti, jos julkaistu.
+    elsif current_user.nil? && @idea.basket == "New"
+      redirect_to '/ideas?basket=Approved' and return
+    elsif current_user.moderator?
+      #Näytetään idea normaalisti kaikille moderaattoreille.
+    elsif @idea.basket == "New" && current_user.id.to_s != @idea.histories.find_by(basket: "New").user_id
+      redirect_to '/ideas?basket=Approved' and return
+    end
+  end
 
   # GET /ideas/new
   def new
