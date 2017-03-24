@@ -5,7 +5,7 @@ RSpec.feature 'Comments', type: :feature do
   describe 'That are visible' do
     let!(:user_moderator) { FactoryGirl.create(:user_moderator) }
     let!(:user) { FactoryGirl.create(:user) }
-    let!(:comment) { FactoryGirl.create(:comment, text: 'comment to be removed') }
+    let!(:comment) { FactoryGirl.create(:comment, text: 'comment to be removed', idea: (FactoryGirl.create(:idea_approved))) }
 
     context 'With moderator signed in' do
       before :each do
