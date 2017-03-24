@@ -54,6 +54,17 @@ describe "Edit idea page" do
     click_link('Edit')
     expect(find('input[value="tag text"]')).to be_checked    
   end
+    
+  it "scech that enable moderator works correctly" do
+    page.set_rack_session(:user_id => user_moderator.id)
+    page.visit edit_idea_path(idea)
+    expect(page).to have_content('Enable Moderate')
+      click_link("Enable Moderate")
+      expect(page).to have_content('Comments moderation enabled')
 
-
+      click_link('Edit')
+      expect(page).to have_content('Disable Moderate')
+      click_link("Disable Moderate")
+      expect(page).to have_content('Comments moderation disabled')
+  end
 end
