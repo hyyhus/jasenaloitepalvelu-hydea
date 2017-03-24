@@ -33,10 +33,14 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     comment = Comment.create params.require(:comment).permit(:time, :text, :idea_id)
+    comment.visible=!(comment.idea.moderate?)
     current_user.comments << comment
     
-    redirect_to :controller => 'ideas', :action => 'show', :id => comment.idea_id
-    
+    if comment.idea.moderate
+	    redirect_to idea_path(comment.idea), notice: 'Comment will be published after moderation'
+    else
+	    redirect_to idea_path(comment.idea), notice: 'Comment was succesfully posted'
+    end
   end
 
   # PATCH/PUT /comments/1

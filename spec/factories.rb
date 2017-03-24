@@ -61,6 +61,7 @@ FactoryGirl.define do
   		text "comment text"
 		idea {FactoryGirl.create(:idea)}
 	   	user {FactoryGirl.create(:user, persistent_id: Faker::Number.unique.number(20))}
+		visible true
 
   	end
 
@@ -141,19 +142,18 @@ FactoryGirl.define do
 		histories {[FactoryGirl.create(:history_new)]}
 		moderate false
 	end
-
+  
 	factory :idea_student, class: Idea do
 		topic "idea topic"
 		text "idea text"		
 		histories {[FactoryGirl.create(:history)]}
 		moderate false
 	end
-
-
+  
 	factory :tag do
 		text "tag text"
 	end
-
+  
 	factory :like do
 		like_type "like"
 	   	user {FactoryGirl.create(:user, persistent_id: Faker::Number.unique.number(20))}

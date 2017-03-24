@@ -37,6 +37,22 @@ RSpec.describe CommentsController, type: :controller do
 				expect(Comment.last.user).to eq(comment.user)
 
 			end
+
+			it "has visibility false when idea is under moderation" do
+				idea = FactoryGirl.create(:idea, moderate: true)
+				comment= FactoryGirl.build(:comment, idea: idea)
+				session[:user_id] = comment.user.id
+				post :create, params: { comment: comment.attributes }
+				expect(Comment.last.visible).to be_falsey
+
+			end
+			it "has visibility true when idea is not under moderation" do
+				idea = FactoryGirl.create(:idea, moderate: false)
+				comment= FactoryGirl.build(:comment, idea: idea)
+				session[:user_id] = comment.user.id
+				post :create, params: { comment: comment.attributes }
+				expect(Comment.last.visible).to be_truthy
+			end
 		end
 		describe "DELETE #destroy" do
 			it "destroys comments when moderators requests" do
@@ -61,6 +77,22 @@ RSpec.describe CommentsController, type: :controller do
 				comment= FactoryGirl.create(:comment)
 				session[:user_id] = comment.user.id
 				expect{put :update, params: { comment: comment.attributes }}.to raise_error(ActionController::UrlGenerationError)
+			end
+		end
+		describe "POST #publish" do
+			it "does not change" do
+				comment= FactoryGirl.create(:comment)
+				session[:user_id] = comment.user.id
+				expect{post :publish, params: {id: comment.id}}.not_to change(comment, :visible)
+
+			end
+		end
+		describe "POST #unpublish" do
+			it "does not change" do
+				comment= FactoryGirl.create(:comment)
+				session[:user_id] = comment.user.id
+				expect{post :unpublish, params: {id: comment.id}}.not_to change(comment, :visible)
+
 			end
 		end
 	end
@@ -98,6 +130,43 @@ RSpec.describe CommentsController, type: :controller do
 				comment= FactoryGirl.create(:comment)
 				session[:user_id] = nil
 				expect{put :update, params: { comment: comment.attributes }}.to raise_error(ActionController::UrlGenerationError)
+			end
+		end
+		describe "POST #publish" do
+			it "does not change" do
+				comment= FactoryGirl.create(:comment)
+				session[:user_id] = nil
+				expect{post :publish, params: {id: comment.id}}.not_to change(comment, :visible)
+
+			end
+		end
+		describe "POST #unpublish" do
+			it "does not change" do
+				comment= FactoryGirl.create(:comment)
+				session[:user_id] = nil
+				expect{post :unpublish, params: {id: comment.id}}.not_to change(comment, :visible)
+
+			end
+		end
+	end
+	context "With moderator logged in" do
+		before :each do
+		end
+		describe "POST #publish" do
+			it "changes to published" do
+				session[:user_id] = FactoryGirl.create(:user_moderator).id
+				comment= FactoryGirl.create(:comment)
+				comment.visible=false
+				comment.save
+				expect{post :publish, params: {id: comment.id}}.to change{Comment.first.visible}
+
+			end
+		end
+		describe "POST #unpublish" do
+			it "changes to unpublished" do
+				session[:user_id] = FactoryGirl.create(:user_moderator).id
+				comment= FactoryGirl.create(:comment)
+				expect{post :unpublish, params: {id: comment.id}}.to change{Comment.first.visible}
 			end
 		end
 	end

@@ -24,7 +24,7 @@ RSpec.describe HistoriesController, type: :controller do
 	end
 	context "With moderator user" do
 		before :each do
-			session[:user_id] = FactoryGirl.create(:user_moderator)
+			session[:user_id] = FactoryGirl.create(:user_moderator).id
 		end
 		it "allows create" do
 			expect{post :create, params: {history: history.attributes}
