@@ -116,6 +116,7 @@ FactoryGirl.define do
 	factory :tag do
 		text "tag text"
 	end
+	
 
 	factory :like do
 		like_type "like"
