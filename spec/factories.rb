@@ -51,6 +51,7 @@ FactoryGirl.define do
   		text "comment text"
 		idea {FactoryGirl.create(:idea)}
 	   	user {FactoryGirl.create(:user, persistent_id: Faker::Number.unique.number(20))}
+		visible true
 
   	end
 
