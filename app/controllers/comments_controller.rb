@@ -36,8 +36,11 @@ class CommentsController < ApplicationController
     comment.visible=!(comment.idea.moderate?)
     current_user.comments << comment
     
-    redirect_to :controller => 'ideas', :action => 'show', :id => comment.idea_id
-    
+    if comment.idea.moderate
+	    redirect_to idea_path(comment.idea), notice: 'Comment will be published after moderation'
+    else
+	    redirect_to idea_path(comment.idea), notice: 'Comment ws succesfully posted'
+    end
   end
 
   # PATCH/PUT /comments/1
