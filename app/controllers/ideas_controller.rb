@@ -34,6 +34,7 @@ class IdeasController < ApplicationController
     elsif @idea.basket == "New" && current_user.id.to_s != @idea.histories.find_by(basket: "New").user_id
       redirect_to '/ideas?basket=Approved' and return
     end
+    #Näytetään käyttäjälle hänen oma ideansa
   end
 
   # GET /ideas/new

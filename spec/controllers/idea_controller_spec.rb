@@ -4,6 +4,8 @@ RSpec.describe IdeasController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
   let(:user_admin) { FactoryGirl.create(:user_admin) }
   let(:user_moderator) { FactoryGirl.create(:user_moderator) }
+  let(:user_student) { FactoryGirl.create(:user_student) }
+  let(:user_student_with_history) { FactoryGirl.create(:user_student_with_history) }
 
   it 'can be published by moderator' do
     session[:user_id] = user_moderator.id
@@ -58,6 +60,119 @@ RSpec.describe IdeasController, type: :controller do
       expect(Idea.first.moderate).to be false
     end
   end
+
+  context "User not logged in" do
+
+
+  describe "GET #show" do
+    it "get idea from new -> not ok" do
+      session[:user_id] = nil
+      @idea = FactoryGirl.create(:idea)
+      get :show, params: { id: @idea }
+      expect(response).to redirect_to '/ideas?basket=Approved'
+    end
+
+    it "get idea from rejected -> not ok" do
+      session[:user_id] = nil
+      @idea = FactoryGirl.create(:idea_rejected)
+      get :show, params: { id: @idea }
+      expect(response).to redirect_to '/ideas?basket=Approved'
+    end
+
+    it "get idea from approved -> ok" do
+      session[:user_id] = nil
+      idea = FactoryGirl.create(:idea_approved)
+      get :show, params: { id: idea.id }
+      expect(assigns(:idea)).to eq(idea)
+      expect(response).to render_template(:show)
+    end
+  end
+
+  end
+
+
+    context "Basic user logged in" do
+
+
+  describe "GET #show" do
+    it "get idea from new -> not ok" do
+      session[:user_id] = user_student.id
+      @idea = FactoryGirl.create(:idea)
+      get :show, params: { id: @idea }
+      expect(response).to redirect_to '/ideas?basket=Approved'
+    end
+    
+    it "get own idea from new -> ok" do
+      session[:user_id] = user_student_with_history.id
+      idea = FactoryGirl.create(:idea_student)
+      idea_history = FactoryGirl.create(:history_student, idea_id: idea.id, user_id: user_student_with_history.id)
+      idea.histories << idea_history
+      idea.histories.first.delete
+      get :show, params: { id: idea.id }
+      expect(assigns(:idea)).to eq(idea)
+      expect(response).to render_template(:show)
+    end
+
+    it "get own idea from rejected -> not ok" do
+      session[:user_id] = user_student_with_history.id
+      idea = FactoryGirl.create(:idea_student)
+      idea_history = FactoryGirl.create(:history_student, basket: "Rejected", idea_id: idea.id, user_id: user_student_with_history.id)
+      idea.histories << idea_history
+      idea.histories.first.delete
+      get :show, params: { id: idea.id }
+      expect(response).to redirect_to '/ideas?basket=Approved'
+    end
+
+    it "get idea from rejected -> not ok" do
+      session[:user_id] = user_student.id
+      @idea = FactoryGirl.create(:idea_rejected)
+      get :show, params: { id: @idea }
+      expect(response).to redirect_to '/ideas?basket=Approved'
+    end
+
+    it "get idea from approved -> ok" do
+      session[:user_id] = user_student.id
+      idea = FactoryGirl.create(:idea_approved)
+      get :show, params: { id: idea.id }
+      expect(assigns(:idea)).to eq(idea)
+      expect(response).to render_template(:show)
+    end
+  end
+
+  end
+
+
+    context "Moderator user logged in" do
+
+
+  describe "GET #show" do
+    it "get idea from new -> ok" do
+      session[:user_id] = user_moderator.id
+      idea = FactoryGirl.create(:idea)
+      get :show, params: { id: idea.id }
+      expect(assigns(:idea)).to eq(idea)
+      expect(response).to render_template(:show)
+    end
+
+    it "get idea from rejected -> ok" do
+      session[:user_id] = user_moderator.id
+      idea = FactoryGirl.create(:idea_rejected)
+      get :show, params: { id: idea.id }
+      expect(assigns(:idea)).to eq(idea)
+      expect(response).to render_template(:show)
+    end
+
+    it "get idea from approved -> ok" do
+      session[:user_id] = user_moderator.id
+      idea = FactoryGirl.create(:idea_approved)
+      get :show, params: { id: idea.id }
+      expect(assigns(:idea)).to eq(idea)
+      expect(response).to render_template(:show)
+    end
+  end
+
+  end
+
 
 
 end
