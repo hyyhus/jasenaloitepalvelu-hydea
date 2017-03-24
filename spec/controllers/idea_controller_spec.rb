@@ -4,7 +4,7 @@ RSpec.describe IdeasController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
   let(:user_admin) { FactoryGirl.create(:user_admin) }
   let(:user_moderator) { FactoryGirl.create(:user_moderator) }
-  let(:user_student) { FactoryGirl.create(:user_student) }
+  let(:user_student) { FactoryGirl.create(:user_student, id: 2) }
   let(:user_student_with_history) { FactoryGirl.create(:user_student_with_history) }
 
   it 'can be published by moderator' do
