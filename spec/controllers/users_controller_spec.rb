@@ -4,15 +4,12 @@ RSpec.describe UsersController, :type => :controller do
 
 	context "User not logged in" do
 
-#testi käyttöön tuotantoversioon
-		# describe "GET #index" do
-		# 	it "creates an array of correct users" do
-		#     user = FactoryGirl.create(:user)
-		# 	get :index
-		# 	expect(assigns(:users)).to eq(nil)
-		# 	end
-		# end
-
+		describe "GET #index" do
+		  it "It doesn't return user page" do
+        get :index
+				expect(response).to redirect_to ideas_path
+      end
+		end
 
 		describe "GET #show" do
 			it "It doesn't return user page" do
@@ -71,6 +68,13 @@ RSpec.describe UsersController, :type => :controller do
 		    session[:user_id] = current_user.id
 		end
 
+    describe "GET #index" do
+			it "shows all users" do
+        get :index
+			  expect(response).to render_template :index
+		  end
+		end
+
 		describe "GET #show" do
 			it "assigns the requested user to @user" do
 		    user = FactoryGirl.create(:user)
@@ -120,14 +124,12 @@ RSpec.describe UsersController, :type => :controller do
 		    session[:user_id] = current_user.id
 		end
 
-        #Otetaan tuotanto versiossa käyttöön
-		# describe "GET #index" do
-		# 	it "Doesn't let them access user list" do
-		#     user = FactoryGirl.create(:user)
-		# 	get :index
-		# 	response.should redirect_to ideas_path
-		# 	end
-		# end
+		describe "GET #index" do
+		 	it "Doesn't let them access user list" do
+		  	get :index
+		   	expect(response).to redirect_to ideas_path
+      end
+		end
 
 
 		describe "GET #show" do
