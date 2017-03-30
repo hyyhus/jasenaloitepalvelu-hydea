@@ -60,5 +60,5 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # mock session for capybara
 gem 'rack_session_access'
 
-#gem 'xmlsec-ruby'#, '~> 0.0.7'
-gem 'xmlsec', '~> 0.0.7'
+gem 'xmlsec-ruby', '~> 0.0.7'
+#gem 'xmlsec', '~> 0.0.7'
