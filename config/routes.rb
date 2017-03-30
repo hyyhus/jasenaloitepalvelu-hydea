@@ -5,14 +5,16 @@ Rails.application.routes.draw do
   resources :ideas
   resources :histories
   resources :users
-
+  post 'language/english'
+  post 'language/finnish'
+  post 'language/swedish'
   root 'ideas#index'
 
   # Hydea specific
   resource :session, only: [:new, :create, :destroy]
   delete 'logout', to: 'sessions#destroy'
   resources :ideas do
-	  post 'publish', on: :member
+    post 'publish', on: :member
     post 'publish_moderate', on: :member
     post 'moderate', on: :member
     post 'un_moderate', on: :member
@@ -25,7 +27,7 @@ Rails.application.routes.draw do
   end
 
   resources :comments do
-	  post 'publish', on: :member
+    post 'publish', on: :member
     post 'unpublish', on: :member
   end
 
@@ -33,7 +35,7 @@ Rails.application.routes.draw do
   namespace :haka do
     get 'auth/new'
     get 'auth/consume'
-    post 'auth/consume'    
+    post 'auth/consume'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -30,3 +30,5 @@ fin:
       last_name: ["Virtanen", "Ahonen", "Testinen", "Jokinen", "Mattila", "Kauria", "Säynevirta", "Silvo", "Luoto", "Karvonen", "Mesimäki"]
     company:
       profession: ["opiskelija", "hallituksen jäsen", "työntekijä", "puheenjohtaja"]
+
+  greeting: "Tervetuloa HYDEA-palveluun!"

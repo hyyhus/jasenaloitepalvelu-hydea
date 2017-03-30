@@ -18,16 +18,26 @@
 	      	<%= link_to 'Users', users_path %>
 	      </li>
 	    </ul>
+      <ul class='nav navbar-nav navbar-right'>
+        <li class="navbar-text">
+          <%= t :greeting %> <!-- TESTIKENTTÄ LOKALISAATIOTA VARTEN -->
+        </li>
+        <li>
+          <%= link_to image_tag("", :class => "flag flag-gb"), language_english_path, method: :post %>
+        </li>
+        <li>
+          <%= link_to image_tag("", :class => "flag flag-fi"), language_finnish_path, method: :post %>
+        </li>
+        <li>
+          <%= link_to image_tag("", :class => "flag flag-se"), language_swedish_path, method: :post %>
+        </li>
 	    <% if not session[:user_id].nil? %>
-		    <p class="navbar-text navbar-right">
-		    <ul class='nav navbar-nav navbar-right'>
 			    <li><%= link_to User.find(session[:user_id]).name, User.find(session[:user_id])%></li>
 		    <li><%= link_to 'Logout', logout_path, method: :delete %></li>
-		    </ul>
-			</p>
 		<% else %>
-			<p class="navbar-text navbar-right"><%=  link_to 'Login', haka_auth_new_path %></p>
+			<li><%=  link_to 'Login', haka_auth_new_path %></li>
 		<% end %>
+    </ul>
 	</div>
   </div>
 </nav>
