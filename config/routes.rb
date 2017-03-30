@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   resources :ideas
   resources :histories
   resources :users
-  get 'language/english'
-  get 'language/finnish'
-  get 'language/swedish'
+  post 'language/english'
+  post 'language/finnish'
+  post 'language/swedish'
   root 'ideas#index'
 
   # Hydea specific

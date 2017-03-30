@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :ensure_that_signed_in, :ensure_that_is_admin, :ensure_that_is_moderator, :set_locale
 
-  before_filter :set_locale
+  before_action :set_locale
   private
    def set_locale
     I18n.locale = session[:locale] || :fin

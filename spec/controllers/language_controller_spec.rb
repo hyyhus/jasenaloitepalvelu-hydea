@@ -1,25 +1,51 @@
 require 'rails_helper'
 
 RSpec.describe LanguageController, type: :controller do
+  describe 'POST #english' do
+    before :each do
+      @request.env['HTTP_REFERER'] = root_path
+    end
 
-  describe "GET #english" do
-    it "returns http success" do
-      get :english
-      expect(response).to have_http_status(:success)
+    it 'changes locale to English' do
+      post :english
+      expect(I18n.locale).to eq(:en)
+    end
+
+    it 'does not change current page' do
+      post :english
+      expect redirect_to eq(@request.env['HTTP_REFERER'])
     end
   end
 
-  describe "GET #finnish" do
-    it "returns http success" do
-      get :finnish
-      expect(response).to have_http_status(:success)
+  describe 'POST #finnish' do
+    before :each do
+      @request.env['HTTP_REFERER'] = root_path
+    end
+
+    it 'changes locale to Finnish' do
+      post :finnish
+      expect(I18n.locale).to eq(:fin)
+    end
+    
+    it 'does not change current page' do
+      post :finnish
+      expect redirect_to eq(@request.env['HTTP_REFERER'])
     end
   end
 
-  describe "GET #swedish" do
-    it "returns http success" do
-      get :swedish
-      expect(response).to have_http_status(:success)
+  describe 'POST #swedish' do
+    before :each do
+      @request.env['HTTP_REFERER'] = root_path
+    end 
+    
+    it 'changes locale to Swedish' do
+      post :swedish
+      expect(I18n.locale).to eq(:swe)
+    end
+
+    it 'does not change current page' do
+      post :swedish
+      expect redirect_to eq(@request.env['HTTP_REFERER'])
     end
   end
 
