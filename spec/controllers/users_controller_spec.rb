@@ -115,7 +115,25 @@ RSpec.describe UsersController, :type => :controller do
 		        expect{delete :destroy, params: { id: user }}.to change(User, :count).by(-1)
 			end
 		end
-	end
+
+    describe 'edits user' do
+      it 'removing moderator' do
+        @user_moderator = FactoryGirl.create(:user_moderator)
+        expect(@user_moderator.moderator).to be true
+        put :update, params: { id: @user_moderator, user: FactoryGirl.attributes_for(:user, moderator: :false)}
+        @user_moderator.reload
+        expect(@user_moderator.moderator).to be false
+      end
+
+			it 'adding moderator moderator' do
+        @user = FactoryGirl.create(:user_student)
+        expect(@user.moderator).to be false
+        put :update, params: { id: @user, user: FactoryGirl.attributes_for(:user, moderator: :true)}
+        @user.reload
+        expect(@user.moderator).to be true
+      end
+    end
+  end
 
 
 	context "Basic user logged in" do
