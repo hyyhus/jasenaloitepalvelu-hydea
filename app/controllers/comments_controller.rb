@@ -37,9 +37,9 @@ class CommentsController < ApplicationController
     current_user.comments << comment
     
     if comment.idea.moderate
-	    redirect_to idea_path(comment.idea), notice: 'Comment will be published after moderation'
+	    redirect_to idea_path(comment.idea), notice: (t :comment_moderated_publish)
     else
-	    redirect_to idea_path(comment.idea), notice: 'Comment was succesfully posted'
+	    redirect_to idea_path(comment.idea), notice: (t :comment_publish)
     end
   end
 
@@ -48,7 +48,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to @comment, notice: (t :comment_update) }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to :controller => 'ideas', :action => 'show', :id => @comment.idea_id, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to :controller => 'ideas', :action => 'show', :id => @comment.idea_id, notice: (t :comment_destroyed) }
       format.json { head :no_content }
     end
   end

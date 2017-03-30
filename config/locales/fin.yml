@@ -32,3 +32,24 @@ fin:
       profession: ["opiskelija", "hallituksen jäsen", "työntekijä", "puheenjohtaja"]
 
   greeting: "Tervetuloa HYDEA-palveluun!"
+
+  ideas:
+    "Ideat"
+
+  users:
+    "Käyttäjät"
+
+  should_be_signed:
+    "Sinun pitää olla kirjautunut sisään"
+
+  comment_moderated_publish:
+    "Kommentti julkaistaan moderoinnin jälkeen"
+
+  comment_publish:
+    "Kommentti julkaistu onnistuneesti"
+  
+  comment_update:
+    "Kommentti päivitetty onnistuneesti"
+
+  comment_destroyed:
+    "Kommentti onnistuneesti poistettu"

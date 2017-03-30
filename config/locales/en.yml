@@ -23,3 +23,24 @@ en:
   hello: "Hello world"
 
   greeting: "Welcome to HYDEA-service!"
+
+  ideas:
+    "Ideas"
+
+  users:
+    "Users"
+
+  should_be_signed:
+    "You have to be signed in"
+
+  comment_moderated_publish:
+    "Comment will be published after moderation"
+
+  comment_publish:
+    "Comment successfully published"
+
+  comment_update:
+    "Comment successfully updated"
+
+  comment_destroyed:
+    "Comment successfully deleted"

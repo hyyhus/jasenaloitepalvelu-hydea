@@ -2,3 +2,24 @@ swe:
   hello: "Hejsan wärld"
 
   greeting: "Välkommen till HYDEA-service!"
+
+  ideas:
+    "Idéer"
+
+  users:
+    "Användare"
+
+  should_be_signed:
+    "Du måste vara inloggad"
+
+  comment_moderated_publish:
+    "Komment ska publicera efter moderation"
+
+  comment_publish:
+    "Komment publicerad med success"
+
+  comment_update:
+    "Komment uppdaterad med success"
+
+  comment_destroyed:
+    "Kommentera tagits bort"
