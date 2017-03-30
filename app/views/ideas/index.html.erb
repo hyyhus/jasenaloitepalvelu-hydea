@@ -30,6 +30,14 @@
 
   <!-- Show tags -->
   <div class="center tags">
+        <%= t :greeting %> <!-- TESTIKENTTÄ LOKALISAATIOTA VARTEN -->
+        <p>
+<%= link_to_unless I18n.locale == :en, "English", language_english_path %>
+|
+<%= link_to_unless I18n.locale == :fin, "Finnish", language_finnish_path %>
+|
+<%= link_to_unless I18n.locale == :swe, "Svenska", language_swedish_path %>
+</p>
     <% Tag.all.each do |menutag| %>
       <label class="checkbox-inline"><input type="checkbox" value="">
       <%= menutag.text %>
