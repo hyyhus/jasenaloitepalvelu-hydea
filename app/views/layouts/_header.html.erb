@@ -18,16 +18,18 @@
 	      	<%= link_to 'Users', users_path %>
 	      </li>
 	    </ul>
+      <ul class='nav navbar-nav navbar-right'>
+        <li><%= t :greeting %></li> <!-- TESTIKENTTÄ LOKALISAATIOTA VARTEN -->
+        <li><%= link_to_unless I18n.locale == :en, "English", language_english_path %></li>
+        <li><%= link_to_unless I18n.locale == :fin, "Finnish", language_finnish_path %></li>
+        <li><%= link_to_unless I18n.locale == :swe, "Svenska", language_swedish_path %></li>
 	    <% if not session[:user_id].nil? %>
-		    <p class="navbar-text navbar-right">
-		    <ul class='nav navbar-nav navbar-right'>
 			    <li><%= link_to User.find(session[:user_id]).name, User.find(session[:user_id])%></li>
 		    <li><%= link_to 'Logout', logout_path, method: :delete %></li>
-		    </ul>
-			</p>
 		<% else %>
-			<p class="navbar-text navbar-right"><%=  link_to 'Login', haka_auth_new_path %></p>
+			<li><%=  link_to 'Login', haka_auth_new_path %></li>
 		<% end %>
+    </ul>
 	</div>
   </div>
 </nav>
