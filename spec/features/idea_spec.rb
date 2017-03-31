@@ -21,7 +21,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
     it 'Approved page shows published ideas' do
       page.set_rack_session(:user_id => user_moderator.id)
       visit '/ideas?basket=New'
-      click_link('Publish')
+      click_link('Julkaise')
       page.set_rack_session(:user_id => user.id)
       visit '/'
       expect(page).to have_current_path('/ideas?basket=Approved')
@@ -33,7 +33,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
     before :each do
       page.set_rack_session(:user_id => user_moderator.id)
       visit '/ideas?basket=New'
-      click_link('Publish')
+      click_link('Julkaise')
     end
 
   context 'when an ideas status is published' do
@@ -44,7 +44,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
     end
 
     it 'moves to changing when clicked and shows who moved it' do
-      click_link('Changing')
+      click_link('Muutettava')
       visit '/ideas?basket=Changing'
       expect(page).to have_current_path('/ideas?basket=Changing')
       expect(page).to have_content('idea topic')
@@ -52,7 +52,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
     end
 
     it 'moves to changed when clicked and shows who moved it' do
-      click_link('Changed')
+      click_link('Muutettu')
       visit '/ideas?basket=Changed'
       expect(page).to have_current_path('/ideas?basket=Changed')
       expect(page).to have_content('idea topic')
@@ -60,7 +60,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
     end
 
     it 'moves to not changed when clicked and shows who moved it' do
-      click_link('Not Changed')
+      click_link('Ei muutettu')
       visit '/ideas?basket=Not+Changed'
       expect(page).to have_current_path('/ideas?basket=Not+Changed')
       expect(page).to have_content('idea topic')
@@ -70,12 +70,12 @@ RSpec.describe 'IdeaFeature', type: :feature do
 
     context 'when an ideas status is changing' do
       before :each do
-        click_link('Changing')
+        click_link('Muutettava')
         visit '/ideas?basket=Changing'
       end
 
       it 'moves to changed when clicked and shows who moved it' do
-        click_link('Changed')
+        click_link('Muutettu')
         visit '/ideas?basket=Changed'
         expect(page).to have_current_path('/ideas?basket=Changed')
         expect(page).to have_content('idea topic')
@@ -83,7 +83,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
       end
 
       it 'moves to not changed and shows who moved it' do
-        click_link('Not Changed')
+        click_link('Ei muutettu')
         visit '/ideas?basket=Not+Changed'
         expect(page).to have_current_path('/ideas?basket=Not+Changed')
         expect(page).to have_content('idea topic')
@@ -96,7 +96,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
       it 'moves to rejected when clicked and shows who moved it' do
         page.set_rack_session(:user_id => user_moderator.id)
         visit '/ideas?basket=New'
-        click_link('Reject')
+        click_link('Hylkää')
         expect(page).to have_current_path('/ideas?basket=Approved')
         expect(page).to_not have_content('idea topic')
         visit '/ideas?basket=Rejected'
@@ -129,7 +129,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
         expect(page).to have_no_selector(:css, 'a[title="Show idea"]')
       end
       it 'while basket is Rejected' do
-        click_link('Reject')
+        click_link('Hylkää')
         visit '/ideas?basket=Reject'
         expect(page).to have_no_selector(:css, 'a[title="Show idea"]')
       end
@@ -137,7 +137,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
 
     context 'is shown' do
       before :each do
-        click_link('Publish')
+        click_link('Julkaise')
         expect(page).to have_current_path('/ideas?basket=Approved')
       end
 
@@ -147,21 +147,21 @@ RSpec.describe 'IdeaFeature', type: :feature do
       end
 
       it 'while basket is Changing' do
-        click_link('Changing')
+        click_link('Muutettava')
         visit '/ideas?basket=Changing'
         find(:css, 'a[title="Show idea"]').click
         expect(page).to have_current_path('/ideas/1')
       end
 
       it 'while basket is Changed' do
-        click_link('Changed')
+        click_link('Muutettu')
         visit '/ideas?basket=Changed'
         find(:css, 'a[title="Show idea"]').click
         expect(page).to have_current_path('/ideas/1')
       end
 
       it 'while basket is Not Changed' do
-        click_link('Not Changed')
+        click_link('Ei muutettu')
         visit '/ideas?basket=Not+Changed'
         find(:css, 'a[title="Show idea"]').click
         expect(page).to have_current_path('/ideas/1')
@@ -176,32 +176,32 @@ RSpec.describe 'IdeaFeature', type: :feature do
 
     it 'while basket is New' do
       visit '/ideas?basket=New'
-      expect(find(:css, 'li[class="active"] a').text).to eq("New ideas")
+      expect(find(:css, 'li[class="active"] a').text).to eq("Uudet ideat")
     end
 
     it 'while basket is Approved' do
       visit '/ideas?basket=Approved'
-      expect(find(:css, 'li[class="active"] a').text).to eq("Approved ideas")
+      expect(find(:css, 'li[class="active"] a').text).to eq("Hyväksytyt ideat")
     end
 
     it 'while basket is Changing' do
       visit '/ideas?basket=Changing'
-      expect(find(:css, 'li[class="active"] a').text).to eq("Changing ideas")
+      expect(find(:css, 'li[class="active"] a').text).to eq("Muutettavat ideat")
     end
 
     it 'while basket is Changed' do
       visit '/ideas?basket=Changed'
-      expect(find(:css, 'li[class="active"] a').text).to eq("Changed ideas")
+      expect(find(:css, 'li[class="active"] a').text).to eq("Muutetut ideat")
     end
 
     it 'while basket is Not Changed' do
       visit '/ideas?basket=Not+Changed'
-      expect(find(:css, 'li[class="active"] a').text).to eq("Not Changed ideas")
+      expect(find(:css, 'li[class="active"] a').text).to eq("Ei muutetut ideat")
     end
 
     it 'while basket is Rejected' do
       visit '/ideas?basket=Rejected'
-      expect(find(:css, 'li[class="active"] a').text).to eq("Rejected ideas")
+      expect(find(:css, 'li[class="active"] a').text).to eq("Hylätyt ideat")
     end
   end
 
@@ -210,9 +210,9 @@ RSpec.describe 'IdeaFeature', type: :feature do
       page.set_rack_session(:user_id => user_moderator.id)
       visit '/ideas?basket=New'
       it 'publish and moderate' do
-        click_link("Publish and Moderate")
+        click_link("Julkaise moderoituna")
         expect(page).to have_content('idea topic')
-        expect(page).to have_content('Comments moderation enabled')
+        expect(page).to have_content('Kommenttien moderointi päällä')
       end
     end
   end

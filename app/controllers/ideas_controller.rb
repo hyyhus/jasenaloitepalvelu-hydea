@@ -69,7 +69,7 @@ class IdeasController < ApplicationController
 
       respond_to do |format|
        if @history.save && @idea.save
-          format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
+          format.html { redirect_to @idea, notice: (t :idea) + " " + (t :create) }
           format.json { render :show, status: :created, location: @idea }
         else
           format.html { render :new }
@@ -84,8 +84,8 @@ class IdeasController < ApplicationController
   def update
     if params[:idea].nil?
       @idea.tags.delete_all
-      redirect_to @idea, notice: 'Idea was successfully updated.' and return
-    elsif params[:idea][:tags]
+      redirect_to @idea, notice: (t :idea) + " " + (t :update) and return
+    elsif params[:idea][:tags]      
       @idea.tags.delete_all
       params[:idea][:tags].each do |tag|
         newTag = Tag.find_by text: tag
@@ -95,7 +95,7 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.update(idea_params)
-        format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
+        format.html { redirect_to @idea, notice: (t :idea) + " " + (t :update) }
         format.json { render :show, status: :ok, location: @idea }
       else
         format.html { render :edit }
@@ -109,7 +109,7 @@ class IdeasController < ApplicationController
   def destroy
     @idea.destroy
     respond_to do |format|
-      format.html { redirect_to ideas_url, notice: 'Idea was successfully destroyed.' }
+      format.html { redirect_to ideas_url, notice: (t :idea) + " " + (t :destroy)  }
       format.json { head :no_content }
     end
   end
@@ -127,13 +127,13 @@ class IdeasController < ApplicationController
   def moderate
     @idea.moderate = true
     @idea.save
-    redirect_to @idea, notice: 'Comments moderation enabled'
+    redirect_to @idea, notice: (t :comment_moderation_enable)
   end
 
   def un_moderate
     @idea.moderate = false
     @idea.save
-    redirect_to @idea, notice: 'Comments moderation disabled'
+    redirect_to @idea, notice: (t :comment_moderation_disable)
   end
 
   def reject

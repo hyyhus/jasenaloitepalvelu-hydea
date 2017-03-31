@@ -32,3 +32,149 @@ fin:
       profession: ["opiskelija", "hallituksen jäsen", "työntekijä", "puheenjohtaja"]
 
   greeting: "Tervetuloa HYDEA-palveluun!"
+
+  test:
+    "KOKEILU"
+
+  ideas:
+    "Ideat"
+  
+  ideas_by_user:
+    "Ideat, jotka on luonut"
+
+  users:
+    "Käyttäjät"
+
+  should_be_signed:
+    "Sinun pitää olla kirjautunut sisään"
+  
+  create:
+    "luotiin onnistuneesti"
+
+  moderated_publish:
+    "julkaistaan moderoinnin jälkeen"
+
+  publish:
+    "julkaistu onnistuneesti"
+  
+  update:
+    "päivitetty onnistuneesti"
+
+  destroy:
+    "onnistuneesti poistettu"
+
+  comment:
+    "Kommentti"
+
+  history:
+    "Historia"
+
+  idea:
+    "Idea"
+
+  idea_moderation_enable:
+    "Moderointi päälle"
+  
+  idea_moderation_disable:
+    "Moderointi pois"
+  
+  comment_moderation_enable:
+    "Kommenttien moderointi päällä"
+  
+  comment_moderation_disable:
+    "Kommenttien moderointi pois päältä"
+  
+  listing_comments:
+    "Kommenttien listaus"
+  
+  like:
+    "Tykkäys"
+  
+  destroy_only_own_like:
+    "Voit tuhota vain omia tykkäyksiä"
+  
+  tag:
+    "Tunnus"
+  
+  user:
+    "Käyttäjä"
+
+  are_you_sure:
+    "Oletko varma?"
+   
+  show:
+    "Näytä"
+
+  back:
+    "Takaisin"
+
+  delete:
+    "Poista"
+    
+  edit:
+    "Muokkaa"
+  
+  new:
+    "Uusi"
+  
+  time:
+    "Aika"
+  
+  text:
+    "Teksti"
+  
+  post_idea:
+    "Lisää idea"
+
+#Basket names
+
+  basket_new:
+    "Uudet ideat"
+  basket_approved:
+    "Hyväksytyt ideat"
+  basket_changing:
+    "Muutettavat ideat"
+  basket_changed:
+    "Muutetut ideat"
+  basket_not_changed:
+    "Ei muutetut ideat"
+  basket_rejected:
+    "Hylätyt ideat"
+  
+  # buttons
+
+  move_to:
+    "Siirrä"
+
+  publish_button:
+    "Julkaise"
+  
+  unpublish_button:
+    "Piilota"
+    
+  login_button: 
+    "Kirjaudu sisään"
+
+  logout_button:
+    "Kirjaudu ulos"
+    
+  publish_and_moderate_button:
+    "Julkaise moderoituna"
+  
+  reject_button:
+    "Hylkää"
+  
+   # Move to basket buttons
+
+  move_basket_new:
+    "Uusi"
+  move_basket_approved:
+    "Hyväksytyt"
+  move_basket_changing:
+    "Muutettava"
+  move_basket_changed:
+    "Muutettu"
+  move_basket_not_changed:
+    "Ei muutettu"
+  move_basket_rejected:
+    "Hylätty"

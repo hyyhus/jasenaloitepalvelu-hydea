@@ -4,11 +4,10 @@
 
   <div class="row">
     <div class="col-sm-10">
-      <h1>Listing Ideas</h1>
     </div>
     <% if current_user %>
     <div class="col-sm-2">
-        <%= link_to 'Post Idea', new_idea_path, :class => 'btn btn-primary'%>
+        <%= link_to (t :post_idea), new_idea_path, :class => 'btn btn-primary'%>
     </div>
     <% end %>
   </div>
@@ -16,14 +15,14 @@
   <!-- Show baskets -->
   <ul class="nav nav-tabs nav-justified">
     <% if not session[:user_id].nil? and current_user.moderator %>
-      <li <% if current_page?(ideas_path(basket: "New")) -%>class="active"<% end -%>><%= link_to 'New ideas', ideas_path(basket: "New" )%></li>
+      <li <% if current_page?(ideas_path(basket: "New")) -%>class="active"<% end -%>><%= link_to (t :basket_new), ideas_path(basket: "New" )%></li>
     <% end %>
-      <li <% if current_page?(ideas_path(basket: "Approved")) -%>class="active"<% end -%>><%= link_to 'Approved ideas', ideas_path(basket: "Approved" )%></li>
-      <li <% if current_page?(ideas_path(basket: "Changing")) -%>class="active"<% end -%>><%= link_to 'Changing ideas', ideas_path(basket: "Changing" )%></li>
-      <li <% if current_page?(ideas_path(basket: "Changed")) -%>class="active"<% end -%>><%= link_to 'Changed ideas', ideas_path(basket: "Changed" )%></li>
-      <li <% if current_page?(ideas_path(basket: "Not Changed")) -%>class="active"<% end -%>><%= link_to 'Not Changed ideas', ideas_path(basket: "Not Changed" )%></li>
+      <li <% if current_page?(ideas_path(basket: "Approved")) -%>class="active"<% end -%>><%= link_to  (t :basket_approved), ideas_path(basket: "Approved" )%></li>
+      <li <% if current_page?(ideas_path(basket: "Changing")) -%>class="active"<% end -%>><%= link_to  (t :basket_changing), ideas_path(basket: "Changing" )%></li>
+      <li <% if current_page?(ideas_path(basket: "Changed")) -%>class="active"<% end -%>><%= link_to  (t :basket_changed), ideas_path(basket: "Changed" )%></li>
+      <li <% if current_page?(ideas_path(basket: "Not Changed")) -%>class="active"<% end -%>><%= link_to  (t :basket_not_changed), ideas_path(basket: "Not Changed" )%></li>
     <% if not session[:user_id].nil? and current_user.moderator %>
-      <li <% if current_page?(ideas_path(basket: "Rejected")) -%>class="active"<% end -%>><%= link_to 'Rejected ideas', ideas_path(basket: "Rejected" )%></li>
+      <li <% if current_page?(ideas_path(basket: "Rejected")) -%>class="active"<% end -%>><%= link_to  (t :basket_rejected), ideas_path(basket: "Rejected" )%></li>
     <% end %>
   </ul>
   <!-- End baskets -->

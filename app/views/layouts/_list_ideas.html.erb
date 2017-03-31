@@ -33,35 +33,35 @@
               <% if not session[:user_id].nil? and current_user.moderator %>
                 <% if idea.histories.last.basket == "New"%>
                   <div class="btn-group">
-                    <%= link_to "Publish", publish_idea_path(idea), method: :post, class: "btn btn-primary" %>
+                    <%= link_to (t :publish_button), publish_idea_path(idea), method: :post, class: "btn btn-primary" %>
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                       <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                       <li>
-                        <%= link_to "Publish and Moderate", publish_moderate_idea_path(idea), method: :post%>
+                        <%= link_to (t :publish_and_moderate_button), publish_moderate_idea_path(idea), method: :post%>
                       </li>
                       <li>
-                        <%= link_to "Reject", reject_idea_path(idea), method: :post%>
+                        <%= link_to (t :reject_button), reject_idea_path(idea), method: :post%>
                       </li>
                     </ul>
                   </div>
                 <% elsif idea.histories.last.basket == "Approved" or idea.histories.last.basket == "Changing" %>
                   <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                      Move to <span class="caret"></span>
+                      (t :move_to)<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                       <% if idea.histories.last.basket == "Approved" %>
                       <li>
-                        <%= link_to "Changing", changing_idea_path(idea), method: :post%>
+                        <%= link_to (t :move_basket_changing), changing_idea_path(idea), method: :post%>
                       </li>
                       <% end %>
                       <li>
-                        <%= link_to "Changed", changed_idea_path(idea), method: :post%>
+                        <%= link_to (t :move_basket_changed), changed_idea_path(idea), method: :post%>
                       </li>
                       <li>
-                        <%= link_to "Not Changed", not_changed_idea_path(idea), method: :post%>
+                        <%= link_to (t :move_basket_not_changed), not_changed_idea_path(idea), method: :post%>
                       </li>
                     </ul>
                   </div>
@@ -137,11 +137,11 @@
                         <div class="panel-heading">
                           <% if not current_user.nil? and current_user.moderator %>
                             <% if comment.visible != true %>
-                            <%= link_to 'Publish', publish_comment_path(comment), method: :publish, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-success publish_comment" %>
+                            <%= link_to (t :publish_button), publish_comment_path(comment), method: :publish, data: { confirm: (t :are_you_sure) }, :class => "btn-sm btn-success publish_comment" %>
                             <% else %>
-                            <%= link_to 'Unpublish', unpublish_comment_path(comment), method: :unpublish, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-success publish_comment" %>
+                            <%= link_to (t :unpublish_button), unpublish_comment_path(comment), method: :unpublish, data: { confirm: (t :are_you_sure) }, :class => "btn-sm btn-success publish_comment" %>
                             <% end %>
-                            <%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-danger delete_comment" %>
+                            <%= link_to (t :delete), comment, method: :delete, data: { confirm: (t :are_you_sure) }, :class => "btn-sm btn-danger delete_comment" %>
                           <% end %>
                           <p>
                           <%= link_to comment.user.name, comment.user_id %>

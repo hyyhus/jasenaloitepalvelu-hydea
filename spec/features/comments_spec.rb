@@ -18,20 +18,20 @@ RSpec.feature 'Comments', type: :feature do
       end
 
       it 'should have Delete button' do
-        expect(page).to have_selector(:link_or_button, 'Delete')
+        expect(page).to have_selector(:link_or_button, 'Poista')
       end
 
       it 'should be deleted after clicking' do
-        click_on('Delete')
+        click_on('Poista')
         expect(page).not_to have_content('comment to be removed')
       end
 
       it 'should have unpublish button' do
-        expect(page).to have_selector(:link_or_button, 'Unpublish')
+        expect(page).to have_selector(:link_or_button, 'Piilota')
       end
 
       it 'should not have publish button' do
-        expect(page).not_to have_selector(:link_or_button, 'Publish')
+        expect(page).not_to have_selector(:link_or_button, 'Julkaise')
       end
 
       it 'should have publish button after clicking' 
@@ -52,7 +52,7 @@ RSpec.feature 'Comments', type: :feature do
       end
 
       it 'should not have Delete button' do
-        expect(page).not_to have_selector(:link_or_button, 'Delete')
+        expect(page).not_to have_selector(:link_or_button, 'Poista')
       end
     end
   end
@@ -73,11 +73,11 @@ RSpec.feature 'Comments', type: :feature do
       end
 
       it 'should have Delete button' do
-        expect(page).to have_selector(:link_or_button, 'Delete')
+        expect(page).to have_selector(:link_or_button, 'Poista')
       end
 
       it 'should be deleted after clicking' do
-        click_on('Delete')
+        click_on('Poista')
         expect(page).not_to have_content('comment to be removed')
       end
     end
@@ -93,7 +93,7 @@ RSpec.feature 'Comments', type: :feature do
       end
 
       it 'should not have Delete button' do
-        expect(page).not_to have_selector(:link_or_button, 'Delete')
+        expect(page).not_to have_selector(:link_or_button, 'Poista')
       end
     end
   end

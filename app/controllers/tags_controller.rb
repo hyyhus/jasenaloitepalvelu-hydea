@@ -29,7 +29,7 @@ class TagsController < ApplicationController
 
     respond_to do |format|
       if @tag.save
-        format.html { redirect_to @tag, notice: 'Tag was successfully created.' }
+        format.html { redirect_to @tag, notice: (t :tag) + " " + (t :create) }
         format.json { render :show, status: :created, location: @tag }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class TagsController < ApplicationController
   def update
     respond_to do |format|
       if @tag.update(tag_params)
-        format.html { redirect_to @tag, notice: 'Tag was successfully updated.' }
+        format.html { redirect_to @tag, notice: (t :tag) + " " + (t :update) }
         format.json { render :show, status: :ok, location: @tag }
       else
         format.html { render :edit }
