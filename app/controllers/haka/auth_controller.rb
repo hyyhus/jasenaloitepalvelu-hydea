@@ -1,28 +1,14 @@
 module Haka
 
 	require 'open-uri'
-  require 'xmlsec'
 
 
   # Haka Authentication for a SAML Service Provider
   class AuthController < ApplicationController
   	skip_before_action :verify_authenticity_token
 
-    
-
     # Initiates a new SAML sign in request
-    def new      
-      begin
-          #Server metadata check
-          haka_server_metadata=Nokogiri::XML(open(Hydea::Haka::HAKA_TESTSERVER_METADATA_URL)).to_s
-          varmenne_ok=Xmlsec::verify_file(haka_server_metadata, Hydea::Haka::HAKA_TESTSERVER_SIGN_CERT)
-        rescue
-          redirect_to ideas_path, notice: 'Login error'
-        return
-      end
-
-
-
+    def new
       request = OneLogin::RubySaml::Authrequest.new
       redirect_to(request.create(saml_settings))
     end
@@ -40,7 +26,8 @@ module Haka
         Rails.logger.error "Invalid SAML response: #{response.errors}"
         Rollbar.error "Invalid SAML response", errors: response.errors
 
-        redirect_to frontend_error_path("invalid_saml_response") and return
+        redirect_to frontend_error_path("invalid_saml_response")
+        return
       end
 
       #Asetetaan metadatan pohjalta attribuuttien nimet
