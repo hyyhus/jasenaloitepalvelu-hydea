@@ -16,7 +16,7 @@
               <p><%= link_to User.find(idea.histories.first.user_id).name, User.find(idea.histories.first.user_id) %> - <%= idea.histories.first.time.strftime('%d.%m.%Y %H:%M ') %></p>
               <%if idea.tags.empty?
                 else%>
-                  <p>Tags:
+                  <p><%= (t :tags) %> 
                   <% idea.tags.each do |tag| %>
                     <%= tag.text %>
                     <% if tag == idea.tags.last%>
