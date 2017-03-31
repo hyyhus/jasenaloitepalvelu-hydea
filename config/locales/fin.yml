@@ -66,6 +66,9 @@ fin:
   comment:
     "Kommentti"
 
+  comments:
+    "Kommentit"
+
   history:
     "Historia"
 
@@ -94,7 +97,10 @@ fin:
     "Voit tuhota vain omia tykkäyksiä"
   
   tag:
-    "Tunnus"
+    "Tägi"
+  
+  tags:
+    "Tägit"
   
   user:
     "Käyttäjä"

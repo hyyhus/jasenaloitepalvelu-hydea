@@ -35,6 +35,9 @@ swe:
   
   comment:
     "Komment"
+  
+  comments:
+    "Kommentarer"
 
   history:
     "Historia"
@@ -65,6 +68,9 @@ swe:
 
   tag:
     "Märke"
+    
+  tags:
+    "Märker"
   
   user:
     "Användare"
