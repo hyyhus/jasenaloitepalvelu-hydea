@@ -56,6 +56,9 @@ en:
   comment:
     "Comment"
 
+  comments:
+    "Comments"
+
   history:
     "History"
   
@@ -85,6 +88,9 @@ en:
   
   tag:
     "Tag"
+    
+  tags:
+    "Tags"
 
   user:
     "User"

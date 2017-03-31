@@ -120,9 +120,9 @@
               <div class="panel-heading">
                 <h4 class="panel-title">
                           <% if not current_user.nil? and current_user.moderator %>
-                  <a data-toggle="collapse" href="#collapse<%= idea.id * 2 +1 %>">Comments (<%= idea.comments.count %>)</a>
+                  <a data-toggle="collapse" href="#collapse<%= idea.id * 2 +1 %>"><%= (t :comments) %> (<%= idea.comments.count %>)</a>
 			  <% else %>
-                  <a data-toggle="collapse" href="#collapse<%= idea.id * 2 +1 %>">Comments (<%= idea.comments.where(visible: true).count %>)</a>
+                  <a data-toggle="collapse" href="#collapse<%= idea.id * 2 +1 %>"><%= (t :comments) %> (<%= idea.comments.where(visible: true).count %>)</a>
 			  <% end %>
                 </h4>
               </div>
@@ -168,7 +168,7 @@
                       <div method="post" action="comment/new">
                         <div class="panel panel-default">
                           <div class="panel-heading">
-                            <label for="comment">Comment:</label>
+                            <label for="comment"><%= (t :comment) %> </label>
                           </div>
                           <div class="panel-body">
                             <%= f.text_area :text,class: "form-control", rows: "5", id: "comment"%>
