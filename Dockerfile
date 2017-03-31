@@ -21,3 +21,8 @@ COPY Gemfile /usr/src/app/
 RUN bundle install
 
 COPY . /usr/src/app
+
+# Run the app.  CMD is required to run on Heroku
+# $PORT is set by Heroku                        
+CMD rails s --port=$PORT
+
