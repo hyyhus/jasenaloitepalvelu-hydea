@@ -33,6 +33,9 @@ fin:
 
   greeting: "Tervetuloa HYDEA-palveluun!"
 
+  test:
+    "KOKEILU"
+
   ideas:
     "Ideat"
 
@@ -41,15 +44,47 @@ fin:
 
   should_be_signed:
     "Sinun pitää olla kirjautunut sisään"
-
-  comment_moderated_publish:
-    "Kommentti julkaistaan moderoinnin jälkeen"
-
-  comment_publish:
-    "Kommentti julkaistu onnistuneesti"
   
-  comment_update:
-    "Kommentti päivitetty onnistuneesti"
+  create:
+    "luotiin onnistuneesti"
 
-  comment_destroyed:
-    "Kommentti onnistuneesti poistettu"
+  moderated_publish:
+    "julkaistaan moderoinnin jälkeen"
+
+  publish:
+    "julkaistu onnistuneesti"
+  
+  update:
+    "päivitetty onnistuneesti"
+
+  destroy:
+    "onnistuneesti poistettu"
+
+  comment:
+    "Kommentti"
+
+  history:
+    "Historia"
+
+  idea:
+    "Idea"
+
+  
+  comment_moderation_enable:
+    "Kommenttien moderointi päällä"
+  
+  comment_moderation_disable:
+    "Kommenttien moderointi pois päältä"
+  
+  like:
+    "Tykkäys"
+  
+  destroy_only_own_like:
+    "Voit tuhota vain omia tykkäyksiä"
+  
+  tag:
+    "Tunnus"
+  
+  user:
+    "Käyttäjä"
+  

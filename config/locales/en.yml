@@ -24,6 +24,9 @@ en:
 
   greeting: "Welcome to HYDEA-service!"
 
+  test:
+    "EXAMINATION"
+
   ideas:
     "Ideas"
 
@@ -33,14 +36,44 @@ en:
   should_be_signed:
     "You have to be signed in"
 
-  comment_moderated_publish:
-    "Comment will be published after moderation"
+  create:
+    "was successfully created"
 
-  comment_publish:
-    "Comment successfully published"
+  moderated_publish:
+    "will be published after moderation"
 
-  comment_update:
-    "Comment successfully updated"
+  publish:
+    "successfully published"
 
-  comment_destroyed:
-    "Comment successfully deleted"
+  update:
+    "successfully updated"
+
+  destroy:
+    "successfully deleted"
+
+  comment:
+    "Comment"
+
+  history:
+    "History"
+  
+  idea:
+    "Idea"
+
+  comment_moderation_enable:
+    "Comments moderation enabled"
+  
+  comment_moderation_disable:
+    "Comments moderation disabled"
+  
+  like:
+    "Like"
+
+  destroy_only_own_like:
+    "You can only destroy own likes"
+  
+  tag:
+    "Tag"
+
+  user:
+    "User"

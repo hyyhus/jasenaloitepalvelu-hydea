@@ -3,6 +3,9 @@ swe:
 
   greeting: "Välkommen till HYDEA-service!"
 
+  test:
+    "EXEMPEL"
+
   ideas:
     "Idéer"
 
@@ -11,15 +14,45 @@ swe:
 
   should_be_signed:
     "Du måste vara inloggad"
+  
+  create:
+    "har skapats"
 
-  comment_moderated_publish:
-    "Komment ska publicera efter moderation"
+  moderated_publish:
+    "ska publicera efter moderation"
 
-  comment_publish:
-    "Komment publicerad med success"
+  publish:
+    "publicerad med success"
 
-  comment_update:
-    "Komment uppdaterad med success"
+  update:
+    "uppdaterad med success"
+  
+  destroy:
+    "tagits bort"
+  
+  comment:
+    "Komment"
 
-  comment_destroyed:
-    "Kommentera tagits bort"
+  history:
+    "Historia"
+  
+  idea:
+    "Ide"
+
+  comment_moderation_enable:
+    "Kommentarer moderation aktiverat"
+  
+  comment_moderation_disable:
+    "Kommentarer moderation inaktiverad"
+  
+  like:
+    "Gilla"
+  
+  destroy_only_own_like:
+    "Du kan bara förstöra egna gillar"
+
+  tag:
+    "Märke"
+  
+  user:
+    "Användare"
