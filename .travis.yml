@@ -10,7 +10,6 @@ branches:
   - master
   - integration
 before_script: bundle exec rake db:migrate RAILS_ENV=test
-before_install: sudo apt-get install -y xmlsec1 libxmlsec1-dev
 deploy:
   provider: heroku
   api_key:
