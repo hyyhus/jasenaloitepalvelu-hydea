@@ -1,3 +1,6 @@
+sudo: required
+services:
+  - docker
 language: ruby
 rvm:
 - 2.3.1
@@ -9,7 +12,16 @@ branches:
   only:
   - master
   - integration
+before_install:
+  - docker build -t hydea .
+  - docker run hydea /bin/sh -c "cd /usr/src/app; bundle exec rspec" 
 before_script: bundle exec rake db:migrate RAILS_ENV=test
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "integration" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" registry.heroku.com;
+    docker tag hydea registry.heroku.com/hydea/web
+    docker push registry.heroku.com/hydea/web
+    fi
 deploy:
   provider: heroku
   api_key:
