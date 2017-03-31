@@ -8,6 +8,9 @@ swe:
 
   ideas:
     "Idéer"
+  
+  ideas_by_user:
+    "Idéer som lämnats in av"
 
   users:
     "Användare"
@@ -37,13 +40,22 @@ swe:
     "Historia"
   
   idea:
-    "Ide"
+    "Idé"
+  
+  idea_moderation_enable:
+    "Moderation aktiverat"
+  
+  idea_moderation_disable:
+    "Moderation inaktiverad"
 
   comment_moderation_enable:
     "Kommentarer moderation aktiverat"
   
   comment_moderation_disable:
     "Kommentarer moderation inaktiverad"
+  
+  listing_comments:
+    "Notering commentater"
   
   like:
     "Gilla"
@@ -56,3 +68,84 @@ swe:
   
   user:
     "Användare"
+  
+  are_you_sure:
+    "Är du säker?"
+   
+  show:
+    "Visa"
+
+  back:
+    "Tillbaka"
+
+  delete:
+    "Radera"
+
+    
+  edit:
+    "Edera"
+
+  new:
+    "Ny"
+
+  time:
+    "Tid"
+   
+  text:
+    "Text"
+    
+  post_idea:
+    "Post idé"
+
+#Basket names
+
+  basket_new:
+    "Nya idéer"
+  basket_approved:
+    "Godkänd idéer"
+  basket_changing:
+    "Jobbar på denna idéer"
+  basket_changed:
+    "Ändrats idéer"
+  basket_not_changed:
+    "Inte förändrad idéer"
+  basket_rejected:
+    "Avvisade idéer"
+    
+  # buttons
+
+  move_to:
+    "Flytta till"
+
+  publish_button:
+    "Publicera"
+  
+  unpublish_button:
+    "Avpublicera"
+  
+  login_button: 
+    "Logga in"
+
+  logout_button:
+    "Logga ut"
+      
+  publish_and_moderate_button:
+    "Publicera med moderation"
+      
+  reject_button:
+    "Avvisa"
+  
+   # Move to basket buttons
+
+  move_basket_new:
+    "Nya"
+  move_basket_approved:
+    "Godkänd"
+  move_basket_changing:
+    "Jobbar på denna"
+  move_basket_changed:
+    "Ändrats"
+  move_basket_not_changed:
+    "Inte förändrad"
+  move_basket_rejected:
+    "Avvisa"

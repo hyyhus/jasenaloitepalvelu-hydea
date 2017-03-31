@@ -29,7 +29,9 @@ en:
 
   ideas:
     "Ideas"
-
+  
+  ideas_by_user:
+    "Ideas submitted by"
   users:
     "Users"
 
@@ -59,12 +61,21 @@ en:
   
   idea:
     "Idea"
+  
+  idea_moderation_enable:
+    "Enable moderation"
+  
+  idea_moderation_disable:
+    "Disable moderation"
 
   comment_moderation_enable:
     "Comments moderation enabled"
   
   comment_moderation_disable:
     "Comments moderation disabled"
+
+  listing_comments:
+    "Listing comments"
   
   like:
     "Like"
@@ -77,3 +88,83 @@ en:
 
   user:
     "User"
+
+  are_you_sure:
+    "Are you sure?"
+  
+  show:
+    "Show"
+
+  back:
+    "Back"
+
+  delete:
+    "Delete"
+  
+  edit:
+    "Edit"
+  
+  new:
+    "New"
+  
+  time:
+    "Time"
+  
+  text:
+    "Text"
+  
+  post_idea:
+    "Post idea"
+  
+  #Basket names
+
+  basket_new:
+    "New ideas"
+  basket_approved:
+    "Approved ideas"
+  basket_changing:
+    "Changing ideas"
+  basket_changed:
+    "Changed ideas"
+  basket_not_changed:
+    "Not changed ideas"
+  basket_rejected:
+    "Rejected ideas"
+  
+  # buttons
+
+  move_to:
+    "Move to"
+
+  publish_button:
+    "Publish"
+  
+  unpublish_button:
+    "Unpublish"
+  
+  login_button: 
+    "Login"
+
+  logout_button:
+    "Logout"
+  
+  publish_and_moderate_button:
+    "Publish and moderate"
+    
+  reject_button:
+    "Reject"
+  
+  # Move to basket buttons
+
+  move_basket_new:
+    "New"
+  move_basket_approved:
+    "Approved"
+  move_basket_changing:
+    "Changing"
+  move_basket_changed:
+    "Changed"
+  move_basket_not_changed:
+    "Not changed"
+  move_basket_rejected:
+    "Rejected"

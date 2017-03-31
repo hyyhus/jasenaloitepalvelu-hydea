@@ -33,9 +33,9 @@
         </li>
 	    <% if not session[:user_id].nil? %>
 			    <li><%= link_to User.find(session[:user_id]).name, User.find(session[:user_id])%></li>
-		    <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+		    <li><%= link_to (t :logout_button), logout_path, method: :delete %></li>
 		<% else %>
-			<li><%=  link_to 'Login', haka_auth_new_path %></li>
+			<li><%=  link_to (t :login_button), haka_auth_new_path %></li>
 		<% end %>
     </ul>
 	</div>

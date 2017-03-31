@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @comment %> |
-<%= link_to 'Back', idea_path(@comment.idea) %>
+<%= link_to (t :show), @comment %> |
+<%= link_to (t :back), idea_path(@comment.idea) %>
