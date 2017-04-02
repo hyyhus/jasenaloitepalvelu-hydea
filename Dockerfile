@@ -24,5 +24,5 @@ COPY . /usr/src/app
 
 # Run the app.  CMD is required to run on Heroku
 # $PORT is set by Heroku
-RUN RAILS_ENV=production bundle exec rake assets:precompile --trace
+RUN RAILS_ENV=development bundle exec rake assets:precompile --trace
 CMD rails s --port=$PORT
