@@ -19,8 +19,8 @@ before_script: bundle exec rake db:migrate RAILS_ENV=test
 after_success:
   - if [ "$TRAVIS_BRANCH" == "integration" ]; then
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" registry.heroku.com;
-    docker tag hydea registry.heroku.com/hydea/web
-    docker push registry.heroku.com/hydea/web
+    docker tag hydea registry.heroku.com/hydea-qa/web
+    docker push registry.heroku.com/hydea-qa/web
     fi
 # deploy:
 #   provider: heroku
