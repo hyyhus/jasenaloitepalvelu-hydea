@@ -1,3 +1,6 @@
+sudo: required
+services:
+  - docker
 language: ruby
 rvm:
 - 2.3.1
@@ -9,6 +12,9 @@ branches:
   only:
   - master
   - integration
+before_install:
+  - docker build -t hydea .
+  - docker run hydea /bin/sh -c "cd /usr/src/app; bundle exec rspec"
 before_script: bundle exec rake db:migrate RAILS_ENV=test
 after_success:
   - if [ "$TRAVIS_BRANCH" == "integration" ]; then
