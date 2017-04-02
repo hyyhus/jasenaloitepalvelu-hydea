@@ -10,12 +10,18 @@ branches:
   - master
   - integration
 before_script: bundle exec rake db:migrate RAILS_ENV=test
-deploy:
-  provider: heroku
-  api_key:
-    secure: lAk613j18tJE5ndP5dy+83ueTk8gh3CEeiGsQJ+8G5c+MtqL5E1+3CseIUjN0TGO73AeaHpcIu5qgyUDMVLlbGQM5vx76seKyh4urn00kwUH9hrsm5kscknAYdn4paQAk7maWNDCHf8EVLXznwuvjYEcrXm1cAA6jKVTisCtU4H5ndK7apz/zYsgFUhs2+JuDyocIrvpe3e85x8eZyo3Ex8huqwDmeKIul8IBmpS8a28FgCmsMywyxZjT40hWubKdtw0GM5jdVThBVhtULbJnV489TiQZnACOGZiR/hxuCk9tb6IG3ZYEzU8d1vTlMieMaqCiG0X9QHVF4Rw4TR0pkGX2ubBaVuVp/Uf+ard3wl0hi15eU/606rYFisSS4A1l0eRD479fuhu6ttosGxoXtEahhb/S2/3XVYgEPZ1eNAvzmttj18Gr8m3pXCRZdtg1TjI8xwbFksbSdWeA4rb8+nH026tiKIlDKhxZGzjDz4jewctpIj1ESicuMcHs9trIKycnc4rO8p+itRTkSDYe/oAtVN1uzLAyUMW7aquQhgHxtp8n43fRpW9CRw04PLZzjLtvJqfQ5Mx5kr0Q6ZmvksikJLn7nUkiUIFtEll470Rc0uhBNGQDmkYHYhYSBsNpkr0j793CpqJIIbqpIhXSUHKCEGSBcDyYvTq8ffmmv0=
-  app: 
-       integration: hydea-qa
-       master: kuuma-munakas-1337
-  on:
-    repo: hydea/hydea
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "integration" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" registry.heroku.com;
+    docker tag hydea registry.heroku.com/hydea-qa/web
+    docker push registry.heroku.com/hydea-qa/web
+    fi
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: lAk613j18tJE5ndP5dy+83ueTk8gh3CEeiGsQJ+8G5c+MtqL5E1+3CseIUjN0TGO73AeaHpcIu5qgyUDMVLlbGQM5vx76seKyh4urn00kwUH9hrsm5kscknAYdn4paQAk7maWNDCHf8EVLXznwuvjYEcrXm1cAA6jKVTisCtU4H5ndK7apz/zYsgFUhs2+JuDyocIrvpe3e85x8eZyo3Ex8huqwDmeKIul8IBmpS8a28FgCmsMywyxZjT40hWubKdtw0GM5jdVThBVhtULbJnV489TiQZnACOGZiR/hxuCk9tb6IG3ZYEzU8d1vTlMieMaqCiG0X9QHVF4Rw4TR0pkGX2ubBaVuVp/Uf+ard3wl0hi15eU/606rYFisSS4A1l0eRD479fuhu6ttosGxoXtEahhb/S2/3XVYgEPZ1eNAvzmttj18Gr8m3pXCRZdtg1TjI8xwbFksbSdWeA4rb8+nH026tiKIlDKhxZGzjDz4jewctpIj1ESicuMcHs9trIKycnc4rO8p+itRTkSDYe/oAtVN1uzLAyUMW7aquQhgHxtp8n43fRpW9CRw04PLZzjLtvJqfQ5Mx5kr0Q6ZmvksikJLn7nUkiUIFtEll470Rc0uhBNGQDmkYHYhYSBsNpkr0j793CpqJIIbqpIhXSUHKCEGSBcDyYvTq8ffmmv0=
+#   app: 
+#        integration: hydea-qa
+#        master: kuuma-munakas-1337
+#   on:
+#     repo: hydea/hydea
