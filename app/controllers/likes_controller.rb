@@ -29,7 +29,7 @@ class LikesController < ApplicationController
 
     respond_to do |format|
       if @like.save
-        format.html { redirect_to ideas_path, notice: 'Like was successfully created.' }
+        format.html { redirect_to ideas_path, notice: (t :like) + " " + (t :create) }
         format.json { render :show, status: :created, location: ideas}
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class LikesController < ApplicationController
   def update
     respond_to do |format|
       if @like.update(like_params)
-        format.html { redirect_to @like, notice: 'Like was successfully updated.' }
+        format.html { redirect_to @like, notice: (t :like) + " " + (t :update) }
         format.json { render :show, status: :ok, location: @like }
       else
         format.html { render :edit }
@@ -58,12 +58,12 @@ class LikesController < ApplicationController
 	  if @like.user==current_user
 		  @like.destroy
 		  respond_to do |format|
-			  format.html { redirect_to likes_url, notice: 'Like was successfully destroyed.' }
+			  format.html { redirect_to likes_url, notice: (t :like) + " " + (t :destroy)  }
 			  format.json { head :no_content }
 		  end
 	  else
 		  respond_to do |format|
-			  format.html { redirect_to ideas_url, notice: 'You can only destroy own likes' }
+			  format.html { redirect_to ideas_url, notice: (t :destroy_only_own_like) }
 			  format.json { head :no_content }
 		  end
 	  end

@@ -31,7 +31,7 @@ describe "Edit idea page" do
     expect(find('input[value="Kumpula"]')).not_to be_checked
 
     click_button('Update Idea')
-    click_link('Edit')
+    click_link('Muokkaa')
     expect(find('input[value="Kumpula"]')).not_to be_checked
   end
 
@@ -46,20 +46,20 @@ describe "Edit idea page" do
     expect(find('input[value="tag text"]')).to be_checked
 
     click_button('Update Idea')
-    click_link('Edit')
+    click_link('Muokkaa')
     expect(find('input[value="tag text"]')).to be_checked    
   end
     
-  it "scech that enable moderator works correctly" do
+  it "check that enable moderator works correctly" do
     page.set_rack_session(:user_id => user_moderator.id)
     page.visit edit_idea_path(idea)
-    expect(page).to have_content('Enable Moderate')
-      click_link("Enable Moderate")
-      expect(page).to have_content('Comments moderation enabled')
+    expect(page).to have_content('Moderointi päälle')
+      click_link("Moderointi päälle")
+      expect(page).to have_content('Kommenttien moderointi päällä')
 
-      click_link('Edit')
-      expect(page).to have_content('Disable Moderate')
-      click_link("Disable Moderate")
-      expect(page).to have_content('Comments moderation disabled')
+      click_link('Muokkaa')
+      expect(page).to have_content('Moderointi pois')
+      click_link("Moderointi pois")
+      expect(page).to have_content('Kommenttien moderointi pois päältä')
   end
 end

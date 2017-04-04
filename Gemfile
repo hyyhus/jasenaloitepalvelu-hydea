@@ -31,6 +31,8 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'launchy'
+  gem "simplecov"
+  gem "codeclimate-test-reporter", "~> 1.0.0"
 end
 
 # Use for Capybara session
@@ -59,3 +61,5 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Use xmlsec-ruby to validate metadata
 gem 'xmlsec-ruby', '~> 0.0.7'
+# add flags
+gem 'famfamfam_flags_rails'

@@ -7,7 +7,7 @@
         <%= @idea.histories.first.user.name %> - <%= @idea.histories.first.time.strftime('%d.%m.%Y %H:%M ') %>
       </p>
       <%if not @idea.tags.empty?%>
-        <p>Tags:
+        <p><%= (t :tags) %> 
           <% @idea.tags.each do |tag| %>
             <%= tag.text %>
             <% if not tag == @idea.tags.last%>
@@ -66,7 +66,7 @@
   </div>
 
   <h3>
-    Comments:
+    <%= (t :comments) %>
   </h3>
  <% @idea.comments.each do |comment| %>
 	 <% if (comment.visible? or (not current_user.nil? and current_user.moderator?)) %>
@@ -76,11 +76,11 @@
                         <div class="panel-heading">
                           <% if not session[:user_id].nil? and current_user.moderator %>
                             <% if comment.visible != true %>
-                              <%= link_to 'Publish', publish_comment_path(comment), method: :publish, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-success publish_comment" %>
+                              <%= link_to (t :publish_button), publish_comment_path(comment), method: :publish, data: { confirm: (t :are_you_sure) }, :class => "btn-sm btn-success publish_comment" %>
                             <% else %>
-                              <%= link_to 'Unpublish', unpublish_comment_path(comment), method: :unpublish, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-success publish_comment" %>
+                              <%= link_to (t :unpublish_button), unpublish_comment_path(comment), method: :unpublish, data: { confirm:  (t :are_you_sure) }, :class => "btn-sm btn-success publish_comment" %>
                              <% end %>
-                            <%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-danger delete_comment" %>
+                            <%= link_to (t :delete), comment, method: :delete, data: { confirm:  (t :are_you_sure) }, :class => "btn-sm btn-danger delete_comment" %>
                           <% end %>
                           <p>
                           <%= link_to comment.user.name, comment.user_id %>
@@ -105,7 +105,7 @@
       <%= f.hidden_field :time, :value => Time.now %>
       <div method="post" action="comment/new">
         <p>
-          Comment:
+         <%= (t :comment) %>
         </p>
         <%= f.text_area :text,class: "form-control", rows: "5", id: "comment"%>
           <button type="submit" class="btn btn-primary">Send </button>
@@ -115,8 +115,8 @@
 
   <p>
   <% if not session[:user_id].nil? and current_user.moderator %>
-    <%= link_to 'Edit', edit_idea_path(@idea) %> |
+    <%= link_to (t :edit), edit_idea_path(@idea) %> |
   <% end %>
-  <%= link_to 'Back to ideas', ideas_path %>
+  <%= link_to (t :ideas), ideas_path %>
   </p>
 </div>

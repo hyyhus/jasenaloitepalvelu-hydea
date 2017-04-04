@@ -21,15 +21,20 @@ class IdeasController < ApplicationController
   # GET /ideas/1
   # GET /ideas/1.json
   def show
-    if current_user.nil? && @idea.basket != "New"
+    if current_user.nil? && @idea.basket == "Rejected"
+      redirect_to '/ideas?basket=Approved' and return
+    elsif current_user.nil? && @idea.basket != "New"
       #Näytetään idea normaalisti, jos julkaistu.
     elsif current_user.nil? && @idea.basket == "New"
       redirect_to '/ideas?basket=Approved' and return
     elsif current_user.moderator?
       #Näytetään idea normaalisti kaikille moderaattoreille.
+    elsif @idea.basket == "Rejected"
+      redirect_to '/ideas?basket=Approved' and return
     elsif @idea.basket == "New" && current_user.id.to_s != @idea.histories.find_by(basket: "New").user_id
       redirect_to '/ideas?basket=Approved' and return
     end
+    #Näytetään käyttäjälle hänen oma ideansa
   end
 
   # GET /ideas/new
@@ -64,7 +69,7 @@ class IdeasController < ApplicationController
 
       respond_to do |format|
        if @history.save && @idea.save
-          format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
+          format.html { redirect_to @idea, notice: (t :idea) + " " + (t :create) }
           format.json { render :show, status: :created, location: @idea }
         else
           format.html { render :new }
@@ -79,7 +84,7 @@ class IdeasController < ApplicationController
   def update
     if params[:idea].nil?      
       @idea.tags.delete_all
-      redirect_to @idea, notice: 'Idea was successfully updated.' and return
+      redirect_to @idea, notice: (t :idea) + " " + (t :update) and return
     elsif params[:idea][:tags]      
       @idea.tags.delete_all
       params[:idea][:tags].each do |tag|
@@ -90,7 +95,7 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.update(idea_params)
-        format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
+        format.html { redirect_to @idea, notice: (t :idea) + " " + (t :update) }
         format.json { render :show, status: :ok, location: @idea }
       else
         format.html { render :edit }
@@ -104,7 +109,7 @@ class IdeasController < ApplicationController
   def destroy
     @idea.destroy
     respond_to do |format|
-      format.html { redirect_to ideas_url, notice: 'Idea was successfully destroyed.' }
+      format.html { redirect_to ideas_url, notice: (t :idea) + " " + (t :destroy)  }
       format.json { head :no_content }
     end
   end
@@ -122,13 +127,13 @@ class IdeasController < ApplicationController
   def moderate
     @idea.moderate = true
     @idea.save
-    redirect_to @idea, notice: 'Comments moderation enabled'
+    redirect_to @idea, notice: (t :comment_moderation_enable)
   end
 
   def un_moderate
     @idea.moderate = false
     @idea.save
-    redirect_to @idea, notice: 'Comments moderation disabled'
+    redirect_to @idea, notice: (t :comment_moderation_disable)
   end
 
   def reject
