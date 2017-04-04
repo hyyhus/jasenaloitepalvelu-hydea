@@ -15,5 +15,5 @@
   <%= @history.user_id %>
 </p>
 
-<%= link_to 'Edit', edit_history_path(@history) %> |
-<%= link_to 'Back', histories_path %>
+<%= link_to (t :edit), edit_history_path(@history) %> |
+<%= link_to (t :back), histories_path %>
