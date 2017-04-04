@@ -4,15 +4,12 @@ RSpec.describe UsersController, :type => :controller do
 
 	context "User not logged in" do
 
-#testi käyttöön tuotantoversioon
-		# describe "GET #index" do
-		# 	it "creates an array of correct users" do
-		#     user = FactoryGirl.create(:user)
-		# 	get :index
-		# 	expect(assigns(:users)).to eq(nil)
-		# 	end
-		# end
-
+		describe "GET #index" do
+		  it "It doesn't return user page" do
+        get :index
+				expect(response).to redirect_to ideas_path
+      end
+		end
 
 		describe "GET #show" do
 			it "It doesn't return user page" do
@@ -71,6 +68,13 @@ RSpec.describe UsersController, :type => :controller do
 		    session[:user_id] = current_user.id
 		end
 
+    describe "GET #index" do
+			it "shows all users" do
+        get :index
+			  expect(response).to render_template :index
+		  end
+		end
+
 		describe "GET #show" do
 			it "assigns the requested user to @user" do
 		    user = FactoryGirl.create(:user)
@@ -111,7 +115,25 @@ RSpec.describe UsersController, :type => :controller do
 		        expect{delete :destroy, params: { id: user }}.to change(User, :count).by(-1)
 			end
 		end
-	end
+
+    describe 'edits user' do
+      it 'removing moderator' do
+        @user_moderator = FactoryGirl.create(:user_moderator)
+        expect(@user_moderator.moderator).to be true
+        put :update, params: { id: @user_moderator, user: FactoryGirl.attributes_for(:user, moderator: :false)}
+        @user_moderator.reload
+        expect(@user_moderator.moderator).to be false
+      end
+
+			it 'adding moderator moderator' do
+        @user = FactoryGirl.create(:user_student)
+        expect(@user.moderator).to be false
+        put :update, params: { id: @user, user: FactoryGirl.attributes_for(:user, moderator: :true)}
+        @user.reload
+        expect(@user.moderator).to be true
+      end
+    end
+  end
 
 
 	context "Basic user logged in" do
@@ -120,14 +142,12 @@ RSpec.describe UsersController, :type => :controller do
 		    session[:user_id] = current_user.id
 		end
 
-        #Otetaan tuotanto versiossa käyttöön
-		# describe "GET #index" do
-		# 	it "Doesn't let them access user list" do
-		#     user = FactoryGirl.create(:user)
-		# 	get :index
-		# 	response.should redirect_to ideas_path
-		# 	end
-		# end
+		describe "GET #index" do
+		 	it "Doesn't let them access user list" do
+		  	get :index
+		   	expect(response).to redirect_to ideas_path
+      end
+		end
 
 
 		describe "GET #show" do
@@ -194,10 +214,13 @@ RSpec.describe UsersController, :type => :controller do
 			session[:user_id] = user.id
 			idea1 = FactoryGirl.create(:idea, topic: 'topic1')
 			idea1.histories.first.user = user
+			user.histories << idea1.histories.first
 			idea2 = FactoryGirl.create(:idea, topic: 'topic2')
 			idea2.histories.first.user = user
+			user.histories << idea2.histories.first
 			idea3 = FactoryGirl.create(:idea, topic: 'topic3')
 			idea3.histories.first.user = user
+			user.histories << idea3.histories.first
 			moderator = FactoryGirl.create(:user_moderator)
 			session[:user_id] = moderator.id
 			idea2.histories << FactoryGirl.create(:history, basket: 'Approved')
@@ -210,48 +233,48 @@ RSpec.describe UsersController, :type => :controller do
 		render_views
 
 		describe 'by the user' do
-			it 'and all ideas are shown' #do
-				#expect(response).to render_template :show
-				#expect(response.body).to have_content('topic1')
-				#expect(response.body).to have_content('topic2')
-				#expect(response.body).to have_content('topic3')
-			#end
+			it 'and all ideas are shown' do
+				expect(response).to render_template :show
+				expect(response.body).to have_content('topic1')
+				expect(response.body).to have_content('topic2')
+				expect(response.body).to have_content('topic3')
+			end
 		end
 
 		describe 'by other user' do
-			it 'and New and Rejected ideas are not shown' #do
-			#	newUser = FactoryGirl.create(:user, persistent_id: 123456789, name: "esa")
-			#	session[:user_id] = newUser.id
-			#	get :show, params: { id: 1 }
-			#	expect(response).to render_template :show
-			#	expect(response.body).to have_content('topic2')
-			#	expect(response.body).not_to have_content('topic1')
-			#	expect(response.body).not_to have_content('topic3')
-			#end
+			it 'and New and Rejected ideas are not shown' do
+				newUser = FactoryGirl.create(:user, persistent_id: 123456789, name: "esa")
+				session[:user_id] = newUser.id
+				get :show, params: { id: 1 }
+				expect(response).to render_template :show
+				expect(response.body).to have_content('topic2')
+				expect(response.body).not_to have_content('topic1')
+				expect(response.body).not_to have_content('topic3')
+			end
 		end
 
 		describe 'by moderator' do
-			it 'and all ideas are shown' #do
-			#	moderator = FactoryGirl.create(:user_moderator, persistent_id: 123456789)
-			#	session[:user_id] = moderator.id
-			#	get :show, params: { id: 1 }
-			#	expect(response).to render_template :show
-			#	expect(response.body).to have_content('topic1')
-			#	expect(response.body).to have_content('topic2')
-			#	expect(response.body).to have_content('topic3')
-			#end
+			it 'and all ideas are shown' do
+				moderator = FactoryGirl.create(:user_moderator, persistent_id: 123456789)
+				session[:user_id] = moderator.id
+				get :show, params: { id: 1 }
+				expect(response).to render_template :show
+				expect(response.body).to have_content('topic1')
+				expect(response.body).to have_content('topic2')
+				expect(response.body).to have_content('topic3')
+			end
 		end
 
 		describe 'by admin' do
-			it 'and New and Rejected ideas are not shown' #do
-			#	admin = FactoryGirl.create(:user_admin, persistent_id: 123456789)
-			#	session[:user_id] = admin.id
-			#	get :show, params: { id: 1 }
-			#	expect(response).to render_template :show
-			#	expect(response.body).to have_content('topic2')
-			#	expect(response.body).not_to have_content('topic1')
-			#	expect(response.body).not_to have_content('topic3')
-			#end
+			it 'and New and Rejected ideas are not shown' do
+				admin = FactoryGirl.create(:user_admin, persistent_id: 123456789)
+				session[:user_id] = admin.id
+				get :show, params: { id: 1 }
+				expect(response).to render_template :show
+				expect(response.body).to have_content('topic2')
+				expect(response.body).not_to have_content('topic1')
+				expect(response.body).not_to have_content('topic3')
+			end
 		end
 	end
 end

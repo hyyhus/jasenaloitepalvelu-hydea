@@ -16,7 +16,7 @@
               <p><%= link_to User.find(idea.histories.first.user_id).name, User.find(idea.histories.first.user_id) %> - <%= idea.histories.first.time.strftime('%d.%m.%Y %H:%M ') %></p>
               <%if idea.tags.empty?
                 else%>
-                  <p>Tags:
+                  <p><%= (t :tags) %> 
                   <% idea.tags.each do |tag| %>
                     <%= tag.text %>
                     <% if tag == idea.tags.last%>
@@ -33,35 +33,35 @@
               <% if not session[:user_id].nil? and current_user.moderator %>
                 <% if idea.histories.last.basket == "New"%>
                   <div class="btn-group">
-                    <%= link_to "Publish", publish_idea_path(idea), method: :post, class: "btn btn-primary" %>
+                    <%= link_to (t :publish_button), publish_idea_path(idea), method: :post, class: "btn btn-primary" %>
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                       <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                       <li>
-                        <%= link_to "Publish and Moderate", publish_moderate_idea_path(idea), method: :post%>
+                        <%= link_to (t :publish_and_moderate_button), publish_moderate_idea_path(idea), method: :post%>
                       </li>
                       <li>
-                        <%= link_to "Reject", reject_idea_path(idea), method: :post%>
+                        <%= link_to (t :reject_button), reject_idea_path(idea), method: :post%>
                       </li>
                     </ul>
                   </div>
                 <% elsif idea.histories.last.basket == "Approved" or idea.histories.last.basket == "Changing" %>
                   <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                      Move to <span class="caret"></span>
+                      (t :move_to)<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                       <% if idea.histories.last.basket == "Approved" %>
                       <li>
-                        <%= link_to "Changing", changing_idea_path(idea), method: :post%>
+                        <%= link_to (t :move_basket_changing), changing_idea_path(idea), method: :post%>
                       </li>
                       <% end %>
                       <li>
-                        <%= link_to "Changed", changed_idea_path(idea), method: :post%>
+                        <%= link_to (t :move_basket_changed), changed_idea_path(idea), method: :post%>
                       </li>
                       <li>
-                        <%= link_to "Not Changed", not_changed_idea_path(idea), method: :post%>
+                        <%= link_to (t :move_basket_not_changed), not_changed_idea_path(idea), method: :post%>
                       </li>
                     </ul>
                   </div>
@@ -120,9 +120,9 @@
               <div class="panel-heading">
                 <h4 class="panel-title">
                           <% if not current_user.nil? and current_user.moderator %>
-                  <a data-toggle="collapse" href="#collapse<%= idea.id * 2 +1 %>">Comments (<%= idea.comments.count %>)</a>
+                  <a data-toggle="collapse" href="#collapse<%= idea.id * 2 +1 %>"><%= (t :comments) %> (<%= idea.comments.count %>)</a>
 			  <% else %>
-                  <a data-toggle="collapse" href="#collapse<%= idea.id * 2 +1 %>">Comments (<%= idea.comments.where(visible: true).count %>)</a>
+                  <a data-toggle="collapse" href="#collapse<%= idea.id * 2 +1 %>"><%= (t :comments) %> (<%= idea.comments.where(visible: true).count %>)</a>
 			  <% end %>
                 </h4>
               </div>
@@ -137,11 +137,11 @@
                         <div class="panel-heading">
                           <% if not current_user.nil? and current_user.moderator %>
                             <% if comment.visible != true %>
-                            <%= link_to 'Publish', publish_comment_path(comment), method: :publish, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-success publish_comment" %>
+                            <%= link_to (t :publish_button), publish_comment_path(comment), method: :publish, data: { confirm: (t :are_you_sure) }, :class => "btn-sm btn-success publish_comment" %>
                             <% else %>
-                            <%= link_to 'Unpublish', unpublish_comment_path(comment), method: :unpublish, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-success publish_comment" %>
+                            <%= link_to (t :unpublish_button), unpublish_comment_path(comment), method: :unpublish, data: { confirm: (t :are_you_sure) }, :class => "btn-sm btn-success publish_comment" %>
                             <% end %>
-                            <%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn-sm btn-danger delete_comment" %>
+                            <%= link_to (t :delete), comment, method: :delete, data: { confirm: (t :are_you_sure) }, :class => "btn-sm btn-danger delete_comment" %>
                           <% end %>
                           <p>
                           <%= link_to comment.user.name, comment.user_id %>
@@ -168,7 +168,7 @@
                       <div method="post" action="comment/new">
                         <div class="panel panel-default">
                           <div class="panel-heading">
-                            <label for="comment">Comment:</label>
+                            <label for="comment"><%= (t :comment) %> </label>
                           </div>
                           <div class="panel-body">
                             <%= f.text_area :text,class: "form-control", rows: "5", id: "comment"%>

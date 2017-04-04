@@ -94,4 +94,31 @@ RSpec.describe 'UserFeature', type: :feature do
       end
     end
   end
+
+  context 'Admin is logged in' do
+    describe 'edits user' do
+      before :each do
+        page.set_rack_session(user_id: user_admin.id)
+      end
+
+      it 'removing moderator' do
+        page.visit edit_user_path(user_moderator)
+        uncheck('user[moderator]')
+        click_on('Update User')
+        page.visit edit_user_path(user_moderator)
+        page.check('user_moderator')
+        checkbox = find_by_id('user_moderator')
+        checkbox.has_no_checked_field?
+      end
+
+      it 'adding moderator' do
+        page.visit edit_user_path(user)
+        check('user[moderator]')
+        click_on('Update User')
+        page.visit edit_user_path(user)
+        checkbox = find_by_id('user_moderator')
+        checkbox.has_checked_field?
+      end
+    end
+  end
 end

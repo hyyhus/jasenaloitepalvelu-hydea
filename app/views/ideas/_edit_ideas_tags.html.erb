@@ -30,9 +30,9 @@
      <br>
 
     <% if @idea.moderate == false || @idea.moderate == nil %>
-      <%= link_to "Enable Moderate", moderate_idea_path(@idea), method: :post, class: "btn btn-primary" %>
+      <%= link_to (t :idea_moderation_enable), moderate_idea_path(@idea), method: :post, class: "btn btn-primary" %>
     <% elsif @idea.moderate == true %>
-      <%= link_to "Disable Moderate", un_moderate_idea_path(@idea), method: :post, class: "btn btn-primary" %>
+      <%= link_to (t :idea_moderation_disable), un_moderate_idea_path(@idea), method: :post, class: "btn btn-primary" %>
     <% end %>
 
   </div>
