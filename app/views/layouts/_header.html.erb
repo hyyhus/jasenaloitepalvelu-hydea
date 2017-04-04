@@ -23,13 +23,17 @@
           <%= t :greeting %> <!-- TESTIKENTTÄ LOKALISAATIOTA VARTEN -->
         </li>
         <li>
-          <%= link_to image_tag("", :class => "flag flag-gb"), language_english_path, method: :post %>
-        </li>
-        <li>
-          <%= link_to image_tag("", :class => "flag flag-fi"), language_finnish_path, method: :post %>
-        </li>
-        <li>
-          <%= link_to image_tag("", :class => "flag flag-se"), language_swedish_path, method: :post %>
+          <div class="btn-group">
+            <%= link_to language_finnish_path, method: :post, class: 'btn btn-default' do %>
+              <i class="famfamfam-flag-fi"></i>
+            <% end %>
+            <%= link_to language_english_path, method: :post, class: 'btn btn-default' do %>
+              <i class="famfamfam-flag-gb"></i>
+            <% end %>
+            <%= link_to language_swedish_path, method: :post, class: 'btn btn-default' do %>
+              <i class="famfamfam-flag-se"></i>
+            <% end %>
+          </div>
         </li>
 	    <% if not session[:user_id].nil? %>
 			    <li><%= link_to User.find(session[:user_id]).name, User.find(session[:user_id])%></li>
