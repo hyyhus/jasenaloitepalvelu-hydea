@@ -13,6 +13,7 @@ branches:
   - master
   - integration
 before_install:
+  - sudo apt-get install xmlsec1 libxmlsec1-dev
   - docker build -t hydea .
   #- docker run hydea /bin/sh -c "cd /usr/src/app; bundle exec rspec"
 before_script: bundle exec rake db:migrate RAILS_ENV=test
