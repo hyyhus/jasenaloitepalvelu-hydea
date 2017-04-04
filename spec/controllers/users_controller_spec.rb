@@ -4,15 +4,12 @@ RSpec.describe UsersController, :type => :controller do
 
 	context "User not logged in" do
 
-#testi käyttöön tuotantoversioon
-		# describe "GET #index" do
-		# 	it "creates an array of correct users" do
-		#     user = FactoryGirl.create(:user)
-		# 	get :index
-		# 	expect(assigns(:users)).to eq(nil)
-		# 	end
-		# end
-
+		describe "GET #index" do
+		  it "It doesn't return user page" do
+        get :index
+				expect(response).to redirect_to ideas_path
+      end
+		end
 
 		describe "GET #show" do
 			it "It doesn't return user page" do
@@ -71,6 +68,13 @@ RSpec.describe UsersController, :type => :controller do
 		    session[:user_id] = current_user.id
 		end
 
+    describe "GET #index" do
+			it "shows all users" do
+        get :index
+			  expect(response).to render_template :index
+		  end
+		end
+
 		describe "GET #show" do
 			it "assigns the requested user to @user" do
 		    user = FactoryGirl.create(:user)
@@ -111,7 +115,25 @@ RSpec.describe UsersController, :type => :controller do
 		        expect{delete :destroy, params: { id: user }}.to change(User, :count).by(-1)
 			end
 		end
-	end
+
+    describe 'edits user' do
+      it 'removing moderator' do
+        @user_moderator = FactoryGirl.create(:user_moderator)
+        expect(@user_moderator.moderator).to be true
+        put :update, params: { id: @user_moderator, user: FactoryGirl.attributes_for(:user, moderator: :false)}
+        @user_moderator.reload
+        expect(@user_moderator.moderator).to be false
+      end
+
+			it 'adding moderator moderator' do
+        @user = FactoryGirl.create(:user_student)
+        expect(@user.moderator).to be false
+        put :update, params: { id: @user, user: FactoryGirl.attributes_for(:user, moderator: :true)}
+        @user.reload
+        expect(@user.moderator).to be true
+      end
+    end
+  end
 
 
 	context "Basic user logged in" do
@@ -120,14 +142,12 @@ RSpec.describe UsersController, :type => :controller do
 		    session[:user_id] = current_user.id
 		end
 
-        #Otetaan tuotanto versiossa käyttöön
-		# describe "GET #index" do
-		# 	it "Doesn't let them access user list" do
-		#     user = FactoryGirl.create(:user)
-		# 	get :index
-		# 	response.should redirect_to ideas_path
-		# 	end
-		# end
+		describe "GET #index" do
+		 	it "Doesn't let them access user list" do
+		  	get :index
+		   	expect(response).to redirect_to ideas_path
+      end
+		end
 
 
 		describe "GET #show" do
