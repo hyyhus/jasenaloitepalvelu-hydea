@@ -8,9 +8,9 @@
 
 
 # #Demo test data
-# u1 = User.create name:"Onni Opiskelija", email:"onni.opiskelija@helsinki.fi", title:"opiskelija", persistent_id:"83030478869631327488", admin:false, moderator:false
-# u2 = User.create name:"Anni Admin", email:"anni.admin@helsinki.fi", title:"admin", persistent_id:"83030478869631327588", admin:true, moderator:false
-# u3 = User.create name:"Mauri Moderaattori", email:"mauri.moderaattori@helsinki.fi", title:"moderaattori", persistent_id:"83030478869631327688", admin:false, moderator:true
+# u1 = User.create name:"Onni Opiskelija", email:"onni.opiskelija@helsinki.fi", title:"opiskelija", persistent_id:"83030478869631327488", admin:false, moderator:false, banned = false
+# u2 = User.create name:"Anni Admin", email:"anni.admin@helsinki.fi", title:"admin", persistent_id:"83030478869631327588", admin:true, moderator:false, banned = false
+# u3 = User.create name:"Mauri Moderaattori", email:"mauri.moderaattori@helsinki.fi", title:"moderaattori", persistent_id:"83030478869631327688", admin:false, moderator:true, banned = false
 
 # i1 = Idea.create topic:"Virtuaalilasit laitokselle", text:"Software Factoryssa tarvitaan VR-laseja"
 # h1= History.create time: "2017-02-06 13:39:46", basket_id:1, user_id:1, idea_id:1
@@ -57,6 +57,7 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 			     email: email,
 			     admin: true,
 			     moderator: false,
+			     banned: false,
 			     persistent_id: persistent_id,
 			     title: title
 			    )
@@ -75,6 +76,7 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 			     email: email,
 			     admin: false,
 			     moderator: true,
+			     banned: false,
 			     persistent_id: persistent_id,
 			     title: title
 			    )
@@ -93,6 +95,7 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 			     email: email,
 			     admin: false,
 			     moderator: false,
+			     banned: false,
 			     persistent_id: persistent_id,
 			     title: ""
 			    )

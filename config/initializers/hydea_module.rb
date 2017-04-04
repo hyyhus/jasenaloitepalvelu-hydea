@@ -26,6 +26,7 @@ module Hydea
      def create_user(user, response, displayname, mail, uniquecode)
       user = User.new
       user.moderator = false
+      user.banned = false
       user.admin = false
       user.name = response.attributes[displayname]
       user.email = response.attributes[mail]
