@@ -46,7 +46,6 @@ gem 'ruby-saml'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
-#gem 'uglifier', '>= 1.3.0'
 gem 'uglifier', '~> 3.1', '>= 3.1.12'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
@@ -60,5 +59,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+# Use xmlsec-ruby to validate metadata
+gem 'xmlsec-ruby', '~> 0.0.7'
 # add flags
 gem 'famfamfam_flags_rails'
