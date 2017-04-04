@@ -61,3 +61,5 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # mock session for capybara
 gem 'rack_session_access'
+# add flags
+gem 'famfamfam_flags_rails'
