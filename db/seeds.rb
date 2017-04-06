@@ -129,3 +129,4 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 		Idea.all.sample.tags << Tag.all.sample
 	end
 
+end
