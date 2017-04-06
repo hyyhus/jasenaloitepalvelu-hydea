@@ -155,3 +155,8 @@ swe:
     "Inte förändrad"
   move_basket_rejected:
     "Avvisa"
+
+  filter_ideas:
+    ""
+  filter:
+    ""

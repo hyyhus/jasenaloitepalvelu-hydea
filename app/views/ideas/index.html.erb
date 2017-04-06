@@ -29,14 +29,17 @@
 
   <!-- Show tags -->
   <div class="center tags">
+
+    <%= form_tag(ideas_path, method: "get") do %>
+      <%= hidden_field_tag(:basket, params[:basket]) %>
+      <%= label_tag(:q, (t :filter_ideas)) %>
     <% Tag.all.each do |menutag| %>
-      <label class="checkbox-inline"><input type="checkbox" value="">
-      <%= menutag.text %>
-      </label>
-      <% if menutag == Tag.find(4)%>
-        <br>
-      <% end %>
+      <%= label_tag(menutag.text) %>
+      <%= check_box_tag(menutag.text) %>
     <% end %>
+      <%= submit_tag((t :filter)) %>
+    <% end %>
+
   </div>
   <!-- End tags -->
 </div>
