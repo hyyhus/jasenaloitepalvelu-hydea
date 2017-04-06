@@ -184,3 +184,11 @@ fin:
     "Ei muutettu"
   move_basket_rejected:
     "Hylätty"
+
+  #FAQ
+
+  faq_topic:
+    "Usein kysytyt kysymykset"
+    
+  faq_button:
+    "UKK"

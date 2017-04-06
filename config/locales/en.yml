@@ -174,3 +174,11 @@ en:
     "Not changed"
   move_basket_rejected:
     "Rejected"
+
+  #FAQ
+
+  faq_topic:
+    "Frequently asked questions"
+  
+  faq_button:
+    "FAQ"

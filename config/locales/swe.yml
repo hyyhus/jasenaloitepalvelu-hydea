@@ -155,3 +155,11 @@ swe:
     "Inte förändrad"
   move_basket_rejected:
     "Avvisa"
+
+  #FAQ
+
+  faq_topic:
+    "Vanliga Fragor"
+    
+  faq_button:
+    "FAQ"

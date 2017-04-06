@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   resources :ideas
   resources :histories
   resources :users
+  resources :faqs
   post 'language/english'
   post 'language/finnish'
   post 'language/swedish'
   root 'ideas#index'
+  get 'faq', to: 'faqs#show'
 
   # Hydea specific
   resource :session, only: [:destroy, :new]
