@@ -30,7 +30,7 @@ RSpec.describe Idea, type: :model do
     idea.likes << FactoryGirl.create(:like, idea_id: idea.id)
     expect(idea.topic).to eq("idea topic")
     expect(idea.text).to eq("idea text")
-    expect(idea.likes).not_to be_empty  
+    expect(idea.likes.count).to eq(1)
     expect(idea.histories).not_to be_empty      
 
     idea.tags << [FactoryGirl.create(:tag)]

@@ -63,3 +63,5 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'famfamfam_flags_rails'
 # Use xmlsec-ruby to validate metadata
 gem 'xmlsec-ruby', '~> 0.0.7'
+# Sort ideas
+gem 'ransack', github: 'activerecord-hackery/ransack'
