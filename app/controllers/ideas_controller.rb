@@ -12,7 +12,9 @@ class IdeasController < ApplicationController
       if (params[:basket] == 'New' or params[:basket] == 'Rejected') and not current_user.moderator?
         redirect_to '/ideas?basket=Approved'
       end
-      @ideas = Idea.all.select{|i| i.basket == params[:basket].to_s}
+      tags = []
+      params.keys.each{|k| if Tag.all.find_by(text: k) then tags<<k end}
+      @ideas = Idea.all.select{|i| i.basket == params[:basket].to_s and i.tags.find_by(text: tags)}
     else
       redirect_to '/ideas?basket=Approved'
     end
