@@ -32,12 +32,12 @@
 
     <%= form_tag(ideas_path, method: "get") do %>
       <%= hidden_field_tag(:basket, params[:basket]) %>
-      <%= label_tag(:q, "Filter ideas:") %>
+      <%= label_tag(:q, (t :filter_ideas)) %>
     <% Tag.all.each do |menutag| %>
       <%= label_tag(menutag.text) %>
       <%= check_box_tag(menutag.text) %>
     <% end %>
-      <%= submit_tag("Filter") %>
+      <%= submit_tag((t :filter)) %>
     <% end %>
 
   </div>

@@ -174,3 +174,8 @@ en:
     "Not changed"
   move_basket_rejected:
     "Rejected"
+
+  filter_ideas:
+    "Filter ideas"
+  filter:
+    "Filter"
