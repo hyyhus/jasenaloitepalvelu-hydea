@@ -40,10 +40,14 @@
   </div>
   <!-- End tags -->
   <!-- Show sort -->
-  <%= sort_link @q, :topic_case_insensitive, 'Topic' %>-
-  <%= sort_link @q, :created_at %>-
+  <%= sort_link @q, :topic_case_insensitive do %>
+    Topic
+  <% end %>
+  <%= sort_link @q, :created_at do %>
+    Time
+  <% end %>
   <%= sort_link @q, :likes_count_sort do  %>
-  likes
+    Likes
   <% end %>
   <!-- End sort -->
 </div>

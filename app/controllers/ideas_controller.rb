@@ -9,7 +9,8 @@ class IdeasController < ApplicationController
   # GET /ideas.json
   def index
     @q = Idea.ransack(params[:q])
-    @idea = @q.result(distinct: false)
+    @q.sorts = 'created_at' if @q.sorts.empty?
+    @idea = @q.result(distinct: true)
     if params[:basket]
       if (params[:basket] == 'New' or params[:basket] == 'Rejected') and not current_user.moderator?
         redirect_to '/ideas?basket=Approved'
