@@ -18,7 +18,6 @@
         <td><%= faq.text %></td>
         <td><%= link_to (t :show), faq %></td>
         <td><%= link_to (t :edit), edit_faq_path(faq) %></td>
-        <td><%= link_to (t :delete), faq, method: :delete, data: { confirm: (t :are_you_sure) } %></td>
       </tr>
     <% end %>
   </tbody>

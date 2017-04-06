@@ -14,7 +14,7 @@ class FaqsController < ApplicationController
   # GET /faqs/1
   # GET /faqs/1.json
   def show
-    @faq = Faq.find_by(params[:language])
+    @faq = Faq.find_by(language: session[:locale])
   end
 
   # GET /faqs/new
@@ -23,7 +23,8 @@ class FaqsController < ApplicationController
   end
 
   # GET /faqs/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /faqs
   # POST /faqs.json
