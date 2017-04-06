@@ -35,7 +35,7 @@
       <%= label_tag(:q, (t :filter_ideas)) %>
     <% Tag.all.each do |menutag| %>
       <%= label_tag(menutag.text) %>
-      <%= check_box_tag(menutag.text) %>
+      <%= check_box_tag(menutag.text, menutag.text, !(params[menutag.text].nil?)) %>
     <% end %>
       <%= submit_tag((t :filter)) %>
     <% end %>
