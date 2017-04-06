@@ -57,7 +57,6 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 			     email: email,
 			     admin: true,
 			     moderator: false,
-			     banned: false,
 			     persistent_id: persistent_id,
 			     title: title
 			    )
@@ -76,7 +75,6 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 			     email: email,
 			     admin: false,
 			     moderator: true,
-			     banned: false,
 			     persistent_id: persistent_id,
 			     title: title
 			    )
@@ -95,7 +93,6 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 			     email: email,
 			     admin: false,
 			     moderator: false,
-			     banned: false,
 			     persistent_id: persistent_id,
 			     title: ""
 			    )
