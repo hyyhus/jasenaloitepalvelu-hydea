@@ -49,7 +49,7 @@
                 <% elsif idea.histories.last.basket == "Approved" or idea.histories.last.basket == "Changing" %>
                   <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                      (t :move_to)<span class="caret"></span>
+			    <%= (t :move_to) %> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                       <% if idea.histories.last.basket == "Approved" %>
