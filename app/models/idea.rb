@@ -13,4 +13,14 @@ class Idea < ApplicationRecord
 	def basket
 		self.histories.last.basket
 	end
+
+	ransacker :likes_count_sort do
+		Arel.sql('likes_count')
+	end
+
+
+	#Custom sort ABC
+	ransacker :topic_case_insensitive, type: :string do
+		arel_table[:topic].lower
+	end
 end
