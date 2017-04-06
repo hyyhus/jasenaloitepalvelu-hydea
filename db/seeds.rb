@@ -30,7 +30,7 @@ tags = ["Keskusta", "Viikki", "Kumpula", "Meilahti", "Unicafe", "Kulttuuri", "Ed
 tags.each {|t| Tag.create!(text: t)}
 
 case Rails.env
-when "development"
+when "development", "production"
 
 baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 
@@ -57,7 +57,6 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 			     email: email,
 			     admin: true,
 			     moderator: false,
-			     banned: false,
 			     persistent_id: persistent_id,
 			     title: title
 			    )
@@ -76,7 +75,6 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 			     email: email,
 			     admin: false,
 			     moderator: true,
-			     banned: false,
 			     persistent_id: persistent_id,
 			     title: title
 			    )
@@ -95,7 +93,6 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 			     email: email,
 			     admin: false,
 			     moderator: false,
-			     banned: false,
 			     persistent_id: persistent_id,
 			     title: ""
 			    )
@@ -129,5 +126,4 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 		Idea.all.sample.tags << Tag.all.sample
 	end
 
-when "production"
 end
