@@ -10,7 +10,6 @@ RSpec.describe "faqs/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Language/)
     expect(rendered).to match(/Text/)
   end
 end
