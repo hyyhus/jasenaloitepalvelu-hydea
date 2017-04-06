@@ -39,6 +39,11 @@
     <% end %>
   </div>
   <!-- End tags -->
+  <!-- Show sort -->
+  <%= sort_link @q, :topic, 'Topic' %>-
+  <%= sort_link @q, :created_at %>-
+  <%= sort_link @q, :likes.length %>
+  <!-- End sort -->
 </div>
 <!-- End top bar -->
 

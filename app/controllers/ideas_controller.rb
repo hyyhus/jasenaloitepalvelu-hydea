@@ -8,11 +8,13 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
+    @q = Idea.ransack(params[:q])
+    @idea = @q.result(distinct: false)
     if params[:basket]
       if (params[:basket] == 'New' or params[:basket] == 'Rejected') and not current_user.moderator?
         redirect_to '/ideas?basket=Approved'
       end
-      @ideas = Idea.all.select{|i| i.basket == params[:basket].to_s}
+      @ideas = @idea.all.select{|i| i.basket == params[:basket].to_s}
     else
       redirect_to '/ideas?basket=Approved'
     end
@@ -82,16 +84,16 @@ class IdeasController < ApplicationController
   # PATCH/PUT /ideas/1
   # PATCH/PUT /ideas/1.json
   def update
-    if params[:idea].nil?      
+    if params[:idea].nil?
       @idea.tags.delete_all
       redirect_to @idea, notice: (t :idea) + " " + (t :update) and return
-    elsif params[:idea][:tags]      
+    elsif params[:idea][:tags]
       @idea.tags.delete_all
       params[:idea][:tags].each do |tag|
         newTag = Tag.find_by text: tag
         @idea.tags << newTag
       end
-    end   
+    end
 
     respond_to do |format|
       if @idea.update(idea_params)
