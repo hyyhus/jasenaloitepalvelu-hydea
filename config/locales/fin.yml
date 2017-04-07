@@ -194,3 +194,6 @@ fin:
     "Suodata ideat"
   filter:
     "Suodata"
+
+  you_are_banned:
+    "Käyttöoikeus estetty"
