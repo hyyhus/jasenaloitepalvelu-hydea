@@ -63,3 +63,5 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'xmlsec-ruby', '~> 0.0.7'
 # add flags
 gem 'famfamfam_flags_rails'
+# Sort ideas
+gem 'ransack', '~> 1.8', '>= 1.8.2'

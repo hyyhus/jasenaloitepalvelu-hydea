@@ -1,5 +1,5 @@
 class Like < ApplicationRecord
-	belongs_to :idea
+	belongs_to :idea, counter_cache: true
 	belongs_to :user
 
 	validates_uniqueness_of :user, scope: :idea
