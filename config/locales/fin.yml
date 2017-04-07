@@ -22,6 +22,11 @@
 fin:
   hello: "Terve Maailma!"
 
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'Validointi epäonnistui: %{errors}'
+
 
 # Names for Faker
   faker:
