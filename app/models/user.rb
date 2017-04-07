@@ -6,5 +6,6 @@ class User < ApplicationRecord
 	#Validations
 	validates :name, presence: true
 	validates :persistent_id, uniqueness: true, presence: true
+	validates :banned, exclusion: { in: [nil] }
 
 end
