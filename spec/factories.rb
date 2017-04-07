@@ -154,10 +154,10 @@ FactoryGirl.define do
 		text "tag text"
 	end
   
-	factory :like do
-		like_type "like"
-	   	user {FactoryGirl.create(:user, persistent_id: Faker::Number.unique.number(20))}
-		idea {FactoryGirl.create(:idea)}
-	end
+  factory :like do
+    like_type "like"
+    user {FactoryGirl.create(:user, persistent_id: Faker::Number.unique.number(20))}
+    idea {FactoryGirl.create(:idea)}
+  end
 
 end
