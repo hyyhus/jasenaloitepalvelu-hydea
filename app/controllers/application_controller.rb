@@ -18,15 +18,18 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_that_signed_in
-    redirect_to ideas_path, notice: (t :should_be_signed) if current_user.nil?
+    redirect_to ideas_path, notice: (t :should_be_signed) and return if current_user.nil?
+    redirect_to ideas_path, notice: (t :you_are_banned) if current_user.banned? == true
   end
 
   def ensure_that_is_admin
-    redirect_to ideas_path if current_user.nil? || !current_user.admin
+    redirect_to ideas_path and return if current_user.nil? || !current_user.admin
+    redirect_to ideas_path, notice: (t :you_are_banned) if current_user.banned? == true
   end
 
   def ensure_that_is_moderator
-    redirect_to ideas_path if current_user.nil? || !current_user.moderator
+    redirect_to ideas_path and return if current_user.nil? || !current_user.moderator
+    redirect_to ideas_path, notice: (t :you_are_banned) if current_user.banned? == true
   end
 
 end
