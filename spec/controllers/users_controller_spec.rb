@@ -101,14 +101,6 @@ RSpec.describe UsersController, :type => :controller do
 			end
 		end
 
-		describe "POST #create" do
-			it "create new if admin" do
-				expect{
-				post :create, params: { user: FactoryGirl.attributes_for(:user) }
-				}.to change(User, :count).by(1)
-			end
-		end
-
 		describe "DELETE #destroy" do
 			it "destroy user" do
 				user = FactoryGirl.create(:user)
