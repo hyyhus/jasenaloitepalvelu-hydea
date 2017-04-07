@@ -189,3 +189,8 @@ fin:
     "Ei muutettu"
   move_basket_rejected:
     "Hylätty"
+
+  filter_ideas:
+    "Suodata ideat"
+  filter:
+    "Suodata"

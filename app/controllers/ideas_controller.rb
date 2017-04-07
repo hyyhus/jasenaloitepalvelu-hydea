@@ -18,9 +18,9 @@ class IdeasController < ApplicationController
       tags = []
       params.keys.each{|k| if Tag.all.find_by(text: k) then tags<<k end}
       if tags.empty? then
-      @ideas = @idea.all.select{|i| i.basket == params[:basket].to_s }
+      @ideas = @Idea.all.select{|i| i.basket == params[:basket].to_s }
       else
-      @ideas = @idea.all.select{|i| i.basket == params[:basket].to_s and i.tags.find_by(text: tags)}
+      @ideas = @Idea.all.select{|i| i.basket == params[:basket].to_s and i.tags.find_by(text: tags)}
       end
     else
       redirect_to '/ideas?basket=Approved'
