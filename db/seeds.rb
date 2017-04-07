@@ -57,6 +57,7 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 			     email: email,
 			     admin: true,
 			     moderator: false,
+			     banned: false,
 			     persistent_id: persistent_id,
 			     title: title
 			    )
@@ -75,6 +76,7 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 			     email: email,
 			     admin: false,
 			     moderator: true,
+			     banned: false,
 			     persistent_id: persistent_id,
 			     title: title
 			    )
@@ -93,9 +95,11 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 			     email: email,
 			     admin: false,
 			     moderator: false,
+			     banned: false,
 			     persistent_id: persistent_id,
 			     title: ""
 			    )
+
 	end
 
 	ideas.times do |n|
@@ -125,6 +129,5 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 	tags.size.times do |n|
 		Idea.all.sample.tags << Tag.all.sample
 	end
-
 when "production"
 end

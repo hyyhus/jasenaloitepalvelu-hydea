@@ -27,6 +27,7 @@ module Hydea
       user = User.new
       user.moderator = false
       user.admin = false
+      user.banned = false
       user.name = response.attributes[displayname]
       user.email = response.attributes[mail]
       user.title = ''
