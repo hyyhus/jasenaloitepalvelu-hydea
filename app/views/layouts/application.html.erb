@@ -5,19 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <% if request.path_info.include?('ideas/') %>
     <meta property="og:title" content="<%= @idea.topic %> | Hydea" />
-    <meta property="og:description" content="<%= @idea.text%>" />
   <% else %>
     <!-- Selitys siitä mikä hydea on -->
-    <meta property="og:title" content="Hydea" />
     <meta property="og:description" content="Your description" />
   <% end %>
-  <meta property="og:image" content="http://hyy.helsinki.fi/sites/default/files/HYY_LOGO.png" />
-  <meta property="og:image:secure_url" content="https://hyy.helsinki.fi/sites/default/files/HYY_LOGO.png" />
+  <meta property="og:image" content="~/app/images/logo/hyy-seppele.png" />
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/fi_FI/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <%= render 'layouts/header' %>
 

@@ -65,5 +65,3 @@ gem 'famfamfam_flags_rails'
 gem 'xmlsec-ruby', '~> 0.0.7'
 # Sort ideas
 gem 'ransack', '~> 1.8', '>= 1.8.2'
-# add social media share buttons
-gem 'social-share-button'
