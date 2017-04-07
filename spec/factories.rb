@@ -56,6 +56,16 @@ FactoryGirl.define do
 		persistent_id Faker::Number.unique.number(20)
 	end
 
+	factory :user_banned, class: User do
+		name "Bad person"
+		email "get@out.fi"
+		admin "false"
+		moderator "false"
+    banned true
+		title ""
+		persistent_id Faker::Number.unique.number(20)
+	end
+
 	factory :comment do
   		time Time.now
   		text "comment text"
