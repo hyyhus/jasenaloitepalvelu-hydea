@@ -25,21 +25,14 @@
 				      <span class="glyphicon glyphicon-thumbs-up"></span>
 				      <%= @idea.likes.length %>
 			      <% end %>
-			      <%= link_to @idea, :class => 'btn btn-primary', :title => 'Show idea' do %>
-				      <span class="glyphicon glyphicon-share"></span>
-			      <% end %>
 		      <% else %>
 			      <%= link_to unlike_idea_path(@idea), :class => 'btn btn-success', method: :post do %>
 				      <span class="glyphicon glyphicon-thumbs-up"></span>
 				      <%= @idea.likes.length %>
 			      <% end %>
-			      <%= link_to @idea, :class => 'btn btn-primary', :title => 'Show idea' do %>
-				      <span class="glyphicon glyphicon-share"></span>
-			      <% end %>
 		      <% end %>
 
 	      <% end %>
-      <div class="fb-share-button" data-href="<%= request.url%>" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Jaa</a></div>
       <%= social_share_button_tag('Hydea | ' + @idea.topic, name: 'Hydea', url: request.url, popup: 'true') %>
     </div>
   </div>
