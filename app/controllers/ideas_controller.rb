@@ -15,7 +15,6 @@ class IdeasController < ApplicationController
       if (params[:basket] == 'New' or params[:basket] == 'Rejected') and not current_user.moderator?
         redirect_to '/ideas?basket=Approved'
       end
-<<<<<<< HEAD
       tags = []
       params.keys.each{|k| if Tag.all.find_by(text: k) then tags<<k end}
       if tags.empty? then
@@ -23,9 +22,6 @@ class IdeasController < ApplicationController
       else
       @ideas = @idea.all.select{|i| i.basket == params[:basket].to_s and i.tags.find_by(text: tags)}
       end
-=======
-      @ideas = @idea.all.select{|i| i.basket == params[:basket].to_s}
->>>>>>> parent of 9b4f8e3... Fix ideas controller merge
     else
       redirect_to '/ideas?basket=Approved'
     end
