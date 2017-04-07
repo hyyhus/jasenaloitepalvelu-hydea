@@ -63,3 +63,5 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'xmlsec-ruby', '~> 0.0.7'
 # add flags
 gem 'famfamfam_flags_rails'
+# add social media share buttons
+gem 'social-share-button'
