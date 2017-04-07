@@ -216,4 +216,52 @@ RSpec.describe 'IdeaFeature', type: :feature do
       end
     end
   end
+
+  describe 'sort ideas' do
+    before :each do
+      idea1 = FactoryGirl.create(:idea_approved, topic: 'AAA older idea with likes', created_at: '2018-01-01 00:00:00')
+      idea2 = FactoryGirl.create(:idea_approved, topic: 'ZZZ newer idea without likes', created_at: '2000-01-01 00:00:00')
+      like = FactoryGirl.create(:like, idea_id: idea1.id)
+      visit '/'
+    end
+    context 'by date' do
+      it 'from new to old' do
+        expect find('h4:first-child', text: 'ZZZ newer idea without like')
+        expect find('h4:nth-last-child(2)', text: 'AAA older idea with likes')
+      end
+      it 'from old to new' do
+        page.find_link(nil, href: /created_at/).click
+        expect find('h4:first-child', text: 'AAA older idea with like')
+        expect find('h4:nth-last-child(2)', text: 'ZZZ newer idea without likes')
+      end
+    end
+    context 'by topic' do
+      before :each do
+        page.find_link(nil, href: /topic_case_insensitive/).click
+      end
+      it 'ascending' do
+        expect find('h4:first-child', text: 'AAA older idea with like')
+        expect find('h4:nth-last-child(2)', text: 'ZZZ newer idea without likes')
+      end
+      it 'descending' do
+        page.find_link(nil, href: /topic_case_insensitive/).click
+        expect find('h4:first-child', text: 'ZZZ newer idea without like')
+        expect find('h4:nth-last-child(2)', text: 'AAA older idea with likes')
+      end
+    end
+    context 'by likes' do
+      before :each do
+        page.find_link(nil, href: /likes_count_sort/).click
+      end
+      it 'ascending' do
+        expect find('h4:first-child', text: 'ZZZ newer idea without like')
+        expect find('h4:nth-last-child(2)', text: 'AAA older idea with likes')
+      end
+      it 'descending' do
+        page.find_link(nil, href: /likes_count_sort/).click
+        expect find('h4:first-child', text: 'AAA older idea with like')
+        expect find('h4:nth-last-child(2)', text: 'ZZZ newer idea without likes')
+      end
+    end
+  end
 end
