@@ -64,4 +64,4 @@ gem 'xmlsec-ruby', '~> 0.0.7'
 # add flags
 gem 'famfamfam_flags_rails'
 # Sort ideas
-gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'ransack', '~> 1.8', '>= 1.8.2'
