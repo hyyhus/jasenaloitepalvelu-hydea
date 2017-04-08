@@ -74,3 +74,21 @@ a .flag{
 .social-share-button-twitter:hover{
 	background: url("/assets/sprites/social-share-button-01bd4e9a7782620aab986c55abc6ecb9ee88d50bb51f28c2f00fe36d87a0944c.png") -48px -48px no-repeat;
 }
+
+.list_users{
+	width: 100%;
+}
+
+.list_users, th, td{
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+tr:nth-child(even){
+	background-color: #e3e3e3;
+}
+
+.bg{
+	color: #ff0000;
+}
