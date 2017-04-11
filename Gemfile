@@ -69,7 +69,3 @@ gem 'xmlsec-ruby', '~> 0.0.7'
 gem 'ransack', '~> 1.8', '>= 1.8.2'
 # add social media share buttons
 gem 'social-share-button', '~> 0.10.0'
-# Puma development web server
-gem 'puma', '~> 3.8', '>= 3.8.2'
-# Match Heroku timeout to Puma
-gem 'rack-timeout', '~> 0.4.2'
