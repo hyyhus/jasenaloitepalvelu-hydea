@@ -13,9 +13,7 @@ RUN apt-get update && apt-get install -y nodejs --no-install-recommends && rm -r
 RUN apt-get update && apt-get install -y mysql-client postgresql-client sqlite3 xmlsec1 libxmlsec1-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
 COPY Gemfile /usr/src/app/
-
-# Uncomment the line below if Gemfile.lock is maintained outside of build process
-# COPY Gemfile.lock /usr/src/app/
+COPY Gemfile.lock /usr/src/app/
 
 
 RUN bundle install
