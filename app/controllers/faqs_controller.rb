@@ -3,7 +3,7 @@ require 'redcarpet'
 
 class FaqsController < ApplicationController
   before_action :set_faq, only: [:edit, :update, :destroy]
-   before_action :ensure_that_is_moderator, except: [:show]
+  before_action :ensure_that_is_moderator, except: [:show]
 
 
   # GET /faqs

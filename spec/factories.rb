@@ -160,4 +160,9 @@ FactoryGirl.define do
 		idea {FactoryGirl.create(:idea)}
 	end
 
+	factory :faq, class: Faq do
+		language "language"
+		text "text"
+	end
+
 end

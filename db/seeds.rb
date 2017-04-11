@@ -29,8 +29,13 @@
 tags = ["Keskusta", "Viikki", "Kumpula", "Meilahti", "Unicafe", "Kulttuuri", "Edut", "Järjestöt"]
 tags.each {|t| Tag.create!(text: t)}
 
+
 case Rails.env
 when "development"
+
+Faq.create(language: 'en', text: 'English FAQ text')
+Faq.create(language: 'fin', text: 'Finnish FAQ text')
+Faq.create(language: 'swe', text: 'Swedish FAQ text')
 
 baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 
