@@ -5,6 +5,7 @@ FactoryGirl.define do
 		email "testi@blaa.fi"
 		admin "false"
 		moderator "false"
+    banned "false"
 		title "opiskelija"
 		persistent_id Faker::Number.unique.number(20)
 	end
@@ -14,6 +15,7 @@ FactoryGirl.define do
 		email "testi_opiskelija@blaa.fi"
 		admin "false"
 		moderator "false"
+    banned "false"
 		title "opiskelija"
 		persistent_id Faker::Number.unique.number(20)
 	end
@@ -23,6 +25,7 @@ FactoryGirl.define do
 		email "testi_opiskelija@blaa.fi"
 		admin "false"
 		moderator "false"
+    banned "false"
 		title "opiskelija"
 		persistent_id Faker::Number.unique.number(20)
 		histories {[FactoryGirl.create(:history_student)]}
@@ -33,6 +36,7 @@ FactoryGirl.define do
 		email "testaaja@blaa.fi"
 		admin "false"
 		moderator "false"
+    banned "false"
 		title "opiskelija"
 		persistent_id Faker::Number.unique.number(20)
 		histories {[FactoryGirl.create(:history)]}
@@ -43,6 +47,7 @@ FactoryGirl.define do
 		email "testaaja@blaa.fi"
 		admin "true"
 		moderator "false"
+    banned "false"
 		title "admin"
 		persistent_id Faker::Number.unique.number(20)
 	end
@@ -52,9 +57,20 @@ FactoryGirl.define do
 		email "testaaja@blaa.fi"
 		admin "false"
 		moderator "true"
+    banned "false"
 		title "työntekijä"
 		persistent_id Faker::Number.unique.number(20)
 	end
+
+  factory :user_banned, class: User do
+    name "Bad person"
+    email "get@out.fi"
+    admin "false"
+    moderator "false"
+    banned true
+    title ""
+    persistent_id Faker::Number.unique.number(20)
+  end
 
 	factory :comment do
   		time Time.now
