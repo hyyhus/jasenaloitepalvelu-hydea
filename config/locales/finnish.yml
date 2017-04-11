@@ -205,3 +205,12 @@ fin:
 
   you_are_banned:
     "Käyttöoikeus estetty"
+
+  #FAQ
+
+  faq_topic:
+    "Usein kysytyt kysymykset"
+    
+  faq_button:
+    "UKK"
+    

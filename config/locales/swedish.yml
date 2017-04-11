@@ -171,3 +171,12 @@ swe:
     "Datum"
   likes:
     "Likt"
+
+  #FAQ
+
+  faq_topic:
+    "Vanliga Fragor"
+    
+  faq_button:
+    "FAQ"
+

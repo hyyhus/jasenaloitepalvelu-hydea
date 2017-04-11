@@ -35,6 +35,8 @@ group :test do
   gem "codeclimate-test-reporter", "~> 1.0.0"
 end
 
+# Use for FAQ markdown
+gem 'redcarpet'
 # Use for Capybara session
 gem 'rack_session_access'
 # Use Faker to add test data to dev
