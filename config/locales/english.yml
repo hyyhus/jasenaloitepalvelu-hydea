@@ -175,6 +175,7 @@ en:
   move_basket_rejected:
     "Rejected"
 
+
   filter_ideas:
     "Filter ideas"
   filter:
@@ -182,3 +183,12 @@ en:
 
   you_are_banned:
     "You are banned"
+
+  #FAQ
+
+  faq_topic:
+    "Frequently asked questions"
+  
+  faq_button:
+    "FAQ"
+

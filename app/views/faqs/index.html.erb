@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Faqs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Language</th>
+      <th>Text</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @faqs.each do |faq| %>
+      <tr>
+        <td><%= faq.language %></td>
+        <td><%= faq.text %></td>
+        <td><%= link_to (t :show), faq %></td>
+        <td><%= link_to (t :edit), edit_faq_path(faq) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Faq', new_faq_path %>

@@ -156,6 +156,7 @@ swe:
   move_basket_rejected:
     "Avvisa"
 
+
   filter_ideas:
     ""
   filter:
@@ -170,3 +171,12 @@ swe:
 
   you_are_banned:
     ""
+
+  #FAQ
+
+  faq_topic:
+    "Vanliga Fragor"
+    
+  faq_button:
+    "FAQ"
+

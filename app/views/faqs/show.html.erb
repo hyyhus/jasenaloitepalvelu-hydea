@@ -1,0 +1,14 @@
+
+<% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)%>
+<p id="notice"><%= notice %></p>
+
+
+<h1>
+  <strong><%= (t :faq_topic)%></strong>
+</h1>
+
+<%= markdown.render(@faq.text).html_safe %>
+<br>
+
+<%= link_to (t :edit), edit_faq_path(@faq) %> |
+<%= link_to (t :back), faqs_path %>
