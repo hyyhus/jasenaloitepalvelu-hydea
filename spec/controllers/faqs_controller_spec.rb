@@ -53,10 +53,7 @@ RSpec.describe FaqsController, type: :controller do
   end
 
   describe "GET #new" do
-    it "assigns a new faq as @faq" do
-      get :new, params: {}, session: valid_session
-      expect(assigns(:faq)).to be_a_new(Faq)
-    end
+
   end
 
   describe "GET #edit" do
