@@ -6,6 +6,7 @@ RSpec.describe IdeasController, type: :controller do
   let(:user_moderator) { FactoryGirl.create(:user_moderator) }
   let(:user_student) { FactoryGirl.create(:user_student, id: 2) }
   let(:user_student_with_history) { FactoryGirl.create(:user_student_with_history) }
+  let(:user_banned) { FactoryGirl.create(:user_banned) }
 
   it 'can be published by moderator' do
     session[:user_id] = user_moderator.id
@@ -21,12 +22,32 @@ RSpec.describe IdeasController, type: :controller do
     expect(response).to redirect_to ideas_path
   end
 
+  it 'cannot be published by banned moderator' do
+    user_banned.moderator=true
+    user_banned.save
+    session[:user_id] = user_banned.id
+    @idea = FactoryGirl.create(:idea)
+    expect { post :publish, params: { id: @idea.id } }.not_to change(@idea.histories, :count)
+    expect(response).to redirect_to ideas_path
+  end
+
   it 'topic is updated by moderator' do
     session[:user_id] = user_moderator.id
     @idea = FactoryGirl.create(:idea, topic: 'test topic to be updated')
     put :update, params: { id: @idea.id, idea: FactoryGirl.attributes_for(:idea, topic: 'updated topic') }
     @idea.reload
     expect(@idea.topic).to eq('updated topic')
+    expect redirect_to @idea
+  end
+
+  it 'topic is not updated by banned moderator' do
+    user_moderator.banned = true
+    user_moderator.save
+    session[:user_id] = user_moderator.id
+    @idea = FactoryGirl.create(:idea, topic: 'test topic to be updated')
+    put :update, params: { id: @idea.id, idea: FactoryGirl.attributes_for(:idea, topic: 'updated topic') }
+    @idea.reload
+    expect(@idea.topic).not_to eq('updated topic')
     expect redirect_to @idea
   end
 
