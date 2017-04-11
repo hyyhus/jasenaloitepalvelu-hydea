@@ -69,3 +69,5 @@ gem 'social-share-button', '~> 0.10.0'
 gem 'ransack', '~> 1.8', '>= 1.8.2'
 # Puma development web server
 gem 'puma', '~> 3.8', '>= 3.8.2'
+# Match Heroku timeout to Puma
+gem 'rack-timeout', '~> 0.4.2'
