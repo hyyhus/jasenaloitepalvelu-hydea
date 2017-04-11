@@ -160,3 +160,10 @@ swe:
     ""
   filter:
     ""
+
+  topic:
+    "Ämne"
+  date:
+    "Datum"
+  likes:
+    "Likt"

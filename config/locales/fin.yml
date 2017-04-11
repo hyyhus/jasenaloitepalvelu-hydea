@@ -27,6 +27,14 @@ fin:
       messages:
         record_invalid: 'Validointi epäonnistui: %{errors}'
 
+# Sort
+  topic:
+    "Otsikko"
+  date:
+    "Aika"
+  likes:
+    "Tykkäykset"
+
 
 # Names for Faker
   faker:
