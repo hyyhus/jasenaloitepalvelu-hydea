@@ -187,12 +187,13 @@ RSpec.describe UsersController, :type => :controller do
 		    session[:user_id] = current_user.id
 		end
 
-		describe "GET #index" do
-		 	it "Doesn't let them access user list" do
-		  	get :index
-		   	expect(response).to redirect_to ideas_path
-      end
-		end
+# this is integration branch feature to allow impersonation
+#		describe "GET #index" do
+#		 	it "Doesn't let them access user list" do
+#		  	get :index
+#		   	expect(response).to redirect_to ideas_path
+#      end
+#		end
 
 
 		describe "GET #show" do
