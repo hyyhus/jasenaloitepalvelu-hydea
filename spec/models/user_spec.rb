@@ -20,8 +20,8 @@ RSpec.describe User, type: :model do
   end
 
   it "not created if duplicate persistent_id" do
-    user20 = User.create name:"Test", persistent_id:"9876543"
-    user30 = User.create name:"Test2", persistent_id:"9876543"    
+    user20 = User.create name:"Test", persistent_id:"9876543", banned: "false"
+    user30 = User.create name:"Test2", persistent_id:"9876543", banned: "false"
     expect(User.count).to eq(1)
   end
 
