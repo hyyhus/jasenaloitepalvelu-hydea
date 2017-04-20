@@ -213,3 +213,13 @@ fin:
 
   faq_button:
     "UKK"
+
+   # New idea texts
+  topic:
+    "Otsikko"
+  text:
+    "Teksti"
+  tags:
+    "Tägit"
+  create_idea:
+    "Luo idea"
