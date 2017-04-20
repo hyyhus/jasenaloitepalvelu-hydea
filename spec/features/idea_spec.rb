@@ -264,4 +264,12 @@ RSpec.describe 'IdeaFeature', type: :feature do
       end
     end
   end
+
+  describe 'show comment count' do
+    it 'on idea' do
+      idea1 = FactoryGirl.create(:idea_approved)
+      visit '/'
+      expect(page).to have_content('Kommentit', count: 2)
+    end
+  end
 end
