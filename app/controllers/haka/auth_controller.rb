@@ -45,11 +45,11 @@ module Haka
 
       #Asetetaan metadatan pohjalta attribuuttien nimet
       metadata=Nokogiri::HTML(open(Hydea::Haka::HAKA_METADATA_URL))
-      front="//entitydescriptor[@entityid='https://hydea.hyy.fi/haka/serviceprovider']//requestedattribute[@friendlyname='"
+      front="//entitydescriptor[@entityid='https://hydea-qa.herokuapp.com/haka/serviceprovider']//requestedattribute[@friendlyname='"
 
       uniquecode=metadata.xpath("#{front}schacPersonalUniqueCode']")[0].attr("name")
       mail=metadata.xpath("#{front}mail']")[0].attr("name")
-      displayname=metadata.xpath("#{front}cn']")[0].attr("name")
+      displayname=metadata.xpath("#{front}displayName']")[0].attr("name")
       homeorganization=metadata.xpath("#{front}schacHomeOrganization']")[0].attr("name")
 
       #Kirjataan käyttäjä sisään, jos löytyy jo olemassa
