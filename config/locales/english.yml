@@ -195,10 +195,10 @@ en:
   # New idea texts
 
   topic:
-    ""
+    "Topic"
   text:
-    ""
+    "Text"
   tags:
-    ""
+    "Tags"
   create_idea:
-    ""
+    "Create idea"
