@@ -78,3 +78,21 @@ a .flag{
 .open-button, .open-button:hover{
 	color: #000;
 }
+
+.list_users{
+	width: 100%;
+}
+
+.list_users, th, td{
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+tr:nth-child(even){
+	background-color: #e3e3e3;
+}
+
+.bg{
+	color: #ff0000;
+}

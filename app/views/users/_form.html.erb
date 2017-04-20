@@ -12,16 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :admin %><br>
     <%= f.check_box :admin %>
+    <%= f.label :admin %>
   </div>
   <div class="field">
-    <%= f.label :moderator %><br>
     <%= f.check_box :moderator %>
+    <%= f.label :moderator %>
   </div>
   <div class="field">
-    <%= f.label :persistent_id %><br>
-    <%= f.text_field :persistent_id %>
+    <%= f.check_box :banned %>
+    <%= f.label :banned %>
   </div>
   <div class="field">
     <%= f.label :name %><br>

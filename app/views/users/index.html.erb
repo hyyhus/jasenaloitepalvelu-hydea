@@ -1,48 +1,49 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<h1>Listing Users</h1>
+  <h1>Listing Users</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Admin</th>
-      <th>Moderator</th>
-      <th>Persistent</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Title</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
+  <table class="list_users">
+    <thead>
       <tr>
-        <td><%= user.admin %></td>
-        <td><%= user.moderator %></td>
-        <td><%= user.persistent_id %></td>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.title %></td>
-
-	<td>
-		<!-- testikäytössä -->
-    <%= link_to 'Impersonate', new_session_path(:persistent_id => user.persistent_id) %>
-	</td>
-
-
-  
-  
-        <td><%= link_to (t :show), user %></td>        
-        <td><%= link_to (t :edit), edit_user_path(user) %></td>
-        <td><%= link_to (t :delete), user, method: :delete, data: { confirm: (t :are_you_sure) } %></td>        
-  
-
+        <th>Admin</th>
+        <th>Moderator</th>
+        <th>Banned</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Title</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td <% if user.admin %> class='bg' <% end %>><%= user.admin %></td>
+          <td <% if user.moderator %> class='bg' <% end %>><%= user.moderator %></td>
+          <td <% if user.banned %> class='bg' <% end %>><%= user.banned %></td>
+          <td><%= link_to user.name, user %></td>
+          <td><%= user.email %></td>
+          <td><%= user.title %></td>
 
-<%= link_to ( (t :new) + " " + (t :user)), new_user_path %>
+  	<td>
+  		<!-- testikäytössä -->
+      <%= link_to 'Impersonate', new_session_path(:persistent_id => user.persistent_id) %>
+  	</td>
+
+
+
+
+          <td><%= link_to (t :edit), edit_user_path(user) %></td>
+          <td><%= link_to (t :delete), user, method: :delete, data: { confirm: (t :are_you_sure) } %></td>
+
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to ( (t :new) + " " + (t :user)), new_user_path %>
+</div>

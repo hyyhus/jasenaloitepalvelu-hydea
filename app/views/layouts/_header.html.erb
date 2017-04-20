@@ -48,3 +48,10 @@
 	</div>
   </div>
 </nav>
+<!-- Show banned -->
+<% if not session[:user_id].nil? and current_user.banned %>
+  <div class="container center alert alert-danger">
+    Insert banned text here.
+  </div>
+<% end %>
+<!-- End banned -->
