@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20170406103559) do
   end
 
   create_table "ideas", force: :cascade do |t|
-    t.string   "topic",       null: false
-    t.string   "text",        null: false
+    t.string   "topic"
+    t.string   "text"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.boolean  "moderate"
