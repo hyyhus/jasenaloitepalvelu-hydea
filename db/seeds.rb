@@ -95,7 +95,6 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 		ename = I18n.transliterate("#{firstName}.#{lastName}")
 		email = "#{ename}@helsinki.fi".downcase
 		persistent_id = Faker::Number.unique.number(20)
-		title = Faker::Company.profession
 		User.create!(name:  name,
 			     email: email,
 			     admin: false,
@@ -135,4 +134,7 @@ baskets = ["New", "Approved", "Changing", "Changed", "Not Changed", "Rejected"]
 	end
 
 when "production"
+Faq.create(language: 'en', text: 'English FAQ text')
+Faq.create(language: 'fin', text: 'Finnish FAQ text')
+Faq.create(language: 'swe', text: 'Swedish FAQ text')
 end

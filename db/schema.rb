@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20170406103559) do
-
 
   create_table "comments", force: :cascade do |t|
     t.string   "user_id"
@@ -42,10 +40,10 @@ ActiveRecord::Schema.define(version: 20170406103559) do
   end
 
   create_table "ideas", force: :cascade do |t|
-    t.string   "topic",      null: false
-    t.string   "text",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "topic"
+    t.string   "text"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.boolean  "moderate"
     t.integer  "likes_count"
   end
@@ -78,6 +76,7 @@ ActiveRecord::Schema.define(version: 20170406103559) do
     t.string   "title"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.boolean  "banned"
   end
 
 end
