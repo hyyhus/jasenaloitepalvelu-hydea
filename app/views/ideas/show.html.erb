@@ -62,7 +62,7 @@
   <h3>
     <%= (t :comments) %>
   </h3>
- <% @idea.comments.each do |comment| %>
+ <% @idea.comments.order(:time).each do |comment| %>
 	 <% if (comment.visible? or (not current_user.nil? and current_user.moderator?)) %>
                   <ul class="list-group">
                     <li class="list-group-item">
