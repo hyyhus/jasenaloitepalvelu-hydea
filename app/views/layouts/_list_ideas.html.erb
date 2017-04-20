@@ -17,6 +17,9 @@
                 <a class='open-button' onclick="open_idea_comments()">
                   <% if not current_user.nil? and current_user.moderator %>
                     <%= (t :comments) %> (<%= idea.comments.count %>)
+                    <% if idea.comments.where(visible: false).count > 0 %>
+                      | <strong><%= idea.comments.where(visible: false).count %> <%= (t :waits_publish) %></strong>
+                    <% end %>
                   <% else %>
                     <%= (t :comments) %> (<%= idea.comments.where(visible: true).count %>)
                   <% end %>
