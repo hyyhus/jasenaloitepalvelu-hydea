@@ -22,8 +22,7 @@ RSpec.describe UsersController, :type => :controller do
 
 		describe "GET #new" do
 			it "doesn't get new, if not admin" do
-				get :new
-				expect(response).to redirect_to ideas_path
+        expect{get :new}.to raise_error(ActionController::UrlGenerationError)
 			end
 		end
 
@@ -132,8 +131,7 @@ RSpec.describe UsersController, :type => :controller do
 
 		describe "GET #new" do
 			it "doesn't get new, if not admin" do
-				get :new
-				expect(response).to redirect_to ideas_path
+        expect{get :new}.to raise_error(ActionController::UrlGenerationError)
 			end
 		end
 
@@ -190,8 +188,7 @@ RSpec.describe UsersController, :type => :controller do
 
 		describe "GET #new" do
 			it "doesn't get new, if not admin" do
-				get :new
-				expect(response).to redirect_to ideas_path
+        expect{get :new}.to raise_error(ActionController::UrlGenerationError)
 			end
 		end
 
