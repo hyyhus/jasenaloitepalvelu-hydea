@@ -9,6 +9,6 @@
 
 <%= markdown.render(@faq.text).html_safe %>
 <br>
-
+<% if not session[:user_id].nil? and current_user.moderator %>
 <%= link_to (t :edit), edit_faq_path(@faq) %> |
-<%= link_to (t :back), faqs_path %>
+<% end %>
