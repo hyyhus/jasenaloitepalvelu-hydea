@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :ensure_that_is_admin, except: [:show]
+  before_action :ensure_that_is_admin, except: [:show, :index]
   before_action :ensure_that_signed_in, only: [:show]
 
   # GET /users
