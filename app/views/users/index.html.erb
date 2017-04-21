@@ -27,6 +27,10 @@
           <td><%= user.email %></td>
           <td><%= user.title %></td>
 
+  	<td>
+  		<!-- testikäytössä -->
+      <%= link_to 'Impersonate', new_session_path(:persistent_id => user.persistent_id) %>
+  	</td>
 
 
 
