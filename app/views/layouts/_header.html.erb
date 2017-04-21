@@ -46,7 +46,7 @@
           </div>
         </li>
 	    <% if not current_user.nil? %>
-			    <li><%= link_to User.find(current_user.name), User.find(current_user)%></li>
+			    <li><%= link_to User.all.find_by(id: current_user).name, User.all.find_by(id: current_user)%></li>
 		    <li><%= link_to (t :logout_button), logout_path, method: :delete %></li>
 		<% else %>
 			<li><%=  link_to (t :login_button), haka_auth_new_path %></li>
