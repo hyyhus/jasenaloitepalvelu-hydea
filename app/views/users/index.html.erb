@@ -17,7 +17,7 @@
     </thead>
 
     <tbody>
-      <% @users.each do |user| %>
+      <% @users.order(:admin => :desc).order(:moderator => :desc).order(:name).each do |user| %>
         <tr>
           <td <% if user.admin %> class='bg' <% end %>><%= user.admin %></td>
           <td <% if user.moderator %> class='bg' <% end %>><%= user.moderator %></td>
