@@ -38,15 +38,6 @@ RSpec.describe UsersController, :type => :controller do
 			end
 		end
 
-		describe "POST #create" do
-			it "doesn't create new, if not admin" do
-				expect{
-				post :create, params: { user: FactoryGirl.attributes_for(:user) }
-				}.to_not change(User, :count)
-				expect(response).to redirect_to ideas_path
-			end
-		end
-
 		describe "PUT #update" do
 			it "doesn't update name, if not admin" do
 				@user = FactoryGirl.create(:user)
@@ -55,13 +46,7 @@ RSpec.describe UsersController, :type => :controller do
 			    expect(@user.name).to eq("Testi Tauno")
 			end
 		end
-
-		describe "DELETE #destroy" do
-			it "don't destroy, if not admin" do
-				user = FactoryGirl.create(:user)
-		        expect{delete :destroy, params: { id: user }}.to_not change(User, :count)
-			end
-		end
+		
 	end
 
 
@@ -97,12 +82,23 @@ RSpec.describe UsersController, :type => :controller do
 			end
 		end
 
-    describe "DELETE #destroy" do
-      it "destroy user" do
-        user = FactoryGirl.create(:user)
-        expect{delete :destroy, params: { id: user }}.to change(User, :count).by(-1)
-      end
-    end
+	    describe 'edits user' do
+	      it 'removing moderator' do
+	        @user_moderator = FactoryGirl.create(:user_moderator)
+	        expect(@user_moderator.moderator).to be true
+	        put :update, params: { id: @user_moderator, user: FactoryGirl.attributes_for(:user, moderator: :false)}
+	        @user_moderator.reload
+	        expect(@user_moderator.moderator).to be false
+	      end
+
+				it 'adding moderator moderator' do
+	        @user = FactoryGirl.create(:user_student)
+	        expect(@user.moderator).to be false
+	        put :update, params: { id: @user, user: FactoryGirl.attributes_for(:user, moderator: :true)}
+	        @user.reload
+	        expect(@user.moderator).to be true
+	      end
+	    end
 	end
 
 
@@ -147,15 +143,6 @@ RSpec.describe UsersController, :type => :controller do
 			end
 		end
 
-		describe "POST #create" do
-			it "doesn't create new, if not admin" do
-				expect{
-				post :create, params: { user: FactoryGirl.attributes_for(:user) }
-				}.to_not change(User, :count)
-				expect(response).to redirect_to ideas_path
-			end
-		end
-
 		describe "PUT #update" do
 			it "doesn't update name" do
 				@user = FactoryGirl.create(:user)
@@ -171,13 +158,7 @@ RSpec.describe UsersController, :type => :controller do
 				expect(@user.title).not_to eq("Puheenjohtaja")
 			end
 		end
-
-		describe "DELETE #destroy" do
-			it "don't destroy, if not admin" do
-				user = FactoryGirl.create(:user)
-		        expect{delete :destroy, params: {id: user}}.to_not change(User, :count)
-			end
-		end
+		
 	end
 
 	context "banned moderator logged in" do
@@ -221,15 +202,6 @@ RSpec.describe UsersController, :type => :controller do
 			end
 		end
 
-		describe "POST #create" do
-			it "doesn't create new, if not admin" do
-				expect{
-				post :create, params: { user: FactoryGirl.attributes_for(:user) }
-				}.to_not change(User, :count)
-				expect(response).to redirect_to ideas_path
-			end
-		end
-
 		describe "PUT #update" do
 			it "doesn't update name" do
 				@user = FactoryGirl.create(:user)
@@ -245,13 +217,7 @@ RSpec.describe UsersController, :type => :controller do
 				expect(@user.title).not_to eq("Puheenjohtaja")
 			end
 		end
-
-		describe "DELETE #destroy" do
-			it "don't destroy, if not admin" do
-				user = FactoryGirl.create(:user)
-		        expect{delete :destroy, params: {id: user}}.to_not change(User, :count)
-			end
-		end
+		
 	end
 
 	context 'User #show is viewed' do
