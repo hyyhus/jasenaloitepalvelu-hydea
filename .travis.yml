@@ -25,6 +25,6 @@ after_success:
     fi
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" registry.heroku.com;
-    docker tag hydea registry.heroku.com/kuuma-munakas-1337/web;
-    docker push registry.heroku.com/kuuma-munakas-1337/web;
+    docker tag hydea registry.heroku.com/hydea/web;
+    docker push registry.heroku.com/hydea/web;
     fi

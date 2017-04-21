@@ -266,10 +266,55 @@ RSpec.describe 'IdeaFeature', type: :feature do
   end
 
   describe 'show comment count' do
-    it 'on idea' do
-      idea1 = FactoryGirl.create(:idea_approved)
-      visit '/'
-      expect(page).to have_content('Kommentit', count: 2)
+    let!(:moderated_idea){ FactoryGirl.create(:idea_moderate_enabled) }
+
+    context 'on non-moderated idea' do
+      it 'without comments' do
+        visit '/'
+        expect(page).to have_content('Kommentit (0)', count: 2)
+      end
+
+      it 'with comments' do
+        comment = FactoryGirl.create(:comment, text: 'comment', idea: moderated_idea)
+        visit '/'
+        expect(page).to have_content('Kommentit (1)', count: 2)
+      end
+    end
+
+    context 'on moderated idea for moderator' do
+      before :each do
+        page.set_rack_session(:user_id => user_moderator.id)
+      end
+
+      it 'with unpublished comments' do
+        comment = FactoryGirl.create(:comment, text: 'comment', idea: moderated_idea, visible: false)
+        visit '/'
+        expect(page).to have_content('odottaa julkaisua')
+        expect(page).to have_content('Kommentit (1)', count: 2)
+      end
+
+      it 'with published comments' do
+        comment = FactoryGirl.create(:comment, text: 'comment', idea: moderated_idea, visible: true)
+        visit '/'
+        expect(page).not_to have_content('odottaa julkaisua')
+        expect(page).to have_content('Kommentit (1)', count: 2)
+      end
+    end
+
+    context 'on moderated idea for non-moderator' do
+      it 'with unpublished comments' do
+        comment = FactoryGirl.create(:comment, text: 'comment', idea: moderated_idea, visible: false)
+        visit '/'
+        expect(page).not_to have_content('odottaa julkaisua')
+        expect(page).to have_content('Kommentit (0)', count: 2)
+      end
+
+      it 'with published comments' do
+        comment = FactoryGirl.create(:comment, text: 'comment', idea: moderated_idea, visible: true)
+        visit '/'
+        expect(page).not_to have_content('odottaa julkaisua')
+        expect(page).to have_content('Kommentit (1)', count: 2)
+      end
     end
   end
 end

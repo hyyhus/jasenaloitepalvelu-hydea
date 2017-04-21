@@ -29,7 +29,7 @@ en:
 
   ideas:
     "Ideas"
-  
+
   ideas_by_user:
     "Ideas submitted by"
   users:
@@ -59,36 +59,39 @@ en:
   comments:
     "Comments"
 
+  waits_publish:
+    "awaits publishing"
+
   history:
     "History"
-  
+
   idea:
     "Idea"
-  
+
   idea_moderation_enable:
     "Enable moderation"
-  
+
   idea_moderation_disable:
     "Disable moderation"
 
   comment_moderation_enable:
     "Comments moderation enabled"
-  
+
   comment_moderation_disable:
     "Comments moderation disabled"
 
   listing_comments:
     "Listing comments"
-  
+
   like:
     "Like"
 
   destroy_only_own_like:
     "You can only destroy own likes"
-  
+
   tag:
     "Tag"
-    
+
   tags:
     "Tags"
 
@@ -97,7 +100,7 @@ en:
 
   are_you_sure:
     "Are you sure?"
-  
+
   show:
     "Show"
 
@@ -106,22 +109,22 @@ en:
 
   delete:
     "Delete"
-  
+
   edit:
     "Edit"
-  
+
   new:
     "New"
-  
+
   time:
     "Time"
-  
+
   text:
     "Text"
-  
+
   post_idea:
     "Post idea"
-  
+
   #Basket names
 
   basket_new:
@@ -136,7 +139,7 @@ en:
     "Not changed ideas"
   basket_rejected:
     "Rejected ideas"
-  
+
   # buttons
 
   move_to:
@@ -144,22 +147,22 @@ en:
 
   publish_button:
     "Publish"
-  
+
   unpublish_button:
     "Unpublish"
-  
-  login_button: 
+
+  login_button:
     "Login"
 
   logout_button:
     "Logout"
-  
+
   publish_and_moderate_button:
     "Publish and moderate"
-    
+
   reject_button:
     "Reject"
-  
+
   # Move to basket buttons
 
   move_basket_new:
@@ -188,7 +191,7 @@ en:
 
   faq_topic:
     "Frequently asked questions"
-  
+
   faq_button:
     "FAQ"
 

@@ -71,4 +71,23 @@ RSpec.feature "Banned", type: :feature do
         end
       end
     end
+
+    context 'alert on' do
+      describe 'banned user' do
+        it 'is displayed' do
+          page.set_rack_session(user_id: user.id)
+          page.visit '/'
+          expect(page).to have_css('.alert-danger')
+        end
+      end
+
+      describe 'not banned user' do
+        it 'is not displayed' do
+          normal_user = FactoryGirl.create(:user)
+          page.set_rack_session(user_id: normal_user.id)
+          page.visit '/'
+          expect(page).not_to have_css('.alert-danger')
+        end
+      end
+    end
 end
