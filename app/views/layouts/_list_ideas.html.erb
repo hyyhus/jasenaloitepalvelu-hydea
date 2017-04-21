@@ -130,7 +130,7 @@
               <!-- End how many comments -->
               <div id="collapse<%= idea.id * 2 + 1 %>" class="panel-collapse collapse">
                 <!-- Draw comments -->
-                <% idea.comments.order(:time).each do |comment| %>
+                <% idea.comments.each do |comment| %>
 			<% if (comment.visible? or (not current_user.nil? and current_user.moderator?)) %>
                   <ul class="list-group">
                     <li class="list-group-item">
@@ -145,7 +145,7 @@
                             <%= link_to (t :delete), comment, method: :delete, data: { confirm: (t :are_you_sure) }, :class => "btn-sm btn-danger delete_comment" %>
                           <% end %>
                           <p>
-                          <%= link_to comment.user.name, comment.user_id %>
+                          <%= link_to comment.user.name, User.find(comment.user.id) %>
                           <% if not comment.user.title.empty? and comment.user.moderator %>
                             (<%= comment.user.title %>)
                           <% end %>
