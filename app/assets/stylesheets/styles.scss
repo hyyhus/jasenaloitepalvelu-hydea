@@ -18,6 +18,14 @@ a:hover{
 	background: none;
 }
 
+.btn-primary{
+	color: #ffffff;
+}
+
+.btn-default{
+	color: #000000;
+}
+
 .btn{
 	margin: 5px 0 5px;
 }
@@ -51,7 +59,7 @@ a .flag{
 	float: right;
 }
 
-.btn a, .btn:visited{
+.btn a, .btn-primary:visited{
 	color: #ffffff;
 }
 
