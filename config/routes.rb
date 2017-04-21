@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :ideas
   resources :histories
-  resources :users
+  resources :users, only: [:index, :show, :edit, :update]
   resources :faqs
   post 'language/english'
   post 'language/finnish'
