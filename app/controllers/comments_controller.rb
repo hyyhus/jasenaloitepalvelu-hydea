@@ -32,7 +32,8 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    comment = Comment.create params.require(:comment).permit(:time, :text, :idea_id)
+    comment = Comment.create params.require(:comment).permit(:text, :idea_id)
+    comment.time=Time.now
     comment.visible=!(comment.idea.moderate?)
     current_user.comments << comment
     
