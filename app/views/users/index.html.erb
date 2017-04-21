@@ -27,16 +27,11 @@
           <td><%= user.email %></td>
           <td><%= user.title %></td>
 
-  	<td>
-  		<!-- testikäytössä -->
-      <%= link_to 'Impersonate', new_session_path(:persistent_id => user.persistent_id) %>
-  	</td>
 
 
 
 
           <td><%= link_to (t :edit), edit_user_path(user) %></td>
-          <td><%= link_to (t :delete), user, method: :delete, data: { confirm: (t :are_you_sure) } %></td>
 
 
         </tr>
@@ -46,5 +41,4 @@
 
   <br>
 
-  <%= link_to ( (t :new) + " " + (t :user)), new_user_path %>
 </div>
