@@ -14,9 +14,16 @@
 	      <li>
 	      	<%= link_to (t :ideas), ideas_path %>
 	      </li>
-	      <li>
-	      	<%= link_to (t :users), users_path %>
-	      </li>
+        <% if not session[:user_id].nil? and current_user.admin %>
+  	      <li>
+  	      	<%= link_to (t :users), users_path %>
+  	      </li>
+        <% end %>
+        <% if not session[:user_id].nil? and current_user.moderator %>
+          <li>
+            <%= link_to (t :tags), tags_path %>
+          </li>
+        <% end %>
         	<li>
 	      	<%= link_to (t :faq_button), '/faq' %>
 	      </li>

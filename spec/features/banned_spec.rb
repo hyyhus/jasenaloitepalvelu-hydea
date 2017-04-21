@@ -29,7 +29,7 @@ RSpec.feature "Banned", type: :feature do
       end
 
       it "can not access user listings" do
-        click_on('Käyttäjät')
+        visit '/users'
         expect(current_path).not_to be('/users')
 
       end
