@@ -112,7 +112,7 @@ tr:nth-child(even){
 // navbar styles
 
 .navbar{
-	margin: 50px;
+	margin: 50px 50px 25px 50px;
 	background: none;
 	border-radius: 0px;
 	border-color: #fff;
@@ -154,4 +154,26 @@ tr:nth-child(even){
 
 .navbar-right{
 	padding-right: 0;
+}
+
+// basket styles
+
+.nav-tabs-justified > li > a{
+	color: #fff;
+	border-color: #fff;
+	padding: 25px;
+}
+
+.nav-tabs-justified > li.active > a{
+	color: #000;
+	border-color: #fff;
+	background: #ffffff;
+	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #b2ffff 51%, #b2ffff 100%);
+	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#b2ffff 51%,#b2ffff 100%);
+	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#b2ffff 51%,#b2ffff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#b2ffff',GradientType=1 );
+}
+
+.nav-tabs, .nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a{
+	border-radius: 0px;
 }
