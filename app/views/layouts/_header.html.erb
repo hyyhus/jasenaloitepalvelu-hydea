@@ -6,11 +6,10 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
       	</button>
-      	<a class="navbar-brand" href="#">Hydea</a>
+      	<%=image_tag("logo/hyy-seppele.png", alt: "Hyy Logo", class: 'navbar-brand')%>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
 	    <ul class="nav navbar-nav">
-
 	      <li>
 	      	<%= link_to (t :ideas), ideas_path %>
 	      </li>
@@ -28,22 +27,20 @@
 	      	<%= link_to (t :faq_button), '/faq' %>
 	      </li>
 	    </ul>
+      <ul class='nav navbar-nav navbar-middle'>
+        <p>
+          Hydea <!-- Linkki hydea.hyy.fi -->
+        </p>
+      </ul>
       <ul class='nav navbar-nav navbar-right'>
-        <li class="navbar-text">
-          <%= t :greeting %> <!-- TESTIKENTTÄ LOKALISAATIOTA VARTEN -->
+        <li>
+          <%= link_to 'Suomi', language_finnish_path, method: :post %>
         </li>
         <li>
-          <div class="btn-group">
-            <%= link_to language_finnish_path, method: :post, class: 'btn btn-default' do %>
-              <i class="famfamfam-flag-fi"></i>
-            <% end %>
-            <%= link_to language_english_path, method: :post, class: 'btn btn-default' do %>
-              <i class="famfamfam-flag-gb"></i>
-            <% end %>
-            <%= link_to language_swedish_path, method: :post, class: 'btn btn-default' do %>
-              <i class="famfamfam-flag-se"></i>
-            <% end %>
-          </div>
+          <%= link_to 'English', language_english_path, method: :post %>
+        </li>
+        <li>
+          <%= link_to 'Svenska', language_swedish_path, method: :post %>
         </li>
 	    <% if not current_user.nil? %>
 			    <li><%= link_to User.all.find_by(id: current_user).name, User.all.find_by(id: current_user)%></li>
