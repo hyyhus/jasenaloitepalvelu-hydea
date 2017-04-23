@@ -7,12 +7,13 @@
 	margin-bottom: 15px;
 }
 
-/*body {
-	background: #1e5799;
+body {
+	/*background: #1e5799;
 	background: -moz-linear-gradient(-45deg, #1e5799 0%, #2989d8 0%, #1a33a3 0%, #4b81cc 100%);
 	background: -webkit-linear-gradient(-45deg, #1e5799 0%,#2989d8 0%,#1a33a3 0%,#4b81cc 100%);
-	background: linear-gradient(135deg, #1e5799 0%,#2989d8 0%,#1a33a3 0%,#4b81cc 100%);
-}*/
+	background: linear-gradient(135deg, #1e5799 0%,#2989d8 0%,#1a33a3 0%,#4b81cc 100%);*/
+	background: #c3c3c3;
+}
 
 a:hover{
 	background: none;
@@ -107,4 +108,50 @@ tr:nth-child(even){
 
 .open-button, .open-button:hover{
 	color: #000;
+}
+// navbar styles
+
+.navbar{
+	margin: 50px;
+	background: none;
+	border-radius: 0px;
+	border-color: #fff;
+	min-height: 100px;
+}
+
+.navbar, .navbar-default .navbar-nav > li > a{
+	color: #fff;
+}
+
+.navbar-brand{
+	width: 100px;
+	height: 100px;
+}
+
+.navbar-header{
+	padding-left: 50px;
+}
+
+.navbar-nav{
+	padding: 25px;
+}
+
+.navbar-middle{
+	position: absolute;
+	 width: 100%;
+	 left: 0;
+	 text-align: center;
+	 margin:0 auto;
+}
+
+.navbar-middle p{
+	position: absolute;
+  left: 50%;
+  transform: translatex(-50%);
+	text-transform: uppercase;
+	padding-top: 15px;
+}
+
+.navbar-right{
+	padding-right: 0;
 }
