@@ -1,43 +1,78 @@
-<div class="container">
-  <p id="notice"><%= notice %></p>
-  <div class="row">
-    <div class="col-sm-9">
+<p id="notice"><%= notice %></p>
+<div class="container idea-show">
+  <% if @idea.histories.last.basket == "New" %>
+    <div class="row new-idea">
+  <% end %>
+  <% if @idea.histories.last.basket == "Approved" %>
+    <div class="row idea-top approved-idea">
+  <% end %>
+  <% if @idea.histories.last.basket == "Changing" %>
+    <div class="row idea-top changing-idea">
+  <% end %>
+  <% if @idea.histories.last.basket == "Changed" %>
+    <div class="row idea-top changed-idea">
+  <% end %>
+  <% if @idea.histories.last.basket == "Not Changed" %>
+    <div class="row idea-top not-changed-idea">
+  <% end %>
+  <% if @idea.histories.last.basket == "Rejected" %>
+    <div class="row idea-top rejected-idea">
+  <% end %>
+    <div class="col-sm-8">
       <h2><%= @idea.topic %></h2>
       <p>
-        <%= @idea.histories.first.user.name %> - <%= @idea.histories.first.time.strftime('%d.%m.%Y %H:%M ') %>
+          <%= @idea.histories.first.user.name %> / <%= @idea.histories.first.time.strftime('%d.%m.%Y / %H:%M ') %>
+        <%if not @idea.tags.empty?%>
+          <br /><span class="tag-text">
+          <%= (t :tags) %>
+            <% @idea.tags.each do |tag| %>
+              <%= tag.text %>
+              <% if not tag == @idea.tags.last%>
+                ,
+              <%end%>
+            <%end%></span>
+        <%end%>
       </p>
-      <%if not @idea.tags.empty?%>
-        <p><%= (t :tags) %>
-          <% @idea.tags.each do |tag| %>
-            <%= tag.text %>
-            <% if not tag == @idea.tags.last%>
-              ,
-            <%end%>
-          <%end%>
-        </p>
-      <%end%>
     </div>
-    <div class="col-sm-3 center">
+    <div class="col-sm-4 center">
+
+        <%= social_share_button_tag('Hydea | ' + @idea.topic, name: 'Hydea', url: request.url, popup: 'true') %>
+
 	      <% if not (@idea.histories.last.basket == "New" or @idea.histories.last.basket == "Rejected")%>
-
-		      <% if @idea.likes.find_by(user_id: current_user).nil? %>
-			      <%= link_to like_idea_path(@idea), :class => 'btn btn-default', method: :post do %>
-				      <span class="glyphicon glyphicon-thumbs-up"></span>
-				      <%= @idea.likes.length %>
-			      <% end %>
-		      <% else %>
-			      <%= link_to unlike_idea_path(@idea), :class => 'btn btn-success', method: :post do %>
-				      <span class="glyphicon glyphicon-thumbs-up"></span>
-				      <%= @idea.likes.length %>
-			      <% end %>
-		      <% end %>
-
+          <% if @idea.histories.last.basket == "Approved" %>
+            <% if @idea.likes.find_by(user_id: current_user).nil? %>
+              <button class="likes"><%= @idea.likes.length %></button>
+              <%= link_to like_idea_path(@idea), method: :post do %>
+                <button class="like-button like">
+                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                </button>
+              <% end %>
+            <% else %>
+              <button class="likes"><%= @idea.likes.length %></button>
+              <%= link_to unlike_idea_path(@idea), method: :post do %>
+                <button class="like-button liked">
+                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                </button>
+              <% end %>
+            <% end %>
+          <% else %>
+            <% if @idea.likes.find_by(user_id: current_user).nil? %>
+              <button class="likes"><%= @idea.likes.length %></button>
+              <button class="like-button like disable">
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+              </button>
+            <% else %>
+              <button class="likes"><%= @idea.likes.length %></button>
+              <button class="like-button liked disable">
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+              </button>
+            <% end %>
+          <% end%>
 	      <% end %>
-      <%= social_share_button_tag('Hydea | ' + @idea.topic, name: 'Hydea', url: request.url, popup: 'true') %>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row idea-show-body">
     <div class="col-sm-9">
       <p>
         <%= @idea.text %>
@@ -59,12 +94,12 @@
     </div>
   </div>
 
-  <h3>
+  <p class="idea-show-comment-text">
     <%= (t :comments) %>
-  </h3>
+  </p>
  <% @idea.comments.order(:time).each do |comment| %>
 	 <% if (comment.visible? or (not current_user.nil? and current_user.moderator?)) %>
-                  <ul class="list-group">
+                  <ul class="list-group idea-show-comments">
                     <li class="list-group-item">
                       <div class="panel panel-default">
                         <div class="panel-heading">
@@ -81,7 +116,7 @@
                           <% if not comment.user.title.empty? and comment.user.moderator %>
                             (<%= comment.user.title %>)
                           <% end %>
-                          - <%= comment.time.strftime('%d.%m.%Y %H:%M ') %>
+                          / <%= comment.time.strftime('%d.%m.%Y / %H:%M ') %>
                           </p>
                         </div>
                         <div class="panel-body">
@@ -92,22 +127,22 @@
 	    <% end %>
                   <% end %>
 
-  <% if not session[:user_id].nil? %>
+  <% if not session[:user_id].nil? %><% end %>
 
       <%= form_for("comment", :url => main_app.comments_path, :html => { :class => "form-horizontal" } ) do |f| %>
       <%= f.hidden_field :idea_id, :value => @idea.id %>
       <%= f.hidden_field :time, :value => Time.now %>
       <div method="post" action="comment/new">
-        <p>
+        <p class="comment-label">
          <%= (t :comment) %>
         </p>
         <%= f.text_area :text,class: "form-control", rows: "5", id: "comment"%>
           <button type="submit" class="btn btn-primary">Send </button>
         <% end %>
       </div>
-  <% end %>
 
-  <p>
+
+  <p class="back">
   <% if not session[:user_id].nil? and current_user.moderator %>
     <%= link_to (t :edit), edit_idea_path(@idea) %> |
   <% end %>
