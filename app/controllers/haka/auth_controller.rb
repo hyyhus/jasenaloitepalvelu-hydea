@@ -14,8 +14,8 @@ module Haka
     def new      
       begin
           #Server metadata check
-          haka_server_metadata=Nokogiri::XML(open(Hydea::Haka::HAKA_TESTSERVER_METADATA_URL)).to_s
-          varmenne_ok=Xmlsec::verify_file(haka_server_metadata, Hydea::Haka::HAKA_TESTSERVER_SIGN_CERT)
+          haka_server_metadata=Nokogiri::XML(open(Hydea::Haka::HAKA_METADATA_URL)).to_s
+          varmenne_ok=Xmlsec::verify_file(haka_server_metadata, Hydea::Haka::HAKA_SERVER_SIGN_CERT)
         rescue
           redirect_to ideas_path, notice: 'Login error'
         return
