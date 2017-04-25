@@ -86,6 +86,7 @@ a .flag{
 
 .open-button, .open-button:hover{
 	color: #000;
+	float: left;
 }
 
 .list_users{
@@ -164,11 +165,7 @@ tr:nth-child(even){
 .nav-tabs-justified > li.active > a{
 	color: #000;
 	border-color: #fff;
-	background: #ffffff;
-	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #b2ffff 51%, #b2ffff 100%);
-	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#b2ffff 51%,#b2ffff 100%);
-	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#b2ffff 51%,#b2ffff 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#b2ffff',GradientType=1 );
+	background: none;
 }
 
 .nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a, .nav-tabs-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a:hover, .nav-tabs-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:focus{
@@ -232,4 +229,179 @@ tr:nth-child(even){
 .new-idea a{
 	padding: 0 50px 0 50px;
 	color: blue;
+}
+
+// idea list styles
+
+.panel{
+	border-radius: 0;
+	border: none;
+	box-shadow: none;
+}
+
+.new-idea{
+	background: #ffffff;
+	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #b2ffff 51%, #b2ffff 100%);
+	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#b2ffff 51%,#b2ffff 100%);
+	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#b2ffff 51%,#b2ffff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#b2ffff',GradientType=1 );
+}
+
+.approved-idea{
+	background: #ffffff;
+	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #b2ffff 51%, #b2ffff 100%);
+	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#b2ffff 51%,#b2ffff 100%);
+	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#b2ffff 51%,#b2ffff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#b2ffff',GradientType=1 );
+}
+
+.changing-idea{
+	background: #ffffff;
+	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #a7ffd7 51%, #a7ffd7 100%);
+	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#a7ffd7 51%,#a7ffd7 100%);
+	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#a7ffd7 51%,#a7ffd7 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#a7ffd7',GradientType=1 );
+}
+
+.changed-idea{
+	background: #ffffff;
+	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #c1ffae 51%, #c1ffae 100%);
+	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#c1ffae 51%,#c1ffae 100%);
+	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#c1ffae 51%,#c1ffae 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#c1ffae',GradientType=1 );
+}
+
+.not-changed-idea{
+	background: #ffffff;
+	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #ffdbff 51%, #ffdbff 100%);
+	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#ffdbff 51%,#ffdbff 100%);
+	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#ffdbff 51%,#ffdbff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffdbff',GradientType=1 );
+}
+
+.rejected-idea{
+	background: #ffffff;
+	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #b2ffff 51%, #b2ffff 100%);
+	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#b2ffff 51%,#b2ffff 100%);
+	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#b2ffff 51%,#b2ffff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#b2ffff',GradientType=1 );
+}
+
+.idea-top h4, .idea-top p, .idea-top a{
+	color: blue;
+}
+
+.tag-text{
+	color: #000;
+}
+
+.panel-default > .panel-heading{
+	border-color: blue;
+}
+
+.idea-bottom{
+	background: #fff;
+	border-color: blue;
+}
+
+.idea-bottom a{
+	color: blue;
+}
+
+.idea-body{
+	padding: 15px;
+}
+
+.idea-body > .panel > .panel-heading{
+	background: #fff;
+	border-radius: 0;
+	border-top: 1px solid blue;
+	border-bottom: 1px solid blue;
+}
+
+.comment-top{
+	padding-left: 0;
+}
+
+.comment-top h4{
+	color: blue;
+}
+
+.comments li{
+	padding: 0;
+	border: none;
+}
+
+.comments li > .panel > .panel-heading{
+	background: #fff;
+	padding: 15px 0;
+	border: none;
+}
+
+.comments li > .panel > .panel-heading > p, .comments li > .panel > .panel-heading > p > a{
+	color: blue;
+}
+
+.comments li > .panel > .panel-body{
+	padding: 0;
+	border: none;
+}
+
+.comment-container{
+
+}
+
+.comment-container > .panel-heading{
+	padding: 10px 0;
+	background: #fff;
+	border-radius: 0;
+	border-top: 1px solid blue;
+}
+
+.comment-container > .panel-heading > label{
+	color: blue;
+}
+
+.comment-container > .panel-body{
+	padding: 10px 0 0;
+}
+
+.likes{
+	vertical-align: bottom;
+	margin-right: 15px;
+	width: 35px;
+	height: 25px;
+	-webkit-transform: skew(160deg);
+	   -moz-transform: skew(160deg);
+	     -o-transform: skew(160deg);
+	border: 1px solid blue;
+	background: #fff;
+	pointer-events: none;
+	cursor:default;
+}
+
+.like-button{
+	width: 100px;
+	height: 75px;
+	-webkit-transform: skew(160deg);
+	   -moz-transform: skew(160deg);
+	     -o-transform: skew(160deg);
+	border: 1px solid blue;
+}
+
+.like-button:hover{
+	opacity: 0.65;
+}
+
+.like{
+	background: blue;
+}
+
+.liked{
+	background: lime;
+}
+
+.disable{
+	opacity: 0.65;
+	cursor: not-allowed;
 }
