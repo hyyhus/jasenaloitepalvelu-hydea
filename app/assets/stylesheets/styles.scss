@@ -347,10 +347,6 @@ tr:nth-child(even){
 	border: none;
 }
 
-.comment-container{
-
-}
-
 .comment-container > .panel-heading{
 	padding: 10px 0;
 	background: #fff;
@@ -404,4 +400,82 @@ tr:nth-child(even){
 .disable{
 	opacity: 0.65;
 	cursor: not-allowed;
+}
+
+// show idea styles
+
+.idea-top{
+	padding: 15px;
+}
+
+.idea-top div h2{
+	color: blue;
+}
+
+.idea-show{
+	background: #fff;
+}
+
+.social-share-button{
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+.ssb-icon{
+	vertical-align: bottom;
+	margin-right: 15px;
+	width: 35px !important;
+	height: 25px !important;
+	-webkit-transform: skew(160deg);
+	   -moz-transform: skew(160deg);
+	     -o-transform: skew(160deg);
+	border: 1px solid blue;
+	background: #fff;
+}
+
+.idea-show-body{
+	margin: 0;
+	border-bottom: 1px solid blue;
+}
+
+.idea-show-body > .col-sm-9, .idea-show-body > .col-sm-3{
+	padding: 15px 15px 15px 0;
+}
+
+.idea-show-comments li{
+	padding: 0;
+}
+
+.idea-show-comments li, .list-group-item:first-child{
+	border-radius: 0;
+	border: none;
+	border-top: 1px solid blue;
+	border-bottom: 1px solid blue;
+}
+
+.idea-show-comments li .panel .panel-heading{
+	background: none;
+	border: none;
+	padding: 15px 0 0 0;
+}
+
+.idea-show-comments li .panel .panel-heading, .idea-show-comments li .panel .panel-heading a{
+	color: blue;
+}
+
+.idea-show-comments li .panel .panel-body{
+	padding: 15px 0 0 0;
+}
+
+.idea-show-comment-text{
+	padding-top: 5px;
+	color: blue;
+}
+
+.back a, .comment-label{
+	color: blue;
+}
+
+.idea-show .idea-top{
+	border-bottom: 1px solid blue;
 }
