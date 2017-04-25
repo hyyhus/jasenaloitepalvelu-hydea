@@ -2,16 +2,6 @@
 <div class="container">
   <p id="notice"><%= notice %></p>
 
-  <div class="row">
-    <div class="col-sm-10">
-    </div>
-    <% if current_user %>
-    <div class="col-sm-2">
-        <%= link_to (t :post_idea), new_idea_path, :class => 'btn btn-primary'%>
-    </div>
-    <% end %>
-  </div>
-
   <!-- Show baskets -->
   <ul class="nav nav-tabs nav-justified">
     <% if not session[:user_id].nil? and current_user.moderator %>
@@ -45,15 +35,22 @@
   </div>
   <!-- End tags -->
   <!-- Show sort -->
-  <%= sort_link @q, :topic_case_insensitive do %>
-    <% (t :topic) %>
-  <% end %>
-  <%= sort_link @q, :created_at do %>
-    <% (t :date) %>
-  <% end %>
-  <%= sort_link @q, :likes_count_sort, default_order: 'desc' do  %>
-    <% (t :likes) %>
-  <% end %>
+  <div class="sort-ideas">
+    <%= sort_link @q, :topic_case_insensitive do %>
+      <% (t :topic) %>
+    <% end %>
+    <%= sort_link @q, :created_at do %>
+      <% (t :date) %>
+    <% end %>
+    <%= sort_link @q, :likes_count_sort, default_order: 'desc' do  %>
+      <% (t :likes) %>
+    <% end %>
+    <% if current_user %>
+      <span class="new-idea">
+        <%= link_to (t :post_idea), new_idea_path %>
+      </span>
+    <% end %>
+  </div>
   <!-- End sort -->
   <!-- Search form -->
   <%= search_form_for @q, url: search_ideas_path(basket: params[:basket]),

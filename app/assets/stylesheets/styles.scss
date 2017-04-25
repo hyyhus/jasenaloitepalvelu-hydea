@@ -209,3 +209,30 @@ tr:nth-child(even){
 	margin: 5px;
 	background: none;
 }
+
+// sort styles
+
+.sort-ideas{
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	margin-bottom: 25px;
+	padding: 5px 0 5px;
+}
+
+.sort-ideas a{
+	color: #fff;
+}
+
+.new-idea{
+	margin-top: -5px;
+	padding: 5px 0 5px;
+	position: absolute;
+	left: 50%;
+	transform: translatex(-50%);
+	background: #fff;
+}
+
+.new-idea a{
+	padding: 0 50px 0 50px;
+	color: blue;
+}
