@@ -4,8 +4,7 @@
   <title>Hydea</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <% if request.path_info.include?('ideas/') %>
-    <meta property="og:title" content="<%= @idea.topic %> | Hydea" />
-    <meta property="og:description" content="<%= @idea.text%>" />
+    
   <% else %>
     <!-- Selitys siitä mikä hydea on -->
     <meta property="og:title" content="Hydea" />
