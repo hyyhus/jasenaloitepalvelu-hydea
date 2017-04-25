@@ -30,22 +30,8 @@ class IdeasController < ApplicationController
   def search
     @q = Idea.ransack(params[:q])
     @idea = @q.result(distinct: false)
-
-    if params[:basket]
-      if (params[:basket] == 'New' or params[:basket] == 'Rejected') and not current_user.moderator?
-        redirect_to '/ideas?basket=Approved'
-      end
-      tags = []
-      params.keys.each{|k| if Tag.all.find_by(text: k) then tags<<k end}
-      if tags.empty? then
-      @ideas = @idea.all.select{|i| i.basket == params[:basket].to_s }
-      else
-      @ideas = @idea.all.select{|i| i.basket == params[:basket].to_s and i.tags.find_by(text: tags)}
-      end
-    else
-      redirect_to '/ideas?basket=Approved'
-    end
-    
+    index
+    render :index
   end
 
   # GET /ideas/1

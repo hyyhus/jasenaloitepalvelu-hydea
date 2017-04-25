@@ -26,9 +26,9 @@ Rails.application.routes.draw do
     post 'not_changed', on: :member
     post 'like', on: :member
     post 'unlike', on: :member
-      collection do
+    collection do
         match 'search' => 'ideas#search', via: [:get, :post], as: :search
-      end
+    end
   end
 
   resources :comments do
