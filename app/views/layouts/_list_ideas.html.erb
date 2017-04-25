@@ -6,37 +6,46 @@
   <%@ideas.each do |idea|%>
     <div class="container collapse-group">
       <div class="panel panel-default">
-        <div class="panel-heading">
+        <% if idea.histories.last.basket == "New" %>
+          <div class="panel-heading idea-top new-idea">
+        <% end %>
+        <% if idea.histories.last.basket == "Approved" %>
+          <div class="panel-heading idea-top approved-idea">
+        <% end %>
+        <% if idea.histories.last.basket == "Changing" %>
+          <div class="panel-heading idea-top changing-idea">
+        <% end %>
+        <% if idea.histories.last.basket == "Changed" %>
+          <div class="panel-heading idea-top changed-idea">
+        <% end %>
+        <% if idea.histories.last.basket == "Not Changed" %>
+          <div class="panel-heading idea-top not-changed-idea">
+        <% end %>
+        <% if idea.histories.last.basket == "Rejected" %>
+          <div class="panel-heading idea-top rejected-idea">
+        <% end %>
           <div class="row">
             <!-- Draw topic -->
             <div class="col-sm-9">
               <h4 class="panel-title">
-                <a data-toggle="collapse" href="#collapse<%= idea.id * 2 %>"><%= idea.topic %></a>
+                <%= link_to idea.topic, idea, :title => 'Show idea' %>
               </h4>
-              <p><%= link_to User.find(idea.histories.first.user_id).name, User.find(idea.histories.first.user_id) %> - <%= idea.histories.first.time.strftime('%d.%m.%Y %H:%M ') %><br />
-                <a class='open-button' onclick="open_idea_comments()">
-                  <% if not current_user.nil? and current_user.moderator %>
-                    <%= (t :comments) %> (<%= idea.comments.count %>)
-                    <% if idea.comments.where(visible: false).count > 0 %>
-                      | <strong><%= idea.comments.where(visible: false).count %> <%= (t :waits_publish) %></strong>
-                    <% end %>
-                  <% else %>
-                    <%= (t :comments) %> (<%= idea.comments.where(visible: true).count %>)
-                  <% end %>
-                </a>
-              </p>
+              <p><%= link_to User.find(idea.histories.first.user_id).name, User.find(idea.histories.first.user_id) %> / <%= idea.histories.first.time.strftime('%d.%m.%Y / %H:%M ') %>
               <%if idea.tags.empty?
                 else%>
-                  <p><%= (t :tags) %>
-                  <% idea.tags.each do |tag| %>
-                    <%= tag.text %>
-                    <% if tag == idea.tags.last%>
-                    <% else%>
-                    ,
+                  <br />
+                  <span class="tag-text">
+                    <%= (t :tags) %>:
+                    <% idea.tags.each do |tag| %>
+                      <%= tag.text %>
+                      <% if tag == idea.tags.last%>
+                      <% else%>
+                      ,
+                      <%end%>
                     <%end%>
-                  <%end%>
-                </p>
+                  </span>
               <%end%>
+              </p>
             </div>
             <!-- End topic -->
             <!-- Draw likes and basket controls-->
@@ -81,39 +90,40 @@
 	      <% if not (idea.histories.last.basket == "New" or idea.histories.last.basket == "Rejected")%>
           <% if idea.histories.last.basket == "Approved" %>
   		      <% if idea.likes.find_by(user_id: current_user).nil? %>
-  			      <%= link_to like_idea_path(idea), :class => 'btn btn-default', method: :post do %>
-  				      <span class="glyphicon glyphicon-thumbs-up"></span>
-  				      <%= idea.likes.length %>
+              <button class="likes"><%= idea.likes.length %></button>
+  			      <%= link_to like_idea_path(idea), method: :post do %>
+                <button class="like-button like">
+                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                </button>
   			      <% end %>
   		      <% else %>
-  			      <%= link_to unlike_idea_path(idea), :class => 'btn btn-success', method: :post do %>
-  				      <span class="glyphicon glyphicon-thumbs-up"></span>
-  				      <%= idea.likes.length %>
+              <button class="likes"><%= idea.likes.length %></button>
+  			      <%= link_to unlike_idea_path(idea), method: :post do %>
+                <button class="like-button liked">
+                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                </button>
   			      <% end %>
   		      <% end %>
           <% else %>
             <% if idea.likes.find_by(user_id: current_user).nil? %>
-              <button class="btn btn-default disabled">
+              <button class="likes"><%= idea.likes.length %></button>
+              <button class="like-button like disable">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
-                <%= idea.likes.length %>
               </button>
             <% else %>
-              <button class="btn btn-success disabled">
+              <button class="likes"><%= idea.likes.length %></button>
+              <button class="like-button liked disable">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
-                <%= idea.likes.length %>
               </button>
             <% end %>
           <% end%>
-            <%= link_to idea, :class => 'btn btn-primary', :title => 'Show idea' do %>
-              <span class="glyphicon glyphicon-share"></span>
-            <% end %>
 	      <% end %>
             </div>
             <!-- End likes and basket controls-->
           </div>
         </div>
         <div id="collapse<%= idea.id * 2 %>" class="panel-collapse collapse">
-          <div class="panel-body">
+          <div class="panel-body idea-body">
             <div class="row">
               <!-- Show idea text -->
               <div class="col-sm-9">
@@ -137,7 +147,7 @@
             </div>
             <div class="panel panel-default">
               <!-- Draw how many comments -->
-              <div class="panel-heading">
+              <div class="panel-heading comment-top">
                 <h4 class="panel-title">
                           <% if not current_user.nil? and current_user.moderator %>
                   <a data-toggle="collapse" href="#collapse<%= idea.id * 2 +1 %>"><%= (t :comments) %> (<%= idea.comments.count %>)</a>
@@ -151,7 +161,7 @@
                 <!-- Draw comments -->
                 <% idea.comments.each do |comment| %>
 			<% if (comment.visible? or (not current_user.nil? and current_user.moderator?)) %>
-                  <ul class="list-group">
+                  <ul class="list-group comments">
                     <li class="list-group-item">
                       <div class="panel panel-default">
                         <div class="panel-heading">
@@ -168,7 +178,7 @@
                           <% if not comment.user.title.empty? and comment.user.moderator %>
                             (<%= comment.user.title %>)
                           <% end %>
-                          - <%= comment.time.strftime('%d.%m.%Y %H:%M ') %>
+                          / <%= comment.time.strftime('%d.%m.%Y / %H:%M ') %>
                           </p>
                         </div>
                         <div class="panel-body">
@@ -186,7 +196,7 @@
                       <%= f.hidden_field :idea_id, :value => idea.id %>
                       <%= f.hidden_field :time, :value => Time.now %>
                       <div method="post" action="comment/new">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default comment-container">
                           <div class="panel-heading">
                             <label for="comment"><%= (t :comment) %> </label>
                           </div>
@@ -206,7 +216,17 @@
           </div>
         </div>
         <!-- Add collapse functionality -->
-        <div class="panel-footer center">
+        <div class="panel-footer center idea-bottom">
+          <a class='open-button' onclick="open_idea_comments()">
+            <% if not current_user.nil? and current_user.moderator %>
+              <%= (t :comments) %> (<%= idea.comments.count %>)
+              <% if idea.comments.where(visible: false).count > 0 %>
+                | <strong><%= idea.comments.where(visible: false).count %> <%= (t :waits_publish) %></strong>
+              <% end %>
+            <% else %>
+              <%= (t :comments) %> (<%= idea.comments.where(visible: true).count %>)
+            <% end %>
+          </a>
           <a data-toggle="collapse" href="#collapse<%= idea.id * 2 %>">
             <span class="glyphicon glyphicon-option-horizontal"></span>
           </a>
