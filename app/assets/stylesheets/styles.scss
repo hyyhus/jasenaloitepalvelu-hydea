@@ -171,6 +171,38 @@ tr:nth-child(even){
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#b2ffff',GradientType=1 );
 }
 
+.nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a, .nav-tabs-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a:hover, .nav-tabs-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:focus{
+	border: 1px solid #fff;
+}
+
 .nav-tabs, .nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a{
 	border-radius: 0px;
+}
+
+// tag styles
+
+.tags form {
+	width: 100%;
+	display: -webkit-flex;
+	display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-around;
+	align-items: stretch;
+}
+
+.tag-list{
+	flex: 1;
+	display: block;
+	height: 50px;
+	background: #cccccc;
+}
+
+.tag-list:nth-child(even){
+	background-color: #fff;
+}
+
+.filter-tags{
+	border: 1px solid blue;
+	margin: 5px;
+	background: none;
 }
