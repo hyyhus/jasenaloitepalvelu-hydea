@@ -1,7 +1,7 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish, :publish_moderate, :un_moderate, :moderate, :reject, :changing, :changed, :not_changed, :like, :unlike]
-  before_action :ensure_that_signed_in, except: [:index, :show]
-  before_action :ensure_that_is_moderator, except: [:index, :show, :new, :create, :like, :unlike]
+  before_action :ensure_that_signed_in, except: [:index, :show, :search]
+  before_action :ensure_that_is_moderator, except: [:index, :show, :new, :create, :like, :unlike, :search]
 #  before_action :set_idea, only: [:publish]
 
 
@@ -25,6 +25,27 @@ class IdeasController < ApplicationController
     else
       redirect_to '/ideas?basket=Approved'
     end
+  end
+
+  def search
+    @q = Idea.ransack(params[:q])
+    @idea = @q.result(distinct: false)
+
+    if params[:basket]
+      if (params[:basket] == 'New' or params[:basket] == 'Rejected') and not current_user.moderator?
+        redirect_to '/ideas?basket=Approved'
+      end
+      tags = []
+      params.keys.each{|k| if Tag.all.find_by(text: k) then tags<<k end}
+      if tags.empty? then
+      @ideas = @idea.all.select{|i| i.basket == params[:basket].to_s }
+      else
+      @ideas = @idea.all.select{|i| i.basket == params[:basket].to_s and i.tags.find_by(text: tags)}
+      end
+    else
+      redirect_to '/ideas?basket=Approved'
+    end
+    
   end
 
   # GET /ideas/1
