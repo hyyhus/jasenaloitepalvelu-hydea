@@ -14,7 +14,7 @@ RSpec.feature "Banned", type: :feature do
 
       it "can not add comments" do
         page.fill_in 'comment', :with => 'This will be nice'
-        click_on('Send')
+        click_on('Lähetä')
         expect(page).not_to have_content('This will be nice')
       end
 

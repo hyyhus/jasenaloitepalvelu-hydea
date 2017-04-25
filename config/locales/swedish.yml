@@ -84,6 +84,9 @@ swe:
         show:
                 "Visa"
 
+        send:
+                "Sända"
+
         back:
                 "Tillbaka"
 

@@ -127,6 +127,9 @@ fin:
   show:
     "Näytä"
 
+  send:
+    "Lähetä"
+
   back:
     "Takaisin"
 
