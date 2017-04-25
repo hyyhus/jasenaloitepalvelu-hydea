@@ -91,7 +91,8 @@ module Haka
 
         settings.idp_sso_target_url             = testservermetadata.xpath("//entitydescriptor[@entityid='#{Hydea::Haka::SAML_IDP_ENTITY_ID}']//singlesignonservice").attr("location").value
         settings.assertion_consumer_service_url = metadata.xpath("//entitydescriptor[@entityid='#{Hydea::Haka::SAML_MY_ENTITY_ID}']//assertionconsumerservice").attr("location").value
-        settings.idp_cert                       = testservermetadata.xpath("//entitydescriptor[@entityid='#{Hydea::Haka::SAML_IDP_ENTITY_ID}']//x509certificate").text
+       #settings.idp_cert                       = testservermetadata.xpath("//entitydescriptor[@entityid='#{Hydea::Haka::SAML_IDP_ENTITY_ID}']//x509certificate").text
+        settings.idp_cert                       = "#{testservermetadata.xpath("//entitydescriptor[@entityid='#{Hydea::Haka::SAML_IDP_ENTITY_ID}']//x509certificate").text}\n"
         settings.name_identifier_format         = testservermetadata.xpath("//entitydescriptor[@entityid='#{Hydea::Haka::SAML_IDP_ENTITY_ID}']//nameidformat")[0].text
 
         settings.certificate                    = Hydea::Haka::SAML_MY_CERT
