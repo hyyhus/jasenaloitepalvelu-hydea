@@ -26,7 +26,7 @@
     <% end %>
   </ul>
   <!-- End baskets -->
-
+  <%= link_to "CSV", ideas_export_path(basket: params[:basket], format: "csv") %> 
   <!-- Show tags -->
   <div class="center tags">
 
