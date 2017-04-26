@@ -49,7 +49,7 @@
   <%= sort_link @q, :created_at do %>
     <% (t :date) %>
   <% end %>
-  <%= sort_link @q, :likes_count_sort do  %>
+  <%= sort_link @q, :likes_count_sort, default_order: 'desc' do  %>
     <% (t :likes) %>
   <% end %>
   <!-- End sort -->
