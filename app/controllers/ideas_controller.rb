@@ -28,6 +28,10 @@ class IdeasController < ApplicationController
   end
 
   def search
+    if (params[:basket] == 'New' or params[:basket] == 'Rejected') and not current_user.moderator?
+        redirect_to '/ideas?basket=Approved'
+    end
+
     @q = Idea.ransack(params[:q])
     @idea = @q.result(distinct: false)
     index
