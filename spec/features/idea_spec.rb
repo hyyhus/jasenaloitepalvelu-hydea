@@ -176,32 +176,32 @@ RSpec.describe 'IdeaFeature', type: :feature do
 
     it 'while basket is New' do
       visit '/ideas?basket=New'
-      expect(find(:css, 'li[class="active"] a').text).to eq("Uudet ideat")
+      expect(find('li', class: 'active')).to have_content('Uudet ideat')
     end
 
     it 'while basket is Approved' do
       visit '/ideas?basket=Approved'
-      expect(find(:css, 'li[class="active"] a').text).to eq("Hyväksytyt ideat")
+      expect(find('li', class: 'active')).to have_content('Hyväksytyt ideat')
     end
 
     it 'while basket is Changing' do
       visit '/ideas?basket=Changing'
-      expect(find(:css, 'li[class="active"] a').text).to eq("Muutettavat ideat")
+      expect(find('li', class: 'active')).to have_content('Muutettavat ideat')
     end
 
     it 'while basket is Changed' do
       visit '/ideas?basket=Changed'
-      expect(find(:css, 'li[class="active"] a').text).to eq("Muutetut ideat")
+      expect(find('li', class: 'active')).to have_content('Muutetut ideat')
     end
 
     it 'while basket is Not Changed' do
       visit '/ideas?basket=Not+Changed'
-      expect(find(:css, 'li[class="active"] a').text).to eq("Ei muutetut ideat")
+      expect(find('li', class: 'active')).to have_content('Ei muutetut ideat')
     end
 
     it 'while basket is Rejected' do
       visit '/ideas?basket=Rejected'
-      expect(find(:css, 'li[class="active"] a').text).to eq("Hylätyt ideat")
+      expect(find('li', class: 'active')).to have_content('Hylätyt ideat')
     end
   end
 

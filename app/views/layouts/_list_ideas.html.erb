@@ -28,7 +28,11 @@
             <!-- Draw topic -->
             <div class="col-sm-9">
               <h4 class="panel-title">
-                <%= link_to idea.topic, idea, :title => 'Show idea' %>
+                <% if idea.histories.last.basket == "New" or idea.histories.last.basket == "Rejected" %>
+                  <a data-toggle="collapse" href="#collapse<%= idea.id * 2 %>"><%= idea.topic %></a>
+                <% else %>
+                  <%= link_to idea.topic, idea, :title => 'Show idea' %>
+                <% end %>
               </h4>
               <p><%= link_to User.find(idea.histories.first.user_id).name, User.find(idea.histories.first.user_id) %> / <%= idea.histories.first.time.strftime('%d.%m.%Y / %H:%M ') %>
               <%if idea.tags.empty?
