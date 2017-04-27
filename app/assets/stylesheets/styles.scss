@@ -1,18 +1,39 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@font-face{
+	font-family: 'Radikal';
+	src:url('Nootype - Radikal-Regular.otf') format('truetype');
+}
+
+@font-face{
+	font-family: 'Radikal_Bold';
+	src:url('Nootype - Radikal Bold.otf') format('truetype');
+}
+
+@font-face{
+	font-family: 'Radikal_Black';
+	src:url('Nootype - Radikal-Black.otf') format('truetype');
+}
+
 .container > .panel-groups{
 	background: #dddddd;
 	box-shadow: 5px 5px 5px grey;
 	margin-bottom: 15px;
 }
 
-body {
-	/*background: #1e5799;
-	background: -moz-linear-gradient(-45deg, #1e5799 0%, #2989d8 0%, #1a33a3 0%, #4b81cc 100%);
-	background: -webkit-linear-gradient(-45deg, #1e5799 0%,#2989d8 0%,#1a33a3 0%,#4b81cc 100%);
-	background: linear-gradient(135deg, #1e5799 0%,#2989d8 0%,#1a33a3 0%,#4b81cc 100%);*/
-	background: #c3c3c3;
+html {
+	background: #2dd2ff;
+	background: -moz-linear-gradient(45deg, #2dd2ff 0%, #0107ff 100%);
+	background: -webkit-linear-gradient(45deg, #2dd2ff 0%,#0107ff 100%);
+	background: linear-gradient(to bottom, 45deg, #2dd2ff 0%,#0107ff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2dd2ff', endColorstr='#0107ff',GradientType=1 );
+	min-height: 100%;
+}
+
+body{
+	background: none;
+	font-family: 'Radikal';
 }
 
 a:hover{
@@ -85,7 +106,7 @@ a .flag{
 }
 
 .open-button, .open-button:hover{
-	color: #000;
+	color: blue;
 	float: left;
 }
 
@@ -122,6 +143,20 @@ tr:nth-child(even){
 
 .navbar, .navbar-default .navbar-nav > li > a{
 	color: #fff;
+	font-size: 18px;
+}
+
+.navbar-nav > li > a:hover {
+	color: #fff !important;
+	text-decoration: underline;
+}
+
+.navbar-middle{
+	font-size: 36px;
+}
+
+.navbar, .navbar-default .navbar-nav > li > a, .navbar-middle{
+	font-family: 'Radikal_Bold';
 }
 
 .navbar-brand{
@@ -145,12 +180,13 @@ tr:nth-child(even){
 	 margin:0 auto;
 }
 
-.navbar-middle p{
+.navbar-middle a{
 	position: absolute;
   left: 50%;
   transform: translatex(-50%);
 	text-transform: uppercase;
 	padding-top: 15px;
+	color: #fff;
 }
 
 .navbar-right{
@@ -163,10 +199,17 @@ tr:nth-child(even){
 	color: #fff;
 	border-color: #fff;
 	padding: 25px;
+	font-family: 'Radikal_Bold';
+	font-size: 26px;
+}
+
+.nav-tabs-justified > li > a:hover{
+	background: none;
+	text-decoration: underline;
 }
 
 .nav-tabs-justified > li.active > a{
-	color: #000;
+	color: blue;
 	border-color: #fff;
 	background: none;
 }
@@ -188,17 +231,26 @@ tr:nth-child(even){
   -webkit-justify-content: space-between;
   justify-content: space-around;
 	align-items: stretch;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	font-family: 'Radikal_Bold';
+	font-size: 14px;
 }
 
 .tag-list{
 	flex: 1;
 	display: block;
 	height: 50px;
-	background: #cccccc;
+	background: #f7f7ff;
+	color: blue;
 }
 
 .tag-list:nth-child(even){
 	background-color: #fff;
+}
+
+.tag-list input{
+	margin-top: 10px;
 }
 
 .filter-tags{
@@ -214,10 +266,13 @@ tr:nth-child(even){
 	border-bottom: 1px solid #fff;
 	margin-bottom: 25px;
 	padding: 5px 0 5px;
+	font-family: 'Radikal_Bold';
+	font-size: 14px;
 }
 
 .sort-ideas a{
 	color: #fff;
+	padding-right: 10px;
 }
 
 .new-idea{
@@ -232,6 +287,8 @@ tr:nth-child(even){
 .new-idea a{
 	padding: 0 50px 0 50px;
 	color: blue;
+	font-family: 'Radikal_Bold';
+	font-size: 18px;
 }
 
 // idea list styles
@@ -260,26 +317,26 @@ tr:nth-child(even){
 
 .changing-idea{
 	background: #ffffff;
-	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #a7ffd7 51%, #a7ffd7 100%);
-	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#a7ffd7 51%,#a7ffd7 100%);
-	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#a7ffd7 51%,#a7ffd7 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#a7ffd7',GradientType=1 );
+	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #B0FFDC 51%, #B0FFDC 100%);
+	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#B0FFDC 51%,#B0FFDC 100%);
+	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#B0FFDC 51%,#B0FFDC 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#B0FFDC',GradientType=1 );
 }
 
 .changed-idea{
 	background: #ffffff;
-	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #c1ffae 51%, #c1ffae 100%);
-	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#c1ffae 51%,#c1ffae 100%);
-	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#c1ffae 51%,#c1ffae 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#c1ffae',GradientType=1 );
+	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #C8FFB7 51%, #C8FFB7 100%);
+	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#C8FFB7 51%,#C8FFB7 100%);
+	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#C8FFB7 51%,#C8FFB7 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#C8FFB7',GradientType=1 );
 }
 
 .not-changed-idea{
 	background: #ffffff;
-	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #ffdbff 51%, #ffdbff 100%);
-	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#ffdbff 51%,#ffdbff 100%);
-	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#ffdbff 51%,#ffdbff 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffdbff',GradientType=1 );
+	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #FFE0FF 51%, #FFE0FF 100%);
+	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#FFE0FF 51%,#FFE0FF 100%);
+	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#FFE0FF 51%,#FFE0FF 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#FFE0FF',GradientType=1 );
 }
 
 .rejected-idea{
@@ -296,6 +353,8 @@ tr:nth-child(even){
 
 .tag-text{
 	color: #000;
+	font-family: 'Radikal_Bold';
+	font-size: 14px;
 }
 
 .panel-default > .panel-heading{
@@ -326,8 +385,14 @@ tr:nth-child(even){
 	padding-left: 0;
 }
 
+.comment-top > .panel-title{
+	padding-bottom: 0px;
+}
+
 .comment-top h4{
 	color: blue;
+	font-family: 'Radikal_Bold';
+	font-size: 14px;
 }
 
 .comments li{
@@ -348,6 +413,11 @@ tr:nth-child(even){
 .comments li > .panel > .panel-body{
 	padding: 0;
 	border: none;
+}
+
+.panel-body p {
+	font-family: 'Radikal';
+	font-size: 14px;
 }
 
 .comment-container > .panel-heading{
@@ -377,6 +447,9 @@ tr:nth-child(even){
 	background: #fff;
 	pointer-events: none;
 	cursor:default;
+	font-family: 'Radikal_Bold';
+	font-size: 14px;
+	color: blue;
 }
 
 .like-button{
@@ -389,7 +462,7 @@ tr:nth-child(even){
 }
 
 .like-button:hover{
-	opacity: 0.65;
+	opacity: 0.80;
 }
 
 .like{
@@ -397,15 +470,47 @@ tr:nth-child(even){
 }
 
 .liked{
-	background: lime;
+	background: #29FF84;
 }
 
 .disable{
-	opacity: 0.65;
+	opacity: 0.80;
 	cursor: not-allowed;
 }
 
+.search-bar{
+	margin-top: -3px;
+	float: right;
+}
+
+.search-bar input{
+	border: 1px solid blue;
+	font-family: 'Radikal_Bold';
+	font-size: 14px;
+}
+
+.search-button{
+	color: blue;
+	background: #fff;
+}
+
+.panel-title{
+	font-family: 'Radikal_Black';
+	font-size: 36px;
+	padding-bottom: 15px;
+}
+
+.user-time{
+	font-family: 'Radikal_Bold';
+	font-size: 18px;
+}
+
 // show idea styles
+
+h2{
+	font-family: 'Radikal_Black';
+	font-size: 36px;
+}
 
 .idea-top{
 	padding: 15px;
@@ -441,6 +546,11 @@ tr:nth-child(even){
 	border-bottom: 1px solid blue;
 }
 
+.idea-show-body p{
+	font-family: 'Radikal';
+	font-size: 14px;
+}
+
 .idea-show-body > .col-sm-9, .idea-show-body > .col-sm-3{
 	padding: 15px 15px 15px 0;
 }
@@ -473,10 +583,14 @@ tr:nth-child(even){
 .idea-show-comment-text{
 	padding-top: 5px;
 	color: blue;
+	font-family: 'Radikal_Bold';
+	font-size: 14px;
 }
 
 .back a, .comment-label{
 	color: blue;
+	font-family: 'Radikal_Bold';
+	font-size: 14px;
 }
 
 .idea-show .idea-top{

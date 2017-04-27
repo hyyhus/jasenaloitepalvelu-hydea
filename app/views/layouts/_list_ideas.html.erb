@@ -34,7 +34,7 @@
                   <%= link_to idea.topic, idea, :title => 'Show idea' %>
                 <% end %>
               </h4>
-              <p><%= link_to User.find(idea.histories.first.user_id).name, User.find(idea.histories.first.user_id) %> / <%= idea.histories.first.time.strftime('%d.%m.%Y / %H:%M ') %>
+              <p class="user-time"><%= link_to User.find(idea.histories.first.user_id).name, User.find(idea.histories.first.user_id) %> / <%= idea.histories.first.time.strftime('%d.%m.%Y / %H:%M ') %>
               <%if idea.tags.empty?
                 else%>
                   <br />
@@ -177,7 +177,7 @@
                             <% end %>
                             <%= link_to (t :delete), comment, method: :delete, data: { confirm: (t :are_you_sure) }, :class => "btn-sm btn-danger delete_comment" %>
                           <% end %>
-                          <p>
+                          <p class="user-time">
                           <%= link_to comment.user.name, User.find(comment.user.id) %>
                           <% if not comment.user.title.empty? and comment.user.moderator %>
                             (<%= comment.user.title %>)
