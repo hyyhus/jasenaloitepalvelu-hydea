@@ -18,6 +18,6 @@ class LanguageController < ApplicationController
 
   def set_session_and_redirect
     session[:locale] = I18n.locale
-    redirect_to request.referrer
+    redirect_to root_path
   end
 end
