@@ -20,7 +20,7 @@
   <% end %>
     <div class="col-sm-8">
       <h2><%= @idea.topic %></h2>
-      <p>
+      <p class="user-time">
           <%= @idea.histories.first.user.name %> / <%= @idea.histories.first.time.strftime('%d.%m.%Y / %H:%M ') %>
         <%if not @idea.tags.empty?%>
           <br /><span class="tag-text">
@@ -111,7 +111,7 @@
                              <% end %>
                             <%= link_to (t :delete), comment, method: :delete, data: { confirm:  (t :are_you_sure) }, :class => "btn-sm btn-danger delete_comment" %>
                           <% end %>
-                          <p>
+                          <p class="user-time">
                           <%= link_to comment.user.name, comment.user_id %>
                           <% if not comment.user.title.empty? and comment.user.moderator %>
                             (<%= comment.user.title %>)

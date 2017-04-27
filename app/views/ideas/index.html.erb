@@ -55,7 +55,7 @@
     <%= search_form_for @q, class: 'search-bar', url: search_ideas_path(basket: params[:basket]),
                             html: { method: :post } do |f| %>
       <%= f.search_field :topic_or_text_cont %>
-      <%= f.submit (t :search_form) %>
+      <%= f.submit (t :search_form), class: 'search-button' %>
     <% end %>
     <!-- End Search form -->
   </div>
