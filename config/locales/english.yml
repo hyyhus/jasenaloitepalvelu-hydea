@@ -205,3 +205,15 @@ en:
     "Tags"
   create_idea:
     "Create idea"
+
+#sort
+  topic:
+    "Topic"
+  date:
+    "Date"
+  likes:
+    "Likes"
+
+#Search
+  search_form:
+    "Search"

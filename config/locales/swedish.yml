@@ -180,8 +180,13 @@ swe:
         faq_topic:
                 "Vanliga Fragor"
 
+
         faq_button:
                 "FAQ"
+
+        #Search
+        search_form:
+          "Sök"
 
                 # New idea texts
         topic:

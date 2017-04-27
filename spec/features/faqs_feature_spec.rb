@@ -13,21 +13,27 @@ RSpec.feature 'Faqs', type: :feature do
       expect(page).to have_content('Usein kysytyt kysymykset')
       expect(page).to have_content('ukk teksti')
       find(:xpath, "//a[@href='/language/english']").click
+      visit '/faq'
       expect(page).to have_content('Frequently asked questions')
       expect(page).to have_content('faq english')
       find(:xpath, "//a[@href='/language/swedish']").click
+      visit '/faq'
       expect(page).to have_content('Vanliga Fragor')
       expect(page).to have_content('faq svensk')
       find(:xpath, "//a[@href='/language/finnish']").click
+      visit '/faq'
       expect(page).to have_content('Usein kysytyt kysymykset')
       expect(page).to have_content('ukk teksti')
       find(:xpath, "//a[@href='/language/swedish']").click
+      visit '/faq'
       expect(page).to have_content('Vanliga Fragor')
       expect(page).to have_content('faq svensk')
       find(:xpath, "//a[@href='/language/english']").click
+      visit '/faq'
       expect(page).to have_content('Frequently asked questions')
       expect(page).to have_content('faq english')
       find(:xpath, "//a[@href='/language/finnish']").click
+      visit '/faq'
       expect(page).to have_content('Usein kysytyt kysymykset')
       expect(page).to have_content('ukk teksti')
     end
@@ -42,6 +48,7 @@ RSpec.feature 'Faqs', type: :feature do
         @faqswe = FactoryGirl.create(:faq, language: 'swe', text: 'faq svensk')
         visit '/faq'
         find(:xpath, "//a[@href='/language/finnish']").click
+        visit '/faq'
         expect(page).to have_content('Usein kysytyt kysymykset')
         expect(page).not_to have_content('Frequently asked questions')
         expect(page).not_to have_content('Vanliga Fragor')
@@ -54,6 +61,7 @@ RSpec.feature 'Faqs', type: :feature do
         @faqswe = FactoryGirl.create(:faq, language: 'swe', text: 'faq svensk')
         visit '/faq'
         find(:xpath, "//a[@href='/language/english']").click
+        visit '/faq'
         expect(page).not_to have_content('Usein kysytyt kysymykset')
         expect(page).to have_content('Frequently asked questions')
         expect(page).not_to have_content('Vanliga Fragor')
@@ -66,6 +74,7 @@ RSpec.feature 'Faqs', type: :feature do
         @faqswe = FactoryGirl.create(:faq, language: 'swe', text: 'faq svensk')
         visit '/faq'
         find(:xpath, "//a[@href='/language/swedish']").click
+        visit '/faq'
         expect(page).not_to have_content('Usein kysytyt kysymykset')
         expect(page).not_to have_content('Frequently asked questions')
         expect(page).to have_content('Vanliga Fragor')

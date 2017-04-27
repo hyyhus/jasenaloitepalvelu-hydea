@@ -402,6 +402,15 @@ tr:nth-child(even){
 	cursor: not-allowed;
 }
 
+.search-bar{
+	margin-top: -3px;
+	float: right;
+}
+
+.search-bar input{
+	border: 1px solid blue;
+}
+
 // show idea styles
 
 .idea-top{
