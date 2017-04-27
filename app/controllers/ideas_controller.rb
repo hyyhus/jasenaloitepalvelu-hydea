@@ -1,9 +1,8 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish, :publish_moderate, :un_moderate, :moderate, :reject, :changing, :changed, :not_changed, :like, :unlike]
-  before_action :ensure_that_signed_in, except: [:index, :show, :search]
-  before_action :ensure_that_is_moderator, except: [:index, :show, :new, :create, :like, :unlike, :search]
-#  before_action :set_idea, only: [:publish]
-
+  before_action :ensure_that_signed_in, except: [:index, :show, :search, :export]
+  before_action :ensure_that_is_moderator, except: [:index, :show, :new, :create, :like, :unlike, :search, :export]
+  #  before_action :set_idea, only: [:publish]
 
   # GET /ideas
   # GET /ideas.json
@@ -12,45 +11,58 @@ class IdeasController < ApplicationController
     @q.sorts = 'created_at' if @q.sorts.empty?
     @idea = @q.result(distinct: false)
     if params[:basket]
-      if (params[:basket] == 'New' or params[:basket] == 'Rejected') and not current_user.moderator?
+      if ((params[:basket] == 'New') || (params[:basket] == 'Rejected')) && !current_user.moderator?
         redirect_to '/ideas?basket=Approved'
-      end
+end
       tags = []
-      params.keys.each{|k| if Tag.all.find_by(text: k) then tags<<k end}
-      if tags.empty? then
-      @ideas = @idea.all.select{|i| i.basket == params[:basket].to_s }
+      params.keys.each { |k| tags << k if Tag.all.find_by(text: k) }
+      if tags.empty?
+        @ideas = @idea.all.select { |i| i.basket == params[:basket].to_s }
       else
-      @ideas = @idea.all.select{|i| i.basket == params[:basket].to_s and i.tags.find_by(text: tags)}
-      end
+        @ideas = @idea.all.select { |i| (i.basket == params[:basket].to_s) && i.tags.find_by(text: tags) }
+    end
     else
       redirect_to '/ideas?basket=Approved'
     end
   end
 
+
   def search
+    if (params[:basket] == 'New' or params[:basket] == 'Rejected') and not current_user.moderator?
+        redirect_to '/ideas?basket=Approved'
+    end
+
     @q = Idea.ransack(params[:q])
     @idea = @q.result(distinct: false)
     index
     render :index
   end
 
+  def export
+    @q = Idea.ransack(basket_eq: params[:basket])
+    @idea = @q.result(distinct: false)
+    respond_to do |format|
+      format.csv { send_data @idea.to_csv, filename: "ideas-#{Date.today}.csv" }
+    end
+  end
+
   # GET /ideas/1
   # GET /ideas/1.json
   def show
-    if current_user.nil? && @idea.basket == "Rejected"
-      redirect_to '/ideas?basket=Approved' and return
-    elsif current_user.nil? && @idea.basket != "New"
-      #Näytetään idea normaalisti, jos julkaistu.
-    elsif current_user.nil? && @idea.basket == "New"
-      redirect_to '/ideas?basket=Approved' and return
+    if current_user.nil? && @idea.basket == 'Rejected'
+      redirect_to('/ideas?basket=Approved') && return
+    elsif current_user.nil? && @idea.basket != 'New'
+      # Näytetään idea normaalisti, jos julkaistu.
+    elsif current_user.nil? && @idea.basket == 'New'
+      redirect_to('/ideas?basket=Approved') && return
     elsif current_user.moderator?
-      #Näytetään idea normaalisti kaikille moderaattoreille.
-    elsif @idea.basket == "Rejected"
-      redirect_to '/ideas?basket=Approved' and return
-    elsif @idea.basket == "New" && current_user.id.to_s != @idea.histories.find_by(basket: "New").user_id
-      redirect_to '/ideas?basket=Approved' and return
+      # Näytetään idea normaalisti kaikille moderaattoreille.
+    elsif @idea.basket == 'Rejected'
+      redirect_to('/ideas?basket=Approved') && return
+    elsif @idea.basket == 'New' && current_user.id.to_s != @idea.histories.find_by(basket: 'New').user_id
+      redirect_to('/ideas?basket=Approved') && return
     end
-    #Näytetään käyttäjälle hänen oma ideansa
+    # Näytetään käyttäjälle hänen oma ideansa
   end
 
   # GET /ideas/new
@@ -76,31 +88,28 @@ class IdeasController < ApplicationController
     if params[:idea][:tags]
       params[:idea][:tags].each do |tag|
         Tag.all.each do |t|
-          if t.text == tag
-            @idea.tags << t
-          end
+          @idea.tags << t if t.text == tag
         end
       end
     end
 
-      respond_to do |format|
-       if @history.save && @idea.save
-          format.html { redirect_to @idea, notice: (t :idea) + " " + (t :create) }
-          format.json { render :show, status: :created, location: @idea }
-        else
-          format.html { render :new }
-          format.json { render json: @idea.errors, status: :unprocessable_entity }
-        end
-      end
+    respond_to do |format|
+      if @history.save && @idea.save
+        format.html { redirect_to @idea, notice: (t :idea) + ' ' + (t :create) }
+        format.json { render :show, status: :created, location: @idea }
+      else
+        format.html { render :new }
+        format.json { render json: @idea.errors, status: :unprocessable_entity }
+       end
+    end
   end
-
 
   # PATCH/PUT /ideas/1
   # PATCH/PUT /ideas/1.json
   def update
     if params[:idea].nil?
       @idea.tags.delete_all
-      redirect_to @idea, notice: (t :idea) + " " + (t :update) and return
+      redirect_to(@idea, notice: (t :idea) + ' ' + (t :update)) && return
     elsif params[:idea][:tags]
       @idea.tags.delete_all
       params[:idea][:tags].each do |tag|
@@ -111,7 +120,7 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.update(idea_params)
-        format.html { redirect_to @idea, notice: (t :idea) + " " + (t :update) }
+        format.html { redirect_to @idea, notice: (t :idea) + ' ' + (t :update) }
         format.json { render :show, status: :ok, location: @idea }
       else
         format.html { render :edit }
@@ -125,7 +134,7 @@ class IdeasController < ApplicationController
   def destroy
     @idea.destroy
     respond_to do |format|
-      format.html { redirect_to ideas_url, notice: (t :idea) + " " + (t :destroy)  }
+      format.html { redirect_to ideas_url, notice: (t :idea) + ' ' + (t :destroy) }
       format.json { head :no_content }
     end
   end
@@ -136,8 +145,8 @@ class IdeasController < ApplicationController
   end
 
   def publish_moderate
-      @idea.histories << History.create(time: Time.now, basket: 'Approved', user: current_user, idea: @idea)
-      moderate
+    @idea.histories << History.create(time: Time.now, basket: 'Approved', user: current_user, idea: @idea)
+    moderate
   end
 
   def moderate
@@ -181,24 +190,23 @@ class IdeasController < ApplicationController
   end
 
   def like
-	  @idea.likes << Like.create(user: current_user, idea: @idea, like_type: "like")
-	  redirect_back(fallback_location: '/')
+    @idea.likes << Like.create(user: current_user, idea: @idea, like_type: 'like')
+    redirect_back(fallback_location: '/')
   end
 
   def unlike
-	  @idea.likes.find_by(user_id: current_user).destroy
-	  redirect_back(fallback_location: '/')
+    @idea.likes.find_by(user_id: current_user).destroy
+    redirect_back(fallback_location: '/')
   end
 
   private
 
-   def set_idea
-      @idea = Idea.find(params[:id])
-   end
+  def set_idea
+    @idea = Idea.find(params[:id])
+  end
 
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def idea_params
-      params.require(:idea).permit(:topic, :text, :basket, :histories, :tags, :moderate)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def idea_params
+    params.require(:idea).permit(:topic, :text, :basket, :histories, :tags, :moderate)
+  end
 end
