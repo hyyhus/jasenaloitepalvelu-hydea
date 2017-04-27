@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :ideas
   resources :histories
-  resources :users
+  resources :users, only: [:index, :show, :edit, :update]
   resources :faqs
   post 'language/english'
   post 'language/finnish'
@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     post 'not_changed', on: :member
     post 'like', on: :member
     post 'unlike', on: :member
+    collection do
+        match 'search' => 'ideas#search', via: [:get, :post], as: :search
+    end
   end
 
   resources :comments do

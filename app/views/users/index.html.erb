@@ -17,7 +17,8 @@
     </thead>
 
     <tbody>
-      <% @users.each do |user| %>
+      <% @users.order(:admin => :desc, :moderator => :desc, :name => :desc).each do |user| %>
+
         <tr>
           <td <% if user.admin %> class='bg' <% end %>><%= user.admin %></td>
           <td <% if user.moderator %> class='bg' <% end %>><%= user.moderator %></td>
@@ -35,7 +36,6 @@
 
 
           <td><%= link_to (t :edit), edit_user_path(user) %></td>
-          <td><%= link_to (t :delete), user, method: :delete, data: { confirm: (t :are_you_sure) } %></td>
 
 
         </tr>
@@ -45,5 +45,4 @@
 
   <br>
 
-  <%= link_to ( (t :new) + " " + (t :user)), new_user_path %>
 </div>

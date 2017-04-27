@@ -15,7 +15,7 @@ module Haka
       begin
           #Server metadata check
           haka_server_metadata=Nokogiri::XML(open(Hydea::Haka::HAKA_TESTSERVER_METADATA_URL)).to_s
-          varmenne_ok=Xmlsec::verify_file(haka_server_metadata, Hydea::Haka::HAKA_TESTSERVER_SIGN_CERT)
+          Xmlsec::verify_file(haka_server_metadata, Hydea::Haka::HAKA_TESTSERVER_SIGN_CERT)
         rescue
           redirect_to ideas_path, notice: 'Login error'
         return
@@ -50,7 +50,6 @@ module Haka
       uniquecode=metadata.xpath("#{front}schacPersonalUniqueCode']")[0].attr("name")
       mail=metadata.xpath("#{front}mail']")[0].attr("name")
       displayname=metadata.xpath("#{front}displayName']")[0].attr("name")
-      homeorganization=metadata.xpath("#{front}schacHomeOrganization']")[0].attr("name")
 
       #Kirjataan käyttäjä sisään, jos löytyy jo olemassa
       if (user = User.find_by persistent_id: response.attributes[uniquecode])
@@ -84,12 +83,17 @@ module Haka
         # previously authenticated session is still valid.
         settings.force_authn = true
 
+        metadata=Nokogiri::HTML(open(Hydea::Haka::HAKA_METADATA_URL))
+        testservermetadata=Nokogiri::HTML(open(Hydea::Haka::HAKA_TESTSERVER_METADATA_URL))
+
         settings.idp_entity_id                  = Hydea::Haka::SAML_IDP_ENTITY_ID
-        settings.idp_sso_target_url             = Hydea::Haka::SAML_IDP_SSO_TARGET_URL
-        settings.assertion_consumer_service_url = Hydea::Haka::SAML_ASSERTION_CONSUMER_SERVICE_URL
         settings.issuer                         = Hydea::Haka::SAML_MY_ENTITY_ID
+
+        settings.idp_sso_target_url             = testservermetadata.xpath("//entitydescriptor[@entityid='#{Hydea::Haka::SAML_IDP_ENTITY_ID}']//singlesignonservice").attr("location").value
+        settings.assertion_consumer_service_url = metadata.xpath("//entitydescriptor[@entityid='#{Hydea::Haka::SAML_MY_ENTITY_ID}']//assertionconsumerservice").attr("location").value
         settings.idp_cert                       = Hydea::Haka::SAML_IDP_CERT
-        settings.name_identifier_format         = Hydea::Haka::SAML_NAME_IDENTIFIER_FORMAT
+       #settings.idp_cert                       = testservermetadata.xpath("//entitydescriptor[@entityid='#{Hydea::Haka::SAML_IDP_ENTITY_ID}']//x509certificate").text
+        settings.name_identifier_format         = testservermetadata.xpath("//entitydescriptor[@entityid='#{Hydea::Haka::SAML_IDP_ENTITY_ID}']//nameidformat")[0].text
 
         settings.certificate                    = Hydea::Haka::SAML_MY_CERT
         settings.private_key                    = Hydea::Haka::SAML_MY_PRIVATE_KEY    

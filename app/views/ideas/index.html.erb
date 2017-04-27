@@ -49,10 +49,18 @@
   <%= sort_link @q, :created_at do %>
     <% (t :date) %>
   <% end %>
-  <%= sort_link @q, :likes_count_sort do  %>
+  <%= sort_link @q, :likes_count_sort, default_order: 'desc' do  %>
     <% (t :likes) %>
   <% end %>
   <!-- End sort -->
+
+  <%= search_form_for @q, url: search_ideas_path(basket: params[:basket]),
+                          html: { method: :post } do |f| %>
+    <%= f.label :topic_cont %>
+    <%= f.search_field :topic_cont %>
+
+    <%= f.submit %>
+  <% end %>
 </div>
 <!-- End top bar -->
 

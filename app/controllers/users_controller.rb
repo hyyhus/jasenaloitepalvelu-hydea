@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_that_signed_in, except: [:index] #except index testikäytössä
-  before_action :ensure_that_is_admin, except: [:index, :show] #except index testikäytössä
+
+  before_action :set_user, only: [:show, :edit, :update]
+  before_action :ensure_that_is_admin, except: [:show, :index]
+  before_action :ensure_that_signed_in, only: [:show]
 
   # GET /users
   # GET /users.json
@@ -35,22 +36,6 @@ class UsersController < ApplicationController
   def edit
   end
 
-  # POST /users
-  # POST /users.json
-  def create
-    @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: (t :user) + " " + (t :create) }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
@@ -62,20 +47,6 @@ class UsersController < ApplicationController
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    if current_user.admin
-      @user.destroy
-      respond_to do |format|
-      format.html { redirect_to users_url, notice: (t :user) + " " + (t :destroy) }
-      format.json { head :no_content }
-    end
-    else
-      redirect_to users_path
     end
   end
 

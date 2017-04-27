@@ -14,9 +14,16 @@
 	      <li>
 	      	<%= link_to (t :ideas), ideas_path %>
 	      </li>
-	      <li>
-	      	<%= link_to (t :users), users_path %>
-	      </li>
+        <% if not current_user.nil? and current_user.admin %>
+  	      <li>
+  	      	<%= link_to (t :users), users_path %>
+  	      </li>
+        <% end %>
+        <% if not current_user.nil? and current_user.moderator %>
+          <li>
+            <%= link_to (t :tags), tags_path %>
+          </li>
+        <% end %>
         	<li>
 	      	<%= link_to (t :faq_button), '/faq' %>
 	      </li>
@@ -38,8 +45,8 @@
             <% end %>
           </div>
         </li>
-	    <% if not session[:user_id].nil? %>
-			    <li><%= link_to User.find(session[:user_id]).name, User.find(session[:user_id])%></li>
+	    <% if not current_user.nil? %>
+			    <li><%= link_to User.all.find_by(id: current_user).name, User.all.find_by(id: current_user)%></li>
 		    <li><%= link_to (t :logout_button), logout_path, method: :delete %></li>
 		<% else %>
 			<li><%=  link_to (t :login_button), haka_auth_new_path %></li>
@@ -49,7 +56,7 @@
   </div>
 </nav>
 <!-- Show banned -->
-<% if not session[:user_id].nil? and current_user.banned %>
+<% if not current_user.nil? and current_user.banned %>
   <div class="container center alert alert-danger">
     Insert banned text here.
   </div>

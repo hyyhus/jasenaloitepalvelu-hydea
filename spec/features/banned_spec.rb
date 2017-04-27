@@ -14,7 +14,7 @@ RSpec.feature "Banned", type: :feature do
 
       it "can not add comments" do
         page.fill_in 'comment', :with => 'This will be nice'
-        click_on('Send')
+        click_on('Lähetä')
         expect(page).not_to have_content('This will be nice')
       end
 
@@ -29,7 +29,7 @@ RSpec.feature "Banned", type: :feature do
       end
 
       it "can not access user listings" do
-        click_on('Käyttäjät')
+        visit '/users'
         expect(current_path).not_to be('/users')
 
       end
@@ -68,6 +68,25 @@ RSpec.feature "Banned", type: :feature do
           click_button('Update User')
           page.visit edit_user_path(user)
           expect(find('input[name="user[banned]"]')).to be_checked
+        end
+      end
+    end
+
+    context 'alert on' do
+      describe 'banned user' do
+        it 'is displayed' do
+          page.set_rack_session(user_id: user.id)
+          page.visit '/'
+          expect(page).to have_css('.alert-danger')
+        end
+      end
+
+      describe 'not banned user' do
+        it 'is not displayed' do
+          normal_user = FactoryGirl.create(:user)
+          page.set_rack_session(user_id: normal_user.id)
+          page.visit '/'
+          expect(page).not_to have_css('.alert-danger')
         end
       end
     end
