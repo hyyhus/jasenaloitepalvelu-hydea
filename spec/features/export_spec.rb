@@ -11,7 +11,7 @@ RSpec.feature 'Export', type: :feature do
       visit '/'
       expect(page).not_to have_content('Vie tiedostoon')
       visit '/export.csv'
-      expect(page).not_to be('export.csv')
+      expect(page).not_to eq '/export.csv'
     end
 
     it 'cannot access function' do
