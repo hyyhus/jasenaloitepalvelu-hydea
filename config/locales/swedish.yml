@@ -178,6 +178,7 @@ swe:
   faq_button:
     "FAQ"
 
+
 # New idea texts
   topic:
     " "
@@ -212,3 +213,8 @@ swe:
     " "
   create_idea:
     " "
+
+# export
+  export:
+    "Exportera till fil"
+

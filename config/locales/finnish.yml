@@ -195,9 +195,14 @@ fin:
   likes:
     "Tykkäykset"
 
+
 #Search
   search_form:
     "Haku"
+
+# export
+  export:
+    "Vie tiedostoon"
 
   activerecord:
     errors:

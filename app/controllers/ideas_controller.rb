@@ -42,7 +42,7 @@ end
     @q = Idea.ransack(basket_eq: params[:basket])
     @idea = @q.result(distinct: false)
     respond_to do |format|
-      format.csv { send_data @idea.to_csv, filename: "ideas-#{Date.today}.csv" }
+      format.csv { send_data @idea.to_csv, filename: "ideas-#{Date.today}.csv", :disposition => 'attachment' }
     end
   end
 
