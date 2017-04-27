@@ -193,6 +193,6 @@ swe:
         create_idea:
                 " "
 # export
-  export:
-    "Exportera till fil"
+        export:
+                "Exportera till fil"
 

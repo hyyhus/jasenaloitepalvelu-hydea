@@ -1,7 +1,7 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish, :publish_moderate, :un_moderate, :moderate, :reject, :changing, :changed, :not_changed, :like, :unlike]
   before_action :ensure_that_signed_in, except: [:index, :show, :export]
-  before_action :ensure_that_is_moderator, except: [:index, :show, :new, :create, :like, :unlike, :export]
+  before_action :ensure_that_is_moderator, except: [:index, :show, :new, :create, :like, :unlike]
   #  before_action :set_idea, only: [:publish]
 
   # GET /ideas
@@ -30,7 +30,7 @@ end
     @q = Idea.ransack(basket_eq: params[:basket])
     @idea = @q.result(distinct: false)
     respond_to do |format|
-      format.csv { send_data @idea.to_csv, filename: "ideas-#{Date.today}.csv" }
+      format.csv { send_data @idea.to_csv, filename: "ideas-#{Date.today}.csv", :disposition => 'attachment' }
     end
   end
 
