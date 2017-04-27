@@ -4,6 +4,7 @@ class IdeasController < ApplicationController
   before_action :ensure_that_is_moderator, except: [:index, :show, :new, :create, :like, :unlike, :search]
   #  before_action :set_idea, only: [:publish]
 
+
   # GET /ideas
   # GET /ideas.json
   def index
@@ -31,7 +32,6 @@ end
     if (params[:basket] == 'New' or params[:basket] == 'Rejected') and not current_user.moderator?
         redirect_to '/ideas?basket=Approved'
     end
-
     @q = Idea.ransack(params[:q])
     @idea = @q.result(distinct: false)
     index
