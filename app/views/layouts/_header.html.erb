@@ -21,6 +21,9 @@
         <% end %>
         <% if not current_user.nil? and current_user.moderator %>
           <li>
+          <%= link_to (t :export), ideas_export_path(basket: params[:basket], format: "csv") %> 
+          </li>
+          <li>
             <%= link_to (t :tags), tags_path %>
           </li>
         <% end %>

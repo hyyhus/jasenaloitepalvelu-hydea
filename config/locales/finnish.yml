@@ -196,9 +196,15 @@ fin:
   likes:
     "Tykkäykset"
 
+
 #Search
   search_form:
     "Haku"
+
+# export
+  export:
+    "Vie tiedostoon"
+
 
   activerecord:
     errors:
@@ -213,3 +219,4 @@ fin:
       last_name: ["Virtanen", "Ahonen", "Testinen", "Jokinen", "Mattila", "Kauria", "Säynevirta", "Silvo", "Luoto", "Karvonen", "Mesimäki"]
     company:
       profession: ["opiskelija", "hallituksen jäsen", "työntekijä", "puheenjohtaja"]
+
