@@ -202,3 +202,16 @@ en:
     "Tags"
   create_idea:
     "Create idea"
+
+#sort
+  topic:
+    "Topic"
+  date:
+    "Date"
+  likes:
+    "Likes"
+
+# export
+  export:
+    "Export to file"
+

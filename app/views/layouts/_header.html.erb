@@ -14,9 +14,19 @@
 	      <li>
 	      	<%= link_to (t :ideas), ideas_path %>
 	      </li>
-	      <li>
-	      	<%= link_to (t :users), users_path %>
-	      </li>
+        <% if not current_user.nil? and current_user.admin %>
+  	      <li>
+  	      	<%= link_to (t :users), users_path %>
+  	      </li>
+        <% end %>
+        <% if not current_user.nil? and current_user.moderator %>
+          <li>
+          <%= link_to (t :export), ideas_export_path(basket: params[:basket], format: "csv") %> 
+          </li>
+          <li>
+            <%= link_to (t :tags), tags_path %>
+          </li>
+        <% end %>
         	<li>
 	      	<%= link_to (t :faq_button), '/faq' %>
 	      </li>

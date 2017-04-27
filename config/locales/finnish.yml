@@ -223,3 +223,30 @@ fin:
     "Tägit"
   create_idea:
     "Luo idea"
+
+# Sort
+  topic:
+    "Otsikko"
+  date:
+    "Aika"
+  likes:
+    "Tykkäykset"
+
+# export
+  export:
+    "Vie tiedostoon"
+
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'Validointi epäonnistui: %{errors}'
+
+
+# Names for Faker
+  faker:
+    name:
+      first_name: ["Heikki", "Matti", "Mikko", "Miika", "Jari", "Kimmo", "Laura", "Jerry"]
+      last_name: ["Virtanen", "Ahonen", "Testinen", "Jokinen", "Mattila", "Kauria", "Säynevirta", "Silvo", "Luoto", "Karvonen", "Mesimäki"]
+    company:
+      profession: ["opiskelija", "hallituksen jäsen", "työntekijä", "puheenjohtaja"]
+
