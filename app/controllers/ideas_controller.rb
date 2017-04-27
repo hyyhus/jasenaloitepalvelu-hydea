@@ -11,6 +11,9 @@ class IdeasController < ApplicationController
     @q.sorts = 'created_at' if @q.sorts.empty?
     @idea = @q.result(distinct: false)
     if params[:basket]
+      if ((params[:basket] == 'New') || (params[:basket] == 'Rejected')) && !current_user.moderator?
+        redirect_to '/ideas?basket=Approved'
+end
       tags = []
       params.keys.each { |k| tags << k if Tag.all.find_by(text: k) }
       if tags.empty?
