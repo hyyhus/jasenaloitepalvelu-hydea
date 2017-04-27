@@ -196,4 +196,19 @@ swe:
   likes:
     "Likt"
 
+  faq_button:
+    "FAQ"
 
+  #Search
+  search_form:
+    "Sök"
+
+  # New idea texts
+  topic:
+    " "
+  text:
+    " "
+  tags:
+    " "
+  create_idea:
+    " "

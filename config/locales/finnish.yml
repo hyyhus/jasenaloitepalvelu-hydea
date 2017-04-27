@@ -195,6 +195,10 @@ fin:
   likes:
     "Tykkäykset"
 
+#Search
+  search_form:
+    "Haku"
+
   activerecord:
     errors:
       messages:
