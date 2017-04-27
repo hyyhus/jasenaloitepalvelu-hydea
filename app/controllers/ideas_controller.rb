@@ -1,6 +1,6 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish, :publish_moderate, :un_moderate, :moderate, :reject, :changing, :changed, :not_changed, :like, :unlike]
-  before_action :ensure_that_signed_in, except: [:index, :show, , :search, :export]
+  before_action :ensure_that_signed_in, except: [:index, :show, :search, :export]
   before_action :ensure_that_is_moderator, except: [:index, :show, :new, :create, :like, :unlike, :search, :export]
   #  before_action :set_idea, only: [:publish]
 
@@ -31,7 +31,7 @@ end
     if (params[:basket] == 'New' or params[:basket] == 'Rejected') and not current_user.moderator?
         redirect_to '/ideas?basket=Approved'
     end
-    
+
     @q = Idea.ransack(params[:q])
     @idea = @q.result(distinct: false)
     index
