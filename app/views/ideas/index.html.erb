@@ -5,7 +5,7 @@
   <!-- Show baskets -->
   <ul class="nav nav-tabs nav-justified">
     <% if not session[:user_id].nil? and current_user.moderator %>
-      <li <% if current_page?(ideas_path(basket: "New")) -%>class="active new-idea"<% end -%>><%= link_to (t :basket_new), ideas_path(basket: "New" )%></li>
+      <li <% if current_page?(ideas_path(basket: "New")) -%>class="active idea-new"<% end -%>><%= link_to (t :basket_new), ideas_path(basket: "New" )%></li>
     <% end %>
       <li <% if current_page?(ideas_path(basket: "Approved")) -%>class="active approved-idea"<% end -%>><%= link_to  (t :basket_approved), ideas_path(basket: "Approved" )%></li>
       <li <% if current_page?(ideas_path(basket: "Changing")) -%>class="active changing-idea"<% end -%>><%= link_to  (t :basket_changing), ideas_path(basket: "Changing" )%></li>
