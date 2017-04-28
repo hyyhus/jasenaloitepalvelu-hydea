@@ -1,14 +1,15 @@
+<div class="container faq">
+  <% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)%>
+  <p id="notice"><%= notice %></p>
 
-<% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)%>
-<p id="notice"><%= notice %></p>
 
+  <h1>
+    <%= (t :faq_topic)%>
+  </h1>
 
-<h1>
-  <strong><%= (t :faq_topic)%></strong>
-</h1>
-
-<%= markdown.render(@faq.text).html_safe %>
-<br>
-<% if not session[:user_id].nil? and current_user.moderator %>
-<%= link_to (t :edit), edit_faq_path(@faq) %> |
-<% end %>
+  <%= markdown.render(@faq.text).html_safe %>
+  <br>
+  <% if not session[:user_id].nil? and current_user.moderator %>
+  <%= link_to (t :edit), edit_faq_path(@faq) %> |
+  <% end %>
+</div>
