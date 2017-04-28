@@ -14,18 +14,19 @@
   <div class="field">
     <%= f.label :tags %><br>
       <% Tag.all.each do |menutag| %>
-      <%= menutag.text %>
+        <%= menutag.text %>
         <% if @idea.tags.count == 0 %>
           <%= check_box_tag 'idea[tags][]', menutag.text %>
         <% end %>
-        <% @idea.tags.each_with_index do |t, index| %>        
+        <% @idea.tags.each_with_index do |t, index| %>
           <% if t.text == menutag.text %>
             <%= check_box_tag 'idea[tags][]', menutag.text, true%>
             <% break %>
           <% elsif index == @idea.tags.count - 1 %>
             <%= check_box_tag 'idea[tags][]', menutag.text %>
           <% end %>
-        <% end %>      
+        <% end %>
+        <br />
      <% end %>
      <br>
 

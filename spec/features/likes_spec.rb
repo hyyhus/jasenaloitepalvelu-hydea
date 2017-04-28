@@ -17,13 +17,19 @@ RSpec.feature "Likes", type: :feature do
 		end
 
 		it "should be liked after clicking" do
-			click_on('0')
+			within ('div.approved-idea') do
+				page.find_link(nil, href: /like/).click
+			end
 			expect(page).to have_selector(:link_or_button, '1')
 		end
 		it "should be unliked after clicking again" do
-			click_on('0')
+			within ('div.approved-idea') do
+				page.find_link(nil, href: /like/).click
+			end
 			expect(page).to have_selector(:link_or_button, '1')
-			click_on('1')
+			within ('div.approved-idea') do
+				page.find_link(nil, href: /like/).click
+			end
 			expect(page).to have_selector(:link_or_button, '0')
 		end
 	end
@@ -36,7 +42,7 @@ RSpec.feature "Likes", type: :feature do
 			end
 
 	    it 'if basket is Approved' do
-				all('a.btn.btn-default').last.find('.glyphicon.glyphicon-thumbs-up')
+				expect(page).not_to have_selector('disable')
 	    end
 		end
 
@@ -49,19 +55,19 @@ RSpec.feature "Likes", type: :feature do
 			it 'if basket is Changing' do
 				click_link('Muutettava')
 				visit '/ideas?basket=Changing'
-				find('button.btn.btn-default.disabled')
+				find('button', class: 'disable')
 			end
 
 			it 'if basket is Changed' do
 				click_link('Muutettu')
 				visit '/ideas?basket=Changed'
-				find('button.btn.btn-default.disabled')
+				find('button', class: 'disable')
 			end
 
 			it 'if basket is Not Changed' do
 				click_link('Ei muutettu')
 				visit '/ideas?basket=Not+Changed'
-				find('button.btn.btn-default.disabled')
+				find('button', class: 'disable')
 			end
 		end
 	end

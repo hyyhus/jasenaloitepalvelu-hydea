@@ -54,8 +54,10 @@ RSpec.feature "Show idea", type: :feature do
 				expect(page).to have_selector(:link_or_button, '0')
 			end
 			it "adds a like when clicked" do
-				expect(page).not_to have_selector(:link_or_button, '1')
-				click_on('0')
+				expect(page).to have_selector(:link_or_button, '0')
+				within ('div.approved-idea') do
+					page.find_link(nil, href: /like/).click
+				end
 				expect(page).to have_selector(:link_or_button, '1')
 			end
 		end
