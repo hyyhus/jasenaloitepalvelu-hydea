@@ -1,7 +1,9 @@
 <!-- Container for top bar -->
 <div class="container">
   <p id="notice"><%= notice %></p>
-
+  <% if not current_user.nil? and current_user.moderator %>
+    <%= link_to (t :export), ideas_export_path(basket: params[:basket], format: "csv"), class: 'btn btn-success' %> 
+  <% end %>
   <!-- Show baskets -->
   <ul class="nav nav-tabs nav-justified">
     <% if not session[:user_id].nil? and current_user.moderator %>
@@ -59,15 +61,6 @@
     <!-- End Search form -->
   </div>
   <!-- End sort -->
-  <!-- Search form -->
-  <%= search_form_for @q, url: search_ideas_path(basket: params[:basket]),
-                          html: { method: :post } do |f| %>
-    <%= f.label (t :search_form) %>
-    <%= f.search_field :topic_or_text_cont %>
-
-    <%= f.submit %>
-  <% end %>
-  <!-- End Search form -->
 </div>
 <!-- End top bar -->
 

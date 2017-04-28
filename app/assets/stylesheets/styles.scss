@@ -40,6 +40,10 @@ a:hover{
 	background: none;
 }
 
+h2{
+	color: #fff;
+}
+
 .btn-primary{
 	color: #ffffff;
 }
@@ -118,6 +122,7 @@ a .flag{
 	border: 1px solid black;
 	border-collapse: collapse;
 	padding: 5px;
+	background-color: #fff;
 }
 
 tr:nth-child(even){
@@ -295,7 +300,7 @@ tr:nth-child(even){
 
 .new-idea{
 	margin-top: -5px;
-	padding: 5px 0 5px;
+	padding: 5px 0 0;
 	position: absolute;
 	left: 50%;
 	transform: translatex(-50%);
@@ -732,7 +737,7 @@ h2{
 
 	.sort-ideas{
 		text-align: center;
-		height: 70px;
+		height: 100px;
 	}
 
 	.sort-ideas form {
@@ -741,5 +746,13 @@ h2{
 
 	.nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a{
 		padding: 10px;
+	}
+
+	.new-idea{
+		margin-top: -5px;
+		padding: 5px 0 0;
+		position: relative;
+		left: 0;
+		background: #fff;
 	}
 }
