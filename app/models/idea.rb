@@ -11,7 +11,7 @@ class Idea < ApplicationRecord
   validates_associated :histories, presence: true
 
   def basket
-    histories.last.basket
+    self.histories.last.basket
   end
 
   ransacker :likes_count_sort do
