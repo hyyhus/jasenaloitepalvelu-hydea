@@ -17,7 +17,6 @@ COPY Gemfile /usr/src/app/
 # Uncomment the line below if Gemfile.lock is maintained outside of build process
 # COPY Gemfile.lock /usr/src/app/
 
-RUN bundle update
 RUN bundle install
 
 COPY . /usr/src/app
