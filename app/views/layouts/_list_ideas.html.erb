@@ -137,7 +137,7 @@
               <div class="col-sm-3 histories">
                 <% idea.histories.each do |history|%>
                   <p>
-                    <strong><%=history.basket%></strong>:<br>
+                    <strong><%=(t history.basket)%></strong>:<br>
                     <%= history.time.strftime('%d.%m.%Y %H:%M ') %><br>
                     <% if not history.basket == 'New' %>
                       <%= history.user.name %>
