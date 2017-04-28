@@ -15,14 +15,14 @@ class IdeasController < ApplicationController
     if params[:basket]
       if ((params[:basket] == 'New') || (params[:basket] == 'Rejected')) && !current_user.moderator?
         redirect_to '/ideas?basket=Approved'
-end
+      end
       tags = []
       params.keys.each { |k| tags << k if Tag.all.find_by(text: k) }
       if tags.empty?
         @ideas = @idea.all.select { |i| i.basket == params[:basket].to_s }
       else
-        @ideas = @idea.all.select { |i| (i.basket == params[:basket].to_s) && i.tags.find_by(text: tags) }
-    end
+        @ideas = @idea.all.select{|i| i.basket == params[:basket].to_s and i.tags.find_by(text: tags)}
+      end
       @ideas = @ideas.paginate(:page => params[:page], :per_page => 10 )
     else
       redirect_to '/ideas?basket=Approved'
@@ -102,7 +102,7 @@ end
       else
         format.html { render :new }
         format.json { render json: @idea.errors, status: :unprocessable_entity }
-       end
+      end
     end
   end
 

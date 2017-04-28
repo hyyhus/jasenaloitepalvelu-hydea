@@ -15,7 +15,6 @@ RUN apt-get update && apt-get install -y mysql-client postgresql-client sqlite3 
 COPY Gemfile /usr/src/app/
 COPY Gemfile.lock /usr/src/app/
 
-
 RUN bundle install
 
 COPY . /usr/src/app

@@ -190,11 +190,11 @@ swe:
     " "
 
 #sort
-  topic:
+  topic_sort:
     "Ämne"
-  date:
+  date_sort:
     "Datum"
-  likes:
+  likes_sort:
     "Likt"
 
   faq_button:

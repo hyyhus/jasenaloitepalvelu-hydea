@@ -188,11 +188,11 @@ fin:
     "Luo idea"
 
 # Sort
-  topic:
+  topic_sort:
     "Otsikko"
-  date:
+  date_sort:
     "Aika"
-  likes:
+  likes_sort:
     "Tykkäykset"
 
 

@@ -39,13 +39,13 @@
   <!-- Show sort -->
   <div class="sort-ideas">
     <%= sort_link @q, :topic_case_insensitive do %>
-      <% (t :topic) %>
+      <% (t :topic_sort) %>
     <% end %>
     <%= sort_link @q, :created_at do %>
-      <% (t :date) %>
+      <% (t :date_sort) %>
     <% end %>
     <%= sort_link @q, :likes_count_sort, default_order: 'desc' do  %>
-      <% (t :likes) %>
+      <% (t :likes_sort) %>
     <% end %>
     <% if current_user %>
       <span class="new-idea">
