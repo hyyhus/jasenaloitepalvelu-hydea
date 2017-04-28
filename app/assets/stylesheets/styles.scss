@@ -159,9 +159,22 @@ tr:nth-child(even){
 	font-family: 'Radikal_Bold';
 }
 
-.navbar-brand{
+.brand-logo{
 	width: 100px;
 	height: 100px;
+}
+
+.brand-text{
+	display: none;
+}
+
+.navbar-default .navbar-brand{
+	color: #fff;
+}
+
+.navbar-default .navbar-brand:hover{
+	color: #fff;
+	text-decoration: underline;
 }
 
 .navbar-header{
@@ -195,10 +208,15 @@ tr:nth-child(even){
 
 // basket styles
 
+.nav-tabs-justified > li{
+	height: 100px;
+	border: 1px solid #fff;
+}
+
 .nav-tabs-justified > li > a{
 	color: #fff;
-	border-color: #fff;
-	padding: 25px;
+	border: none;
+	padding: 15px;
 	font-family: 'Radikal_Bold';
 	font-size: 26px;
 }
@@ -210,12 +228,12 @@ tr:nth-child(even){
 
 .nav-tabs-justified > li.active > a{
 	color: blue;
-	border-color: #fff;
+	border: none;
 	background: none;
 }
 
 .nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a, .nav-tabs-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a:hover, .nav-tabs-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:focus{
-	border: 1px solid #fff;
+	border: none;
 }
 
 .nav-tabs, .nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a{
@@ -292,6 +310,10 @@ tr:nth-child(even){
 }
 
 // idea list styles
+#notice{
+	color: #fff;
+}
+
 
 .panel{
 	border-radius: 0;
@@ -595,4 +617,129 @@ h2{
 
 .idea-show .idea-top{
 	border-bottom: 1px solid blue;
+}
+
+// Faq styles
+
+.faq{
+	color: #fff;
+}
+
+.faq h1{
+	font-family: 'Radikal_Black';
+	font-size: 36px;
+}
+
+.faq h3{
+	font-family: 'Radikal_Bold';
+	font-size: 26px;
+}
+
+.faq p{
+	font-family: 'Radikal';
+	font-size: 18px;
+}
+
+// smaller screen styles
+
+@media only screen and (max-width: 1120px) {
+	.navbar-header {
+		padding-left: 0px;
+	}
+
+	.navbar, .navbar-default .navbar-nav > li > a {
+		font-size: 14px;
+	}
+
+	.navbar-middle, h2, .panel-title{
+		font-size: 24px;
+	}
+
+	.nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a{
+		font-size: 18px;
+	}
+
+	.nav-tabs-justified > li{
+		height: 50px;
+		border: 1px solid #fff;
+	}
+}
+
+@media only screen and (max-width: 991px) {
+	.like-button{
+		width: 75px;
+		height: 56px;
+		margin-top: 5px;
+	}
+
+	.ssb-icon{
+		margin-right: 5px;
+	}
+}
+
+@media only screen and (max-width: 930px) {
+	.navbar-middle{
+		display: none;
+	}
+	.brand-logo{
+		display: none;
+	}
+
+	.brand-text{
+		padding-top: 39px;
+		display: inline;
+		text-transform: uppercase;
+		font-size: 24px;
+	}
+
+	.navbar-nav{
+		padding: 25px 15px 25px 15px;
+	}
+
+	.nav > li > a{
+		padding: 15px 5px;
+	}
+
+	.nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a{
+		font-size: 16px;
+		padding: 15px;
+	}
+
+	.navbar{
+		margin: 25px;
+		padding-bottom: 0;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.brand-text{
+		padding-top: 15px;
+	}
+
+	.navbar{
+		margin: 15px;
+		padding-bottom: 0;
+	}
+
+	.navbar-nav{
+		padding: 5px 10px 5px 10px;
+	}
+
+	.tag-list{
+		margin: 0 2px 2px 0;
+		padding: 2px;
+	}
+
+	.sort-ideas{
+		text-align: center;
+		height: 70px;
+	}
+
+	.sort-ideas form {
+		padding: 10px;
+	}
+
+	.nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a{
+		padding: 10px;
+	}
 }
