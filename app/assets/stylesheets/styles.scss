@@ -3,17 +3,20 @@
 
 @font-face{
 	font-family: 'Radikal';
-	src:url('Nootype - Radikal-Regular.otf') format('truetype');
+	src: font-url('Radikal-Regular.otf');
+	src: font-url('Radikal-Regular.otf') format('truetype');
 }
 
 @font-face{
 	font-family: 'Radikal_Bold';
-	src:url('Nootype - Radikal Bold.otf') format('truetype');
+	src: font-url('Radikal-Bold.otf');
+	src: font-url('Radikal-Bold.otf') format('truetype');
 }
 
 @font-face{
 	font-family: 'Radikal_Black';
-	src:url('Nootype - Radikal-Black.otf') format('truetype');
+	src: font-url('Radikal-Black.otf');
+	src: font-url('Radikal-Black.otf') format('truetype');
 }
 
 .container > .panel-groups{
