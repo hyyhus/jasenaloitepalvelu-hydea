@@ -206,4 +206,20 @@ en:
   export:
     "Export to file"
 
+  New:
+    "New"
+  
+  Approved:
+    "Approved"
 
+  Changing:
+    "Changing"
+  
+  Changed:
+    "Changed"
+
+  Not Changed:
+    "Not Changed"
+  
+  Rejected:
+    "Rejected"
