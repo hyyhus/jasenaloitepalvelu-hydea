@@ -328,10 +328,10 @@ tr:nth-child(even){
 
 .idea-new{
 	background: #ffffff;
-	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #b2ffff 51%, #b2ffff 100%);
-	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#b2ffff 51%,#b2ffff 100%);
-	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#b2ffff 51%,#b2ffff 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#b2ffff',GradientType=1 );
+	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #6CF39B 51%, #6CF39B 100%);
+	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#6CF39B 51%,#6CF39B 100%);
+	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#6CF39B 51%,#6CF39B 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#6CF39B',GradientType=1 );
 }
 
 .approved-idea{
@@ -368,10 +368,10 @@ tr:nth-child(even){
 
 .rejected-idea{
 	background: #ffffff;
-	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #b2ffff 51%, #b2ffff 100%);
-	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#b2ffff 51%,#b2ffff 100%);
-	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#b2ffff 51%,#b2ffff 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#b2ffff',GradientType=1 );
+	background: -moz-linear-gradient(-15deg, #ffffff 1%, #ffffff 50%, #F3716D 51%, #F3716D 100%);
+	background: -webkit-linear-gradient(-15deg, #ffffff 1%,#ffffff 50%,#F3716D 51%,#F3716D 100%);
+	background: linear-gradient(105deg, #ffffff 1%,#ffffff 50%,#F3716D 51%,#F3716D 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#F3716D',GradientType=1 );
 }
 
 .idea-top h4, .idea-top p, .idea-top a{
