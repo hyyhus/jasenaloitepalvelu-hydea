@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post 'language/swedish'
   root 'ideas#index'
   get 'faq', to: 'faqs#show'
+  get 'export', to: 'ideas#export', as: :ideas_export
 
   # Hydea specific
   resource :session, only: [:destroy, :new]
