@@ -40,7 +40,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
     it 'shows as published and shows who moved it' do
       expect(page).to have_current_path('/ideas?basket=Approved')
       expect(page).to have_content('idea topic')
-      expect(page).to have_content(idea.histories.all.last.basket + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
+      expect(page).to have_content("Hyväksytty" + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
     end
 
     it 'moves to changing when clicked and shows who moved it' do
@@ -48,7 +48,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
       visit '/ideas?basket=Changing'
       expect(page).to have_current_path('/ideas?basket=Changing')
       expect(page).to have_content('idea topic')
-      expect(page).to have_content(idea.histories.all.last.basket + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
+      expect(page).to have_content("Työn alla" + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
     end
 
     it 'moves to changed when clicked and shows who moved it' do
@@ -56,7 +56,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
       visit '/ideas?basket=Changed'
       expect(page).to have_current_path('/ideas?basket=Changed')
       expect(page).to have_content('idea topic')
-      expect(page).to have_content(idea.histories.all.last.basket + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
+      expect(page).to have_content("Muutettu" + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
     end
 
     it 'moves to not changed when clicked and shows who moved it' do
@@ -64,7 +64,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
       visit '/ideas?basket=Not+Changed'
       expect(page).to have_current_path('/ideas?basket=Not+Changed')
       expect(page).to have_content('idea topic')
-      expect(page).to have_content(idea.histories.all.last.basket + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
+      expect(page).to have_content("Ei muutettu" + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
     end
   end
 
@@ -79,7 +79,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
         visit '/ideas?basket=Changed'
         expect(page).to have_current_path('/ideas?basket=Changed')
         expect(page).to have_content('idea topic')
-        expect(page).to have_content(idea.histories.all.last.basket + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
+        expect(page).to have_content("Muutettu" + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
       end
 
       it 'moves to not changed and shows who moved it' do
@@ -87,7 +87,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
         visit '/ideas?basket=Not+Changed'
         expect(page).to have_current_path('/ideas?basket=Not+Changed')
         expect(page).to have_content('idea topic')
-        expect(page).to have_content(idea.histories.all.last.basket + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
+        expect(page).to have_content("Ei muutettu" + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
       end
     end
   end
@@ -101,7 +101,7 @@ RSpec.describe 'IdeaFeature', type: :feature do
         expect(page).to_not have_content('idea topic')
         visit '/ideas?basket=Rejected'
         expect(page).to have_content('idea topic')
-        expect(page).to have_content(idea.histories.all.last.basket + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
+        expect(page).to have_content("Hylätty" + ': ' + idea.histories.all.last.time.strftime('%d.%m.%Y %H:%M ') + ' ' + user_moderator.name + ' (' + user_moderator.title + ')')
     end
       end
 
