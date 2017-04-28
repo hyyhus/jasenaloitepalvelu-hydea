@@ -2,7 +2,7 @@
 <div class="container">
   <p id="notice"><%= notice %></p>
   <% if not current_user.nil? and current_user.moderator %>
-    <%= link_to (t :export), ideas_export_path(basket: params[:basket], format: "csv"), class: 'btn btn-success' %> 
+    <%= link_to (t :export), ideas_export_path(basket: params[:basket], format: "csv"), class: 'btn btn-success' %>
   <% end %>
   <!-- Show baskets -->
   <ul class="nav nav-tabs nav-justified">
@@ -67,3 +67,8 @@
 <!-- Show every idea -->
 <%= render 'layouts/list_ideas'%>
 <!-- End show every idea -->
+<div class="container center">
+  <div class="digg_pagination">
+    <%= will_paginate @posts, :previous_label => '<', :next_label => '>' %>
+  </div>
+</div>
