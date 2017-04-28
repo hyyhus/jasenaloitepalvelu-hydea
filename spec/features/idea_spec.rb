@@ -317,4 +317,27 @@ RSpec.describe 'IdeaFeature', type: :feature do
       end
     end
   end
+
+  context 'Pagination is' do
+    before :each do
+      10.times do
+        FactoryGirl.create(:idea_approved)
+      end
+    end
+
+    it 'not shown while 10 or fewer ideas' do
+      visit '/'
+      expect(page).to have_content('idea topic', count: 10)
+      expect(page).not_to have_link('2')
+    end
+
+    it '' do
+      FactoryGirl.create(:idea_approved)
+      visit '/'
+      expect(page).to have_content('idea topic', count: 10)
+      expect(page).to have_link('2')
+      click_link('2')
+      expect(page).to have_content('idea topic', count: 1)
+    end
+  end
 end
