@@ -1,27 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<h1>Listing Tags</h1>
+  <h1>Listing Tags</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Text</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tags.each do |tag| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= tag.text %></td>
-        <td><%= link_to (t :show), tag %></td>
-        <td><%= link_to (t :edit), edit_tag_path(tag) %></td>
-        <td><%= link_to (t :delete), tag, method: :delete, data: { confirm: (t :are_you_sure)} %></td>
+        <th>Text</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @tags.each do |tag| %>
+        <tr>
+          <td><%= tag.text %></td>
+          <td><%= link_to (t :show), tag %></td>
+          <td><%= link_to (t :edit), edit_tag_path(tag) %></td>
+          <td><%= link_to (t :delete), tag, method: :delete, data: { confirm: (t :are_you_sure)} %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to ((t :new) + " " + (t :tag)), new_tag_path %>
+  <br>
+
+  <%= link_to ((t :new) + " " + (t :tag)), new_tag_path %>
+</div>
