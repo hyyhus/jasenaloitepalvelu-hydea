@@ -73,3 +73,5 @@ gem 'social-share-button', '~> 0.10.0'
 gem 'puma', '~> 3.8', '>= 3.8.2'
 # Match Heroku timeout to Puma
 gem 'rack-timeout', '~> 0.4.2'
+# Limit posts on page
+gem 'will_paginate', '~> 3.1.0'
