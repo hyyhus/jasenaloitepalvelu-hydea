@@ -7,6 +7,7 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
+    require 'will_paginate/array'
     @q = Idea.ransack(params[:q])
     @q.sorts = 'created_at' if @q.sorts.empty?
     @idea = @q.result(distinct: false)
@@ -21,6 +22,7 @@ class IdeasController < ApplicationController
       else
       @ideas = @idea.all.select{|i| i.basket == params[:basket].to_s and i.tags.find_by(text: tags)}
       end
+      @ideas = @ideas.paginate(:page => params[:page], :per_page => 10 )
     else
       redirect_to '/ideas?basket=Approved'
     end

@@ -73,3 +73,5 @@ gem 'ransack', '~> 1.8', '>= 1.8.2'
 gem 'puma', '~> 3.8', '>= 3.8.2'
 # Match Heroku timeout to Puma
 gem 'rack-timeout', '~> 0.4.2'
+# Limit posts on page
+gem 'will_paginate', '~> 3.1.0'
