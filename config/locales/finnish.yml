@@ -205,7 +205,25 @@ fin:
   export:
     "Vie tiedostoon"
 
+  New:
+    "Uusi"
+  
+  Approved:
+    "Hyväksytty"
 
+  Changing:
+    "Työn alla"
+  
+  Changed:
+    "Muutettu"
+
+  Not Changed:
+    "Ei muutettu"
+  
+  Rejected:
+    "Hylätty"
+  
+  #Active record validation
   activerecord:
     errors:
       messages:

@@ -229,6 +229,22 @@ swe:
    " "
 # export
   export:
-   "Exportera till fil"
+    "Exportera till fil"
 
+  New:
+    "Nya"
+  
+  Approved:
+    "Godkänd"
 
+  Changing:
+    "Jobbar på denna"
+  
+  Changed:
+    "Ändrats"
+
+  Not Changed:
+    "Inte förändrad"
+  
+  Rejected:
+    "Avvisad"
