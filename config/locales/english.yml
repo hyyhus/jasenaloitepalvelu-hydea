@@ -190,11 +190,11 @@ en:
     "Create idea"
 
 #sort
-  topic:
+  topic_sort:
     "Topic"
-  date:
+  date_sort:
     "Date"
-  likes:
+  likes_sort:
     "Likes"
 
 
