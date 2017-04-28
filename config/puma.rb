@@ -18,7 +18,7 @@ port        ENV.fetch("PORT") { 3000 }
 # Workers do not work on JRuby or Windows (both of which do not support
 # processes).
 #
-workers Integer(ENV['WEB_CONCURRENCY'] || 2)
+workers Integer(ENV['WEB_CONCURRENCY'] || 1)
 threads_count = Integer(ENV['RAILS_MAX_THREADS'] || 4)
 threads threads_count, threads_count
 
