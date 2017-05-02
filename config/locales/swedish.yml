@@ -1,253 +1,227 @@
 swe:
-  hello: "Hejsan wärld"
+    hello:
+        "Hej världen!"
 
-  greeting: "Välkommen till HYDEA-service!"
+    greeting:
+        "Välkommen till HYDEA!"
 
-  test:
-    "EXEMPEL"
+    test:
+        "EXEMPEL"
 
-  ideas:
-    "Idéer"
+    ideas:
+        "Idéer"
 
-  ideas_by_user:
-    "Idéer som lämnats in av"
+    ideas_by_user:
+        "Idéer som lämnats in av"
 
-  users:
-    "Användare"
+    users:
+        "Användare"
 
-  should_be_signed:
-    "Du måste vara inloggad"
+    should_be_signed:
+        "Du måste vara inloggad"
 
-  create:
-    "har skapats"
+    create:
+        "har skapats"
 
-  moderated_publish:
-    "ska publicera efter moderation"
+    moderated_publish:
+        "publiceras efter modereringen"
 
-  publish:
-    "publicerad med success"
+    publish:
+        "publiceringen lyckades"
 
-  update:
-    "uppdaterad med success"
+    update:
+        "uppdateringen lyckades"
 
-  destroy:
-    "tagits bort"
+    destroy:
+        "har tagits bort"
 
-  comment:
-    "Komment"
+    comment:
+        "Kommentar"
 
-  comments:
-    "Kommentarer"
+    comments:
+        "Kommentarer"
 
-  waits_publish:
-    "väntar publiceer"
+    waits_publish:
+        "väntar på publicering"
 
-  history:
-    "Historia"
+    history:
+        "Historik"
 
-  idea:
-    "Idé"
+    idea:
+        "Idé"
 
-  idea_moderation_enable:
-    "Moderation aktiverat"
+    idea_moderation_enable:
+        "Aktivera moderering"
 
-  idea_moderation_disable:
-    "Moderation inaktiverad"
+    idea_moderation_disable:
+        "Inaktivera moderering"
 
-  comment_moderation_enable:
-    "Kommentarer moderation aktiverat"
+    comment_moderation_enable:
+        "Moderering av kommentarer aktiv"
 
-  comment_moderation_disable:
-    "Kommentarer moderation inaktiverad"
+    comment_moderation_disable:
+        "Moderering av kommentarer inaktiverad"
 
-  listing_comments:
-    "Notering commentater"
+    listing_comments:
+        "Lista kommentarer"
 
-  like:
-    "Gilla"
+    like:
+        "Gilla"
 
-  destroy_only_own_like:
-    "Du kan bara förstöra egna gillar"
+    destroy_only_own_like:
+        "Du kan bara ta bort egna gillanden"
 
-  tag:
-    "Märke"
+    tag:
+        "Tagg"
 
-  tags:
-    "Märker"
+    tags:
+        "taggar"
 
-  user:
-    "Användare"
+    user:
+        "Användare"
 
-  are_you_sure:
-    "Är du säker?"
+    are_you_sure:
+        "Är du säker?"
 
-  show:
-    "Visa"
+    show:
+        "Visa"
 
-  send:
-    "Sända"
+    send:
+        "Sänd"
 
-  back:
-    "Tillbaka"
+    back:
+        "Tillbaka"
 
-  delete:
-    "Radera"
+    delete:
+        "Radera"
 
-  edit:
-    "Edera"
+    edit:
+        "Redigera"
 
-  new:
-    "Ny"
-
-  time:
-    "Tid"
-
-  text:
-    "Text"
-
-  post_idea:
-    "Post idé"
-
-#Basket names
-
-  basket_new:
-    "Nya idéer"
-  basket_approved:
-    "Godkänd idéer"
-  basket_changing:
-    "Jobbar på denna idéer"
-  basket_changed:
-    "Ändrats idéer"
-  basket_not_changed:
-    "Inte förändrad idéer"
-  basket_rejected:
-    "Avvisade idéer"
-
-# buttons
-
-  move_to:
-    "Flytta till"
-
-  publish_button:
-    "Publicera"
-
-  unpublish_button:
-    "Avpublicera"
-
-  login_button:
-    "Logga in"
-
-  logout_button:
-    "Logga ut"
-
-  publish_and_moderate_button:
-    "Publicera med moderation"
-
-  reject_button:
-    "Avvisa"
-
-# Move to basket buttons
-
-  move_basket_new:
-    "Nya"
-  move_basket_approved:
-    "Godkänd"
-  move_basket_changing:
-    "Jobbar på denna"
-  move_basket_changed:
-    "Ändrats"
-  move_basket_not_changed:
-    "Inte förändrad"
-  move_basket_rejected:
-    "Avvisa"
-
-
-  filter_ideas:
-    ""
-  filter:
-    ""
-
-  you_are_banned:
-    ""
-
-#FAQ
-
-  faq_topic:
-    "Vanliga Fragor"
-
-  faq_button:
-    "FAQ"
-
-
-# New idea texts
-  topic:
-    " "
-  text:
-    " "
-  tags:
-    " "
-  create_idea:
-    " "
-
-#sort
-  topic_sort:
-    "Ämne"
-  date_sort:
-    "Datum"
-  likes_sort:
-    "Likt"
-
-
-  faq_button:
-    "FAQ"
-
-  #Search
-  search_form:
-    "Sök"
-
-  # New idea texts
-  topic:
-    " "
-  text:
-    " "
-  tags:
-    " "
-  create_idea:
-    " "
-
-  faq_button:
-   "FAQ"
-
-                # New idea texts
-  topic:
-   " "
-  text:
-   " "
-  tags:
-   " "
-  create_idea:
-   " "
-# export
-  export:
-    "Exportera till fil"
-
-  New:
-    "Nya"
-  
-  Approved:
-    "Godkänd"
-
-  Changing:
-    "Jobbar på denna"
-  
-  Changed:
-    "Ändrats"
-
-  Not Changed:
-    "Inte förändrad"
-  
-  Rejected:
-    "Avvisad"
-
-  no_ideas:
-    "Det finns ingen idéer här. Kom senare tillbaka."
+    new:
+        "Ny"
+
+    time:
+        "Tid"
+
+    text:
+        "Text"
+
+    post_idea:
+        "Posta en idé"
+
+        #Basket names
+
+    basket_new:
+        "Nya idéer"
+    basket_approved:
+        "Godkända idéer"
+    basket_changing:
+        "Idéer under arbete"
+    basket_changed:
+        "Ändrade idéer"
+    basket_not_changed:
+        "Idéer som inte ändrats"
+    basket_rejected:
+        "Avvisade idéer"
+
+        # buttons
+
+    move_to:
+        "Flytta till"
+
+    publish_button:
+        "Publicera"
+
+    unpublish_button:
+        "Avpublicera"
+
+    login_button:
+        "Logga in"
+
+    logout_button:
+        "Logga ut"
+
+    publish_and_moderate_button:
+        # ENGLANNINKIELISEN VERSION MUKAAN (Publish and moderate = ensin julkaistaan, sitten moderoidaan): 
+        "Publicera och moderera"
+        #SUOMENKIELISEN VERSION MUKAAN (Julkaise moderoituna = teksti on jo moderoitu, nyt se julkaistaan): "Publicera modererad text"  
+    reject_button:
+        "Avvisa"
+
+        #Move to basket buttons
+        #HUOM! Suomenkielisessä versiossa jotkut tämän osion sanoista ovat yksikössä, toiset monikossa. Minun on vaikeaa hahmottaa miten se *pitäisi* olla, joten annan tässä yks./mon. vaihtoehtoja!  
+    move_basket_new:
+        #YKSIKKÖ 
+        #  "Ny"
+        #MONIKKO: 
+        "Nya"
+    move_basket_approved:
+        #YKSIKKÖ 
+        #  "Godkänd"
+        #MONIKKO: 
+        "Godkända"  
+    move_basket_changing:
+      #HUOM! En ole varma mitä tämä käytännösä tarkoittaa! Olen tulkinnut sen niin, että tässä korissa olevat ehdotukset ovat "työn alla" - ILMOITTAKAA JOS SE PITÄÄ MUUTTAA!  
+      "Under arbete"
+    move_basket_changed:
+      #YKSIKKÖ 
+      #  "Ändrad"
+      #MONIKKO: 
+      "Ändrade" 
+    move_basket_not_changed:
+      #YKSIKKÖ  
+      #  "Oförändrad"
+      #MONIKKO 
+      "Oförändrade"  
+    move_basket_rejected:
+      #YKSIKKÖ 
+      #  "Avvisad"
+      #MONIKKO 
+      "Avvisade"
+
+    filter_ideas:
+      "Filtrera idéer"
+    filter:
+      "Filter"
+
+    you_are_banned:
+      "Du har fått användningsförbud"
+
+      #FAQ
+    faq_topic:
+      "Vanliga Frågor"
+
+    faq_button:
+      "FAQ"
+
+      # New idea texts
+    topic:
+      "Rubrik"
+    text:
+      "Text"
+    tags:
+      "taggar"
+    create_idea:
+      "Skapa idé"
+
+      #sort
+    topic:
+      "Rubrik"
+    date:
+      "Datum"
+    likes:
+      "Gillanden"
+
+
+
+      #Search
+    search_form:
+      "Sök"
+
+    text:
+      "Text"
+    tags:
+      "Taggar"
+    create_idea:
+      "Skapa idé"  #HUOM!  Suomenkielisessä listassa on lopuksi liuta komentoja, joita eivät esiinny eng-versiossa, eikä myöskään tässä. Niitä siis ei käännetä, vai?
