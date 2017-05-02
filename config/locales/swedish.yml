@@ -12,6 +12,9 @@ swe:
   ideas_by_user:
     "Idéer som lämnats in av"
 
+  user_own_ideas:
+    "Idéer skapade av dig"
+
   users:
     "Användare"
 

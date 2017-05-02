@@ -12,6 +12,9 @@ en:
   ideas_by_user:
     "Ideas submitted by"
 
+  user_own_ideas:
+    "Ideas created by you"
+
   users:
     "Users"
 
