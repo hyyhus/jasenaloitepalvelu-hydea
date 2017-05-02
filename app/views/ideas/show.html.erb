@@ -1,7 +1,7 @@
-<p id="notice"><%= notice %></p>
 <div class="container idea-show">
+  <p id="notice"><%= notice %></p>
   <% if @idea.histories.last.basket == "New" %>
-    <div class="row new-idea">
+    <div class="row idea-top idea-new">
   <% end %>
   <% if @idea.histories.last.basket == "Approved" %>
     <div class="row idea-top approved-idea">
@@ -21,7 +21,7 @@
     <div class="col-sm-8">
       <h2><%= @idea.topic %></h2>
       <p class="user-time">
-          <%= @idea.histories.first.user.name %> / <%= @idea.histories.first.time.strftime('%d.%m.%Y / %H:%M ') %>
+          <%= link_to @idea.histories.first.user.name, User.find(@idea.histories.first.user.id) %> / <%= @idea.histories.first.time.strftime('%d.%m.%Y / %H:%M ') %>
         <%if not @idea.tags.empty?%>
           <br /><span class="tag-text">
           <%= (t :tags) %>
