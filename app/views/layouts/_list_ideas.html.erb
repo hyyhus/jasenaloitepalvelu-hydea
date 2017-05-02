@@ -1,6 +1,6 @@
-<% if @ideas.nil? %>
+<% if @ideas.nil? or @ideas.empty? %>
   <div class="container">
-    <!-- ohjataan Approved ideas baskettiin -->
+    <%= (t :no_ideas) class="empty-basket-text"%>
   </div>
 <% else %>
   <%@ideas.each do |idea|%>
