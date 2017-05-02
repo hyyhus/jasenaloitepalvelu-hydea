@@ -97,50 +97,50 @@
   <p class="idea-show-comment-text">
     <%= (t :comments) %>
   </p>
- <% @idea.comments.order(:time).each do |comment| %>
-	 <% if (comment.visible? or (not current_user.nil? and current_user.moderator?)) %>
-                  <ul class="list-group idea-show-comments">
-                    <li class="list-group-item">
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <% if not session[:user_id].nil? and current_user.moderator %>
-                            <% if comment.visible != true %>
-                              <%= link_to (t :publish_button), publish_comment_path(comment), method: :publish, data: { confirm: (t :are_you_sure) }, :class => "btn-sm btn-success publish_comment" %>
-                            <% else %>
-                              <%= link_to (t :unpublish_button), unpublish_comment_path(comment), method: :unpublish, data: { confirm:  (t :are_you_sure) }, :class => "btn-sm btn-success publish_comment" %>
-                             <% end %>
-                            <%= link_to (t :delete), comment, method: :delete, data: { confirm:  (t :are_you_sure) }, :class => "btn-sm btn-danger delete_comment" %>
-                          <% end %>
-                          <p class="user-time">
-                          <%= link_to comment.user.name, User.find(comment.user.id) %>
-                          <% if not comment.user.title.empty? and comment.user.moderator %>
-                            (<%= comment.user.title %>)
-                          <% end %>
-                          / <%= comment.time.strftime('%d.%m.%Y / %H:%M ') %>
-                          </p>
-                        </div>
-                        <div class="panel-body">
-                          <p><%= comment.text %></p>
-                        </div>
-                      </div>
-                    </li>
-	    <% end %>
-                  <% end %>
+<ul class="list-group idea-show-comments">
+  <% @idea.comments.order(:time).each do |comment| %>
+    <% if (comment.visible? or (not current_user.nil? and current_user.moderator?)) %>
+      <li class="list-group-item">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <% if not session[:user_id].nil? and current_user.moderator %>
+              <% if comment.visible != true %>
+                <%= link_to (t :publish_button), publish_comment_path(comment), method: :publish, data: { confirm: (t :are_you_sure) }, :class => "btn-sm btn-success publish_comment" %>
+              <% else %>
+                <%= link_to (t :unpublish_button), unpublish_comment_path(comment), method: :unpublish, data: { confirm:  (t :are_you_sure) }, :class => "btn-sm btn-success publish_comment" %>
+              <% end %>
+              <%= link_to (t :delete), comment, method: :delete, data: { confirm:  (t :are_you_sure) }, :class => "btn-sm btn-danger delete_comment" %>
+            <% end %>
+            <p class="user-time">
+              <%= link_to comment.user.name, User.find(comment.user.id) %>
+              <% if not comment.user.title.empty? and comment.user.moderator %>
+                (<%= comment.user.title %>)
+              <% end %>
+              / <%= comment.time.strftime('%d.%m.%Y / %H:%M ') %>
+            </p>
+          </div>
+          <div class="panel-body">
+            <p><%= comment.text %></p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  <% end %>
 
-  <% if not session[:user_id].nil? %><% end %>
-
-      <%= form_for("comment", :url => main_app.comments_path, :html => { :class => "form-horizontal" } ) do |f| %>
-      <%= f.hidden_field :idea_id, :value => @idea.id %>
-      <%= f.hidden_field :time, :value => Time.now %>
-      <div method="post" action="comment/new">
-        <p class="comment-label">
-         <%= (t :comment) %>
-        </p>
-        <%= f.text_area :text,class: "form-control", rows: "5", id: "comment"%>
-          <button type="submit" class="btn btn-primary">Send </button>
-        <% end %>
-      </div>
-
+  <% if not session[:user_id].nil? %>
+    <%= form_for("comment", :url => main_app.comments_path, :html => { :class => "form-horizontal" } ) do |f| %>
+    <%= f.hidden_field :idea_id, :value => @idea.id %>
+    <%= f.hidden_field :time, :value => Time.now %>
+    <div method="post" action="comment/new">
+      <p class="comment-label">
+        <%= (t :comment) %>
+      </p>
+      <%= f.text_area :text,class: "form-control", rows: "5", id: "comment"%>
+        <button type="submit" class="btn btn-primary">Send </button>
+      <% end %>
+    </div>
+  <% end %>
+</ul>
 
   <p class="back">
   <% if not session[:user_id].nil? and current_user.moderator %>

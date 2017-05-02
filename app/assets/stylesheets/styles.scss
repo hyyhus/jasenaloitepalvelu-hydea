@@ -586,10 +586,9 @@ h2{
 	padding: 0;
 }
 
-.idea-show-comments li, .list-group-item:first-child{
+.idea-show-comments li.list-group-item{
 	border-radius: 0;
 	border: none;
-	border-top: 1px solid blue;
 	border-bottom: 1px solid blue;
 }
 
@@ -612,6 +611,7 @@ h2{
 	color: blue;
 	font-family: 'Radikal_Bold';
 	font-size: 14px;
+	border-bottom: 1px solid blue;
 }
 
 .back a, .comment-label{
