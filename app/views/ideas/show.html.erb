@@ -141,6 +141,20 @@
         <% end %>
       </div>
 
+  <% if not session[:user_id].nil? %>
+    <%= form_for("comment", :url => main_app.comments_path, :html => { :class => "form-horizontal" } ) do |f| %>
+    <%= f.hidden_field :idea_id, :value => @idea.id %>
+    <%= f.hidden_field :time, :value => Time.now %>
+    <div method="post" action="comment/new">
+      <p class="comment-label">
+        <%= (t :comment) %>
+      </p>
+      <%= f.text_area :text,class: "form-control", rows: "5", id: "comment"%>
+        <button type="submit" class="btn btn-primary">Send </button>
+      <% end %>
+    </div>
+  <% end %>
+</ul>
 
   <p class="back">
   <% if not session[:user_id].nil? and current_user.moderator %>
