@@ -94,32 +94,29 @@
                 <% end %>
               <% end %>
 	      <% if not (idea.histories.last.basket == "New" or idea.histories.last.basket == "Rejected")%>
+          <button class="likes"><%= idea.likes.length %></button>
           <% if idea.histories.last.basket == "Approved" %>
   		      <% if idea.likes.find_by(user_id: current_user).nil? %>
-              <button class="likes"><%= idea.likes.length %></button>
   			      <%= link_to like_idea_path(idea), method: :post do %>
                 <button class="like-button like">
-                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                  <%=image_tag("peukku.png", alt: "Tykkää", class: 'thumb')%>
                 </button>
   			      <% end %>
   		      <% else %>
-              <button class="likes"><%= idea.likes.length %></button>
   			      <%= link_to unlike_idea_path(idea), method: :post do %>
                 <button class="like-button liked">
-                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                  <%=image_tag("peukku.png", alt: "Tykkää", class: 'thumb')%>
                 </button>
   			      <% end %>
   		      <% end %>
           <% else %>
             <% if idea.likes.find_by(user_id: current_user).nil? %>
-              <button class="likes"><%= idea.likes.length %></button>
               <button class="like-button like disable">
-                <span class="glyphicon glyphicon-thumbs-up"></span>
+                <%=image_tag("peukku.png", alt: "Tykkää", class: 'thumb')%>
               </button>
             <% else %>
-              <button class="likes"><%= idea.likes.length %></button>
               <button class="like-button liked disable">
-                <span class="glyphicon glyphicon-thumbs-up"></span>
+                <%=image_tag("peukku.png", alt: "Tykkää", class: 'thumb')%>
               </button>
             <% end %>
           <% end%>

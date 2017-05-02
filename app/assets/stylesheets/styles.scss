@@ -489,6 +489,14 @@ tr:nth-child(even){
 	border: 1px solid blue;
 }
 
+.thumb{
+	max-width: 90%;
+	max-height: 90%;
+	-webkit-transform: skew(20deg);
+	   -moz-transform: skew(20deg);
+	     -o-transform: skew(20deg);
+}
+
 .like-button:hover{
 	opacity: 0.80;
 }
@@ -880,7 +888,7 @@ h2{
 	color: blue;
 	font-family: 'Radikal_Bold';
 	font-size: 18px;
-    }	
+    }
 }
 
 @media only screen and (max-width: 345px) {
@@ -920,5 +928,5 @@ h2{
 	color: blue;
 	font-family: 'Radikal_Bold';
 	font-size: 18px;
-    }	
+    }
 }
