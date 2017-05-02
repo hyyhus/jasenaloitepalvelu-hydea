@@ -28,7 +28,7 @@ RSpec.describe LikesController, type: :controller do
 				it "re-renders the :new template" do
 				like.like_type="dislike"
 					post :create, params: { like: like.attributes }
-					expect(response).to render_template :new
+					expect(response).to redirect_to ideas_path
 				end
 			end
 		end
@@ -68,7 +68,7 @@ RSpec.describe LikesController, type: :controller do
 				it "re-renders the :new template" do
 				like.like_type="dislike"
 					post :create, params: { like: like.attributes }
-					expect(response).to render_template :new
+					expect(response).to redirect_to ideas_path
 				end
 			end
 		end
