@@ -695,6 +695,12 @@ h2{
 *:first-child + html .digg_pagination {
   overflow: hidden; }
 
+.empty-basket-text{
+	color: #fff;
+	font-family: 'Radikal_Bold';
+	font-size: 20px;
+}
+
 // smaller screen styles
 
 @media only screen and (max-width: 1120px) {

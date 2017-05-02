@@ -1,6 +1,8 @@
 <% if @ideas.nil? or @ideas.empty? %>
   <div class="container">
-    "THIS SHOULD BE SHOWN IF BASKET IS EMPTY"
+    <div class="empty-basket-text" >
+    <%= (t :no_ideas) %>
+    </div>
   </div>
 <% else %>
   <%@ideas.each do |idea|%>

@@ -235,3 +235,6 @@ swe:
   
   Rejected:
     "Avvisad"
+
+  no_ideas:
+    "Det finns ingen idéer här. Kom senare tillbaka."
