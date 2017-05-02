@@ -1,7 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # config exceptions
+  # config exceptions to use custom pages
   config.exceptions_app = self.routes
   # Code is not reloaded between requxests.
   config.cache_classes = true
