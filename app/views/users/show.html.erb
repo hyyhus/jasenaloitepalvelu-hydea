@@ -2,7 +2,7 @@
   <p id="notice"><%= notice %></p>
   <h2>
    <% if current_user.id == @user.id %>
-     Luomasi ideat
+     <%= (t :user_own_ideas) %>
    <% else %>
      <%= (t :ideas_by_user) +" "+ @user.name %>
    <% end %>

@@ -15,6 +15,9 @@ fin:
   ideas_by_user:
     "Ideat, jotka on luonut"
 
+  user_own_ideas:
+    "Luomasi ideat"
+
   users:
     "Käyttäjät"
 
