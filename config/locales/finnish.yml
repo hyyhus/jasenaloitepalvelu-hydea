@@ -222,7 +222,10 @@ fin:
   
   Rejected:
     "Hylätty"
-  
+
+  no_ideas:
+    "Täällä ei ole ideoita. Tule myöhemmin uudestaan."
+    
   #Active record validation
   activerecord:
     errors:
