@@ -817,3 +817,83 @@ h2{
 		background: #fff;
 	}
 }
+
+@media only screen and (max-width: 470px) {
+	.brand-text{
+		padding-top: 15px;
+	}
+
+	.navbar{
+		margin: 15px;
+		padding-bottom: 0;
+	}
+
+	.navbar-nav{
+		padding: 5px 10px 5px 10px;
+	}
+
+	.tag-list{
+		margin: 0 2px 2px 0;
+		padding: 2px;
+	}
+
+	.sort-ideas{
+		text-align: center;
+		height: 100px;
+	}
+
+	.sort-ideas form {
+		padding: 10px;
+	}
+
+	.nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a{
+		padding: 10px;
+	}
+
+	.new-idea a{
+	padding: 0 5px 0 5px;
+	color: blue;
+	font-family: 'Radikal_Bold';
+	font-size: 18px;
+    }	
+}
+
+@media only screen and (max-width: 345px) {
+	.brand-text{
+		padding-top: 15px;
+	}
+
+	.navbar{
+		margin: 15px;
+		padding-bottom: 0;
+	}
+
+	.navbar-nav{
+		padding: 5px 10px 5px 10px;
+	}
+
+	.tag-list{
+		margin: 0 2px 2px 0;
+		padding: 2px;
+	}
+
+	.sort-ideas{
+		text-align: center;
+		height: 100px;
+	}
+
+	.sort-ideas form {
+		padding: 10px;
+	}
+
+	.nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a{
+		padding: 10px;
+	}
+
+	.new-idea a{
+	padding: 0 70px 0 70px;
+	color: blue;
+	font-family: 'Radikal_Bold';
+	font-size: 18px;
+    }	
+}
