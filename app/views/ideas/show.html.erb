@@ -1,7 +1,7 @@
-<p id="notice"><%= notice %></p>
 <div class="container idea-show">
+  <p id="notice"><%= notice %></p>
   <% if @idea.histories.last.basket == "New" %>
-    <div class="row new-idea">
+    <div class="row idea-top idea-new">
   <% end %>
   <% if @idea.histories.last.basket == "Approved" %>
     <div class="row idea-top approved-idea">
