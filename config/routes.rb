@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :likes, only: [:create, :destroy]
   resources :tags
-  resources :comments
+  resources :comments, only: [:create, :destroy]
   resources :ideas
   resources :histories
   resources :users, only: [:index, :show, :edit, :update]
