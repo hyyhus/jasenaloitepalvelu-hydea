@@ -5,6 +5,35 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-h1{
-	color: #fff000;
+.add-idea-topic{
+	color: #fff;
+	font-family: 'Radikal_Black';
+	font-size: 36px;
+}
+
+.add-idea-label{
+	color: #fff;
+	font-family: 'Radikal_Bold';
+	font-size: 18px;
+}
+
+.add-idea-tags{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	font-family: 'Radikal_Bold';
+	font-size: 14px;
+	text-align: center;
+}
+
+.add-idea-tag{
+	color: blue;
+	background: #f7f7ff;
+	height: 50px;
+	display: block;
+	padding: 5px 10px 5px 10px;
+}
+
+.add-idea-tag:nth-child(even){
+	background-color: #fff;
 }
