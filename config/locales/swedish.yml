@@ -14,16 +14,14 @@ swe:
     ideas:
       "Idéer"
 
-    ideas_by_user:
-        "Idéer som lämnats in av"
     user_own_ideas:
       "Idéer skapade av dig"
 
     users:
       "Användare"
 
-    users:
-        "Användare"
+    ideas_by_user:
+        "Idéer som lämnats in av"
 
     should_be_signed:
         "Du måste vara inloggad"
@@ -214,11 +212,11 @@ swe:
       "Skapa idé"
 
       #sort
-    topic:
+    topic_sort:
       "Rubrik"
-    date:
+    date_sort:
       "Datum"
-    likes:
+    likes_sort:
       "Gillanden"
 
 
