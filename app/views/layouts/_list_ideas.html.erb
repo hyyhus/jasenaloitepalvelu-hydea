@@ -218,7 +218,7 @@
         </div>
         <!-- Add collapse functionality -->
         <div class="panel-footer center idea-bottom">
-          <a class='open-button' onclick="open_idea_comments()">
+          <a class='open-button'>
             <% if not current_user.nil? and current_user.moderator %>
               <%= (t :comments) %> (<%= idea.comments.count %>)
               <% if idea.comments.where(visible: false).count > 0 %>
