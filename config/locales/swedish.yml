@@ -14,11 +14,14 @@ swe:
     ideas:
         "Idéer"
 
-    ideas_by_user:
-        "Idéer som lämnats in av"
+    user_own_ideas:
+      "Idéer skapade av dig"
 
     users:
-        "Användare"
+      "Användare"
+
+    ideas_by_user:
+        "Idéer som lämnats in av"
 
     should_be_signed:
         "Du måste vara inloggad"

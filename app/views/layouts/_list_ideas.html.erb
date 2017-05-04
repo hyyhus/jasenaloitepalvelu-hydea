@@ -94,32 +94,29 @@
                 <% end %>
               <% end %>
 	      <% if not (idea.histories.last.basket == "New" or idea.histories.last.basket == "Rejected")%>
+          <button class="likes"><%= idea.likes.length %></button>
           <% if idea.histories.last.basket == "Approved" %>
   		      <% if idea.likes.find_by(user_id: current_user).nil? %>
-              <button class="likes"><%= idea.likes.length %></button>
   			      <%= link_to like_idea_path(idea), method: :post do %>
                 <button class="like-button like">
-                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                  <%=image_tag("peukku.png", alt: "Tykkää", class: 'thumb')%>
                 </button>
   			      <% end %>
   		      <% else %>
-              <button class="likes"><%= idea.likes.length %></button>
   			      <%= link_to unlike_idea_path(idea), method: :post do %>
                 <button class="like-button liked">
-                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                  <%=image_tag("peukku.png", alt: "Tykkää", class: 'thumb')%>
                 </button>
   			      <% end %>
   		      <% end %>
           <% else %>
             <% if idea.likes.find_by(user_id: current_user).nil? %>
-              <button class="likes"><%= idea.likes.length %></button>
               <button class="like-button like disable">
-                <span class="glyphicon glyphicon-thumbs-up"></span>
+                <%=image_tag("peukku.png", alt: "Tykkää", class: 'thumb')%>
               </button>
             <% else %>
-              <button class="likes"><%= idea.likes.length %></button>
               <button class="like-button liked disable">
-                <span class="glyphicon glyphicon-thumbs-up"></span>
+                <%=image_tag("peukku.png", alt: "Tykkää", class: 'thumb')%>
               </button>
             <% end %>
           <% end%>
@@ -165,9 +162,9 @@
               <!-- End how many comments -->
               <div id="collapse<%= idea.id * 2 + 1 %>" class="panel-collapse collapse">
                 <!-- Draw comments -->
+                <ul class="list-group comments">
                 <% idea.comments.order(:time).each do |comment| %>
 			<% if (comment.visible? or (not current_user.nil? and current_user.moderator?)) %>
-                  <ul class="list-group comments">
                     <li class="list-group-item">
                       <div class="panel panel-default">
                         <div class="panel-heading">
@@ -223,7 +220,7 @@
         </div>
         <!-- Add collapse functionality -->
         <div class="panel-footer center idea-bottom">
-          <a class='open-button' onclick="open_idea_comments()">
+          <a class='open-button'>
             <% if not current_user.nil? and current_user.moderator %>
               <%= (t :comments) %> (<%= idea.comments.count %>)
               <% if idea.comments.where(visible: false).count > 0 %>

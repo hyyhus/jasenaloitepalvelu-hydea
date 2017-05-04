@@ -15,6 +15,9 @@ en:
   ideas_by_user:
     "Ideas submitted by"
 
+  user_own_ideas:
+    "Ideas created by you"
+
   users:
     "Users"
 
@@ -171,7 +174,7 @@ en:
     "Filter"
 
   you_are_banned:
-    "You are banned"
+    "You are banned. Please contact hallitus@hyy.fi for more information."
 
 #FAQ
 

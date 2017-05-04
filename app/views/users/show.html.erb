@@ -1,7 +1,11 @@
 <div class="container">
   <p id="notice"><%= notice %></p>
   <h2>
-   <%= (t :ideas_by_user) +" "+ @user.name %>
+   <% if current_user.id == @user.id %>
+     <%= (t :user_own_ideas) %>
+   <% else %>
+     <%= (t :ideas_by_user) +" "+ @user.name %>
+   <% end %>
   </h2>
   <% if not session[:user_id].nil? and current_user.admin%>
     <%= link_to 'Edit user', edit_user_path(@user) %>

@@ -1,7 +1,7 @@
-<p id="notice"><%= notice %></p>
 <div class="container idea-show">
+  <p id="notice"><%= notice %></p>
   <% if @idea.histories.last.basket == "New" %>
-    <div class="row new-idea">
+    <div class="row idea-top idea-new">
   <% end %>
   <% if @idea.histories.last.basket == "Approved" %>
     <div class="row idea-top approved-idea">
@@ -21,7 +21,7 @@
     <div class="col-sm-8">
       <h2><%= @idea.topic %></h2>
       <p class="user-time">
-          <%= @idea.histories.first.user.name %> / <%= @idea.histories.first.time.strftime('%d.%m.%Y / %H:%M ') %>
+          <%= link_to @idea.histories.first.user.name, User.find(@idea.histories.first.user.id) %> / <%= @idea.histories.first.time.strftime('%d.%m.%Y / %H:%M ') %>
         <%if not @idea.tags.empty?%>
           <br /><span class="tag-text">
           <%= (t :tags) %>
@@ -39,32 +39,29 @@
         <%= social_share_button_tag('Hydea | ' + @idea.topic, name: 'Hydea', url: request.url, popup: 'true') %>
 
 	      <% if not (@idea.histories.last.basket == "New" or @idea.histories.last.basket == "Rejected")%>
+          <button class="likes"><%= @idea.likes.length %></button>
           <% if @idea.histories.last.basket == "Approved" %>
             <% if @idea.likes.find_by(user_id: current_user).nil? %>
-              <button class="likes"><%= @idea.likes.length %></button>
               <%= link_to like_idea_path(@idea), method: :post do %>
                 <button class="like-button like">
-                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                  <%=image_tag("peukku.png", alt: "Tykkää", class: 'thumb')%>
                 </button>
               <% end %>
             <% else %>
-              <button class="likes"><%= @idea.likes.length %></button>
               <%= link_to unlike_idea_path(@idea), method: :post do %>
                 <button class="like-button liked">
-                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                  <%=image_tag("peukku.png", alt: "Tykkää", class: 'thumb')%>
                 </button>
               <% end %>
             <% end %>
           <% else %>
             <% if @idea.likes.find_by(user_id: current_user).nil? %>
-              <button class="likes"><%= @idea.likes.length %></button>
               <button class="like-button like disable">
-                <span class="glyphicon glyphicon-thumbs-up"></span>
+                <%=image_tag("peukku.png", alt: "Tykkää", class: 'thumb')%>
               </button>
             <% else %>
-              <button class="likes"><%= @idea.likes.length %></button>
               <button class="like-button liked disable">
-                <span class="glyphicon glyphicon-thumbs-up"></span>
+                <%=image_tag("peukku.png", alt: "Tykkää", class: 'thumb')%>
               </button>
             <% end %>
           <% end%>
@@ -97,37 +94,39 @@
   <p class="idea-show-comment-text">
     <%= (t :comments) %>
   </p>
- <% @idea.comments.order(:time).each do |comment| %>
-	 <% if (comment.visible? or (not current_user.nil? and current_user.moderator?)) %>
-                  <ul class="list-group idea-show-comments">
-                    <li class="list-group-item">
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <% if not session[:user_id].nil? and current_user.moderator %>
-                            <% if comment.visible != true %>
-                              <%= link_to (t :publish_button), publish_comment_path(comment), method: :publish, data: { confirm: (t :are_you_sure) }, :class => "btn-sm btn-success publish_comment" %>
-                            <% else %>
-                              <%= link_to (t :unpublish_button), unpublish_comment_path(comment), method: :unpublish, data: { confirm:  (t :are_you_sure) }, :class => "btn-sm btn-success publish_comment" %>
-                             <% end %>
-                            <%= link_to (t :delete), comment, method: :delete, data: { confirm:  (t :are_you_sure) }, :class => "btn-sm btn-danger delete_comment" %>
-                          <% end %>
-                          <p class="user-time">
-                          <%= link_to comment.user.name, comment.user_id %>
-                          <% if not comment.user.title.empty? and comment.user.moderator %>
-                            (<%= comment.user.title %>)
-                          <% end %>
-                          / <%= comment.time.strftime('%d.%m.%Y / %H:%M ') %>
-                          </p>
-                        </div>
-                        <div class="panel-body">
-                          <p><%= comment.text %></p>
-                        </div>
-                      </div>
-                    </li>
-	    <% end %>
-                  <% end %>
 
-  <% if not session[:user_id].nil? %><% end %>
+<ul class="list-group idea-show-comments">
+  <% @idea.comments.order(:time).each do |comment| %>
+    <% if (comment.visible? or (not current_user.nil? and current_user.moderator?)) %>
+      <li class="list-group-item">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <% if not session[:user_id].nil? and current_user.moderator %>
+              <% if comment.visible != true %>
+                <%= link_to (t :publish_button), publish_comment_path(comment), method: :publish, data: { confirm: (t :are_you_sure) }, :class => "btn-sm btn-success publish_comment" %>
+              <% else %>
+                <%= link_to (t :unpublish_button), unpublish_comment_path(comment), method: :unpublish, data: { confirm:  (t :are_you_sure) }, :class => "btn-sm btn-success publish_comment" %>
+              <% end %>
+              <%= link_to (t :delete), comment, method: :delete, data: { confirm:  (t :are_you_sure) }, :class => "btn-sm btn-danger delete_comment" %>
+            <% end %>
+            <p class="user-time">
+              <%= link_to comment.user.name, User.find(comment.user.id) %>
+              <% if not comment.user.title.empty? and comment.user.moderator %>
+                (<%= comment.user.title %>)
+              <% end %>
+              / <%= comment.time.strftime('%d.%m.%Y / %H:%M ') %>
+            </p>
+          </div>
+          <div class="panel-body">
+            <p><%= comment.text %></p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  <% end %>
+
+
+    <% if not session[:user_id].nil? %><% end %>
 
       <%= form_for("comment", :url => main_app.comments_path, :html => { :class => "form-horizontal" } ) do |f| %>
       <%= f.hidden_field :idea_id, :value => @idea.id %>
@@ -140,7 +139,8 @@
         <button type="submit" class="btn btn-primary"><%= (t :send) %> </button>
         <% end %>
       </div>
-
+  <% end %>
+</ul>
 
   <p class="back">
   <% if not session[:user_id].nil? and current_user.moderator %>
