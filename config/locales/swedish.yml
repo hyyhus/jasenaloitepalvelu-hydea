@@ -212,11 +212,11 @@ swe:
       "Skapa idé"
 
       #sort
-    topic:
+    topic_sort:
       "Rubrik"
-    date:
+    date_sort:
       "Datum"
-    likes:
+    likes_sort:
       "Gillanden"
 
 
