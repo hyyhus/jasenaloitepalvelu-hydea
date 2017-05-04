@@ -1,5 +1,4 @@
 <div class="container idea-show">
-  <p id="notice"><%= notice %></p>
   <% if @idea.histories.last.basket == "New" %>
     <div class="row idea-top idea-new">
   <% end %>
@@ -18,6 +17,7 @@
   <% if @idea.histories.last.basket == "Rejected" %>
     <div class="row idea-top rejected-idea">
   <% end %>
+  <p id="notice edit-idea"><%= notice %></p>
     <div class="col-sm-8">
       <h2><%= @idea.topic %></h2>
       <p class="user-time">
