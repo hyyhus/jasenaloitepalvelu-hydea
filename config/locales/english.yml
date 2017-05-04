@@ -1,6 +1,9 @@
 en:
   hello: "Hello world"
 
+  home_page:
+    "Home page"
+
   greeting: "Welcome to HYDEA-service!"
 
   test:

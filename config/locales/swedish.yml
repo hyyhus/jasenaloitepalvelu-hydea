@@ -8,8 +8,11 @@ swe:
     test:
         "EXEMPEL"
 
+    home_page:
+      "Hemsidan"
+
     ideas:
-        "Idéer"
+      "Idéer"
 
     ideas_by_user:
         "Idéer som lämnats in av"
