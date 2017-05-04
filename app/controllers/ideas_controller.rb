@@ -2,8 +2,6 @@ class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy, :publish, :publish_moderate, :un_moderate, :moderate, :reject, :changing, :changed, :not_changed, :like, :unlike]
   before_action :ensure_that_signed_in, except: [:index, :show, :search, :export]
   before_action :ensure_that_is_moderator, except: [:index, :show, :new, :create, :like, :unlike, :search]
-  #  before_action :set_idea, only: [:publish]
-
 
   # GET /ideas
   # GET /ideas.json
@@ -27,8 +25,11 @@ class IdeasController < ApplicationController
     else
       redirect_to '/ideas?basket=Approved'
     end
-  end
 
+    if params[:action] == "search"
+      params.delete :action
+    end
+  end
 
   def search
     if (params[:basket] == 'New' or params[:basket] == 'Rejected') and not current_user.moderator?
@@ -83,6 +84,7 @@ class IdeasController < ApplicationController
     @history.time = Time.now
     @history.user = current_user
     @idea = Idea.new(idea_params)
+    @idea.likes_count = 0
     @idea.histories << @history
     @idea.moderate = false
     @history.idea = @idea
