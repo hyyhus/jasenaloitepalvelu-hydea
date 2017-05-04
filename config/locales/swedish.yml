@@ -226,6 +226,10 @@ swe:
     create_idea:
       "Skapa idé"  #HUOM!  Suomenkielisessä listassa on lopuksi liuta komentoja, joita eivät esiinny eng-versiossa, eikä myöskään tässä. Niitä siis ei käännetä, vai?
  
+    # export		 
+    export:		
+      "Exportera till fil"
+ 
     New:		
       "Ny"		
   		
