@@ -194,12 +194,12 @@ end
 
   def like
 	  @idea.likes << Like.create(user: current_user, idea: @idea, like_type: "like")
-	  redirect_back(fallback_location: '/')
+	  redirect_to @idea
   end
 
   def unlike
 	  @idea.likes.find_by(user_id: current_user).destroy
-	  redirect_back(fallback_location: '/')
+	  redirect_to @idea
   end
 
   private
