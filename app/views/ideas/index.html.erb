@@ -6,15 +6,16 @@
   <% end %>
   <!-- Show baskets -->
   <ul class="nav nav-tabs nav-justified">
+  <% url = request.fullpath %>
     <% if not session[:user_id].nil? and current_user.moderator %>
-      <li <% if current_page?(ideas_path(basket: "New")) -%>class="active idea-new"<% end -%>><%= link_to (t :basket_new), ideas_path(basket: "New" )%></li>
+      <li <% if url.include?("basket=New") %>class="active idea-new"<% end %>><%= link_to (t :basket_new), ideas_path(basket: "New" )%></li>
     <% end %>
-      <li <% if current_page?(ideas_path(basket: "Approved")) -%>class="active approved-idea"<% end -%>><%= link_to  (t :basket_approved), ideas_path(basket: "Approved" )%></li>
-      <li <% if current_page?(ideas_path(basket: "Changing")) -%>class="active changing-idea"<% end -%>><%= link_to  (t :basket_changing), ideas_path(basket: "Changing" )%></li>
-      <li <% if current_page?(ideas_path(basket: "Changed")) -%>class="active changed-idea"<% end -%>><%= link_to  (t :basket_changed), ideas_path(basket: "Changed" )%></li>
-      <li <% if current_page?(ideas_path(basket: "Not Changed")) -%>class="active not-changed-idea"<% end -%>><%= link_to  (t :basket_not_changed), ideas_path(basket: "Not Changed" )%></li>
+      <li <% if url.include?("basket=Approved") %>class="active approved-idea"<% end %>><%= link_to  (t :basket_approved), ideas_path(basket: "Approved" )%></li>
+      <li <% if url.include?("basket=Changing") %>class="active changing-idea"<% end %>><%= link_to  (t :basket_changing), ideas_path(basket: "Changing" )%></li>
+      <li <% if url.include?("basket=Changed") %>class="active changed-idea"<% end %>><%= link_to  (t :basket_changed), ideas_path(basket: "Changed" )%></li>
+      <li <% if url.include?("basket=Not+Changed") %>class="active not-changed-idea"<% end %>><%= link_to  (t :basket_not_changed), ideas_path(basket: "Not Changed" )%></li>
     <% if not session[:user_id].nil? and current_user.moderator %>
-      <li <% if current_page?(ideas_path(basket: "Rejected")) -%>class="active rejected-idea"<% end -%>><%= link_to  (t :basket_rejected), ideas_path(basket: "Rejected" )%></li>
+      <li <% if url.include?("basket=Rejected") %>class="active rejected-idea"<% end %>><%= link_to  (t :basket_rejected), ideas_path(basket: "Rejected" )%></li>
     <% end %>
   </ul>
   <!-- End baskets -->
