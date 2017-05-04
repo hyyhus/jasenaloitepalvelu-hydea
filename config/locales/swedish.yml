@@ -231,22 +231,16 @@ swe:
       "Exportera till fil"
  
     New:		
-      "Ny"		
-  		
+      "Ny"
     Approved:		
-     "Godkänd"		
- 		
+     "Godkänd"		 		
     Changing:		
-      "Under arbete"		
-    		
+      "Under arbete"		    		
     Changed:		
-      "Ändrats"		
-  		
+      "Ändrats"		  		
     Not Changed:		
-      "Inte ändrats"		
-    		
+      "Inte ändrats"		    		
     Rejected:		
-      "Avvisad"		
-  		
+      "Avvisad"		  		
     no_ideas:		
       "Det finns ingen idéer här. Kom senare tillbaka."
