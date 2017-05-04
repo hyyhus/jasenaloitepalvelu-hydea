@@ -162,9 +162,9 @@
               <!-- End how many comments -->
               <div id="collapse<%= idea.id * 2 + 1 %>" class="panel-collapse collapse">
                 <!-- Draw comments -->
+                <ul class="list-group comments">
                 <% idea.comments.order(:time).each do |comment| %>
 			<% if (comment.visible? or (not current_user.nil? and current_user.moderator?)) %>
-                  <ul class="list-group comments">
                     <li class="list-group-item">
                       <div class="panel panel-default">
                         <div class="panel-heading">
