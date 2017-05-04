@@ -293,6 +293,7 @@ tr:nth-child(even){
 	padding: 5px 0 5px;
 	font-family: 'Radikal_Bold';
 	font-size: 14px;
+	height: 32px;
 }
 
 .sort-ideas a{
@@ -300,12 +301,14 @@ tr:nth-child(even){
 	padding-right: 10px;
 }
 
+.new-idea-link{
+	text-align: center;
+}
+
 .new-idea{
 	margin-top: -5px;
-	padding: 5px 0 0;
-	position: absolute;
-	left: 50%;
-	transform: translatex(-50%);
+	padding: 10px 0 3px;
+	height: 25px;
 	background: #fff;
 }
 
@@ -762,6 +765,11 @@ h2{
 	.ssb-icon{
 		margin-right: 5px;
 	}
+
+	.sort_link{
+		padding-left: 5px;
+		font-size: 11px;
+	}
 }
 
 @media only screen and (max-width: 930px) {
@@ -829,12 +837,33 @@ h2{
 		padding: 10px;
 	}
 
+	.new-idea-link{
+		padding-top: 10px;
+	}
+
 	.new-idea{
 		margin-top: -5px;
 		padding: 5px 0 0;
 		position: relative;
 		left: 0;
 		background: #fff;
+	}
+
+	.sort_link{
+		padding-left: 10px;
+		font-size: 13px;
+	}
+
+	.search-bar{
+		position: absolute;
+		left: 50%;
+		transform: translatex(-50%);
+	}
+}
+
+@media only screen and (max-width: 476px) {
+	.sort-ideas{
+		height: 125px;
 	}
 }
 
@@ -852,11 +881,6 @@ h2{
 		padding: 5px 10px 5px 10px;
 	}
 
-	.sort-ideas{
-		text-align: center;
-		height: 100px;
-	}
-
 	.sort-ideas form {
 		padding: 10px;
 	}
@@ -866,7 +890,7 @@ h2{
 	}
 
 	.new-idea a{
-	padding: 0 5px 0 5px;
+	//padding: 0 5px 0 5px;
 	color: blue;
 	font-family: 'Radikal_Bold';
 	font-size: 18px;
@@ -887,11 +911,6 @@ h2{
 		padding: 5px 10px 5px 10px;
 	}
 
-	.sort-ideas{
-		text-align: center;
-		height: 100px;
-	}
-
 	.sort-ideas form {
 		padding: 10px;
 	}
@@ -901,7 +920,7 @@ h2{
 	}
 
 	.new-idea a{
-	padding: 0 70px 0 70px;
+	padding: 0 50px 0 50px;
 	color: blue;
 	font-family: 'Radikal_Bold';
 	font-size: 18px;
