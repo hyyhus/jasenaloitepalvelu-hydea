@@ -16,6 +16,11 @@ swe:
 
     ideas_by_user:
         "Idéer som lämnats in av"
+    user_own_ideas:
+      "Idéer skapade av dig"
+
+    users:
+      "Användare"
 
     users:
         "Användare"
@@ -189,7 +194,7 @@ swe:
       "Filter"
 
     you_are_banned:
-      "Du har fått användningsförbud"
+      "Du har fått användningsförbud. Kontakt hallitus@hyy.fi för mera information."
 
       #FAQ
     faq_topic:

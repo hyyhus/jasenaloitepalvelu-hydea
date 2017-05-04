@@ -68,7 +68,7 @@ h2{
 }
 
 .tags{
-	margin: 15px 0 15px;
+	margin: 15px 0 10px;
 }
 
 .total-likes{
@@ -168,7 +168,6 @@ tr:nth-child(even){
 }
 
 .brand-logo{
-	width: 100px;
 	height: 100px;
 }
 
@@ -186,11 +185,11 @@ tr:nth-child(even){
 }
 
 .navbar-header{
-	padding-left: 50px;
+	padding-left: 15px;
 }
 
 .navbar-nav{
-	padding: 25px;
+	padding: 25px 0 25px 0;
 }
 
 .navbar-middle{
@@ -251,11 +250,11 @@ tr:nth-child(even){
 // tag styles
 
 .tags form {
-	width: 100%;
+	//width: 100%;
 	display: -webkit-flex;
 	display: flex;
-  -webkit-justify-content: space-between;
-  justify-content: space-around;
+  -webkit-justify-content: center;
+  justify-content: center;
 	align-items: stretch;
 	-webkit-flex-wrap: wrap;
 	flex-wrap: wrap;
@@ -264,12 +263,14 @@ tr:nth-child(even){
 }
 
 .tag-list{
-	flex: 1;
+	//flex: 1;
 	display: block;
 	height: 50px;
 	background: #f7f7ff;
 	color: blue;
 	text-align: center;
+	padding: 0 25px 0 25px;
+	margin-top: 5px;
 }
 
 .tag-list:nth-child(even){
@@ -295,6 +296,7 @@ tr:nth-child(even){
 	padding: 5px 0 5px;
 	font-family: 'Radikal_Bold';
 	font-size: 14px;
+	height: 32px;
 }
 
 .sort-ideas a{
@@ -302,12 +304,14 @@ tr:nth-child(even){
 	padding-right: 10px;
 }
 
+.new-idea-link{
+	text-align: center;
+}
+
 .new-idea{
 	margin-top: -5px;
-	padding: 5px 0 0;
-	position: absolute;
-	left: 50%;
-	transform: translatex(-50%);
+	padding: 10px 0 3px;
+	height: 25px;
 	background: #fff;
 }
 
@@ -490,6 +494,14 @@ tr:nth-child(even){
 	   -moz-transform: skew(160deg);
 	     -o-transform: skew(160deg);
 	border: 1px solid blue;
+}
+
+.thumb{
+	max-width: 90%;
+	max-height: 90%;
+	-webkit-transform: skew(20deg);
+	   -moz-transform: skew(20deg);
+	     -o-transform: skew(20deg);
 }
 
 .like-button:hover{
@@ -711,6 +723,23 @@ h2{
 
 // smaller screen styles
 
+@media only screen and (max-width: 1366px) {
+	.brand-logo{
+		display: none;
+	}
+
+	.navbar-middle{
+		display: none;
+	}
+
+	.brand-text{
+		padding-top: 39px;
+		display: inline;
+		text-transform: uppercase;
+		font-size: 24px;
+	}
+}
+
 @media only screen and (max-width: 1120px) {
 	.navbar-header {
 		padding-left: 0px;
@@ -732,6 +761,14 @@ h2{
 		height: 50px;
 		border: 1px solid #fff;
 	}
+
+	.navbar-nav{
+		padding: 25px 10px 25px 10px;
+	}
+
+	.nav > li > a{
+		padding: 15px 10px;
+	}
 }
 
 @media only screen and (max-width: 991px) {
@@ -743,6 +780,11 @@ h2{
 
 	.ssb-icon{
 		margin-right: 5px;
+	}
+
+	.sort_link{
+		padding-left: 5px;
+		font-size: 11px;
 	}
 }
 
@@ -762,7 +804,7 @@ h2{
 	}
 
 	.navbar-nav{
-		padding: 25px 15px 25px 15px;
+		padding: 25px 10px 25px 10px;
 	}
 
 	.nav > li > a{
@@ -795,7 +837,6 @@ h2{
 	}
 
 	.tag-list{
-		margin: 0 2px 2px 0;
 		padding: 2px;
 	}
 
@@ -812,6 +853,10 @@ h2{
 		padding: 10px;
 	}
 
+	.new-idea-link{
+		padding-top: 10px;
+	}
+
 	.new-idea{
 		margin-top: -5px;
 		padding: 5px 0 0;
@@ -819,6 +864,83 @@ h2{
 		left: 0;
 		background: #fff;
 	}
+
+	.sort_link{
+		padding-left: 10px;
+		font-size: 13px;
+	}
+
+	.search-bar{
+		position: absolute;
+		left: 50%;
+		transform: translatex(-50%);
+	}
+}
+
+@media only screen and (max-width: 476px) {
+	.sort-ideas{
+		height: 125px;
+	}
+}
+
+@media only screen and (max-width: 470px) {
+	.brand-text{
+		padding-top: 15px;
+	}
+
+	.navbar{
+		margin: 15px;
+		padding-bottom: 0;
+	}
+
+	.navbar-nav{
+		padding: 5px 10px 5px 10px;
+	}
+
+	.sort-ideas form {
+		padding: 10px;
+	}
+
+	.nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a{
+		padding: 10px;
+	}
+
+	.new-idea a{
+	//padding: 0 5px 0 5px;
+	color: blue;
+	font-family: 'Radikal_Bold';
+	font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 345px) {
+	.brand-text{
+		padding-top: 15px;
+	}
+
+	.navbar{
+		margin: 15px;
+		padding-bottom: 0;
+	}
+
+	.navbar-nav{
+		padding: 5px 10px 5px 10px;
+	}
+
+	.sort-ideas form {
+		padding: 10px;
+	}
+
+	.nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a{
+		padding: 10px;
+	}
+
+	.new-idea a{
+	padding: 0 50px 0 50px;
+	color: blue;
+	font-family: 'Radikal_Bold';
+	font-size: 18px;
+    }
 }
 
 @media only screen and (max-width: 470px) {

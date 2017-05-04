@@ -37,28 +37,38 @@
   </div>
   <!-- End tags -->
   <!-- Show sort -->
-  <div class="sort-ideas">
-    <%= sort_link @q, :topic_case_insensitive do %>
-      <% (t :topic_sort) %>
-    <% end %>
-    <%= sort_link @q, :created_at do %>
-      <% (t :date_sort) %>
-    <% end %>
-    <%= sort_link @q, :likes_count_sort, default_order: 'desc' do  %>
-      <% (t :likes_sort) %>
-    <% end %>
-    <% if current_user %>
-      <span class="new-idea">
-        <%= link_to (t :post_idea), new_idea_path %>
-      </span>
-    <% end %>
-    <!-- Search form -->
-    <%= search_form_for @q, class: 'search-bar', url: search_ideas_path(basket: params[:basket]),
-                            html: { method: :post } do |f| %>
-      <%= f.search_field :topic_or_text_cont %>
-      <%= f.submit (t :search_form), class: 'search-button' %>
-    <% end %>
-    <!-- End Search form -->
+  <div class="row">
+    <div class="container">
+      <div class="sort-ideas">
+        <div class="col-sm-4">
+          <%= sort_link @q, :topic_case_insensitive do %>
+            <% (t :topic_sort) %>
+          <% end %>
+          <%= sort_link @q, :created_at do %>
+            <% (t :date_sort) %>
+          <% end %>
+          <%= sort_link @q, :likes_count_sort, default_order: 'desc' do  %>
+            <% (t :likes_sort) %>
+          <% end %>
+        </div>
+        <div class="col-sm-4 new-idea-link">
+          <% if current_user %>
+            <span class="new-idea">
+              <%= link_to (t :post_idea), new_idea_path %>
+            </span>
+          <% end %>
+        </div>
+        <!-- Search form -->
+        <div class="col-sm-4">
+          <%= search_form_for @q, class: 'search-bar', url: search_ideas_path(basket: params[:basket]),
+                                  html: { method: :post } do |f| %>
+            <%= f.search_field :topic_or_text_cont %>
+            <%= f.submit (t :search_form), class: 'search-button' %>
+          <% end %>
+        </div>
+        <!-- End Search form -->
+      </div>
+    </div>
   </div>
   <!-- End sort -->
 </div>
