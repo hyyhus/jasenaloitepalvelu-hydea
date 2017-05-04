@@ -8,6 +8,9 @@ swe:
     test:
         "EXEMPEL"
 
+    home_page:
+        "Hemsidan"
+
     ideas:
         "Idéer"
 
