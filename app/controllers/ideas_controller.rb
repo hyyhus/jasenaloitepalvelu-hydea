@@ -83,6 +83,7 @@ end
     @history.time = Time.now
     @history.user = current_user
     @idea = Idea.new(idea_params)
+    @idea.likes_count = 0
     @idea.histories << @history
     @idea.moderate = false
     @history.idea = @idea
