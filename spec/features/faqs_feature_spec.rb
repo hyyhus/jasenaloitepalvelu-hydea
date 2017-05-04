@@ -18,7 +18,7 @@ RSpec.feature 'Faqs', type: :feature do
       expect(page).to have_content('faq english')
       find(:xpath, "//a[@href='/language/swedish']").click
       visit '/faq'
-      expect(page).to have_content('Vanliga Fragor')
+      expect(page).to have_content('Vanliga Frågor')
       expect(page).to have_content('faq svensk')
       find(:xpath, "//a[@href='/language/finnish']").click
       visit '/faq'
@@ -26,7 +26,7 @@ RSpec.feature 'Faqs', type: :feature do
       expect(page).to have_content('ukk teksti')
       find(:xpath, "//a[@href='/language/swedish']").click
       visit '/faq'
-      expect(page).to have_content('Vanliga Fragor')
+      expect(page).to have_content('Vanliga Frågor')
       expect(page).to have_content('faq svensk')
       find(:xpath, "//a[@href='/language/english']").click
       visit '/faq'
@@ -51,7 +51,7 @@ RSpec.feature 'Faqs', type: :feature do
         visit '/faq'
         expect(page).to have_content('Usein kysytyt kysymykset')
         expect(page).not_to have_content('Frequently asked questions')
-        expect(page).not_to have_content('Vanliga Fragor')
+        expect(page).not_to have_content('Vanliga Frågor')
       end
 
       it 'English is pressed twice' do
@@ -64,7 +64,7 @@ RSpec.feature 'Faqs', type: :feature do
         visit '/faq'
         expect(page).not_to have_content('Usein kysytyt kysymykset')
         expect(page).to have_content('Frequently asked questions')
-        expect(page).not_to have_content('Vanliga Fragor')
+        expect(page).not_to have_content('Vanliga Frågor')
       end
 
       it 'Swedish is pressed twice' do
@@ -77,7 +77,7 @@ RSpec.feature 'Faqs', type: :feature do
         visit '/faq'
         expect(page).not_to have_content('Usein kysytyt kysymykset')
         expect(page).not_to have_content('Frequently asked questions')
-        expect(page).to have_content('Vanliga Fragor')
+        expect(page).to have_content('Vanliga Frågor')
       end
     end
   end
