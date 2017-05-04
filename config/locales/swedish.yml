@@ -194,7 +194,7 @@ swe:
       "Filter"
 
     you_are_banned:
-      "Du har fått användningsförbud"
+      "Du har fått användningsförbud. Kontakt hallitus@hyy.fi för mera information."
 
       #FAQ
     faq_topic:
