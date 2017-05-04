@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
   resources :likes, only: [:create, :destroy]
   resources :tags
-  resources :comments
+  resources :comments, only: [:create, :destroy]
   resources :ideas
   resources :histories
   resources :users, only: [:index, :show, :edit, :update]
   resources :faqs
+    
+  # error pages
+  match '/404' => 'errors#error_404', :via => [:get, :post]
+  match '/422' => 'errors#error_422', :via => [:get]
+  match '/500' => 'errors#error_500', :via => [:get]
+
   post 'language/english'
   post 'language/finnish'
   post 'language/swedish'
@@ -28,7 +34,7 @@ Rails.application.routes.draw do
     post 'like', on: :member
     post 'unlike', on: :member
     collection do
-        match 'search' => 'ideas#search', via: [:get, :post], as: :search
+      match 'search' => 'ideas#search', via: [:get, :post], as: :search
     end
   end
 
@@ -37,7 +43,7 @@ Rails.application.routes.draw do
     post 'unpublish', on: :member
   end
 
-  #SAML Authentication
+  # SAML Authentication
   namespace :haka do
     get 'auth/new'
     get 'auth/consume'

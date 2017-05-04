@@ -5,15 +5,6 @@ RSpec.describe CommentsController, type: :controller do
 	context "With user logged in" do
 		before :each do
 		end
-		describe "GET #index" do
-			it "responds to get" do
-				comment= FactoryGirl.create(:comment)
-				session[:user_id] = comment.user.id
-				get :index
-				expect(response.status).to eq(200)
-
-			end
-		end
 		describe "POST #create" do
 			it "adds comments to ideas" do
 				comment= FactoryGirl.create(:comment)
@@ -99,15 +90,6 @@ RSpec.describe CommentsController, type: :controller do
 	context "With no user logged in" do
 		before :each do
 			session[:user_id] = nil
-		end
-		describe "GET #index" do
-			it "responds to get" do
-				comment= FactoryGirl.create(:comment)
-				session[:user_id] = comment.user.id
-				get :index
-				expect(response.status).to eq(200)
-
-			end
 		end
 		describe "POST #create" do
 			it "does not add comments to ideas" do

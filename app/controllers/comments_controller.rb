@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :ensure_that_signed_in, except: [:show]
+  before_action :ensure_that_signed_in
   before_action :ensure_that_is_moderator, only: [:destroy, :publish, :unpublish]
-  before_action :set_comment, only: [:show, :edit, :update, :destroy, :publish, :unpublish]
+  before_action :set_comment, only: [:destroy, :publish, :unpublish]
 
   # GET /comments
   # GET /comments.json
@@ -41,20 +41,6 @@ class CommentsController < ApplicationController
 	    redirect_to idea_path(comment.idea), notice: (t :comment) + " " + (t :moderated_publish)
     else
 	    redirect_to idea_path(comment.idea), notice: (t :comment) + " " + (t :publish)
-    end
-  end
-
-  # PATCH/PUT /comments/1
-  # PATCH/PUT /comments/1.json
-  def update
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: (t :comment) + " " + (t :update) }
-        format.json { render :show, status: :ok, location: @comment }
-      else
-        format.html { render :edit }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
     end
   end
 
