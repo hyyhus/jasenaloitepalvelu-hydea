@@ -3,6 +3,9 @@ fin:
 
   greeting: "Tervetuloa HYDEA-palveluun!"
 
+  home_page:
+    "Etusivu"
+
   test:
     "KOKEILU"
 
