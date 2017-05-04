@@ -33,12 +33,6 @@ RSpec.feature 'Comments', type: :feature do
       it 'should not have publish button' do
         expect(page).not_to have_selector(:link_or_button, 'Julkaise')
       end
-
-      it 'should have publish button after clicking' 
-       # expect(page).to have_selector(:link_or_button, 'Unpublish')
-       # click_on('Unpublish')
-       # expect(page).to have_selector(:link_or_button, 'Publish')
-      
     end
 
     context 'With non-moderator signed in' do
