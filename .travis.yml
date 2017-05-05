@@ -18,15 +18,13 @@ before_install:
   #- docker run hydea /bin/sh -c "cd /usr/src/app; bundle exec rspec"
 before_script: bundle exec rake db:migrate RAILS_ENV=test
 after_success:
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-      if [ "$TRAVIS_BRANCH" == "integration" ]; then
+        if [ "$TRAVIS_BRANCH" == "integration" ]; then
         docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" registry.heroku.com;
         docker tag hydea registry.heroku.com/hydea-qa/web;
         docker push registry.heroku.com/hydea-qa/web;
-      fi;
-      if [ "$TRAVIS_BRANCH" == "master" ]; then
+        fi
+        if [ "$TRAVIS_BRANCH" == "master" ]; then
         docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" registry.heroku.com;
         docker tag hydea registry.heroku.com/hydea/web;
         docker push registry.heroku.com/hydea/web;
-      fi;
-    fi
+        fi
