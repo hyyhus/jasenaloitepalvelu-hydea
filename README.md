@@ -1,4 +1,4 @@
-# hydea
+# ideoi (ex. hydea)
 
 [Check wiki for documentation (in finnish)](https://github.com/hyyhus/jasenaloitepalvelu-hydea/wiki)
 
